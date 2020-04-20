@@ -5,6 +5,9 @@ using UnityEngine;
 public class AnimationController : MonoBehaviour
 {
 	public Animator handAnimator;
+	public HingeJoint handTopJoint;
+	public float rotationSpeed;
+	public float maxRotation = 50;
 
 	// Update is called once per frame
 	void Update()
@@ -47,5 +50,23 @@ public class AnimationController : MonoBehaviour
 		{
 			handAnimator.Play("middleCurvedDOWN", 2);
 		}
+
+		// angle
+
+		JointSpring spring = handTopJoint.spring;
+		float valueToAdd = 0;
+		if (Input.GetKey(KeyCode.RightArrow))
+		{
+			valueToAdd -= rotationSpeed;
+
+		}
+		else if (Input.GetKey(KeyCode.LeftArrow))
+		{
+			valueToAdd += rotationSpeed;
+
+		}
+
+		spring.targetPosition = Mathf.Clamp(spring.targetPosition + valueToAdd, -maxRotation, maxRotation);
+		handTopJoint.spring = spring;
 	}
 }
