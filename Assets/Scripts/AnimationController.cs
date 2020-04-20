@@ -16,34 +16,34 @@ public class AnimationController : MonoBehaviour
 		{
 			handAnimator.Play("indexStraightUP", 1);
 		}
-		if (Input.GetKeyDown(KeyCode.A))
+		if (Input.GetKeyUp(KeyCode.Q))
 		{
 			handAnimator.Play("indexStraightDOWN", 1);
 		}
-		if (Input.GetKeyDown(KeyCode.W))
+		if (Input.GetKeyDown(KeyCode.A))
 		{
 			handAnimator.Play("indexCurvedUP", 1);
 		}
-		if (Input.GetKeyDown(KeyCode.S))
+		if (Input.GetKeyUp(KeyCode.A))
 		{
 			handAnimator.Play("indexCurvedDOWN", 1);
 		}
 
 
 		// MIDDLE FINGER
-		if (Input.GetKeyDown(KeyCode.P))
+		if (Input.GetKeyDown(KeyCode.W))
 		{
 			handAnimator.Play("middleStraightUP", 2);
 		}
-		if (Input.GetKeyDown(KeyCode.L))
+		if (Input.GetKeyUp(KeyCode.W))
 		{
 			handAnimator.Play("middleStraightDOWN", 2);
 		}
-		if (Input.GetKeyDown(KeyCode.O))
+		if (Input.GetKeyDown(KeyCode.S))
 		{
 			handAnimator.Play("middleCurvedUP", 2);
 		}
-		if (Input.GetKeyDown(KeyCode.K))
+		if (Input.GetKeyUp(KeyCode.S))
 		{
 			handAnimator.Play("middleCurvedDOWN", 2);
 		}
