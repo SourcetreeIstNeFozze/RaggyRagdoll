@@ -861,7 +861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f3055ecbb64d7440a258e029c7540ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  restartForce: {x: 0, y: 300, z: 0}
+  restartForce: {x: 0, y: 20, z: 0}
 --- !u!1001 &8084781586869992018
 PrefabInstance:
   m_ObjectHideFlags: 0
