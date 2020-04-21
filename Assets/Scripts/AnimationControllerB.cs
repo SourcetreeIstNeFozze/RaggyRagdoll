@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimationController : MonoBehaviour
+public class AnimationControllerB : MonoBehaviour
 {
 	public Animator handAnimator;
 	public HingeJoint handTopJoint;
@@ -15,38 +15,38 @@ public class AnimationController : MonoBehaviour
 
 		// INDEX FINGER
 
-		if (Input.GetKeyDown(KeyCode.Q))
+		if (Input.GetKeyDown(KeyCode.P))
 		{
 			handAnimator.Play("indexStraightUP", 1);
 		}
-		if (Input.GetKeyUp(KeyCode.Q))
+		if (Input.GetKeyUp(KeyCode.P))
 		{
 			handAnimator.Play("indexStraightDOWN", 1);
 		}
-		if (Input.GetKeyDown(KeyCode.A))
+		if (Input.GetKeyDown(KeyCode.L))
 		{
 			handAnimator.Play("indexCurvedUP", 1);
 		}
-		if (Input.GetKeyUp(KeyCode.A))
+		if (Input.GetKeyUp(KeyCode.L))
 		{
 			handAnimator.Play("indexCurvedDOWN", 1);
 		}
 
 
 		// MIDDLE FINGER
-		if (Input.GetKeyDown(KeyCode.W))
+		if (Input.GetKeyDown(KeyCode.O))
 		{
 			handAnimator.Play("middleStraightUP", 2);
 		}
-		if (Input.GetKeyUp(KeyCode.W))
+		if (Input.GetKeyUp(KeyCode.O))
 		{
 			handAnimator.Play("middleStraightDOWN", 2);
 		}
-		if (Input.GetKeyDown(KeyCode.S))
+		if (Input.GetKeyDown(KeyCode.K))
 		{
 			handAnimator.Play("middleCurvedUP", 2);
 		}
-		if (Input.GetKeyUp(KeyCode.S))
+		if (Input.GetKeyUp(KeyCode.K))
 		{
 			handAnimator.Play("middleCurvedDOWN", 2);
 		}
@@ -55,12 +55,12 @@ public class AnimationController : MonoBehaviour
 
 		JointSpring spring = handTopJoint.spring;
 		float valueToAdd = 0;
-		if (Input.GetKey(KeyCode.C))
+		if (Input.GetKey(KeyCode.B))
 		{
 			valueToAdd -= rotationSpeed;
 
 		}
-		else if (Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.Y))
+		else if (Input.GetKey(KeyCode.M))
 		{
 			valueToAdd += rotationSpeed;
 
