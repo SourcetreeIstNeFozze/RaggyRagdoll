@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
         while (standUp)
         {
             rigid.AddForce(restartForce);
-            print("phase 1");
+            //print("phase 1");
             
             if (rigid.position.y > (stabilizeScript.connectedAnchorHeight * 0.9f))
             {
@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
         while (standUp_stabilize)
         {
             rigid.velocity /= 1.08f;
-            print("phase 2");
+            //print("phase 2");
             if (rigid.velocity.magnitude < 0.2f)
             {
                 standUp_stabilize = false;
