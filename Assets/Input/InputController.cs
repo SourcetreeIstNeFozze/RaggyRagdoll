@@ -1,0 +1,684 @@
+// GENERATED AUTOMATICALLY FROM 'Assets/InputController.inputactions'
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
+
+public class @InputController : IInputActionCollection, IDisposable
+{
+    public InputActionAsset asset { get; }
+    public @InputController()
+    {
+        asset = InputActionAsset.FromJson(@"{
+    ""name"": ""InputController"",
+    ""maps"": [
+        {
+            ""name"": ""HandMovement"",
+            ""id"": ""6e7a5973-8e43-4caf-b66b-aa42cd0f7bac"",
+            ""actions"": [
+                {
+                    ""name"": ""IndexFingerUP"",
+                    ""type"": ""Button"",
+                    ""id"": ""b5cf07c2-5eda-452b-a676-eef5a05465d8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""IndexFingerDOWN"",
+                    ""type"": ""Button"",
+                    ""id"": ""c81dff1e-d853-4317-a6c5-5053376bd106"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)""
+                },
+                {
+                    ""name"": ""IndexFingerIN"",
+                    ""type"": ""Button"",
+                    ""id"": ""f22fc432-7836-46fe-b65d-0f5d25c7a771"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""IndexFingerOUT"",
+                    ""type"": ""Button"",
+                    ""id"": ""bd16f9bb-438d-44a7-93ee-10c8e262397c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)""
+                },
+                {
+                    ""name"": ""MiddleFingerUP"",
+                    ""type"": ""Button"",
+                    ""id"": ""4aa8578e-3c78-4bda-b8cf-4984362f26d1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""MiddleFingerDOWN"",
+                    ""type"": ""Button"",
+                    ""id"": ""eda7615c-542c-4374-a2ea-886d7e6df38a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)""
+                },
+                {
+                    ""name"": ""MiddleFingerIN"",
+                    ""type"": ""Button"",
+                    ""id"": ""58550246-fa03-4917-8eec-1657cba2016e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""MiddleFingerOUT"",
+                    ""type"": ""Button"",
+                    ""id"": ""6bdf8d78-9951-44a3-bb81-0104b5fe4e0e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)""
+                },
+                {
+                    ""name"": ""StandUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""d00aa6d5-c5d1-4c1c-8cb2-aeb5c4ca19df"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""90caa107-9989-4d41-9988-4f7ec216e974"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""IndexFingerUP"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""83e115b2-fbd3-486b-b92c-f9f059cd6d67"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardScheme1"",
+                    ""action"": ""IndexFingerUP"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2c22e05a-1c96-4946-b6d0-76e043f74d8d"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardScheme2"",
+                    ""action"": ""IndexFingerUP"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b8afe06c-bc04-4178-8563-274df84d1d6f"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MiddleFingerIN"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d78fca9d-d955-40fa-a88a-e392ae54177b"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardScheme1"",
+                    ""action"": ""MiddleFingerIN"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4d1556ae-8765-4cd5-944c-b96b945c25cb"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardScheme2"",
+                    ""action"": ""MiddleFingerIN"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bfea6db8-08c1-4a19-aa43-49e360f3b84a"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""IndexFingerDOWN"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ec39b1d2-495f-4cff-a032-db2891f0af6e"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardScheme1"",
+                    ""action"": ""IndexFingerDOWN"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ce1dcf7e-67cd-4976-9614-a91ecd883916"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardScheme2"",
+                    ""action"": ""IndexFingerDOWN"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0b6b170b-f148-4350-bea8-cd2289694a4a"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StandUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a7f2439c-982b-4b85-9c47-855daee494a9"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardScheme1"",
+                    ""action"": ""StandUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ade8ea5e-06cb-479e-9bc4-054c31a63713"",
+                    ""path"": ""<Keyboard>/rightShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardScheme2"",
+                    ""action"": ""StandUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7e9186ce-6caf-4e38-86fb-17d945c515ef"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""IndexFingerIN"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ce91849d-6fcd-4740-b3a6-73cadc286aed"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardScheme1"",
+                    ""action"": ""IndexFingerIN"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5fb172ee-8734-4306-972b-de5ded0d52a3"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardScheme2"",
+                    ""action"": ""IndexFingerIN"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c18cceab-a851-4d3c-827c-2b0ab5ef3b92"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""IndexFingerOUT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cc9300b3-91d0-42f0-a336-d13951bdeec5"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardScheme1"",
+                    ""action"": ""IndexFingerOUT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9ce4cebd-7c6a-4505-b3ac-4a66228c9036"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardScheme2"",
+                    ""action"": ""IndexFingerOUT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""803754cb-da3b-44cb-82f9-0ca4abf0e94d"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MiddleFingerUP"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8abf6c58-2776-4cfa-ad44-d30d685da8c5"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardScheme1"",
+                    ""action"": ""MiddleFingerUP"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""924eda7a-439a-4e97-b209-4a8527ec5ea6"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardScheme2"",
+                    ""action"": ""MiddleFingerUP"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""76cab51d-8438-41d6-bba0-8e74099fe4bb"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MiddleFingerDOWN"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""193ff8cc-60af-4563-bf37-ba39055321dd"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardScheme1"",
+                    ""action"": ""MiddleFingerDOWN"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b6c47b55-c916-43bc-a9dd-af9b14b3de0c"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardScheme2"",
+                    ""action"": ""MiddleFingerDOWN"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ca83dba5-2f98-45a6-ae3e-605a23781021"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MiddleFingerOUT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""56fdf35b-27b4-4828-82be-824f28800e31"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardScheme1"",
+                    ""action"": ""MiddleFingerOUT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fb42b5fa-3a74-463b-b7e2-09f927b3ec98"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardScheme2"",
+                    ""action"": ""MiddleFingerOUT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Menus"",
+            ""id"": ""85e84938-2951-4e17-9008-f2b4f63a9477"",
+            ""actions"": [
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""ed8eeb0a-6503-49f6-bdb4-bb05af7a6d19"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""69ec047a-15cd-4160-9ee9-4e8494a15e88"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        }
+    ],
+    ""controlSchemes"": [
+        {
+            ""name"": ""Gamepad"",
+            ""bindingGroup"": ""Gamepad"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Gamepad>"",
+                    ""isOptional"": true,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""KeyboardScheme2"",
+            ""bindingGroup"": ""KeyboardScheme2"",
+            ""devices"": []
+        },
+        {
+            ""name"": ""KeyboardScheme1"",
+            ""bindingGroup"": ""KeyboardScheme1"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": true,
+                    ""isOR"": false
+                }
+            ]
+        }
+    ]
+}");
+        // HandMovement
+        m_HandMovement = asset.FindActionMap("HandMovement", throwIfNotFound: true);
+        m_HandMovement_IndexFingerUP = m_HandMovement.FindAction("IndexFingerUP", throwIfNotFound: true);
+        m_HandMovement_IndexFingerDOWN = m_HandMovement.FindAction("IndexFingerDOWN", throwIfNotFound: true);
+        m_HandMovement_IndexFingerIN = m_HandMovement.FindAction("IndexFingerIN", throwIfNotFound: true);
+        m_HandMovement_IndexFingerOUT = m_HandMovement.FindAction("IndexFingerOUT", throwIfNotFound: true);
+        m_HandMovement_MiddleFingerUP = m_HandMovement.FindAction("MiddleFingerUP", throwIfNotFound: true);
+        m_HandMovement_MiddleFingerDOWN = m_HandMovement.FindAction("MiddleFingerDOWN", throwIfNotFound: true);
+        m_HandMovement_MiddleFingerIN = m_HandMovement.FindAction("MiddleFingerIN", throwIfNotFound: true);
+        m_HandMovement_MiddleFingerOUT = m_HandMovement.FindAction("MiddleFingerOUT", throwIfNotFound: true);
+        m_HandMovement_StandUp = m_HandMovement.FindAction("StandUp", throwIfNotFound: true);
+        // Menus
+        m_Menus = asset.FindActionMap("Menus", throwIfNotFound: true);
+        m_Menus_Newaction = m_Menus.FindAction("New action", throwIfNotFound: true);
+    }
+
+    public void Dispose()
+    {
+        UnityEngine.Object.Destroy(asset);
+    }
+
+    public InputBinding? bindingMask
+    {
+        get => asset.bindingMask;
+        set => asset.bindingMask = value;
+    }
+
+    public ReadOnlyArray<InputDevice>? devices
+    {
+        get => asset.devices;
+        set => asset.devices = value;
+    }
+
+    public ReadOnlyArray<InputControlScheme> controlSchemes => asset.controlSchemes;
+
+    public bool Contains(InputAction action)
+    {
+        return asset.Contains(action);
+    }
+
+    public IEnumerator<InputAction> GetEnumerator()
+    {
+        return asset.GetEnumerator();
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
+
+    public void Enable()
+    {
+        asset.Enable();
+    }
+
+    public void Disable()
+    {
+        asset.Disable();
+    }
+
+    // HandMovement
+    private readonly InputActionMap m_HandMovement;
+    private IHandMovementActions m_HandMovementActionsCallbackInterface;
+    private readonly InputAction m_HandMovement_IndexFingerUP;
+    private readonly InputAction m_HandMovement_IndexFingerDOWN;
+    private readonly InputAction m_HandMovement_IndexFingerIN;
+    private readonly InputAction m_HandMovement_IndexFingerOUT;
+    private readonly InputAction m_HandMovement_MiddleFingerUP;
+    private readonly InputAction m_HandMovement_MiddleFingerDOWN;
+    private readonly InputAction m_HandMovement_MiddleFingerIN;
+    private readonly InputAction m_HandMovement_MiddleFingerOUT;
+    private readonly InputAction m_HandMovement_StandUp;
+    public struct HandMovementActions
+    {
+        private @InputController m_Wrapper;
+        public HandMovementActions(@InputController wrapper) { m_Wrapper = wrapper; }
+        public InputAction @IndexFingerUP => m_Wrapper.m_HandMovement_IndexFingerUP;
+        public InputAction @IndexFingerDOWN => m_Wrapper.m_HandMovement_IndexFingerDOWN;
+        public InputAction @IndexFingerIN => m_Wrapper.m_HandMovement_IndexFingerIN;
+        public InputAction @IndexFingerOUT => m_Wrapper.m_HandMovement_IndexFingerOUT;
+        public InputAction @MiddleFingerUP => m_Wrapper.m_HandMovement_MiddleFingerUP;
+        public InputAction @MiddleFingerDOWN => m_Wrapper.m_HandMovement_MiddleFingerDOWN;
+        public InputAction @MiddleFingerIN => m_Wrapper.m_HandMovement_MiddleFingerIN;
+        public InputAction @MiddleFingerOUT => m_Wrapper.m_HandMovement_MiddleFingerOUT;
+        public InputAction @StandUp => m_Wrapper.m_HandMovement_StandUp;
+        public InputActionMap Get() { return m_Wrapper.m_HandMovement; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(HandMovementActions set) { return set.Get(); }
+        public void SetCallbacks(IHandMovementActions instance)
+        {
+            if (m_Wrapper.m_HandMovementActionsCallbackInterface != null)
+            {
+                @IndexFingerUP.started -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIndexFingerUP;
+                @IndexFingerUP.performed -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIndexFingerUP;
+                @IndexFingerUP.canceled -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIndexFingerUP;
+                @IndexFingerDOWN.started -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIndexFingerDOWN;
+                @IndexFingerDOWN.performed -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIndexFingerDOWN;
+                @IndexFingerDOWN.canceled -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIndexFingerDOWN;
+                @IndexFingerIN.started -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIndexFingerIN;
+                @IndexFingerIN.performed -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIndexFingerIN;
+                @IndexFingerIN.canceled -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIndexFingerIN;
+                @IndexFingerOUT.started -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIndexFingerOUT;
+                @IndexFingerOUT.performed -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIndexFingerOUT;
+                @IndexFingerOUT.canceled -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIndexFingerOUT;
+                @MiddleFingerUP.started -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnMiddleFingerUP;
+                @MiddleFingerUP.performed -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnMiddleFingerUP;
+                @MiddleFingerUP.canceled -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnMiddleFingerUP;
+                @MiddleFingerDOWN.started -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnMiddleFingerDOWN;
+                @MiddleFingerDOWN.performed -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnMiddleFingerDOWN;
+                @MiddleFingerDOWN.canceled -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnMiddleFingerDOWN;
+                @MiddleFingerIN.started -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnMiddleFingerIN;
+                @MiddleFingerIN.performed -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnMiddleFingerIN;
+                @MiddleFingerIN.canceled -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnMiddleFingerIN;
+                @MiddleFingerOUT.started -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnMiddleFingerOUT;
+                @MiddleFingerOUT.performed -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnMiddleFingerOUT;
+                @MiddleFingerOUT.canceled -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnMiddleFingerOUT;
+                @StandUp.started -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnStandUp;
+                @StandUp.performed -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnStandUp;
+                @StandUp.canceled -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnStandUp;
+            }
+            m_Wrapper.m_HandMovementActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @IndexFingerUP.started += instance.OnIndexFingerUP;
+                @IndexFingerUP.performed += instance.OnIndexFingerUP;
+                @IndexFingerUP.canceled += instance.OnIndexFingerUP;
+                @IndexFingerDOWN.started += instance.OnIndexFingerDOWN;
+                @IndexFingerDOWN.performed += instance.OnIndexFingerDOWN;
+                @IndexFingerDOWN.canceled += instance.OnIndexFingerDOWN;
+                @IndexFingerIN.started += instance.OnIndexFingerIN;
+                @IndexFingerIN.performed += instance.OnIndexFingerIN;
+                @IndexFingerIN.canceled += instance.OnIndexFingerIN;
+                @IndexFingerOUT.started += instance.OnIndexFingerOUT;
+                @IndexFingerOUT.performed += instance.OnIndexFingerOUT;
+                @IndexFingerOUT.canceled += instance.OnIndexFingerOUT;
+                @MiddleFingerUP.started += instance.OnMiddleFingerUP;
+                @MiddleFingerUP.performed += instance.OnMiddleFingerUP;
+                @MiddleFingerUP.canceled += instance.OnMiddleFingerUP;
+                @MiddleFingerDOWN.started += instance.OnMiddleFingerDOWN;
+                @MiddleFingerDOWN.performed += instance.OnMiddleFingerDOWN;
+                @MiddleFingerDOWN.canceled += instance.OnMiddleFingerDOWN;
+                @MiddleFingerIN.started += instance.OnMiddleFingerIN;
+                @MiddleFingerIN.performed += instance.OnMiddleFingerIN;
+                @MiddleFingerIN.canceled += instance.OnMiddleFingerIN;
+                @MiddleFingerOUT.started += instance.OnMiddleFingerOUT;
+                @MiddleFingerOUT.performed += instance.OnMiddleFingerOUT;
+                @MiddleFingerOUT.canceled += instance.OnMiddleFingerOUT;
+                @StandUp.started += instance.OnStandUp;
+                @StandUp.performed += instance.OnStandUp;
+                @StandUp.canceled += instance.OnStandUp;
+            }
+        }
+    }
+    public HandMovementActions @HandMovement => new HandMovementActions(this);
+
+    // Menus
+    private readonly InputActionMap m_Menus;
+    private IMenusActions m_MenusActionsCallbackInterface;
+    private readonly InputAction m_Menus_Newaction;
+    public struct MenusActions
+    {
+        private @InputController m_Wrapper;
+        public MenusActions(@InputController wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Newaction => m_Wrapper.m_Menus_Newaction;
+        public InputActionMap Get() { return m_Wrapper.m_Menus; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MenusActions set) { return set.Get(); }
+        public void SetCallbacks(IMenusActions instance)
+        {
+            if (m_Wrapper.m_MenusActionsCallbackInterface != null)
+            {
+                @Newaction.started -= m_Wrapper.m_MenusActionsCallbackInterface.OnNewaction;
+                @Newaction.performed -= m_Wrapper.m_MenusActionsCallbackInterface.OnNewaction;
+                @Newaction.canceled -= m_Wrapper.m_MenusActionsCallbackInterface.OnNewaction;
+            }
+            m_Wrapper.m_MenusActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Newaction.started += instance.OnNewaction;
+                @Newaction.performed += instance.OnNewaction;
+                @Newaction.canceled += instance.OnNewaction;
+            }
+        }
+    }
+    public MenusActions @Menus => new MenusActions(this);
+    private int m_GamepadSchemeIndex = -1;
+    public InputControlScheme GamepadScheme
+    {
+        get
+        {
+            if (m_GamepadSchemeIndex == -1) m_GamepadSchemeIndex = asset.FindControlSchemeIndex("Gamepad");
+            return asset.controlSchemes[m_GamepadSchemeIndex];
+        }
+    }
+    private int m_KeyboardScheme2SchemeIndex = -1;
+    public InputControlScheme KeyboardScheme2Scheme
+    {
+        get
+        {
+            if (m_KeyboardScheme2SchemeIndex == -1) m_KeyboardScheme2SchemeIndex = asset.FindControlSchemeIndex("KeyboardScheme2");
+            return asset.controlSchemes[m_KeyboardScheme2SchemeIndex];
+        }
+    }
+    private int m_KeyboardScheme1SchemeIndex = -1;
+    public InputControlScheme KeyboardScheme1Scheme
+    {
+        get
+        {
+            if (m_KeyboardScheme1SchemeIndex == -1) m_KeyboardScheme1SchemeIndex = asset.FindControlSchemeIndex("KeyboardScheme1");
+            return asset.controlSchemes[m_KeyboardScheme1SchemeIndex];
+        }
+    }
+    public interface IHandMovementActions
+    {
+        void OnIndexFingerUP(InputAction.CallbackContext context);
+        void OnIndexFingerDOWN(InputAction.CallbackContext context);
+        void OnIndexFingerIN(InputAction.CallbackContext context);
+        void OnIndexFingerOUT(InputAction.CallbackContext context);
+        void OnMiddleFingerUP(InputAction.CallbackContext context);
+        void OnMiddleFingerDOWN(InputAction.CallbackContext context);
+        void OnMiddleFingerIN(InputAction.CallbackContext context);
+        void OnMiddleFingerOUT(InputAction.CallbackContext context);
+        void OnStandUp(InputAction.CallbackContext context);
+    }
+    public interface IMenusActions
+    {
+        void OnNewaction(InputAction.CallbackContext context);
+    }
+}
