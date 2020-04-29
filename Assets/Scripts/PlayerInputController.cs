@@ -9,8 +9,10 @@ public class PlayerInputController : MonoBehaviour
 	[Header("Input")]
 	public Animator handAnimator;
 	public HingeJoint handTopJoint;
+	public HingeJoint wristJoint;
 	public float rotationSpeed;
 	public float maxRotation = 50;
+	private Vector2 leftSrickInput = new Vector2();
 
 	[Header("Hand Stabilization & Fall Down")]
 	public bool improvedHandStabilization = false;
@@ -30,24 +32,38 @@ public class PlayerInputController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		Debug.Log(leftSrickInput);
+
 		// only if the hand doesn't use the new stabilization (cause it wouldn't have the needed components)
-		if (!improvedHandStabilization)
+		if (!improvedHandStabilization && leftSrickInput != Vector2.zero)
 		{
-			JointSpring spring = handTopJoint.spring;
-			float valueToAdd = 0;
-			if (Input.GetKey(KeyCode.C))
+			
+			if (leftSrickInput.x !=  0f)
 			{
-				valueToAdd -= rotationSpeed;
-
+				BendVertically(leftSrickInput.x * -rotationSpeed);
 			}
-			else if (Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.Y))
+			else if (leftSrickInput.y !=  0f)
 			{
-				valueToAdd += rotationSpeed;
-
+				BendHorizontally(leftSrickInput.y * rotationSpeed);
 			}
-			spring.targetPosition = Mathf.Clamp(spring.targetPosition + valueToAdd, -maxRotation, maxRotation);
-			handTopJoint.spring = spring;
+
 		}
+	}
+
+	public void BendHorizontally(float bendValue)
+	{
+		JointSpring spring = wristJoint.spring;
+		spring.targetPosition = Mathf.Clamp(spring.targetPosition + bendValue, -maxRotation, maxRotation);
+		handTopJoint.spring = spring;
+	}
+
+	public void BendVertically(float bendValue)
+	{
+
+		JointSpring spring = handTopJoint.spring;
+		spring.targetPosition = Mathf.Clamp(spring.targetPosition + bendValue, -maxRotation, maxRotation);
+		handTopJoint.spring = spring;
+
 	}
 
 	// --- ACTION FUNCTIONS ---//
@@ -100,6 +116,15 @@ public class PlayerInputController : MonoBehaviour
 			StartCoroutine(StandUp());
 		}
 	}
+
+	public void OnBodyBending(InputValue value)
+	{
+		leftSrickInput = value.Get<Vector2>();
+
+		
+	}
+
+
 
 	// Stand Up-Coroutine
 	IEnumerator StandUp()

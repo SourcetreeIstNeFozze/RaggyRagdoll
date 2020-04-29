@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/InputController.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Input/InputController.inputactions'
 
 using System;
 using System.Collections;
@@ -89,6 +89,14 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""BodyBending"",
+                    ""type"": ""Value"",
+                    ""id"": ""40fc7a63-6074-40ea-be88-ea9046ee0dc6"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -96,7 +104,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""90caa107-9989-4d41-9988-4f7ec216e974"",
                     ""path"": ""<Gamepad>/leftShoulder"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""IndexFingerUP"",
@@ -107,7 +115,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""83e115b2-fbd3-486b-b92c-f9f059cd6d67"",
                     ""path"": ""<Keyboard>/q"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardScheme1"",
                     ""action"": ""IndexFingerUP"",
@@ -117,10 +125,10 @@ public class @InputController : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""2c22e05a-1c96-4946-b6d0-76e043f74d8d"",
-                    ""path"": ""<Keyboard>/o"",
-                    ""interactions"": ""Press"",
+                    ""path"": ""<Keyboard>/8"",
+                    ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""KeyboardScheme2"",
+                    ""groups"": ""KeyboardScheme2;KeyboardScheme1"",
                     ""action"": ""IndexFingerUP"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -150,7 +158,7 @@ public class @InputController : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""4d1556ae-8765-4cd5-944c-b96b945c25cb"",
-                    ""path"": ""<Keyboard>/l"",
+                    ""path"": ""<Keyboard>/4"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardScheme2"",
@@ -162,7 +170,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""bfea6db8-08c1-4a19-aa43-49e360f3b84a"",
                     ""path"": ""<Gamepad>/leftShoulder"",
-                    ""interactions"": ""Press(behavior=1)"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""IndexFingerDOWN"",
@@ -173,7 +181,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""ec39b1d2-495f-4cff-a032-db2891f0af6e"",
                     ""path"": ""<Keyboard>/q"",
-                    ""interactions"": ""Press(behavior=1)"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardScheme1"",
                     ""action"": ""IndexFingerDOWN"",
@@ -183,8 +191,8 @@ public class @InputController : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""ce1dcf7e-67cd-4976-9614-a91ecd883916"",
-                    ""path"": ""<Keyboard>/o"",
-                    ""interactions"": ""Press(behavior=1)"",
+                    ""path"": ""<Keyboard>/8"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardScheme2"",
                     ""action"": ""IndexFingerDOWN"",
@@ -216,10 +224,10 @@ public class @InputController : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""ade8ea5e-06cb-479e-9bc4-054c31a63713"",
-                    ""path"": ""<Keyboard>/rightShift"",
+                    ""path"": ""<Keyboard>/numpadEnter"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""KeyboardScheme2"",
+                    ""groups"": """",
                     ""action"": ""StandUp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -249,7 +257,7 @@ public class @InputController : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""5fb172ee-8734-4306-972b-de5ded0d52a3"",
-                    ""path"": ""<Keyboard>/k"",
+                    ""path"": ""<Keyboard>/5"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardScheme2"",
@@ -282,7 +290,7 @@ public class @InputController : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""9ce4cebd-7c6a-4505-b3ac-4a66228c9036"",
-                    ""path"": ""<Keyboard>/k"",
+                    ""path"": ""<Keyboard>/5"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardScheme2"",
@@ -315,7 +323,7 @@ public class @InputController : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""924eda7a-439a-4e97-b209-4a8527ec5ea6"",
-                    ""path"": ""<Keyboard>/p"",
+                    ""path"": ""<Keyboard>/7"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardScheme2"",
@@ -348,7 +356,7 @@ public class @InputController : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""b6c47b55-c916-43bc-a9dd-af9b14b3de0c"",
-                    ""path"": ""<Keyboard>/p"",
+                    ""path"": ""<Keyboard>/7"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardScheme2"",
@@ -381,13 +389,178 @@ public class @InputController : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""fb42b5fa-3a74-463b-b7e2-09f927b3ec98"",
-                    ""path"": ""<Keyboard>/l"",
+                    ""path"": ""<Keyboard>/4"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardScheme2"",
                     ""action"": ""MiddleFingerOUT"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""762dbf19-5953-4148-b59f-c1bc866a5e3b"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BodyBending"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""2df6ddce-33d7-4e2e-a006-6dbee9f0a897"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BodyBending"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""6975f733-f752-453a-98f6-04f8590bd11f"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BodyBending"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""5f4edb10-b665-4386-9332-5f3373021742"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BodyBending"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""9d6e71cd-feb7-48b8-a74e-7594e311b00b"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BodyBending"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""56d9ac54-32c3-4872-8353-3d266d9acea4"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BodyBending"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""b04366dc-6941-49e3-9e69-f5002781b569"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardScheme1"",
+                    ""action"": ""BodyBending"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""48706e48-477b-4a4b-8f88-5f8036ff55dd"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardScheme1"",
+                    ""action"": ""BodyBending"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""4af69423-3c39-4276-a707-590b9188e9b6"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardScheme1"",
+                    ""action"": ""BodyBending"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""caa838f6-1d48-4ef4-adde-55ad8ca4f5ba"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardScheme1;KeyboardScheme2"",
+                    ""action"": ""BodyBending"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""f6765106-bf88-4a1a-b9be-833f1f31f71f"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BodyBending"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""3c126196-60a2-445f-b860-e28905d71454"",
+                    ""path"": ""<Keyboard>/9"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardScheme2"",
+                    ""action"": ""BodyBending"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""43c31b50-e162-4139-8e3a-724be1f03bc0"",
+                    ""path"": ""<Keyboard>/6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardScheme2"",
+                    ""action"": ""BodyBending"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""f7559620-4709-4c8a-bce1-91ff1dc3aab5"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardScheme2"",
+                    ""action"": ""BodyBending"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""fa742ed4-5af4-45d8-a190-7a318b897eeb"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardScheme2"",
+                    ""action"": ""BodyBending"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -460,6 +633,7 @@ public class @InputController : IInputActionCollection, IDisposable
         m_HandMovement_MiddleFingerIN = m_HandMovement.FindAction("MiddleFingerIN", throwIfNotFound: true);
         m_HandMovement_MiddleFingerOUT = m_HandMovement.FindAction("MiddleFingerOUT", throwIfNotFound: true);
         m_HandMovement_StandUp = m_HandMovement.FindAction("StandUp", throwIfNotFound: true);
+        m_HandMovement_BodyBending = m_HandMovement.FindAction("BodyBending", throwIfNotFound: true);
         // Menus
         m_Menus = asset.FindActionMap("Menus", throwIfNotFound: true);
         m_Menus_Newaction = m_Menus.FindAction("New action", throwIfNotFound: true);
@@ -521,6 +695,7 @@ public class @InputController : IInputActionCollection, IDisposable
     private readonly InputAction m_HandMovement_MiddleFingerIN;
     private readonly InputAction m_HandMovement_MiddleFingerOUT;
     private readonly InputAction m_HandMovement_StandUp;
+    private readonly InputAction m_HandMovement_BodyBending;
     public struct HandMovementActions
     {
         private @InputController m_Wrapper;
@@ -534,6 +709,7 @@ public class @InputController : IInputActionCollection, IDisposable
         public InputAction @MiddleFingerIN => m_Wrapper.m_HandMovement_MiddleFingerIN;
         public InputAction @MiddleFingerOUT => m_Wrapper.m_HandMovement_MiddleFingerOUT;
         public InputAction @StandUp => m_Wrapper.m_HandMovement_StandUp;
+        public InputAction @BodyBending => m_Wrapper.m_HandMovement_BodyBending;
         public InputActionMap Get() { return m_Wrapper.m_HandMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -570,6 +746,9 @@ public class @InputController : IInputActionCollection, IDisposable
                 @StandUp.started -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnStandUp;
                 @StandUp.performed -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnStandUp;
                 @StandUp.canceled -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnStandUp;
+                @BodyBending.started -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnBodyBending;
+                @BodyBending.performed -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnBodyBending;
+                @BodyBending.canceled -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnBodyBending;
             }
             m_Wrapper.m_HandMovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -601,6 +780,9 @@ public class @InputController : IInputActionCollection, IDisposable
                 @StandUp.started += instance.OnStandUp;
                 @StandUp.performed += instance.OnStandUp;
                 @StandUp.canceled += instance.OnStandUp;
+                @BodyBending.started += instance.OnBodyBending;
+                @BodyBending.performed += instance.OnBodyBending;
+                @BodyBending.canceled += instance.OnBodyBending;
             }
         }
     }
@@ -676,6 +858,7 @@ public class @InputController : IInputActionCollection, IDisposable
         void OnMiddleFingerIN(InputAction.CallbackContext context);
         void OnMiddleFingerOUT(InputAction.CallbackContext context);
         void OnStandUp(InputAction.CallbackContext context);
+        void OnBodyBending(InputAction.CallbackContext context);
     }
     public interface IMenusActions
     {
