@@ -35,7 +35,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": ""Press(behavior=1)""
                 },
                 {
-                    ""name"": ""IndexFingerIN"",
+                    ""name"": ""IndexFingerCurledIN"",
                     ""type"": ""Button"",
                     ""id"": ""f22fc432-7836-46fe-b65d-0f5d25c7a771"",
                     ""expectedControlType"": ""Button"",
@@ -43,7 +43,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": ""Press""
                 },
                 {
-                    ""name"": ""IndexFingerOUT"",
+                    ""name"": ""IndexFingerCurledOUT"",
                     ""type"": ""Button"",
                     ""id"": ""bd16f9bb-438d-44a7-93ee-10c8e262397c"",
                     ""expectedControlType"": ""Button"",
@@ -67,7 +67,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": ""Press(behavior=1)""
                 },
                 {
-                    ""name"": ""MiddleFingerIN"",
+                    ""name"": ""MiddleFingerCurledIN"",
                     ""type"": ""Button"",
                     ""id"": ""58550246-fa03-4917-8eec-1657cba2016e"",
                     ""expectedControlType"": ""Button"",
@@ -75,7 +75,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": ""Press""
                 },
                 {
-                    ""name"": ""MiddleFingerOUT"",
+                    ""name"": ""MiddleFingerCurledOUT"",
                     ""type"": ""Button"",
                     ""id"": ""6bdf8d78-9951-44a3-bb81-0104b5fe4e0e"",
                     ""expectedControlType"": ""Button"",
@@ -140,7 +140,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MiddleFingerIN"",
+                    ""action"": ""MiddleFingerCurledIN"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -151,7 +151,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardScheme1"",
-                    ""action"": ""MiddleFingerIN"",
+                    ""action"": ""MiddleFingerCurledIN"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -162,7 +162,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardScheme2"",
-                    ""action"": ""MiddleFingerIN"",
+                    ""action"": ""MiddleFingerCurledIN"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -239,7 +239,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""IndexFingerIN"",
+                    ""action"": ""IndexFingerCurledIN"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -250,7 +250,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardScheme1"",
-                    ""action"": ""IndexFingerIN"",
+                    ""action"": ""IndexFingerCurledIN"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -261,7 +261,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardScheme2"",
-                    ""action"": ""IndexFingerIN"",
+                    ""action"": ""IndexFingerCurledIN"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -272,7 +272,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""IndexFingerOUT"",
+                    ""action"": ""IndexFingerCurledOUT"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -283,7 +283,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardScheme1"",
-                    ""action"": ""IndexFingerOUT"",
+                    ""action"": ""IndexFingerCurledOUT"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -294,7 +294,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardScheme2"",
-                    ""action"": ""IndexFingerOUT"",
+                    ""action"": ""IndexFingerCurledOUT"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -371,7 +371,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MiddleFingerOUT"",
+                    ""action"": ""MiddleFingerCurledOUT"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -382,7 +382,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardScheme1"",
-                    ""action"": ""MiddleFingerOUT"",
+                    ""action"": ""MiddleFingerCurledOUT"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -393,7 +393,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardScheme2"",
-                    ""action"": ""MiddleFingerOUT"",
+                    ""action"": ""MiddleFingerCurledOUT"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -626,12 +626,12 @@ public class @InputController : IInputActionCollection, IDisposable
         m_HandMovement = asset.FindActionMap("HandMovement", throwIfNotFound: true);
         m_HandMovement_IndexFingerUP = m_HandMovement.FindAction("IndexFingerUP", throwIfNotFound: true);
         m_HandMovement_IndexFingerDOWN = m_HandMovement.FindAction("IndexFingerDOWN", throwIfNotFound: true);
-        m_HandMovement_IndexFingerIN = m_HandMovement.FindAction("IndexFingerIN", throwIfNotFound: true);
-        m_HandMovement_IndexFingerOUT = m_HandMovement.FindAction("IndexFingerOUT", throwIfNotFound: true);
+        m_HandMovement_IndexFingerCurledIN = m_HandMovement.FindAction("IndexFingerCurledIN", throwIfNotFound: true);
+        m_HandMovement_IndexFingerCurledOUT = m_HandMovement.FindAction("IndexFingerCurledOUT", throwIfNotFound: true);
         m_HandMovement_MiddleFingerUP = m_HandMovement.FindAction("MiddleFingerUP", throwIfNotFound: true);
         m_HandMovement_MiddleFingerDOWN = m_HandMovement.FindAction("MiddleFingerDOWN", throwIfNotFound: true);
-        m_HandMovement_MiddleFingerIN = m_HandMovement.FindAction("MiddleFingerIN", throwIfNotFound: true);
-        m_HandMovement_MiddleFingerOUT = m_HandMovement.FindAction("MiddleFingerOUT", throwIfNotFound: true);
+        m_HandMovement_MiddleFingerCurledIN = m_HandMovement.FindAction("MiddleFingerCurledIN", throwIfNotFound: true);
+        m_HandMovement_MiddleFingerCurledOUT = m_HandMovement.FindAction("MiddleFingerCurledOUT", throwIfNotFound: true);
         m_HandMovement_StandUp = m_HandMovement.FindAction("StandUp", throwIfNotFound: true);
         m_HandMovement_BodyBending = m_HandMovement.FindAction("BodyBending", throwIfNotFound: true);
         // Menus
@@ -688,12 +688,12 @@ public class @InputController : IInputActionCollection, IDisposable
     private IHandMovementActions m_HandMovementActionsCallbackInterface;
     private readonly InputAction m_HandMovement_IndexFingerUP;
     private readonly InputAction m_HandMovement_IndexFingerDOWN;
-    private readonly InputAction m_HandMovement_IndexFingerIN;
-    private readonly InputAction m_HandMovement_IndexFingerOUT;
+    private readonly InputAction m_HandMovement_IndexFingerCurledIN;
+    private readonly InputAction m_HandMovement_IndexFingerCurledOUT;
     private readonly InputAction m_HandMovement_MiddleFingerUP;
     private readonly InputAction m_HandMovement_MiddleFingerDOWN;
-    private readonly InputAction m_HandMovement_MiddleFingerIN;
-    private readonly InputAction m_HandMovement_MiddleFingerOUT;
+    private readonly InputAction m_HandMovement_MiddleFingerCurledIN;
+    private readonly InputAction m_HandMovement_MiddleFingerCurledOUT;
     private readonly InputAction m_HandMovement_StandUp;
     private readonly InputAction m_HandMovement_BodyBending;
     public struct HandMovementActions
@@ -702,12 +702,12 @@ public class @InputController : IInputActionCollection, IDisposable
         public HandMovementActions(@InputController wrapper) { m_Wrapper = wrapper; }
         public InputAction @IndexFingerUP => m_Wrapper.m_HandMovement_IndexFingerUP;
         public InputAction @IndexFingerDOWN => m_Wrapper.m_HandMovement_IndexFingerDOWN;
-        public InputAction @IndexFingerIN => m_Wrapper.m_HandMovement_IndexFingerIN;
-        public InputAction @IndexFingerOUT => m_Wrapper.m_HandMovement_IndexFingerOUT;
+        public InputAction @IndexFingerCurledIN => m_Wrapper.m_HandMovement_IndexFingerCurledIN;
+        public InputAction @IndexFingerCurledOUT => m_Wrapper.m_HandMovement_IndexFingerCurledOUT;
         public InputAction @MiddleFingerUP => m_Wrapper.m_HandMovement_MiddleFingerUP;
         public InputAction @MiddleFingerDOWN => m_Wrapper.m_HandMovement_MiddleFingerDOWN;
-        public InputAction @MiddleFingerIN => m_Wrapper.m_HandMovement_MiddleFingerIN;
-        public InputAction @MiddleFingerOUT => m_Wrapper.m_HandMovement_MiddleFingerOUT;
+        public InputAction @MiddleFingerCurledIN => m_Wrapper.m_HandMovement_MiddleFingerCurledIN;
+        public InputAction @MiddleFingerCurledOUT => m_Wrapper.m_HandMovement_MiddleFingerCurledOUT;
         public InputAction @StandUp => m_Wrapper.m_HandMovement_StandUp;
         public InputAction @BodyBending => m_Wrapper.m_HandMovement_BodyBending;
         public InputActionMap Get() { return m_Wrapper.m_HandMovement; }
@@ -725,24 +725,24 @@ public class @InputController : IInputActionCollection, IDisposable
                 @IndexFingerDOWN.started -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIndexFingerDOWN;
                 @IndexFingerDOWN.performed -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIndexFingerDOWN;
                 @IndexFingerDOWN.canceled -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIndexFingerDOWN;
-                @IndexFingerIN.started -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIndexFingerIN;
-                @IndexFingerIN.performed -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIndexFingerIN;
-                @IndexFingerIN.canceled -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIndexFingerIN;
-                @IndexFingerOUT.started -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIndexFingerOUT;
-                @IndexFingerOUT.performed -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIndexFingerOUT;
-                @IndexFingerOUT.canceled -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIndexFingerOUT;
+                @IndexFingerCurledIN.started -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIndexFingerCurledIN;
+                @IndexFingerCurledIN.performed -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIndexFingerCurledIN;
+                @IndexFingerCurledIN.canceled -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIndexFingerCurledIN;
+                @IndexFingerCurledOUT.started -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIndexFingerCurledOUT;
+                @IndexFingerCurledOUT.performed -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIndexFingerCurledOUT;
+                @IndexFingerCurledOUT.canceled -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIndexFingerCurledOUT;
                 @MiddleFingerUP.started -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnMiddleFingerUP;
                 @MiddleFingerUP.performed -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnMiddleFingerUP;
                 @MiddleFingerUP.canceled -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnMiddleFingerUP;
                 @MiddleFingerDOWN.started -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnMiddleFingerDOWN;
                 @MiddleFingerDOWN.performed -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnMiddleFingerDOWN;
                 @MiddleFingerDOWN.canceled -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnMiddleFingerDOWN;
-                @MiddleFingerIN.started -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnMiddleFingerIN;
-                @MiddleFingerIN.performed -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnMiddleFingerIN;
-                @MiddleFingerIN.canceled -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnMiddleFingerIN;
-                @MiddleFingerOUT.started -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnMiddleFingerOUT;
-                @MiddleFingerOUT.performed -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnMiddleFingerOUT;
-                @MiddleFingerOUT.canceled -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnMiddleFingerOUT;
+                @MiddleFingerCurledIN.started -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnMiddleFingerCurledIN;
+                @MiddleFingerCurledIN.performed -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnMiddleFingerCurledIN;
+                @MiddleFingerCurledIN.canceled -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnMiddleFingerCurledIN;
+                @MiddleFingerCurledOUT.started -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnMiddleFingerCurledOUT;
+                @MiddleFingerCurledOUT.performed -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnMiddleFingerCurledOUT;
+                @MiddleFingerCurledOUT.canceled -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnMiddleFingerCurledOUT;
                 @StandUp.started -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnStandUp;
                 @StandUp.performed -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnStandUp;
                 @StandUp.canceled -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnStandUp;
@@ -759,24 +759,24 @@ public class @InputController : IInputActionCollection, IDisposable
                 @IndexFingerDOWN.started += instance.OnIndexFingerDOWN;
                 @IndexFingerDOWN.performed += instance.OnIndexFingerDOWN;
                 @IndexFingerDOWN.canceled += instance.OnIndexFingerDOWN;
-                @IndexFingerIN.started += instance.OnIndexFingerIN;
-                @IndexFingerIN.performed += instance.OnIndexFingerIN;
-                @IndexFingerIN.canceled += instance.OnIndexFingerIN;
-                @IndexFingerOUT.started += instance.OnIndexFingerOUT;
-                @IndexFingerOUT.performed += instance.OnIndexFingerOUT;
-                @IndexFingerOUT.canceled += instance.OnIndexFingerOUT;
+                @IndexFingerCurledIN.started += instance.OnIndexFingerCurledIN;
+                @IndexFingerCurledIN.performed += instance.OnIndexFingerCurledIN;
+                @IndexFingerCurledIN.canceled += instance.OnIndexFingerCurledIN;
+                @IndexFingerCurledOUT.started += instance.OnIndexFingerCurledOUT;
+                @IndexFingerCurledOUT.performed += instance.OnIndexFingerCurledOUT;
+                @IndexFingerCurledOUT.canceled += instance.OnIndexFingerCurledOUT;
                 @MiddleFingerUP.started += instance.OnMiddleFingerUP;
                 @MiddleFingerUP.performed += instance.OnMiddleFingerUP;
                 @MiddleFingerUP.canceled += instance.OnMiddleFingerUP;
                 @MiddleFingerDOWN.started += instance.OnMiddleFingerDOWN;
                 @MiddleFingerDOWN.performed += instance.OnMiddleFingerDOWN;
                 @MiddleFingerDOWN.canceled += instance.OnMiddleFingerDOWN;
-                @MiddleFingerIN.started += instance.OnMiddleFingerIN;
-                @MiddleFingerIN.performed += instance.OnMiddleFingerIN;
-                @MiddleFingerIN.canceled += instance.OnMiddleFingerIN;
-                @MiddleFingerOUT.started += instance.OnMiddleFingerOUT;
-                @MiddleFingerOUT.performed += instance.OnMiddleFingerOUT;
-                @MiddleFingerOUT.canceled += instance.OnMiddleFingerOUT;
+                @MiddleFingerCurledIN.started += instance.OnMiddleFingerCurledIN;
+                @MiddleFingerCurledIN.performed += instance.OnMiddleFingerCurledIN;
+                @MiddleFingerCurledIN.canceled += instance.OnMiddleFingerCurledIN;
+                @MiddleFingerCurledOUT.started += instance.OnMiddleFingerCurledOUT;
+                @MiddleFingerCurledOUT.performed += instance.OnMiddleFingerCurledOUT;
+                @MiddleFingerCurledOUT.canceled += instance.OnMiddleFingerCurledOUT;
                 @StandUp.started += instance.OnStandUp;
                 @StandUp.performed += instance.OnStandUp;
                 @StandUp.canceled += instance.OnStandUp;
@@ -851,12 +851,12 @@ public class @InputController : IInputActionCollection, IDisposable
     {
         void OnIndexFingerUP(InputAction.CallbackContext context);
         void OnIndexFingerDOWN(InputAction.CallbackContext context);
-        void OnIndexFingerIN(InputAction.CallbackContext context);
-        void OnIndexFingerOUT(InputAction.CallbackContext context);
+        void OnIndexFingerCurledIN(InputAction.CallbackContext context);
+        void OnIndexFingerCurledOUT(InputAction.CallbackContext context);
         void OnMiddleFingerUP(InputAction.CallbackContext context);
         void OnMiddleFingerDOWN(InputAction.CallbackContext context);
-        void OnMiddleFingerIN(InputAction.CallbackContext context);
-        void OnMiddleFingerOUT(InputAction.CallbackContext context);
+        void OnMiddleFingerCurledIN(InputAction.CallbackContext context);
+        void OnMiddleFingerCurledOUT(InputAction.CallbackContext context);
         void OnStandUp(InputAction.CallbackContext context);
         void OnBodyBending(InputAction.CallbackContext context);
     }

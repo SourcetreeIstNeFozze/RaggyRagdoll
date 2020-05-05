@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInputController : MonoBehaviour
+public class PlayerInputController_HandsOnly : MonoBehaviour
 {
 
 	[Header("Input")]
@@ -14,12 +14,12 @@ public class PlayerInputController : MonoBehaviour
 	public float maxRotation = 50;
 	private Vector2 leftSrickInput = new Vector2();
 
-	[Header("Hand Stabilization & Fall Down")]
-	public bool improvedHandStabilization = false;
-	public bool handsCanFallDown = false;
-	public Vector3 restartForce = Vector3.up * 50f;
-	public Rigidbody handRigid;
-	public float handSpring_connectedAnchorHeight = 4.1f;
+	//[Header("Hand Stabilization & Fall Down")]
+	//public bool improvedHandStabilization = false;
+	//public bool handsCanFallDown = false;
+	//public Vector3 restartForce = Vector3.up * 50f;
+	//public Rigidbody handRigid;
+	//public float handSpring_connectedAnchorHeight = 4.1f;
 
 	// Start is called before the first frame update
 	void Start()
@@ -35,8 +35,8 @@ public class PlayerInputController : MonoBehaviour
 		//Debug.Log(leftSrickInput);
 
 		// only if the hand doesn't use the new stabilization (cause it wouldn't have the needed components)
-		if (!improvedHandStabilization && leftSrickInput != Vector2.zero)
-		{
+		if (leftSrickInput != Vector2.zero) // add "!improvedHandStabilization" as condition, if somebody wants it back
+        {
 			
 			if (leftSrickInput.x !=  0f)
 			{
@@ -70,22 +70,23 @@ public class PlayerInputController : MonoBehaviour
 
 	public void OnIndexFingerUP()
 	{
-		handAnimator.Play("indexStraightUP", 1);
+        handAnimator.SetTrigger("IndexFingerUP");
+        print("index finger up");
 	}
 
 	public void OnIndexFingerDOWN()
 	{
-		handAnimator.Play("indexStraightDOWN", 1);
-	}
+        handAnimator.SetTrigger("IndexFingerDOWN");
+    }
 
 	public void OnIndexFingerCurledIN()
 	{
-		handAnimator.Play("indexCurvedUP", 1);
+		handAnimator.Play("IndexFingerCurledIN", 1);
 	}
 
 	public void OnIndexFingerCurledOUT()
 	{
-		handAnimator.Play("indexCurvedDOWN", 1);
+		handAnimator.Play("IndexFingerCurledOUT", 1);
 	}
 
 	public void OnMiddleFingerUP()
@@ -108,14 +109,14 @@ public class PlayerInputController : MonoBehaviour
 		handAnimator.Play("middleCurvedDOWN", 2);
 	}
 
-	public void OnStandUp()
-	{
-		// (only if standUp is activated)
-		if (handsCanFallDown)
-		{
-			StartCoroutine(StandUp());
-		}
-	}
+	//public void OnStandUp()
+	//{
+	//	// (only if standUp is activated)
+	//	if (handsCanFallDown)
+	//	{
+	//		StartCoroutine(StandUp());
+	//	}
+	//}
 
 	public void OnBodyBending(InputValue value)
 	{
@@ -127,39 +128,39 @@ public class PlayerInputController : MonoBehaviour
 
 
 	// Stand Up-Coroutine
-	IEnumerator StandUp()
-	{
-		bool standUp = true;
-		bool standUp_stabilize = false;
+	//IEnumerator StandUp()
+	//{
+	//	bool standUp = true;
+	//	bool standUp_stabilize = false;
 
-		// 1) handfläche darf höchstens zur hälfte aufgerichtet sein, force nach oben adden
-		while (standUp)
-		{
-			handRigid.AddForce(restartForce);
-			//print("phase 1");
+	//	// 1) handfläche darf höchstens zur hälfte aufgerichtet sein, force nach oben adden
+	//	while (standUp)
+	//	{
+	//		handRigid.AddForce(restartForce);
+	//		//print("phase 1");
 
-			if (handRigid.position.y > (handSpring_connectedAnchorHeight * 0.9f))
-			{
-				standUp = false;
-				standUp_stabilize = true;
-			}
-			yield return new WaitForFixedUpdate();
-		}
+	//		if (handRigid.position.y > (handSpring_connectedAnchorHeight * 0.9f))
+	//		{
+	//			standUp = false;
+	//			standUp_stabilize = true;
+	//		}
+	//		yield return new WaitForFixedUpdate();
+	//	}
 
-		// 2) handfläche ist mind. zur hälfte aufgerichtet, jetzt velocity bremsen
-		while (standUp_stabilize)
-		{
-			handRigid.velocity /= 1.08f;
-			//print("phase 2");
-			if (handRigid.velocity.magnitude < 0.2f)
-			{
-				standUp_stabilize = false;
-			}
-			yield return new WaitForFixedUpdate();
-		}
+	//	// 2) handfläche ist mind. zur hälfte aufgerichtet, jetzt velocity bremsen
+	//	while (standUp_stabilize)
+	//	{
+	//		handRigid.velocity /= 1.08f;
+	//		//print("phase 2");
+	//		if (handRigid.velocity.magnitude < 0.2f)
+	//		{
+	//			standUp_stabilize = false;
+	//		}
+	//		yield return new WaitForFixedUpdate();
+	//	}
 
-		yield return null;
-	}
+	//	yield return null;
+	//}
 
 
 

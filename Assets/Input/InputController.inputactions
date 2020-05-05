@@ -22,7 +22,7 @@
                     "interactions": "Press(behavior=1)"
                 },
                 {
-                    "name": "IndexFingerIN",
+                    "name": "IndexFingerCurledIN",
                     "type": "Button",
                     "id": "f22fc432-7836-46fe-b65d-0f5d25c7a771",
                     "expectedControlType": "Button",
@@ -30,7 +30,7 @@
                     "interactions": "Press"
                 },
                 {
-                    "name": "IndexFingerOUT",
+                    "name": "IndexFingerCurledOUT",
                     "type": "Button",
                     "id": "bd16f9bb-438d-44a7-93ee-10c8e262397c",
                     "expectedControlType": "Button",
@@ -54,7 +54,7 @@
                     "interactions": "Press(behavior=1)"
                 },
                 {
-                    "name": "MiddleFingerIN",
+                    "name": "MiddleFingerCurledIN",
                     "type": "Button",
                     "id": "58550246-fa03-4917-8eec-1657cba2016e",
                     "expectedControlType": "Button",
@@ -62,7 +62,7 @@
                     "interactions": "Press"
                 },
                 {
-                    "name": "MiddleFingerOUT",
+                    "name": "MiddleFingerCurledOUT",
                     "type": "Button",
                     "id": "6bdf8d78-9951-44a3-bb81-0104b5fe4e0e",
                     "expectedControlType": "Button",
@@ -127,7 +127,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MiddleFingerIN",
+                    "action": "MiddleFingerCurledIN",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -138,7 +138,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardScheme1",
-                    "action": "MiddleFingerIN",
+                    "action": "MiddleFingerCurledIN",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -149,7 +149,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardScheme2",
-                    "action": "MiddleFingerIN",
+                    "action": "MiddleFingerCurledIN",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -226,7 +226,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "IndexFingerIN",
+                    "action": "IndexFingerCurledIN",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -237,7 +237,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardScheme1",
-                    "action": "IndexFingerIN",
+                    "action": "IndexFingerCurledIN",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -248,7 +248,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardScheme2",
-                    "action": "IndexFingerIN",
+                    "action": "IndexFingerCurledIN",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -259,7 +259,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "IndexFingerOUT",
+                    "action": "IndexFingerCurledOUT",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -270,7 +270,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardScheme1",
-                    "action": "IndexFingerOUT",
+                    "action": "IndexFingerCurledOUT",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -281,7 +281,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardScheme2",
-                    "action": "IndexFingerOUT",
+                    "action": "IndexFingerCurledOUT",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -358,7 +358,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MiddleFingerOUT",
+                    "action": "MiddleFingerCurledOUT",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -369,7 +369,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardScheme1",
-                    "action": "MiddleFingerOUT",
+                    "action": "MiddleFingerCurledOUT",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -380,7 +380,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardScheme2",
-                    "action": "MiddleFingerOUT",
+                    "action": "MiddleFingerCurledOUT",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
