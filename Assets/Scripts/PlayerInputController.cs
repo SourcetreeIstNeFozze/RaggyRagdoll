@@ -32,7 +32,7 @@ public class PlayerInputController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		Debug.Log(leftSrickInput);
+		//Debug.Log(leftSrickInput);
 
 		// only if the hand doesn't use the new stabilization (cause it wouldn't have the needed components)
 		if (!improvedHandStabilization && leftSrickInput != Vector2.zero)
@@ -52,9 +52,9 @@ public class PlayerInputController : MonoBehaviour
 
 	public void BendHorizontally(float bendValue)
 	{
-		JointSpring spring = wristJoint.spring;
-		spring.targetPosition = Mathf.Clamp(spring.targetPosition + bendValue, -maxRotation, maxRotation);
-		handTopJoint.spring = spring;
+		//JointSpring spring = wristJoint.spring;
+		//spring.targetPosition = Mathf.Clamp(spring.targetPosition + bendValue, -maxRotation, maxRotation);
+		//handTopJoint.spring = spring;
 	}
 
 	public void BendVertically(float bendValue)

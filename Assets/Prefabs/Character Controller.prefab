@@ -46,10 +46,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handAnimator: {fileID: 0}
   handTopJoint: {fileID: 0}
+  wristJoint: {fileID: 0}
   rotationSpeed: 0.5
   maxRotation: 50
-  improvedHandStabilization: 1
-  handsCanFallDown: 1
+  improvedHandStabilization: 0
+  handsCanFallDown: 0
   restartForce: {x: 0, y: 50, z: 0}
   handRigid: {fileID: 0}
   handSpring_connectedAnchorHeight: 4.1

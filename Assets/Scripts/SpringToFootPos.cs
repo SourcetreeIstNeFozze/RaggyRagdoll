@@ -10,13 +10,13 @@ public class SpringToFootPos : MonoBehaviour
 
     Vector3 springPos;
     Rigidbody rigid;
-    SpringJoint springJoint;
+    Joint joint;
 
     // Start is called before the first frame update
     void Start()
     {
         rigid = this.GetComponent<Rigidbody>();
-        springJoint = this.GetComponent<SpringJoint>();
+        joint = this.GetComponent<Joint>();
         
     }
 
@@ -28,12 +28,12 @@ public class SpringToFootPos : MonoBehaviour
         springPos.y = connectedAnchorHeight;
 
         // limit hand-force
-        springPos = Vector3.MoveTowards(this.transform.TransformPoint(springJoint.anchor), springPos, maxHandForce);
+        springPos = Vector3.MoveTowards(this.transform.TransformPoint(joint.anchor), springPos, maxHandForce);
 
         // assign
-        springJoint.connectedAnchor = springPos;
+        joint.connectedAnchor = springPos;
 
-        Debug.DrawLine(Vector3.zero, springJoint.anchor);
-        Debug.DrawLine(this.transform.TransformPoint(springJoint.anchor), springPos, Color.green);
+        Debug.DrawLine(Vector3.zero, joint.anchor);
+        Debug.DrawLine(this.transform.TransformPoint(joint.anchor), springPos, Color.green);
     }
 }

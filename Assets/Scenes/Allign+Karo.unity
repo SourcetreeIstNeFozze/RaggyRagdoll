@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -213,6 +213,11 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.z
       value: 0.0000009164214
       objectReference: {fileID: 0}
+    - target: {fileID: 4843160371229315280, guid: c001c4823c9fa1b4180c8128457a8083,
+        type: 3}
+      propertyPath: m_Spring.spring
+      value: 400
+      objectReference: {fileID: 0}
     - target: {fileID: 4843160371287787496, guid: c001c4823c9fa1b4180c8128457a8083,
         type: 3}
       propertyPath: m_ConnectedAnchor.z
@@ -227,6 +232,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ConnectedAnchor.x
       value: -0.000000020489097
+      objectReference: {fileID: 0}
+    - target: {fileID: 4843160371287787496, guid: c001c4823c9fa1b4180c8128457a8083,
+        type: 3}
+      propertyPath: m_Spring.spring
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 4843160371386817097, guid: c001c4823c9fa1b4180c8128457a8083,
         type: 3}
@@ -243,6 +253,11 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.y
       value: 0.81922215
       objectReference: {fileID: 0}
+    - target: {fileID: 4843160371386817097, guid: c001c4823c9fa1b4180c8128457a8083,
+        type: 3}
+      propertyPath: m_Spring.spring
+      value: 400
+      objectReference: {fileID: 0}
     - target: {fileID: 4843160371752798247, guid: c001c4823c9fa1b4180c8128457a8083,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -257,6 +272,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ConnectedAnchor.z
       value: -0.00035226345
+      objectReference: {fileID: 0}
+    - target: {fileID: 4843160371752798247, guid: c001c4823c9fa1b4180c8128457a8083,
+        type: 3}
+      propertyPath: m_Spring.spring
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 4843160371937890555, guid: c001c4823c9fa1b4180c8128457a8083,
         type: 3}
@@ -273,6 +293,11 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.x
       value: -0.00000021575522
       objectReference: {fileID: 0}
+    - target: {fileID: 4843160371937890555, guid: c001c4823c9fa1b4180c8128457a8083,
+        type: 3}
+      propertyPath: m_Spring.spring
+      value: 400
+      objectReference: {fileID: 0}
     - target: {fileID: 4843160372003891957, guid: c001c4823c9fa1b4180c8128457a8083,
         type: 3}
       propertyPath: m_ConnectedAnchor.z
@@ -288,6 +313,11 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.x
       value: -0.000000020489097
       objectReference: {fileID: 0}
+    - target: {fileID: 4843160372003891957, guid: c001c4823c9fa1b4180c8128457a8083,
+        type: 3}
+      propertyPath: m_Spring.spring
+      value: 400
+      objectReference: {fileID: 0}
     - target: {fileID: 4843160372702645495, guid: c001c4823c9fa1b4180c8128457a8083,
         type: 3}
       propertyPath: m_ConnectedAnchor.z
@@ -297,6 +327,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ConnectedAnchor.y
       value: -0.78111744
+      objectReference: {fileID: 0}
+    - target: {fileID: 4843160372930690765, guid: c001c4823c9fa1b4180c8128457a8083,
+        type: 3}
+      propertyPath: m_XMotion
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4843160373055646370, guid: c001c4823c9fa1b4180c8128457a8083,
         type: 3}
