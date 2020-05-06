@@ -77,6 +77,7 @@ public class PlayerInputController_HandsOnly : MonoBehaviour
 	public void OnIndexFingerDOWN()
 	{
         handAnimator.SetTrigger("IndexFingerDOWN");
+        print("index finger down");
     }
 
 	public void OnIndexFingerCurledIN()
