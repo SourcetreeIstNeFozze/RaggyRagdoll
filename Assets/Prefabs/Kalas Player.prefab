@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5320090aa130c48bb07dd3fed3d74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hj: {fileID: 4843160371229315280}
+  jointToMove: {fileID: 4843160371229315280}
   target: {fileID: 4843160372091745399}
   x: 0
   y: 0
@@ -385,7 +385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5320090aa130c48bb07dd3fed3d74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hj: {fileID: 4843160371287787496}
+  jointToMove: {fileID: 4843160371287787496}
   target: {fileID: 4843160371155606808}
   x: 0
   y: 0
@@ -503,7 +503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5320090aa130c48bb07dd3fed3d74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hj: {fileID: 4843160371386817097}
+  jointToMove: {fileID: 4843160371386817097}
   target: {fileID: 4843160371782836851}
   x: 0
   y: 0
@@ -743,7 +743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5320090aa130c48bb07dd3fed3d74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hj: {fileID: 4843160371752798247}
+  jointToMove: {fileID: 4843160371752798247}
   target: {fileID: 4843160371163872089}
   x: 0
   y: 0
@@ -938,7 +938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5320090aa130c48bb07dd3fed3d74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hj: {fileID: 4843160371937890555}
+  jointToMove: {fileID: 4843160371937890555}
   target: {fileID: 4843160372636528887}
   x: 0
   y: 0
@@ -1088,7 +1088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5320090aa130c48bb07dd3fed3d74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hj: {fileID: 4843160372003891957}
+  jointToMove: {fileID: 4843160372003891957}
   target: {fileID: 4843160372831345537}
   x: 0
   y: 0
@@ -1372,7 +1372,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b9502e1e398a78f42a7bf78a7e7ca68b, type: 2}
+  - {fileID: 2100000, guid: 84d7a1467a0615947979fc041f8c6d4c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
