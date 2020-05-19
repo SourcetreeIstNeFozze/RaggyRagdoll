@@ -81,35 +81,32 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
 
 	public void OnIndexFingerCurledIN()
 	{
-		handAnimator.Play("indexCurvedUP", 1);
+		handAnimator.Play("Index IN", 5);
 	}
 
 	public void OnIndexFingerCurledOUT()
 	{
-		handAnimator.Play("indexCurvedDOWN", 1);
+		handAnimator.Play("Index OUT", 5);
 	}
 
 	public void OnMiddleFingerUP()
 	{
-		Debug.Log("on Middle UP called");
 		handAnimator.Play("Middle UP", 6);
 	}
 
 	public void OnMiddleFingerDOWN()
 	{
-
-		Debug.Log("on Middle DOWN called");
 		handAnimator.Play("Middle DOWN", 6);
 	}
 
 	public void OnMiddleFingerCurledIN()
 	{
-		handAnimator.Play("middleCurvedUP", 2);
+		handAnimator.Play("Middle IN", 7);
 	}
 
 	public void OnMiddleFingerCurledOUT()
 	{
-		handAnimator.Play("middleCurvedDOWN", 2);
+		handAnimator.Play("Middle OUT", 7);
 	}
 
 	public void OnStandUp()
