@@ -32,9 +32,6 @@ public class PlayerInputController_HandsOnly : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		//Debug.Log(leftSrickInput);
-
-		// only if the hand doesn't use the new stabilization (cause it wouldn't have the needed components)
 		if (leftSrickInput != Vector2.zero) // add "!improvedHandStabilization" as condition, if somebody wants it back
         {
 			
@@ -70,44 +67,46 @@ public class PlayerInputController_HandsOnly : MonoBehaviour
 
 	public void OnIndexFingerUP()
 	{
-        handAnimator.SetTrigger("IndexFingerUP");
+        //handAnimator.SetTrigger("IndexFinger_Stretch_UP");
         print("index finger up");
+        handAnimator.Play("IndexFinger UP forward", 0);
 	}
 
 	public void OnIndexFingerDOWN()
 	{
-        handAnimator.SetTrigger("IndexFingerDOWN");
+        //handAnimator.SetTrigger("IndexFinger_Stretch_DOWN");
         print("index finger down");
+        handAnimator.Play("indexFinger DOWN forward", 0);
     }
 
 	public void OnIndexFingerCurledIN()
 	{
-		handAnimator.Play("IndexFingerCurledIN", 1);
+        handAnimator.SetTrigger("IndexFinger_Curl_IN");
 	}
 
 	public void OnIndexFingerCurledOUT()
 	{
-		handAnimator.Play("IndexFingerCurledOUT", 1);
+        handAnimator.SetTrigger("IndexFinger_Curl_OUT");
 	}
 
 	public void OnMiddleFingerUP()
 	{
-		handAnimator.Play("middleStraightUP", 2);
+        handAnimator.SetTrigger("MiddleFinger_Stretch_UP");
 	}
 
 	public void OnMiddleFingerDOWN()
 	{
-		handAnimator.Play("middleStraightDOWN", 2);
+        handAnimator.SetTrigger("MiddleFinger_Stretch_DOWN");
 	}
 
 	public void OnMiddleFingerCurledIN()
 	{
-		handAnimator.Play("middleCurvedUP", 2);
+        handAnimator.SetTrigger("MiddleFinger_Curl_IN");
 	}
 
 	public void OnMiddleFingerCurledOUT()
 	{
-		handAnimator.Play("middleCurvedDOWN", 2);
+        handAnimator.SetTrigger("MiddleFinger_Curl_OUT");
 	}
 
 	//public void OnStandUp()
