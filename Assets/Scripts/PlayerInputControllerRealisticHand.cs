@@ -12,15 +12,18 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
 	public float rotationSpeed;
 	public float maxRotation = 50;
 	private Vector2 leftSrickInput = new Vector2();
-    public ConstantForce moveArmForce;
-    public float moveArmForce_strength = 10f;
-    Vector3 moveArmForce_startValue;
+
+	[Header("Hand Stabilization & Fall Down")]
+	public bool improvedHandStabilization = false;
+	public bool handsCanFallDown = false;
+	public Vector3 restartForce = Vector3.up * 50f;
+	public Rigidbody handRigid;
+	public float handSpring_connectedAnchorHeight = 4.1f;
 
 	// Start is called before the first frame update
 	void Start()
 	{
-        if (moveArmForce != null)
-            moveArmForce_startValue = moveArmForce.force;
+
 
 
 	}
@@ -106,18 +109,19 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
 		handAnimator.Play("Middle OUT", 7);
 	}
 
-
+	public void OnStandUp()
+	{
+		// (only if standUp is activated)
+		if (handsCanFallDown)
+		{
+			//StartCoroutine(StandUp());
+		}
+	}
 
 	public void OnBodyBending(InputValue value)
 	{
-        leftSrickInput = value.Get<Vector2>();
-        if (moveArmForce != null)
-        {
+		leftSrickInput = value.Get<Vector2>();
 
-            moveArmForce.force = moveArmForce_startValue + new Vector3(0,leftSrickInput.y * moveArmForce_strength * 0.5f, leftSrickInput.x * moveArmForce_strength);
-            print("lefstickinput: " + leftSrickInput + ", movearmForce: " + moveArmForce.force);
-
-        }
 
 	}
 }
