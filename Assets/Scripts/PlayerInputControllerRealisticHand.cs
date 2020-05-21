@@ -15,6 +15,8 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
     public ConstantForce moveArmForce;
     public float moveArmForce_strength = 10f;
     Vector3 moveArmForce_startValue;
+    public ConfigurableJoint wristConfJoint;
+    Vector3 wristConfJoint_conAnch_start;
 
 	// Start is called before the first frame update
 	void Start()
@@ -22,8 +24,10 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
         if (moveArmForce != null)
             moveArmForce_startValue = moveArmForce.force;
 
+        if (wristConfJoint != null)
+            wristConfJoint_conAnch_start = wristConfJoint.connectedAnchor;
 
-	}
+    }
 
 	// Update is called once per frame
 	void Update()
@@ -111,12 +115,16 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
 	public void OnBodyBending(InputValue value)
 	{
         leftSrickInput = value.Get<Vector2>();
-        if (moveArmForce != null)
+        //if (moveArmForce != null)
+        //{
+
+        //    moveArmForce.force = moveArmForce_startValue + new Vector3(0,leftSrickInput.y * moveArmForce_strength * 0.5f, leftSrickInput.x * moveArmForce_strength);
+        //    print("lefstickinput: " + leftSrickInput + ", movearmForce: " + moveArmForce.force);
+
+        //}
+        if (wristConfJoint != null)
         {
-
-            moveArmForce.force = moveArmForce_startValue + new Vector3(0,leftSrickInput.y * moveArmForce_strength * 0.5f, leftSrickInput.x * moveArmForce_strength);
-            print("lefstickinput: " + leftSrickInput + ", movearmForce: " + moveArmForce.force);
-
+            wristConfJoint.connectedAnchor += Vector3.forward * leftSrickInput.x * moveArmForce_strength; 
         }
 
 	}
