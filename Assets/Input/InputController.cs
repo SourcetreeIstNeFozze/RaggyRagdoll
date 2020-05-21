@@ -97,6 +97,22 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""IKControllLEFT"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""8c7db89e-5a23-4cba-b6b3-6980635aebef"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""IKControllRIGHT"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""dcfbfd6c-cfd4-44f2-ba5e-77e71c5fe90e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -561,6 +577,226 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""action"": ""BodyBending"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Controller (2D Vector)"",
+                    ""id"": ""3b7a853c-00cf-479d-95e4-4342c2eaf303"",
+                    ""path"": ""2DVector(mode=2)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""IKControllLEFT"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""557659b0-67b9-4c61-b9bd-77130011f45c"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=1.2)"",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""IKControllLEFT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""75ab5974-6d17-4630-b49e-7d1ca9d7e284"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=0.3)"",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""IKControllLEFT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""ad87c4a2-6600-4f80-a5fd-934efb201f44"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=1.8)"",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""IKControllLEFT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""6c6acdb5-ce9b-4d7c-bf40-f4c632bea492"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=0.8)"",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""IKControllLEFT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""ArrowKeys(2D Vector)"",
+                    ""id"": ""484d5e9b-1280-4b1a-9b02-49d978300913"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""IKControllLEFT"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""939e42e5-a32c-4aca-b2e5-698280a41b15"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""IKControllLEFT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""a11ccccb-e1e0-41a5-a4d0-5082cfa5ad26"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""IKControllLEFT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""70e651dd-0983-412c-aeba-dbc3adbf62bb"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""IKControllLEFT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""b5fcc00b-0569-452b-a244-e5cb8a8afd84"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""IKControllLEFT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Controller (2D Vector)"",
+                    ""id"": ""17aa00a0-21c1-4228-ada1-66ecdc37fe54"",
+                    ""path"": ""2DVector(mode=2)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""IKControllRIGHT"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""5035775d-e9ce-48a8-b1cb-1c43a64c54cd"",
+                    ""path"": ""<Gamepad>/rightStick/up"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=1.2)"",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""IKControllRIGHT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""0903e304-5926-4e37-85af-cb63ef86156e"",
+                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=0.3)"",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""IKControllRIGHT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""d673fcdf-1699-4ebc-adce-724bf824e950"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=1.8)"",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""IKControllRIGHT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""e1ca43fb-ab01-49c2-a74d-15bd45aeae85"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=0.8)"",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""IKControllRIGHT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""ArrowKeys(2D Vector)"",
+                    ""id"": ""1f630aeb-f017-4e12-86db-b01497994b9c"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""IKControllRIGHT"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""1321a2c9-f230-48a9-88fa-a7eebc70b639"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""IKControllRIGHT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""92c4f0a0-4848-431d-b517-2f87324b5767"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""IKControllRIGHT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""1e9390a5-e2e3-4901-9edc-636747b6f778"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""IKControllRIGHT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""b6e1f3e9-04ba-4346-b4c3-1e191dad214f"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""IKControllRIGHT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -634,6 +870,8 @@ public class @InputController : IInputActionCollection, IDisposable
         m_HandMovement_MiddleFingerCurledOUT = m_HandMovement.FindAction("MiddleFingerCurledOUT", throwIfNotFound: true);
         m_HandMovement_StandUp = m_HandMovement.FindAction("StandUp", throwIfNotFound: true);
         m_HandMovement_BodyBending = m_HandMovement.FindAction("BodyBending", throwIfNotFound: true);
+        m_HandMovement_IKControllLEFT = m_HandMovement.FindAction("IKControllLEFT", throwIfNotFound: true);
+        m_HandMovement_IKControllRIGHT = m_HandMovement.FindAction("IKControllRIGHT", throwIfNotFound: true);
         // Menus
         m_Menus = asset.FindActionMap("Menus", throwIfNotFound: true);
         m_Menus_Newaction = m_Menus.FindAction("New action", throwIfNotFound: true);
@@ -696,6 +934,8 @@ public class @InputController : IInputActionCollection, IDisposable
     private readonly InputAction m_HandMovement_MiddleFingerCurledOUT;
     private readonly InputAction m_HandMovement_StandUp;
     private readonly InputAction m_HandMovement_BodyBending;
+    private readonly InputAction m_HandMovement_IKControllLEFT;
+    private readonly InputAction m_HandMovement_IKControllRIGHT;
     public struct HandMovementActions
     {
         private @InputController m_Wrapper;
@@ -710,6 +950,8 @@ public class @InputController : IInputActionCollection, IDisposable
         public InputAction @MiddleFingerCurledOUT => m_Wrapper.m_HandMovement_MiddleFingerCurledOUT;
         public InputAction @StandUp => m_Wrapper.m_HandMovement_StandUp;
         public InputAction @BodyBending => m_Wrapper.m_HandMovement_BodyBending;
+        public InputAction @IKControllLEFT => m_Wrapper.m_HandMovement_IKControllLEFT;
+        public InputAction @IKControllRIGHT => m_Wrapper.m_HandMovement_IKControllRIGHT;
         public InputActionMap Get() { return m_Wrapper.m_HandMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -749,6 +991,12 @@ public class @InputController : IInputActionCollection, IDisposable
                 @BodyBending.started -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnBodyBending;
                 @BodyBending.performed -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnBodyBending;
                 @BodyBending.canceled -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnBodyBending;
+                @IKControllLEFT.started -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIKControllLEFT;
+                @IKControllLEFT.performed -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIKControllLEFT;
+                @IKControllLEFT.canceled -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIKControllLEFT;
+                @IKControllRIGHT.started -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIKControllRIGHT;
+                @IKControllRIGHT.performed -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIKControllRIGHT;
+                @IKControllRIGHT.canceled -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIKControllRIGHT;
             }
             m_Wrapper.m_HandMovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -783,6 +1031,12 @@ public class @InputController : IInputActionCollection, IDisposable
                 @BodyBending.started += instance.OnBodyBending;
                 @BodyBending.performed += instance.OnBodyBending;
                 @BodyBending.canceled += instance.OnBodyBending;
+                @IKControllLEFT.started += instance.OnIKControllLEFT;
+                @IKControllLEFT.performed += instance.OnIKControllLEFT;
+                @IKControllLEFT.canceled += instance.OnIKControllLEFT;
+                @IKControllRIGHT.started += instance.OnIKControllRIGHT;
+                @IKControllRIGHT.performed += instance.OnIKControllRIGHT;
+                @IKControllRIGHT.canceled += instance.OnIKControllRIGHT;
             }
         }
     }
@@ -859,6 +1113,8 @@ public class @InputController : IInputActionCollection, IDisposable
         void OnMiddleFingerCurledOUT(InputAction.CallbackContext context);
         void OnStandUp(InputAction.CallbackContext context);
         void OnBodyBending(InputAction.CallbackContext context);
+        void OnIKControllLEFT(InputAction.CallbackContext context);
+        void OnIKControllRIGHT(InputAction.CallbackContext context);
     }
     public interface IMenusActions
     {
