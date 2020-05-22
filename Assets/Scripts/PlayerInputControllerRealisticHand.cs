@@ -32,23 +32,29 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		//Debug.Log(leftSrickInput);
+        //Debug.Log(leftSrickInput);
 
-		//// only if the hand doesn't use the new stabilization (cause it wouldn't have the needed components)
-		//if (!improvedHandStabilization && leftSrickInput != Vector2.zero)
-		//{
+        //// only if the hand doesn't use the new stabilization (cause it wouldn't have the needed components)
+        //if (!improvedHandStabilization && leftSrickInput != Vector2.zero)
+        //{
 
-		//	if (leftSrickInput.x != 0f)
-		//	{
-		//		BendVertically(leftSrickInput.x * -rotationSpeed);
-		//	}
-		//	else if (leftSrickInput.y != 0f)
-		//	{
-		//		BendHorizontally(leftSrickInput.y * rotationSpeed);
-		//	}
+        //	if (leftSrickInput.x != 0f)
+        //	{
+        //		BendVertically(leftSrickInput.x * -rotationSpeed);
+        //	}
+        //	else if (leftSrickInput.y != 0f)
+        //	{
+        //		BendHorizontally(leftSrickInput.y * rotationSpeed);
+        //	}
 
-		//}
-	}
+        //}
+
+
+        if (wristConfJoint != null)
+        {
+            wristConfJoint.connectedAnchor += Vector3.forward * leftSrickInput.x * moveArmForce_strength;
+        }
+    }
 
 	public void BendHorizontally(float bendValue)
 	{
@@ -115,6 +121,8 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
 	public void OnBodyBending(InputValue value)
 	{
         leftSrickInput = value.Get<Vector2>();
+
+        // Constant force
         //if (moveArmForce != null)
         //{
 
@@ -122,10 +130,7 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
         //    print("lefstickinput: " + leftSrickInput + ", movearmForce: " + moveArmForce.force);
 
         //}
-        if (wristConfJoint != null)
-        {
-            wristConfJoint.connectedAnchor += Vector3.forward * leftSrickInput.x * moveArmForce_strength; 
-        }
+        
 
 	}
 }
