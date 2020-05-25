@@ -99,7 +99,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""IKControllLEFT"",
+                    ""name"": ""IKControllINDEX"",
                     ""type"": ""PassThrough"",
                     ""id"": ""8c7db89e-5a23-4cba-b6b3-6980635aebef"",
                     ""expectedControlType"": """",
@@ -107,7 +107,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""IKControllRIGHT"",
+                    ""name"": ""IKControllMIDDLE"",
                     ""type"": ""PassThrough"",
                     ""id"": ""dcfbfd6c-cfd4-44f2-ba5e-77e71c5fe90e"",
                     ""expectedControlType"": """",
@@ -585,7 +585,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""IKControllLEFT"",
+                    ""action"": ""IKControllINDEX"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -596,7 +596,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": ""Scale(factor=1.2)"",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""IKControllLEFT"",
+                    ""action"": ""IKControllINDEX"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -607,7 +607,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": ""Scale(factor=0.3)"",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""IKControllLEFT"",
+                    ""action"": ""IKControllINDEX"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -618,7 +618,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": ""Scale(factor=1.8)"",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""IKControllLEFT"",
+                    ""action"": ""IKControllINDEX"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -629,7 +629,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": ""Scale(factor=0.8)"",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""IKControllLEFT"",
+                    ""action"": ""IKControllINDEX"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -640,7 +640,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""IKControllLEFT"",
+                    ""action"": ""IKControllINDEX"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -651,7 +651,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""IKControllLEFT"",
+                    ""action"": ""IKControllINDEX"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -662,7 +662,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""IKControllLEFT"",
+                    ""action"": ""IKControllINDEX"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -673,7 +673,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""IKControllLEFT"",
+                    ""action"": ""IKControllINDEX"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -684,7 +684,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""IKControllLEFT"",
+                    ""action"": ""IKControllINDEX"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -695,7 +695,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""IKControllRIGHT"",
+                    ""action"": ""IKControllMIDDLE"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -706,7 +706,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": ""Scale(factor=1.2)"",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""IKControllRIGHT"",
+                    ""action"": ""IKControllMIDDLE"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -717,7 +717,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": ""Scale(factor=0.3)"",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""IKControllRIGHT"",
+                    ""action"": ""IKControllMIDDLE"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -728,7 +728,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": ""Scale(factor=1.8)"",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""IKControllRIGHT"",
+                    ""action"": ""IKControllMIDDLE"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -739,7 +739,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": ""Scale(factor=0.8)"",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""IKControllRIGHT"",
+                    ""action"": ""IKControllMIDDLE"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -750,7 +750,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""IKControllRIGHT"",
+                    ""action"": ""IKControllMIDDLE"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -761,7 +761,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""IKControllRIGHT"",
+                    ""action"": ""IKControllMIDDLE"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -772,7 +772,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""IKControllRIGHT"",
+                    ""action"": ""IKControllMIDDLE"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -783,7 +783,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""IKControllRIGHT"",
+                    ""action"": ""IKControllMIDDLE"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -794,7 +794,7 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""IKControllRIGHT"",
+                    ""action"": ""IKControllMIDDLE"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 }
@@ -870,8 +870,8 @@ public class @InputController : IInputActionCollection, IDisposable
         m_HandMovement_MiddleFingerCurledOUT = m_HandMovement.FindAction("MiddleFingerCurledOUT", throwIfNotFound: true);
         m_HandMovement_StandUp = m_HandMovement.FindAction("StandUp", throwIfNotFound: true);
         m_HandMovement_BodyBending = m_HandMovement.FindAction("BodyBending", throwIfNotFound: true);
-        m_HandMovement_IKControllLEFT = m_HandMovement.FindAction("IKControllLEFT", throwIfNotFound: true);
-        m_HandMovement_IKControllRIGHT = m_HandMovement.FindAction("IKControllRIGHT", throwIfNotFound: true);
+        m_HandMovement_IKControllINDEX = m_HandMovement.FindAction("IKControllINDEX", throwIfNotFound: true);
+        m_HandMovement_IKControllMIDDLE = m_HandMovement.FindAction("IKControllMIDDLE", throwIfNotFound: true);
         // Menus
         m_Menus = asset.FindActionMap("Menus", throwIfNotFound: true);
         m_Menus_Newaction = m_Menus.FindAction("New action", throwIfNotFound: true);
@@ -934,8 +934,8 @@ public class @InputController : IInputActionCollection, IDisposable
     private readonly InputAction m_HandMovement_MiddleFingerCurledOUT;
     private readonly InputAction m_HandMovement_StandUp;
     private readonly InputAction m_HandMovement_BodyBending;
-    private readonly InputAction m_HandMovement_IKControllLEFT;
-    private readonly InputAction m_HandMovement_IKControllRIGHT;
+    private readonly InputAction m_HandMovement_IKControllINDEX;
+    private readonly InputAction m_HandMovement_IKControllMIDDLE;
     public struct HandMovementActions
     {
         private @InputController m_Wrapper;
@@ -950,8 +950,8 @@ public class @InputController : IInputActionCollection, IDisposable
         public InputAction @MiddleFingerCurledOUT => m_Wrapper.m_HandMovement_MiddleFingerCurledOUT;
         public InputAction @StandUp => m_Wrapper.m_HandMovement_StandUp;
         public InputAction @BodyBending => m_Wrapper.m_HandMovement_BodyBending;
-        public InputAction @IKControllLEFT => m_Wrapper.m_HandMovement_IKControllLEFT;
-        public InputAction @IKControllRIGHT => m_Wrapper.m_HandMovement_IKControllRIGHT;
+        public InputAction @IKControllINDEX => m_Wrapper.m_HandMovement_IKControllINDEX;
+        public InputAction @IKControllMIDDLE => m_Wrapper.m_HandMovement_IKControllMIDDLE;
         public InputActionMap Get() { return m_Wrapper.m_HandMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -991,12 +991,12 @@ public class @InputController : IInputActionCollection, IDisposable
                 @BodyBending.started -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnBodyBending;
                 @BodyBending.performed -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnBodyBending;
                 @BodyBending.canceled -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnBodyBending;
-                @IKControllLEFT.started -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIKControllLEFT;
-                @IKControllLEFT.performed -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIKControllLEFT;
-                @IKControllLEFT.canceled -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIKControllLEFT;
-                @IKControllRIGHT.started -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIKControllRIGHT;
-                @IKControllRIGHT.performed -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIKControllRIGHT;
-                @IKControllRIGHT.canceled -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIKControllRIGHT;
+                @IKControllINDEX.started -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIKControllINDEX;
+                @IKControllINDEX.performed -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIKControllINDEX;
+                @IKControllINDEX.canceled -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIKControllINDEX;
+                @IKControllMIDDLE.started -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIKControllMIDDLE;
+                @IKControllMIDDLE.performed -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIKControllMIDDLE;
+                @IKControllMIDDLE.canceled -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIKControllMIDDLE;
             }
             m_Wrapper.m_HandMovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -1031,12 +1031,12 @@ public class @InputController : IInputActionCollection, IDisposable
                 @BodyBending.started += instance.OnBodyBending;
                 @BodyBending.performed += instance.OnBodyBending;
                 @BodyBending.canceled += instance.OnBodyBending;
-                @IKControllLEFT.started += instance.OnIKControllLEFT;
-                @IKControllLEFT.performed += instance.OnIKControllLEFT;
-                @IKControllLEFT.canceled += instance.OnIKControllLEFT;
-                @IKControllRIGHT.started += instance.OnIKControllRIGHT;
-                @IKControllRIGHT.performed += instance.OnIKControllRIGHT;
-                @IKControllRIGHT.canceled += instance.OnIKControllRIGHT;
+                @IKControllINDEX.started += instance.OnIKControllINDEX;
+                @IKControllINDEX.performed += instance.OnIKControllINDEX;
+                @IKControllINDEX.canceled += instance.OnIKControllINDEX;
+                @IKControllMIDDLE.started += instance.OnIKControllMIDDLE;
+                @IKControllMIDDLE.performed += instance.OnIKControllMIDDLE;
+                @IKControllMIDDLE.canceled += instance.OnIKControllMIDDLE;
             }
         }
     }
@@ -1113,8 +1113,8 @@ public class @InputController : IInputActionCollection, IDisposable
         void OnMiddleFingerCurledOUT(InputAction.CallbackContext context);
         void OnStandUp(InputAction.CallbackContext context);
         void OnBodyBending(InputAction.CallbackContext context);
-        void OnIKControllLEFT(InputAction.CallbackContext context);
-        void OnIKControllRIGHT(InputAction.CallbackContext context);
+        void OnIKControllINDEX(InputAction.CallbackContext context);
+        void OnIKControllMIDDLE(InputAction.CallbackContext context);
     }
     public interface IMenusActions
     {

@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class IKGoal
 {
     public GameObject goal;
-    public bool left;
+    //public bool left;
 
 
     public Vector3 startPosition;
@@ -32,21 +32,25 @@ public class IKController : MonoBehaviour
         }
     }
 
-    void MoveRightGoal(Vector2 direction)
-    {
-        print("SOMETHING");
-        IKGoals[0].goal.transform.position = direction;
-    }
+    //void MoveRightGoal(Vector2 direction)
+    //{
+    //    print("SOMETHING");
+    //    IKGoals[0].goal.transform.position = direction;
+    //}
 
-    public void OnIKControllLEFT(InputValue value)
+    public void OnIKControllINDEX(InputValue value)
     {
-        Vector3 newPosition = new Vector3(IKGoals[0].startPosition.x + value.Get<Vector2>().x, IKGoals[0].startPosition.y + value.Get<Vector2>().y, IKGoals[1].startPosition.z);
+        // werte für maltes szene
+        //Vector3 newPosition = new Vector3(IKGoals[0].startPosition.x + value.Get<Vector2>().x, IKGoals[0].startPosition.y + value.Get<Vector2>().y, IKGoals[1].startPosition.z);
+        Vector3 newPosition = new Vector3(IKGoals[0].startPosition.x, IKGoals[0].startPosition.y + value.Get<Vector2>().y, IKGoals[1].startPosition.z + value.Get<Vector2>().x);
         IKGoals[0].goal.transform.position = newPosition;
     }
 
-    public void OnIKControllRIGHT(InputValue value)
+    public void OnIKControllMIDDLE(InputValue value)
     {
-        Vector3 newPosition = new Vector3 (IKGoals[1].startPosition.x + value.Get<Vector2>().x, IKGoals[1].startPosition.y + value.Get<Vector2>().y, IKGoals[1].startPosition.z);
+        // alte werte maltes szene
+        //Vector3 newPosition = new Vector3 (IKGoals[1].startPosition.x + value.Get<Vector2>().x, IKGoals[1].startPosition.y + value.Get<Vector2>().y, IKGoals[1].startPosition.z);
+        Vector3 newPosition = new Vector3(IKGoals[1].startPosition.x, IKGoals[1].startPosition.y + value.Get<Vector2>().y, IKGoals[1].startPosition.z + value.Get<Vector2>().x);
         IKGoals[1].goal.transform.position = newPosition;
     }
 
