@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using DitzelGames.FastIK;
+using UnityEditor;
 
 public class PlayerInputControllerRealisticHand : MonoBehaviour
 {
@@ -10,29 +11,29 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
     public bool IK_controls = false;
     public FastIKFabric IK_solver_index;
     public FastIKFabric IK_solver_middle;
+    [Space]
     public bool conAnchorForce = false;
+    public float moveArmForce_strength = 10f;
     public ConfigurableJoint wristConfJoint;
+    [Space]
     public bool hingeForce = false;
+    public float hingeTargetPos_min = 0f;
+    public float hingeTargetPos_max = -45f;
     public HingeJoint wristHingeJoint;
+    private JointSpring hingeSpring;
+
     [Header("Input")]
 	public Animator handAnimator;
 	public HingeJoint handTopJoint;
 	public HingeJoint wristJoint;
 	public float rotationSpeed;
 	public float maxRotation = 50;
-	private Vector2 leftSrickInput = new Vector2();
-    public ConstantForce moveArmForce;
-    public float moveArmForce_strength = 10f;
+	private Vector2 leftStickInput = new Vector2();
+    private Vector2 rightStickInput = new Vector2();
 
 
 	// Start is called before the first frame update
 	void Start()
-	{
-
-    }
-
-	// Update is called once per frame
-	void Update()
 	{
         if (!IK_controls)
         {
@@ -44,13 +45,21 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
             IK_solver_index.enabled = true;
             IK_solver_middle.enabled = true;
         }
+    }
 
+	// Update is called once per frame
+	void Update()
+	{
+        // move forces
+        if (conAnchorForce && wristConfJoint != null)
+            wristConfJoint.connectedAnchor = new Vector3(0,1, wristConfJoint.transform.position.z + (leftStickInput.x + rightStickInput.x) * moveArmForce_strength);
 
-
-
-        if (wristConfJoint != null)
+        if (hingeForce && wristHingeJoint != null)
         {
-            wristConfJoint.connectedAnchor += Vector3.forward * leftSrickInput.x * moveArmForce_strength;
+            float newTargetPos = (leftStickInput.x + rightStickInput.x).Remap(-2f, 2f, hingeTargetPos_max, hingeTargetPos_min);
+            hingeSpring = wristHingeJoint.spring;
+            hingeSpring.targetPosition = newTargetPos;
+            wristHingeJoint.spring = hingeSpring;
         }
     }
 
@@ -143,13 +152,11 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
 
 	public void OnBodyBending(InputValue value)
 	{
-        if (conAnchorForce)
-        {
-            leftSrickInput = value.Get<Vector2>();
-        }
-        else if (hingeForce)
-        {
+        leftStickInput = value.Get<Vector2>();
+    }
 
-        }
+    public void OnBodyBending2(InputValue value)
+    {
+        rightStickInput = value.Get<Vector2>();
     }
 }

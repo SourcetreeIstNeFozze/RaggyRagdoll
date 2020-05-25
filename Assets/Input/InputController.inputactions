@@ -86,6 +86,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "BodyBending2",
+                    "type": "Value",
+                    "id": "aeb1012c-75f4-4701-b087-6cd4816ea9b0",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "IKControllINDEX",
                     "type": "PassThrough",
                     "id": "8c7db89e-5a23-4cba-b6b3-6980635aebef",
@@ -782,6 +790,61 @@
                     "processors": "",
                     "groups": "",
                     "action": "IKControllMIDDLE",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "e3754cf4-9942-414d-896a-efe353bacc8b",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BodyBending2",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "87668bc3-b992-42e5-812b-13ae16a88d90",
+                    "path": "<Gamepad>/rightStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BodyBending2",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "54637561-f1df-416e-9ea2-4a00d118d294",
+                    "path": "<Gamepad>/rightStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BodyBending2",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "75e9ce47-6855-44ec-955c-b49823c169be",
+                    "path": "<Gamepad>/rightStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BodyBending2",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "3e3b4f29-d319-47ea-b8cd-669ee1fdf6e1",
+                    "path": "<Gamepad>/rightStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BodyBending2",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }

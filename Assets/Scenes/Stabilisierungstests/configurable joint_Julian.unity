@@ -485,17 +485,18 @@ MonoBehaviour:
   IK_controls: 1
   IK_solver_index: {fileID: 6074698509279959812}
   IK_solver_middle: {fileID: 6074698509279959814}
-  conAnchorForce: 0
+  conAnchorForce: 1
+  moveArmForce_strength: 0.2
   wristConfJoint: {fileID: 128565231}
-  hingeForce: 0
+  hingeForce: 1
+  hingeTargetPos_min: -10
+  hingeTargetPos_max: -35
   wristHingeJoint: {fileID: 479655639}
   handAnimator: {fileID: 6178257828059747154}
   handTopJoint: {fileID: 0}
   wristJoint: {fileID: 0}
   rotationSpeed: 0
   maxRotation: 50
-  moveArmForce: {fileID: 0}
-  moveArmForce_strength: 0.02
 --- !u!1 &948641276
 GameObject:
   m_ObjectHideFlags: 0
@@ -1569,7 +1570,7 @@ PrefabInstance:
     - target: {fileID: 2985379209169201964, guid: 515fa72b686d0344bbdf364b5b5bc653,
         type: 3}
       propertyPath: m_YDrive.positionSpring
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2985379209169201964, guid: 515fa72b686d0344bbdf364b5b5bc653,
         type: 3}
@@ -1599,17 +1600,22 @@ PrefabInstance:
     - target: {fileID: 2985379209169201964, guid: 515fa72b686d0344bbdf364b5b5bc653,
         type: 3}
       propertyPath: m_SecondaryAxis.x
-      value: 1
+      value: 0.71
       objectReference: {fileID: 0}
     - target: {fileID: 2985379209169201964, guid: 515fa72b686d0344bbdf364b5b5bc653,
         type: 3}
       propertyPath: m_SecondaryAxis.y
-      value: 2.11
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2985379209169201964, guid: 515fa72b686d0344bbdf364b5b5bc653,
         type: 3}
       propertyPath: m_SecondaryAxis.z
-      value: 1
+      value: 1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985379209169201964, guid: 515fa72b686d0344bbdf364b5b5bc653,
+        type: 3}
+      propertyPath: m_Axis.z
+      value: 0.37
       objectReference: {fileID: 0}
     - target: {fileID: 2985379209368680328, guid: 515fa72b686d0344bbdf364b5b5bc653,
         type: 3}

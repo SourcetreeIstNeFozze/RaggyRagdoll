@@ -99,6 +99,14 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""BodyBending2"",
+                    ""type"": ""Value"",
+                    ""id"": ""aeb1012c-75f4-4701-b087-6cd4816ea9b0"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""IKControllINDEX"",
                     ""type"": ""PassThrough"",
                     ""id"": ""8c7db89e-5a23-4cba-b6b3-6980635aebef"",
@@ -797,6 +805,61 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""action"": ""IKControllMIDDLE"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""e3754cf4-9942-414d-896a-efe353bacc8b"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BodyBending2"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""87668bc3-b992-42e5-812b-13ae16a88d90"",
+                    ""path"": ""<Gamepad>/rightStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BodyBending2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""54637561-f1df-416e-9ea2-4a00d118d294"",
+                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BodyBending2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""75e9ce47-6855-44ec-955c-b49823c169be"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BodyBending2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""3e3b4f29-d319-47ea-b8cd-669ee1fdf6e1"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BodyBending2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -870,6 +933,7 @@ public class @InputController : IInputActionCollection, IDisposable
         m_HandMovement_MiddleFingerCurledOUT = m_HandMovement.FindAction("MiddleFingerCurledOUT", throwIfNotFound: true);
         m_HandMovement_StandUp = m_HandMovement.FindAction("StandUp", throwIfNotFound: true);
         m_HandMovement_BodyBending = m_HandMovement.FindAction("BodyBending", throwIfNotFound: true);
+        m_HandMovement_BodyBending2 = m_HandMovement.FindAction("BodyBending2", throwIfNotFound: true);
         m_HandMovement_IKControllINDEX = m_HandMovement.FindAction("IKControllINDEX", throwIfNotFound: true);
         m_HandMovement_IKControllMIDDLE = m_HandMovement.FindAction("IKControllMIDDLE", throwIfNotFound: true);
         // Menus
@@ -934,6 +998,7 @@ public class @InputController : IInputActionCollection, IDisposable
     private readonly InputAction m_HandMovement_MiddleFingerCurledOUT;
     private readonly InputAction m_HandMovement_StandUp;
     private readonly InputAction m_HandMovement_BodyBending;
+    private readonly InputAction m_HandMovement_BodyBending2;
     private readonly InputAction m_HandMovement_IKControllINDEX;
     private readonly InputAction m_HandMovement_IKControllMIDDLE;
     public struct HandMovementActions
@@ -950,6 +1015,7 @@ public class @InputController : IInputActionCollection, IDisposable
         public InputAction @MiddleFingerCurledOUT => m_Wrapper.m_HandMovement_MiddleFingerCurledOUT;
         public InputAction @StandUp => m_Wrapper.m_HandMovement_StandUp;
         public InputAction @BodyBending => m_Wrapper.m_HandMovement_BodyBending;
+        public InputAction @BodyBending2 => m_Wrapper.m_HandMovement_BodyBending2;
         public InputAction @IKControllINDEX => m_Wrapper.m_HandMovement_IKControllINDEX;
         public InputAction @IKControllMIDDLE => m_Wrapper.m_HandMovement_IKControllMIDDLE;
         public InputActionMap Get() { return m_Wrapper.m_HandMovement; }
@@ -991,6 +1057,9 @@ public class @InputController : IInputActionCollection, IDisposable
                 @BodyBending.started -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnBodyBending;
                 @BodyBending.performed -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnBodyBending;
                 @BodyBending.canceled -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnBodyBending;
+                @BodyBending2.started -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnBodyBending2;
+                @BodyBending2.performed -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnBodyBending2;
+                @BodyBending2.canceled -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnBodyBending2;
                 @IKControllINDEX.started -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIKControllINDEX;
                 @IKControllINDEX.performed -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIKControllINDEX;
                 @IKControllINDEX.canceled -= m_Wrapper.m_HandMovementActionsCallbackInterface.OnIKControllINDEX;
@@ -1031,6 +1100,9 @@ public class @InputController : IInputActionCollection, IDisposable
                 @BodyBending.started += instance.OnBodyBending;
                 @BodyBending.performed += instance.OnBodyBending;
                 @BodyBending.canceled += instance.OnBodyBending;
+                @BodyBending2.started += instance.OnBodyBending2;
+                @BodyBending2.performed += instance.OnBodyBending2;
+                @BodyBending2.canceled += instance.OnBodyBending2;
                 @IKControllINDEX.started += instance.OnIKControllINDEX;
                 @IKControllINDEX.performed += instance.OnIKControllINDEX;
                 @IKControllINDEX.canceled += instance.OnIKControllINDEX;
@@ -1113,6 +1185,7 @@ public class @InputController : IInputActionCollection, IDisposable
         void OnMiddleFingerCurledOUT(InputAction.CallbackContext context);
         void OnStandUp(InputAction.CallbackContext context);
         void OnBodyBending(InputAction.CallbackContext context);
+        void OnBodyBending2(InputAction.CallbackContext context);
         void OnIKControllINDEX(InputAction.CallbackContext context);
         void OnIKControllMIDDLE(InputAction.CallbackContext context);
     }
