@@ -57,8 +57,11 @@ public class CopyAnimation : MonoBehaviour
 				if (invert)
 					js.targetPosition = js.targetPosition * -1;
 
-				js.targetPosition = Mathf.Clamp(js.targetPosition, hj.limits.min + 5, hj.limits.max - 5);
-
+				// if use limits is on, clamp
+				if (hj.useLimits)
+				{
+					js.targetPosition = Mathf.Clamp(js.targetPosition, hj.limits.min + 5, hj.limits.max - 5);
+				}
 				hj.spring = js;
 			}
 
