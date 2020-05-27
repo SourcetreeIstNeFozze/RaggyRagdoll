@@ -71,6 +71,8 @@ public class CopyAnimation : MonoBehaviour
 				targetRotation = initialLocalrotation - target.localEulerAngles;
 				convertedTargetRotation = Vector3To180Spectrum(targetRotation); // commment this out and enter values manually for debugging
 				cj.targetRotation = Quaternion.Euler(new Vector3 (convertedTargetRotation.x * amplificationFactor.x, convertedTargetRotation.y * amplificationFactor.y, convertedTargetRotation.z * amplificationFactor.z));
+                //if (this.gameObject.name == "Index_3")
+                //    print("targetRotation: " + new Vector3(convertedTargetRotation.x * amplificationFactor.x, convertedTargetRotation.y * amplificationFactor.y, convertedTargetRotation.z * amplificationFactor.z));
 
 			}
 

@@ -14,6 +14,7 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
     [Space]
     public bool conAnchorForce = false;
     public float moveArmForce_strength = 10f;
+    public Vector2 conAnchor_pos = Vector2.up;
     public ConfigurableJoint wristConfJoint;
     [Space]
     public bool hingeForce = false;
@@ -50,10 +51,16 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-        // move forces
-        if (conAnchorForce && wristConfJoint != null)
-            wristConfJoint.connectedAnchor = new Vector3(0,1, wristConfJoint.transform.position.z + (leftStickInput.x + rightStickInput.x) * moveArmForce_strength);
+        // MOVE-FORCES
 
+        // Move Connected Anchor
+        if (conAnchorForce && wristConfJoint != null)
+        {
+            Vector3 newPos = new Vector3(conAnchor_pos.x, conAnchor_pos.y, wristConfJoint.transform.position.z + (leftStickInput.x + rightStickInput.x) * moveArmForce_strength);
+            wristConfJoint.connectedAnchor = newPos;
+        }
+
+        // HingeJoint-Biegung
         if (hingeForce && wristHingeJoint != null)
         {
             float newTargetPos = (leftStickInput.x + rightStickInput.x).Remap(-2f, 2f, hingeTargetPos_max, hingeTargetPos_min);
