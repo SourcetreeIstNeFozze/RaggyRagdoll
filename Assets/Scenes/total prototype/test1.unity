@@ -1694,6 +1694,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Simple Hand Prototype = heavy foot
       objectReference: {fileID: 0}
+    - target: {fileID: 858500997041736591, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 858500997041736596, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
         type: 3}
       propertyPath: handAnimator
@@ -1904,6 +1909,11 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.z
       value: 0.0000000018626451
       objectReference: {fileID: 0}
+    - target: {fileID: 2255676427764779942, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2255676427764779943, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
         type: 3}
       propertyPath: m_IsKinematic
@@ -2013,6 +2023,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Simple Player (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5481868599362241687, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6018255576272975661, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
         type: 3}
