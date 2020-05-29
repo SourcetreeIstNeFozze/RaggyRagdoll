@@ -2654,6 +2654,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7408531656945878707, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7396404763531933816, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -827433199166511583, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -580953332001854149, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 95577970217770192, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -2734,6 +2754,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 960227967}
+    - target: {fileID: 1502849940507329375, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1581969021060209913, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
