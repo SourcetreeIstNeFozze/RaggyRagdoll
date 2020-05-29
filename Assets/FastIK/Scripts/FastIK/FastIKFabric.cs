@@ -182,6 +182,14 @@ namespace DitzelGames.FastIK
                     var plane = new Plane(Positions[i + 1] - Positions[i - 1], Positions[i - 1]);
                     var projectedPole = plane.ClosestPointOnPlane(polePosition);
                     var projectedBone = plane.ClosestPointOnPlane(Positions[i]);
+
+                    if (i == 1 || i == 2 || i == 3)
+                    {
+                        Debug.DrawLine(Positions[i], projectedBone, Color.blue);
+                        Debug.DrawLine(polePosition, projectedPole, Color.black);
+                        Debug.DrawLine(projectedPole, projectedBone, Color.magenta);
+                        Debug.DrawLine(Positions[i + 1], Positions[i - 1], Color.grey);
+                    }
                     var angle = Vector3.SignedAngle(projectedBone - Positions[i - 1], projectedPole - Positions[i - 1], plane.normal);
                     Positions[i] = Quaternion.AngleAxis(angle, plane.normal) * (Positions[i] - Positions[i - 1]) + Positions[i - 1];
                 }
