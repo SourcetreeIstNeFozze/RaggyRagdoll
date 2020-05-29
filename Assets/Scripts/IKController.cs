@@ -43,6 +43,7 @@ public class IKController : MonoBehaviour
         // werte für maltes szene
         //Vector3 newPosition = new Vector3(IKGoals[0].startPosition.x + value.Get<Vector2>().x, IKGoals[0].startPosition.y + value.Get<Vector2>().y, IKGoals[1].startPosition.z);
         Vector3 newPosition = new Vector3(IKGoals[0].startPosition.x, IKGoals[0].startPosition.y + value.Get<Vector2>().y, IKGoals[1].startPosition.z + value.Get<Vector2>().x);
+        
         IKGoals[0].goal.transform.position = newPosition;
     }
 
@@ -51,6 +52,8 @@ public class IKController : MonoBehaviour
         // alte werte maltes szene
         //Vector3 newPosition = new Vector3 (IKGoals[1].startPosition.x + value.Get<Vector2>().x, IKGoals[1].startPosition.y + value.Get<Vector2>().y, IKGoals[1].startPosition.z);
         Vector3 newPosition = new Vector3(IKGoals[1].startPosition.x, IKGoals[1].startPosition.y + value.Get<Vector2>().y, IKGoals[1].startPosition.z + value.Get<Vector2>().x);
+        // override with local movement of goal
+        newPosition = IKGoals[1].startPosition + IKGoals[1].goal.transform.up * value.Get<Vector2>().y + IKGoals[1].goal.transform.forward * value.Get<Vector2>().x;
         IKGoals[1].goal.transform.position = newPosition;
     }
 

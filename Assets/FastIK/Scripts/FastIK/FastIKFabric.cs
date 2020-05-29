@@ -176,22 +176,25 @@ namespace DitzelGames.FastIK
             //move towards pole
             if (Pole != null)
             {
-                var polePosition = GetPositionRootSpace(Pole);
-                for (int i = 1; i < Positions.Length - 1; i++)
+                for (int j = 0; j < 4; j++) // added this iteration for better pole-bending
                 {
-                    var plane = new Plane(Positions[i + 1] - Positions[i - 1], Positions[i - 1]);
-                    var projectedPole = plane.ClosestPointOnPlane(polePosition);
-                    var projectedBone = plane.ClosestPointOnPlane(Positions[i]);
-
-                    if (i == 1 || i == 2 || i == 3)
+                    var polePosition = GetPositionRootSpace(Pole);
+                    for (int i = 1; i < Positions.Length - 1; i++)
                     {
-                        Debug.DrawLine(Positions[i], projectedBone, Color.blue);
-                        Debug.DrawLine(polePosition, projectedPole, Color.black);
-                        Debug.DrawLine(projectedPole, projectedBone, Color.magenta);
-                        Debug.DrawLine(Positions[i + 1], Positions[i - 1], Color.grey);
+                        var plane = new Plane(Positions[i + 1] - Positions[i - 1], Positions[i - 1]);
+                        var projectedPole = plane.ClosestPointOnPlane(polePosition);
+                        var projectedBone = plane.ClosestPointOnPlane(Positions[i]);
+
+                        //if ((i == 1 || i == 2) && j== 1)
+                        //{
+                        //    Debug.DrawLine(Positions[i], projectedBone, Color.blue);
+                        //    Debug.DrawLine(polePosition, projectedPole, Color.black);
+                        //    Debug.DrawLine(projectedPole, projectedBone, Color.magenta);
+                        //    Debug.DrawLine(Positions[i + 1], Positions[i - 1], Color.grey);
+                        //}
+                        var angle = Vector3.SignedAngle(projectedBone - Positions[i - 1], projectedPole - Positions[i - 1], plane.normal);
+                        Positions[i] = Quaternion.AngleAxis(angle, plane.normal) * (Positions[i] - Positions[i - 1]) + Positions[i - 1];
                     }
-                    var angle = Vector3.SignedAngle(projectedBone - Positions[i - 1], projectedPole - Positions[i - 1], plane.normal);
-                    Positions[i] = Quaternion.AngleAxis(angle, plane.normal) * (Positions[i] - Positions[i - 1]) + Positions[i - 1];
                 }
             }
 
