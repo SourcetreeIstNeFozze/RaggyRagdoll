@@ -13,6 +13,7 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
     public FastIKFabric IK_solver_middle;
     [Space]
     public bool blendTreePoses = false;
+    public Animator IK_animator;
     [Space]
     public bool conAnchorForce = false;
     public float moveArmForce_strength = 10f;
@@ -48,9 +49,23 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
             IK_solver_index.enabled = true;
             IK_solver_middle.enabled = true;
         }
-
-        // Set Default Position
-        if (!blendTreePoses)
+        
+        if (blendTreePoses)
+        // Start Blend-Trees
+        {
+            if (IK_controls)
+            {
+                IK_animator.Play("Blend Tree_Poses", 0);
+                IK_animator.Play("Blend Tree_Poses", 1);
+            }
+            else
+            {
+                handAnimator.Play("Blend Tree_Poses", 8);
+                handAnimator.Play("Blend Tree_Poses", 9);
+            }
+        }
+        else
+        // Set default position
         {
             handAnimator.Play("index default", 4);
             handAnimator.Play("middle default", 6);
@@ -79,7 +94,14 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
         }
         if (blendTreePoses)
         {
-            if (!IK_controls)
+            if (IK_controls)
+            {
+                IK_animator.SetFloat("XInput_L", leftStickInput.x);
+                IK_animator.SetFloat("YInput_L", leftStickInput.y);
+                IK_animator.SetFloat("XInput_R", rightStickInput.x);
+                IK_animator.SetFloat("YInput_R", rightStickInput.y);
+            }
+            else
             {
                 handAnimator.SetFloat("XInput_L", leftStickInput.x);
                 handAnimator.SetFloat("YInput_L", leftStickInput.y);
@@ -112,7 +134,6 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
 	{
         if (!IK_controls && !blendTreePoses)
         {
-            Debug.Log("on INDEX UP called");
             handAnimator.Play("Index UP", 4);
         }
 	}
@@ -121,7 +142,6 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
 	{
         if (!IK_controls && !blendTreePoses)
         {
-            Debug.Log("on INDEX DOWN called");
             handAnimator.Play("Index DOWN", 4);
         }
 	}

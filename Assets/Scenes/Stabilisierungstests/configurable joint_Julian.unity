@@ -420,6 +420,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 806588454}
+  - component: {fileID: 806588455}
   m_Layer: 0
   m_Name: IK_goals
   m_TagString: Untagged
@@ -443,6 +444,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &806588455
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806588453}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0e207e11c6f6f6642b3227fa58e5ee4e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &936811955 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1654505710918802241, guid: e8839412cacd3a64aa0bd4246f2cbc30,
@@ -488,6 +508,7 @@ MonoBehaviour:
   IK_solver_index: {fileID: 1885127288}
   IK_solver_middle: {fileID: 6074698509279959814}
   blendTreePoses: 1
+  IK_animator: {fileID: 806588455}
   conAnchorForce: 1
   moveArmForce_strength: 0.2
   conAnchor_pos: {x: 0, y: 1}
@@ -578,7 +599,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 948641276}
   m_LocalRotation: {x: -0.014261938, y: 0.70577097, z: -0.01335382, w: -0.70817065}
-  m_LocalPosition: {x: 5.76, y: 0.25, z: -1.62}
+  m_LocalPosition: {x: 6.2, y: 0.27, z: 0.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -720,7 +741,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1359973831}
   m_LocalRotation: {x: -0, y: -0, z: 0.0283884, w: 0.99959695}
-  m_LocalPosition: {x: 0.387, y: -0.055000007, z: 0.093}
+  m_LocalPosition: {x: 0.387, y: -0.05500001, z: 0.093}
   m_LocalScale: {x: 0.06948583, y: 0.06948583, z: 0.06948583}
   m_Children:
   - {fileID: 125831768}
