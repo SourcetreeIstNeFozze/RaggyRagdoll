@@ -85,7 +85,6 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
                 handAnimator.SetFloat("YInput_L", leftStickInput.y);
                 handAnimator.SetFloat("XInput_R", rightStickInput.x);
                 handAnimator.SetFloat("YInput_R", rightStickInput.y);
-                print("rightStickX: " + rightStickInput.x);
             }
         }
     }
