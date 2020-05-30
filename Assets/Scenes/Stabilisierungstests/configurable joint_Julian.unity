@@ -484,10 +484,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea55b3a7b3e7e14a8729bdca0582b18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IK_controls: 1
+  IK_controls: 0
   IK_solver_index: {fileID: 1885127288}
   IK_solver_middle: {fileID: 6074698509279959814}
-  conAnchorForce: 0
+  blendTreePoses: 1
+  conAnchorForce: 1
   moveArmForce_strength: 0.2
   conAnchor_pos: {x: 0, y: 1}
   wristConfJoint: {fileID: 128565231}
@@ -576,13 +577,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 948641276}
-  m_LocalRotation: {x: -0.25775638, y: 0.6509028, z: -0.25070915, w: -0.6686046}
-  m_LocalPosition: {x: 3.25, y: 2.03, z: 1.44}
+  m_LocalRotation: {x: -0.014261938, y: 0.70577097, z: -0.01335382, w: -0.70817065}
+  m_LocalPosition: {x: 5.76, y: 0.25, z: -1.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 2.2380002, y: -89.80701, z: -0.07}
 --- !u!1 &1254734766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1229,6 +1230,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 9220589356598955178}
+    - target: {fileID: 369508366180162001, guid: 515fa72b686d0344bbdf364b5b5bc653,
+        type: 3}
+      propertyPath: amplificationFactor.x
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 544383559757984327, guid: 515fa72b686d0344bbdf364b5b5bc653,
         type: 3}
       propertyPath: target
@@ -1294,11 +1300,21 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1727567049}
+    - target: {fileID: 1993964895119662722, guid: 515fa72b686d0344bbdf364b5b5bc653,
+        type: 3}
+      propertyPath: amplificationFactor.x
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2021699756047587168, guid: 515fa72b686d0344bbdf364b5b5bc653,
         type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 3389370794136794489}
+    - target: {fileID: 2021699756047587168, guid: 515fa72b686d0344bbdf364b5b5bc653,
+        type: 3}
+      propertyPath: amplificationFactor.x
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2552397773416299105, guid: 515fa72b686d0344bbdf364b5b5bc653,
         type: 3}
       propertyPath: target
@@ -1369,6 +1385,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1714734935}
+    - target: {fileID: 2764483486696562643, guid: 515fa72b686d0344bbdf364b5b5bc653,
+        type: 3}
+      propertyPath: amplificationFactor.x
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2985379208465764368, guid: 515fa72b686d0344bbdf364b5b5bc653,
         type: 3}
       propertyPath: m_Mass
@@ -1652,12 +1673,12 @@ PrefabInstance:
     - target: {fileID: 2985379209169201964, guid: 515fa72b686d0344bbdf364b5b5bc653,
         type: 3}
       propertyPath: m_ZDrive.positionSpring
-      value: 100
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2985379209169201964, guid: 515fa72b686d0344bbdf364b5b5bc653,
         type: 3}
       propertyPath: m_YDrive.positionSpring
-      value: 100
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2985379209169201964, guid: 515fa72b686d0344bbdf364b5b5bc653,
         type: 3}
@@ -1899,6 +1920,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 2884613087314285694}
+    - target: {fileID: 3870742646223416761, guid: 515fa72b686d0344bbdf364b5b5bc653,
+        type: 3}
+      propertyPath: amplificationFactor.x
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4073030056945635355, guid: 515fa72b686d0344bbdf364b5b5bc653,
         type: 3}
       propertyPath: target
@@ -2024,6 +2050,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1361319383}
+    - target: {fileID: 9133998246671177673, guid: 515fa72b686d0344bbdf364b5b5bc653,
+        type: 3}
+      propertyPath: amplificationFactor.x
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 515fa72b686d0344bbdf364b5b5bc653, type: 3}
 --- !u!4 &3389370794136794489 stripped

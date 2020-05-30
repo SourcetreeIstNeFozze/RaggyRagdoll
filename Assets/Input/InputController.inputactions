@@ -78,18 +78,18 @@
                     "interactions": "Press"
                 },
                 {
-                    "name": "BodyBending",
-                    "type": "Value",
+                    "name": "LeftStick",
+                    "type": "PassThrough",
                     "id": "40fc7a63-6074-40ea-be88-ea9046ee0dc6",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
                 },
                 {
-                    "name": "BodyBending2",
-                    "type": "Value",
+                    "name": "RightStick",
+                    "type": "PassThrough",
                     "id": "aeb1012c-75f4-4701-b087-6cd4816ea9b0",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
                 },
@@ -411,11 +411,11 @@
                 {
                     "name": "2D Vector",
                     "id": "762dbf19-5953-4148-b59f-c1bc866a5e3b",
-                    "path": "2DVector",
+                    "path": "2DVector(mode=2)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "BodyBending",
+                    "action": "LeftStick",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -425,8 +425,8 @@
                     "path": "<Gamepad>/leftStick/up",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "BodyBending",
+                    "groups": "Gamepad",
+                    "action": "LeftStick",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -436,8 +436,8 @@
                     "path": "<Gamepad>/leftStick/down",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "BodyBending",
+                    "groups": "Gamepad",
+                    "action": "LeftStick",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -447,8 +447,8 @@
                     "path": "<Gamepad>/leftStick/left",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "BodyBending",
+                    "groups": "Gamepad",
+                    "action": "LeftStick",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -458,8 +458,8 @@
                     "path": "<Gamepad>/leftStick/right",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "BodyBending",
+                    "groups": "Gamepad",
+                    "action": "LeftStick",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -470,7 +470,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "BodyBending",
+                    "action": "LeftStick",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -481,7 +481,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardScheme1",
-                    "action": "BodyBending",
+                    "action": "LeftStick",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -492,7 +492,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardScheme1",
-                    "action": "BodyBending",
+                    "action": "LeftStick",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -503,7 +503,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardScheme1",
-                    "action": "BodyBending",
+                    "action": "LeftStick",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -514,7 +514,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardScheme1;KeyboardScheme2",
-                    "action": "BodyBending",
+                    "action": "LeftStick",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -525,7 +525,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "BodyBending",
+                    "action": "LeftStick",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -536,7 +536,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardScheme2",
-                    "action": "BodyBending",
+                    "action": "LeftStick",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -547,7 +547,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardScheme2",
-                    "action": "BodyBending",
+                    "action": "LeftStick",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -558,7 +558,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardScheme2",
-                    "action": "BodyBending",
+                    "action": "LeftStick",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -569,7 +569,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardScheme2",
-                    "action": "BodyBending",
+                    "action": "LeftStick",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -796,11 +796,11 @@
                 {
                     "name": "2D Vector",
                     "id": "e3754cf4-9942-414d-896a-efe353bacc8b",
-                    "path": "2DVector",
+                    "path": "2DVector(mode=2)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "BodyBending2",
+                    "action": "RightStick",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -810,8 +810,8 @@
                     "path": "<Gamepad>/rightStick/up",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "BodyBending2",
+                    "groups": "Gamepad",
+                    "action": "RightStick",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -821,8 +821,8 @@
                     "path": "<Gamepad>/rightStick/down",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "BodyBending2",
+                    "groups": "Gamepad",
+                    "action": "RightStick",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -832,8 +832,8 @@
                     "path": "<Gamepad>/rightStick/left",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "BodyBending2",
+                    "groups": "Gamepad",
+                    "action": "RightStick",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -843,8 +843,8 @@
                     "path": "<Gamepad>/rightStick/right",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "BodyBending2",
+                    "groups": "Gamepad",
+                    "action": "RightStick",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }

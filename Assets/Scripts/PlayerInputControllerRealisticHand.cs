@@ -12,6 +12,8 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
     public FastIKFabric IK_solver_index;
     public FastIKFabric IK_solver_middle;
     [Space]
+    public bool blendTreePoses = false;
+    [Space]
     public bool conAnchorForce = false;
     public float moveArmForce_strength = 10f;
     public Vector2 conAnchor_pos = Vector2.up;
@@ -46,6 +48,13 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
             IK_solver_index.enabled = true;
             IK_solver_middle.enabled = true;
         }
+
+        // Set Default Position
+        if (!blendTreePoses)
+        {
+            handAnimator.Play("index default", 4);
+            handAnimator.Play("middle default", 6);
+        }
     }
 
 	// Update is called once per frame
@@ -67,6 +76,17 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
             hingeSpring = wristHingeJoint.spring;
             hingeSpring.targetPosition = newTargetPos;
             wristHingeJoint.spring = hingeSpring;
+        }
+        if (blendTreePoses)
+        {
+            if (!IK_controls)
+            {
+                handAnimator.SetFloat("XInput_L", leftStickInput.x);
+                handAnimator.SetFloat("YInput_L", leftStickInput.y);
+                handAnimator.SetFloat("XInput_R", rightStickInput.x);
+                handAnimator.SetFloat("YInput_R", rightStickInput.y);
+                print("rightStickX: " + rightStickInput.x);
+            }
         }
     }
 
@@ -91,7 +111,7 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
 	// --- ACTION FUNCTIONS ---//
 	public void OnIndexFingerUP()
 	{
-        if (!IK_controls)
+        if (!IK_controls && !blendTreePoses)
         {
             Debug.Log("on INDEX UP called");
             handAnimator.Play("Index UP", 4);
@@ -100,7 +120,7 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
 
 	public void OnIndexFingerDOWN()
 	{
-        if (!IK_controls)
+        if (!IK_controls && !blendTreePoses)
         {
             Debug.Log("on INDEX DOWN called");
             handAnimator.Play("Index DOWN", 4);
@@ -109,7 +129,7 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
 
 	public void OnIndexFingerCurledIN()
 	{
-        if (!IK_controls)
+        if (!IK_controls && !blendTreePoses)
         {
             handAnimator.Play("Index IN", 5);
         }
@@ -117,7 +137,7 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
 
 	public void OnIndexFingerCurledOUT()
 	{
-        if (!IK_controls)
+        if (!IK_controls && !blendTreePoses)
         {
             handAnimator.Play("Index OUT", 5);
         }
@@ -125,7 +145,7 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
 
 	public void OnMiddleFingerUP()
 	{
-        if (!IK_controls)
+        if (!IK_controls && !blendTreePoses)
         {
             handAnimator.Play("Middle UP", 6);
         }
@@ -133,7 +153,7 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
 
 	public void OnMiddleFingerDOWN()
 	{
-        if (!IK_controls)
+        if (!IK_controls && !blendTreePoses)
         {
             handAnimator.Play("Middle DOWN", 6);
         }
@@ -141,7 +161,7 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
 
 	public void OnMiddleFingerCurledIN()
 	{
-        if (!IK_controls)
+        if (!IK_controls && !blendTreePoses)
         {
             handAnimator.Play("Middle IN", 7);
         }
@@ -149,7 +169,7 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
 
 	public void OnMiddleFingerCurledOUT()
 	{
-        if (!IK_controls)
+        if (!IK_controls && !blendTreePoses)
         {
             handAnimator.Play("Middle OUT", 7);
         }
@@ -157,12 +177,12 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
 
 
 
-	public void OnBodyBending(InputValue value)
+	public void OnLeftStick(InputValue value)
 	{
         leftStickInput = value.Get<Vector2>();
     }
 
-    public void OnBodyBending2(InputValue value)
+    public void OnRightStick(InputValue value)
     {
         rightStickInput = value.Get<Vector2>();
     }
