@@ -6,6 +6,8 @@ TagManager:
   tags:
   - indexFingerTip
   - middleFingerTip
+  - player_right
+  - player_left
   layers:
   - Default
   - TransparentFX
