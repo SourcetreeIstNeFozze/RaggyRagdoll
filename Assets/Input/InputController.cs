@@ -490,7 +490,7 @@ public class @InputController : IInputActionCollection, IDisposable
                 {
                     ""name"": ""up"",
                     ""id"": ""b04366dc-6941-49e3-9e69-f5002781b569"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardScheme1"",
@@ -501,7 +501,7 @@ public class @InputController : IInputActionCollection, IDisposable
                 {
                     ""name"": ""down"",
                     ""id"": ""48706e48-477b-4a4b-8f88-5f8036ff55dd"",
-                    ""path"": ""<Keyboard>/d"",
+                    ""path"": ""<Keyboard>/#(S)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardScheme1"",
@@ -512,7 +512,7 @@ public class @InputController : IInputActionCollection, IDisposable
                 {
                     ""name"": ""left"",
                     ""id"": ""4af69423-3c39-4276-a707-590b9188e9b6"",
-                    ""path"": ""<Keyboard>/z"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardScheme1"",
@@ -523,7 +523,7 @@ public class @InputController : IInputActionCollection, IDisposable
                 {
                     ""name"": ""right"",
                     ""id"": ""caa838f6-1d48-4ef4-adde-55ad8ca4f5ba"",
-                    ""path"": ""<Keyboard>/x"",
+                    ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardScheme1;KeyboardScheme2"",
@@ -857,6 +857,61 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
+                    ""action"": ""RightStick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""e532e11e-aadb-42cf-b0f5-9a103b6b9eaa"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightStick"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""5117bd6a-fcc2-4645-82b9-bc929e3c8850"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardScheme1"",
+                    ""action"": ""RightStick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""e5a45272-43c1-41f9-8d31-b522ad9d6fe3"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardScheme1"",
+                    ""action"": ""RightStick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""cc956617-a0c0-4cf0-9e66-fb69ff0244b0"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardScheme1"",
+                    ""action"": ""RightStick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""e1bacb36-3c46-40c5-a200-24289eea88ec"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardScheme1;KeyboardScheme2"",
                     ""action"": ""RightStick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true

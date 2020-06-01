@@ -34,11 +34,17 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
 	public float maxRotation = 50;
 	private Vector2 leftStickInput = new Vector2();
     private Vector2 rightStickInput = new Vector2();
+    private Vector2 leftStickInput_mirrored = new Vector2();
+    private Vector2 rightStickInput_mirrored = new Vector2();
+
+    private Vector2 mirrorX;
 
 
 	// Start is called before the first frame update
 	void Start()
 	{
+        mirrorX = new Vector2(-1f, 1f);
+
         if (!IK_controls)
         {
             IK_solver_index.enabled = false;
@@ -49,9 +55,9 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
             IK_solver_index.enabled = true;
             IK_solver_middle.enabled = true;
         }
-        
+
+        // POSES - activate
         if (blendTreePoses)
-        // Start Blend-Trees
         {
             if (IK_controls)
             {
@@ -92,21 +98,24 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
             hingeSpring.targetPosition = newTargetPos;
             wristHingeJoint.spring = hingeSpring;
         }
+
+        // poses
+        // set animator attributes
         if (blendTreePoses)
         {
             if (IK_controls)
             {
-                IK_animator.SetFloat("XInput_L", leftStickInput.x);
-                IK_animator.SetFloat("YInput_L", leftStickInput.y);
-                IK_animator.SetFloat("XInput_R", rightStickInput.x);
-                IK_animator.SetFloat("YInput_R", rightStickInput.y);
+                IK_animator.SetFloat("XInput_L", leftStickInput_mirrored.x);
+                IK_animator.SetFloat("YInput_L", leftStickInput_mirrored.y);
+                IK_animator.SetFloat("XInput_R", rightStickInput_mirrored.x);
+                IK_animator.SetFloat("YInput_R", rightStickInput_mirrored.y);
             }
             else
             {
-                handAnimator.SetFloat("XInput_L", leftStickInput.x);
-                handAnimator.SetFloat("YInput_L", leftStickInput.y);
-                handAnimator.SetFloat("XInput_R", rightStickInput.x);
-                handAnimator.SetFloat("YInput_R", rightStickInput.y);
+                handAnimator.SetFloat("XInput_L", leftStickInput_mirrored.x);
+                handAnimator.SetFloat("YInput_L", leftStickInput_mirrored.y);
+                handAnimator.SetFloat("XInput_R", rightStickInput_mirrored.x);
+                handAnimator.SetFloat("YInput_R", rightStickInput_mirrored.y);
             }
         }
     }
@@ -199,10 +208,20 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
 	public void OnLeftStick(InputValue value)
 	{
         leftStickInput = value.Get<Vector2>();
+        leftStickInput_mirrored = leftStickInput;
+
+        // Wenn linker Spieler, spiegle Input
+        if (this.tag.Equals("player_left"))
+            leftStickInput_mirrored *= mirrorX;
     }
 
     public void OnRightStick(InputValue value)
     {
         rightStickInput = value.Get<Vector2>();
+        rightStickInput_mirrored = rightStickInput;
+
+        // Wenn linker Spieler, spiegle Input
+        if (this.tag.Equals("player_left"))
+            rightStickInput_mirrored *= mirrorX;
     }
 }
