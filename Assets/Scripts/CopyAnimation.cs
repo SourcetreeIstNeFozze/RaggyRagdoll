@@ -98,8 +98,6 @@ public class CopyAnimation : MonoBehaviour
 		}
 		return value;
 
-
-
 	}
 }
 
