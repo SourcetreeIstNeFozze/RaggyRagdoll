@@ -341,10 +341,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deformedObject: {fileID: 1723452457}
   rotationAxis: 0
+  useBlendShapeIndex: 0
   blendShapeIndex: 0
+  blendShapeName: Zeigefinger2
   minAngle: 0
   maxAngle: -0.78
   currentRotation: {x: 0, y: 0, z: 0, w: 0}
+  blendShapeNames: []
 --- !u!1 &1407809554 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2745262717719253182, guid: 37750eb50e63c3d498f6027007123592,
@@ -365,10 +368,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deformedObject: {fileID: 1723452457}
   rotationAxis: 0
+  useBlendShapeIndex: 0
   blendShapeIndex: 1
+  blendShapeName: Zeigefinger1
   minAngle: 0
   maxAngle: -0.72
   currentRotation: {x: 0, y: 0, z: 0, w: 0}
+  blendShapeNames: []
 --- !u!1001 &1426088088
 PrefabInstance:
   m_ObjectHideFlags: 0
