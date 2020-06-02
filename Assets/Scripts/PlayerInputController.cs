@@ -19,8 +19,12 @@ public class PlayerInputController : MonoBehaviour
 	private Rigidbody playerRigidbody;
 	private ConstantForce playerConstanctForce;
 
-	public float leftKneeCurlTimer = 10;
-	public float rightKneeCurlTimer = 10;
+	public bool leftKneeCurled = false;
+	public bool rightKneeCurled = false;
+	public float leftKneeCurlTimer = 0;
+	public float rightKneeCurlTimer = 0;
+	public float lastLeftKneeCurl = 0;
+	public float lastRightKneeCurl = 0;
 	public float jumpReactionTime = 0.5f;
 
 	[SerializeField] GroundDetector leftFoot;
@@ -61,13 +65,21 @@ public class PlayerInputController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		// 1.MANAGE JUMPS
-		rightKneeCurlTimer += Time.deltaTime;
-		leftKneeCurlTimer += Time.deltaTime;
+		// 1.MANAGE JUMPSif 
+		if (rightKneeCurled)
+		{
+			rightKneeCurlTimer += Time.deltaTime;
+		}
+		if (leftKneeCurled)
+		{
+			leftKneeCurlTimer += Time.deltaTime;
+		}
 
-		if (GetGroundedState() == GroundedState.bothFeetonTheFloor && !onLandedTriggered && leftKneeCurlTimer <= jumpReactionTime && rightKneeCurlTimer <= jumpReactionTime)
+		if (GetGroundedState() == GroundedState.bothFeetonTheFloor && !onLandedTriggered && lastLeftKneeCurl >= jumpReactionTime && lastRightKneeCurl >= jumpReactionTime)
 		{
 			onLandedTriggered = true;
+			lastRightKneeCurl = 0;
+			lastLeftKneeCurl = 0;
 			onLanded?.Invoke();
 		}
 		else if (!(GetGroundedState() == GroundedState.bothFeetonTheFloor))
@@ -77,22 +89,22 @@ public class PlayerInputController : MonoBehaviour
 
 
 		// 2. MANAGE BENDING AND MOVEMENT
-		
+
 		// Bend the body if getting input and on the floor 
 		if (leftStickInput.x != 0f && !(GetGroundedState() == GroundedState.inAir))
 		{
 			BendVertically(leftStickInput.x * rotationSpeed * (invertControlls ? -1 : 1));
 		}
-		// When in air push the player
-		else if (leftStickInput.x != 0f && GetGroundedState() == GroundedState.inAir)
-		{
-			SetPlayerPushForce(new Vector3(leftStickInput.x, 0, 0), maxForceInFlight);
+		//// When in air push the player
+		//else if (leftStickInput.x != 0f && GetGroundedState() == GroundedState.inAir)
+		//{
+		//	SetPlayerPushForce(new Vector3(leftStickInput.x, 0, 0), maxForceInFlight);
 			
-		}
-		else
-		{
-			SetPlayerPushForce(Vector3.zero, 0);
-		}
+		//}
+		//else
+		//{
+		//	SetPlayerPushForce(Vector3.zero, 0);
+		//}
 
 
 
@@ -107,7 +119,6 @@ public class PlayerInputController : MonoBehaviour
 
 	public void BendVertically(float bendValue)
 	{
-		Debug.Log("bending Vertically");
 		JointSpring spring = hipJoint.spring;
 		spring.targetPosition = Mathf.Clamp(spring.targetPosition + bendValue, -maxRotation, maxRotation);
 		hipJoint.spring = spring;
@@ -160,11 +171,14 @@ public class PlayerInputController : MonoBehaviour
 	public void OnIndexFingerCurledIN()
 	{
 		handAnimator.Play("IndexIN", 2);
+		leftKneeCurled = true;
 	}
 
 	public void OnIndexFingerCurledOUT()
 	{
 		handAnimator.Play("IndexOUT", 2);
+		leftKneeCurled = false;
+		lastLeftKneeCurl = leftKneeCurlTimer;
 		leftKneeCurlTimer = 0;
 	}
 
@@ -182,11 +196,14 @@ public class PlayerInputController : MonoBehaviour
 	public void OnMiddleFingerCurledIN()
 	{
 		handAnimator.Play("MiddleIN", 4);
+		rightKneeCurled = true;
 	}
 
 	public void OnMiddleFingerCurledOUT()
 	{
 		handAnimator.Play("MiddleOUT", 4);
+		rightKneeCurled = false;
+		lastRightKneeCurl = rightKneeCurlTimer;
 		rightKneeCurlTimer = 0;
 	}
 
