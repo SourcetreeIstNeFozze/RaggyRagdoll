@@ -15,7 +15,10 @@ public class AmplifyCollision : MonoBehaviour
 	
 	// Start is called before the first frame update
     void Start()
-    {
+    { if (trackingpoint == null)
+		{
+			trackingpoint = this.transform;
+		}
 		lastPosition = currentposition = trackingpoint.position;
 		thisRigidbody = this.GetComponent<Rigidbody>();
     }

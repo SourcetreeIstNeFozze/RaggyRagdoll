@@ -95,16 +95,16 @@ public class PlayerInputController : MonoBehaviour
 		{
 			BendVertically(leftStickInput.x * rotationSpeed * (invertControlls ? -1 : 1));
 		}
-		//// When in air push the player
-		//else if (leftStickInput.x != 0f && GetGroundedState() == GroundedState.inAir)
-		//{
-		//	SetPlayerPushForce(new Vector3(leftStickInput.x, 0, 0), maxForceInFlight);
-			
-		//}
-		//else
-		//{
-		//	SetPlayerPushForce(Vector3.zero, 0);
-		//}
+		// When in air push the player
+		else if (leftStickInput.x != 0f && GetGroundedState() == GroundedState.inAir)
+		{
+			SetPlayerPushForce(new Vector3(leftStickInput.x, 0, 0), maxForceInFlight);
+
+		}
+		else
+		{
+			SetPlayerPushForce(Vector3.zero, 0);
+		}
 
 
 
