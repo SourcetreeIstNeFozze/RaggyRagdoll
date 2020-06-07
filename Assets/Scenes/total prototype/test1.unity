@@ -1646,7 +1646,7 @@ HingeJoint:
   m_ConnectedAnchor: {x: -0.20000008, y: -0.042999983, z: 0.00000047683716}
   m_UseSpring: 1
   m_Spring:
-    spring: 100
+    spring: 40
     damper: 0
     targetPosition: 0
   m_UseMotor: 0
@@ -1971,7 +1971,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000000074505806, y: -0.5000001, z: 0.00000047683716}
+  m_ConnectedAnchor: {x: 0.000000074505806, y: -0.49999994, z: 0.00000047683716}
   m_UseSpring: 1
   m_Spring:
     spring: 20
@@ -2187,9 +2187,13 @@ MonoBehaviour:
   maxRotation: 40
   leftStickInput: {x: 0, y: 0}
   PlayerRoot: {fileID: 2105938185}
-  leftKneeCurlTimer: 10
-  rightKneeCurlTimer: 10
-  jumpReactionTime: 0.5
+  leftKneeCurled: 0
+  rightKneeCurled: 0
+  leftKneeCurlTimer: 0
+  rightKneeCurlTimer: 0
+  lastLeftKneeCurl: 0
+  lastRightKneeCurl: 0
+  jumpReactionTime: 0.7
   leftFoot: {fileID: 1931987319}
   rightFoot: {fileID: 1931987319}
   maxForceInFlight: 5
@@ -3298,7 +3302,7 @@ HingeJoint:
   m_ConnectedAnchor: {x: 0.20000008, y: -0.04300022, z: 0.00000047683716}
   m_UseSpring: 1
   m_Spring:
-    spring: 20
+    spring: 40
     damper: 0
     targetPosition: 0
   m_UseMotor: 0
@@ -4403,10 +4407,10 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000000074505806, y: -0.5840001, z: 0.00000047683716}
+  m_ConnectedAnchor: {x: 0.000000074505806, y: -0.58299994, z: 0.00000047683716}
   m_UseSpring: 1
   m_Spring:
-    spring: 100
+    spring: 20
     damper: 0
     targetPosition: 0
   m_UseMotor: 0
@@ -7431,7 +7435,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2105938185}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d505e9ccc2c0a2c489de1499de46ab96, type: 3}
   m_Name: 
@@ -7444,25 +7448,25 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 1
-      outSlope: 1
-      tangentMode: 34
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  reactionDelay: 2
+  reactionDelay: 1
   minDrive: 0
   maxdrive: 300
 --- !u!75 &2105938189
@@ -7491,7 +7495,7 @@ ConfigurableJoint:
   m_ConnectedAnchor: {x: 0, y: 6.67, z: 0}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
-  m_XMotion: 0
+  m_XMotion: 2
   m_YMotion: 2
   m_ZMotion: 2
   m_AngularXMotion: 2
@@ -7548,12 +7552,12 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 0
+    positionSpring: 150
     positionDamper: 20
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 0
+    positionSpring: 150
     positionDamper: 20
     maximumForce: 3.4028233e+38
   m_SlerpDrive:

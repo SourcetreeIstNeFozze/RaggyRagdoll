@@ -8,6 +8,7 @@ TagManager:
   - middleFingerTip
   - player_right
   - player_left
+  - Environment
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - 
   - Hand
   - HandContainer
-  - 
+  - Environment
   - 
   - 
   - 
