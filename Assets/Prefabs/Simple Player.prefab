@@ -7865,8 +7865,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20490689a5d57bf4c9b7a2f20a56985d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useFK: 0
+  useFK: 1
   invertControlls: 0
+  amplifyJump: 0
+  handCanFall: 0
+  bendingCoupledToMovement: 0
   handAnimator: {fileID: 640599766}
   hipJoint: {fileID: 1190431739}
   rotationSpeed: 1
@@ -7876,6 +7879,11 @@ MonoBehaviour:
   _rightBumperHeld: 0
   _leftBumperHeld: 0
   PlayerRoot: {fileID: 2105938185}
+  playerVelocity: {x: 0, y: 0, z: 0}
+  leftFoot: {fileID: 1931987319}
+  rightFoot: {fileID: 1931987319}
+  maxForceInFlight: 5
+  jumpForce: 15
   leftKneeCurled: 0
   rightKneeCurled: 0
   leftKneeCurlTimer: 0
@@ -7883,12 +7891,9 @@ MonoBehaviour:
   lastLeftKneeCurl: 0
   lastRightKneeCurl: 0
   jumpReactionTime: 0.7
-  leftFoot: {fileID: 1931987319}
-  rightFoot: {fileID: 1931987319}
-  maxForceInFlight: 5
-  jumpForce: 15
   onLandedTriggered: 0
   landed: 0
+  stickReleaseTimeWindow: 0.1
 --- !u!114 &682727679
 MonoBehaviour:
   m_ObjectHideFlags: 0

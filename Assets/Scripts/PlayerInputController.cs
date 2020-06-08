@@ -6,9 +6,14 @@ using UnityEngine.InputSystem;
 public class PlayerInputController : MonoBehaviour
 {
 
-	[Header("Input")]
+	[Header("Config")]
 	public bool useFK;
 	public bool invertControlls;
+	public bool amplifyJump;
+	public bool handCanFall;
+	public bool bendingCoupledToMovement;
+
+	[Header("Input")]
 	public Animator handAnimator;
 	public HingeJoint hipJoint;
 	public float rotationSpeed;
@@ -23,6 +28,7 @@ public class PlayerInputController : MonoBehaviour
 	public GameObject PlayerRoot;
 	private Rigidbody playerRigidbody;
 	private ConstantForce playerConstanctForce;
+	public Vector3 playerVelocity;
 	[Space]
 
 	[SerializeField] GroundDetector leftFoot;
@@ -33,6 +39,8 @@ public class PlayerInputController : MonoBehaviour
 	public float jumpForce = 10;
 	[Space]
 
+
+	[Header("bulshit jump parametres")]
 	public bool leftKneeCurled = false;
 	public bool rightKneeCurled = false;
 	public float leftKneeCurlTimer = 0;
@@ -40,14 +48,26 @@ public class PlayerInputController : MonoBehaviour
 	public float lastLeftKneeCurl = 0;
 	public float lastRightKneeCurl = 0;
 	public float jumpReactionTime = 0.5f;
-
-
-
-
-
 	System.Action onLanded;
 	public bool onLandedTriggered;
 	public bool landed; // this should be done with a property but Im to dumb atm
+
+	[Header("Detect fast stick releases")]
+	// to do may need to meke the list have max N items to prevent memory leaks
+	public float stickReleaseTimeWindow = 0.1f;
+	List<InputTuple> historicLeftStick = new List<InputTuple>();
+	List<InputTuple> historicRightStick = new List<InputTuple>();
+	System.Action OnReleased_RX;
+	System.Action OnReleased_RY;
+	System.Action OnReleased_LX;
+	System.Action OnReleased_LY;
+	float Released_RX_timer;
+	float Released_RY_timer;
+	float Released_LX_timer;
+	float Released_LY_timer;
+
+
+
 
 	public enum GroundedState
 	{
@@ -65,6 +85,9 @@ public class PlayerInputController : MonoBehaviour
 		playerRigidbody = PlayerRoot.GetComponent<Rigidbody>();
 		playerConstanctForce = PlayerRoot.GetComponent<ConstantForce>();
 
+		CJBalancingwithFalling balance = PlayerRoot.GetComponent<CJBalancingwithFalling>();
+		balance.enabled = handCanFall;
+
 		// subscribe to events
 		onLanded += () =>
 		{
@@ -72,13 +95,56 @@ public class PlayerInputController : MonoBehaviour
 			Jump(Vector3.up, jumpForce);
 		};
 
+
+		if (amplifyJump)
+		{
+			OnReleased_RY += () =>
+			{  if (Released_RY_timer >= stickReleaseTimeWindow && GetGroundedState() !=  GroundedState.inAir)
+				{
+					Debug.Log("RY released");
+					Released_RY_timer = 0f;
+					Jump(PlayerRoot.transform.up, jumpForce);
+				}
+			};
+
+			OnReleased_RX += () =>
+			{
+				Debug.Log("RX released");
+			};
+
+			OnReleased_LY += () =>
+			{
+				if (Released_LY_timer >= stickReleaseTimeWindow && GetGroundedState() != GroundedState.inAir)
+				{
+					Debug.Log("LY released");
+					Released_LY_timer = 0f;
+					Jump(PlayerRoot.transform.up, jumpForce);
+				}
+			};
+			OnReleased_LX += () =>
+			{
+				Debug.Log("LX released");
+			};
+		}
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
+		// gather data
+		playerVelocity = playerRigidbody.velocity;
+		historicRightStick.Add(new InputTuple(rightStickInput, Time.deltaTime));
+		historicLeftStick.Add(new InputTuple(leftStickInput, Time.deltaTime));
 
-		
+		// fire Stick release Events
+		Released_RX_timer += Time.deltaTime;
+		Released_RY_timer += Time.deltaTime;
+		Released_LX_timer += Time.deltaTime;
+		Released_LY_timer += Time.deltaTime;
+
+		CheckForFastStickReleases(stickReleaseTimeWindow, 1f, 0f, rightStickInput, historicRightStick, OnReleased_RX, OnReleased_RY);
+		CheckForFastStickReleases(stickReleaseTimeWindow, 1f, 0f, leftStickInput, historicLeftStick, OnReleased_LX, OnReleased_LY);
+
 		if (useFK)
 		{
 			//MANAGE POSES 
@@ -109,6 +175,7 @@ public class PlayerInputController : MonoBehaviour
 				bendDirection *= -1f;
 			}
 
+			//2.BENDING
 			// Bend the body if getting input and on the floor 
 			if (!(GetGroundedState() == GroundedState.inAir))
 			{
@@ -124,6 +191,8 @@ public class PlayerInputController : MonoBehaviour
 			{
 				SetPlayerPushForce(Vector3.zero, 0);
 			}
+
+			//3.JUMPING
 
 		}
 
@@ -308,5 +377,82 @@ public class PlayerInputController : MonoBehaviour
 		}
 
 	}
+
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="timetoCheck"> how much into history to look for spikes</param>
+	/// <param name="fromValue"> value considered as "stick released"</param>
+	/// <param name="toValue">  value consideret as "stick at full"</param>
+	/// <param name="valueTocheck"> which value to check</param>
+	/// <param name="historyToCheckAgainst">against what list to check</param>
+	/// <param name="XEventToFire">event to fire when a spike in X axis is found </param>
+	/// <param name="YEventToFire">event to fire when a spike in Y axis is found </param>
+	public void CheckForFastStickReleases(float timetoCheck, float fromValue, float toValue, Vector2 valueTocheck,  List<InputTuple> historyToCheckAgainst, System.Action XEventToFire, System.Action YEventToFire)
+	{
+
+		// X VALUE
+		
+		// if the X value is low enough for checking
+		if (valueTocheck.x <= toValue)
+		{
+			float inspectedTime = 0f;
+
+			// loop backwards throuh input history up untill the given time
+			for (int i = historyToCheckAgainst.Count - 1; i >= 0; i--)
+			{
+				inspectedTime += historyToCheckAgainst[i].deltaTime;
+
+				// if desired time reached, stop checking
+				if (inspectedTime > timetoCheck)
+				{
+					break;
+				}
+
+				// else fire event if "spike" was found
+				if (historyToCheckAgainst[i].value.x >= fromValue)
+				{
+					XEventToFire?.Invoke();
+				}
+			}
+		}
+
+		//Y VALUE 
+		// if the Y value is low enough for checking
+		if (valueTocheck.y <= toValue)
+		{
+			float inspectedTime = 0f;
+
+			// loop backwards throuh input history up untill the given time
+			for (int i = historyToCheckAgainst.Count - 1; i >= 0; i--)
+			{
+				inspectedTime += historyToCheckAgainst[i].deltaTime;
+
+				// if desired time reached, stop checking
+				if (inspectedTime > timetoCheck)
+				{
+					break;
+				}
+
+				// else fire event if "spike" was found
+				if (historyToCheckAgainst[i].value.y >= fromValue)
+				{
+					YEventToFire?.Invoke();
+				}
+			}
+		}
+	}
+
+	public struct InputTuple
+	{
+		public Vector2 value;
+		public float deltaTime;
+
+		public InputTuple(Vector2 value, float deltaTime)
+		{
+			this.value = value;
+			this.deltaTime = deltaTime;
+		}
+	}	
 }
 

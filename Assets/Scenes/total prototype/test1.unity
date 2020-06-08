@@ -340,10 +340,6 @@ PrefabInstance:
       value: -0.000000029802322
       objectReference: {fileID: 0}
     - target: {fileID: 682727678, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2, type: 3}
-      propertyPath: useFK
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 682727678, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2, type: 3}
       propertyPath: invertControlls
       value: 0
       objectReference: {fileID: 0}
@@ -355,6 +351,18 @@ PrefabInstance:
       propertyPath: rightFoot
       value: 
       objectReference: {fileID: 520881156}
+    - target: {fileID: 682727678, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2, type: 3}
+      propertyPath: handCanFall
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 682727678, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2, type: 3}
+      propertyPath: amplifyJump
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 682727678, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2, type: 3}
+      propertyPath: jumpForce
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1015610421, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2, type: 3}
       propertyPath: m_Spring.damper
       value: 20
@@ -896,10 +904,6 @@ PrefabInstance:
       value: 0.000000029802322
       objectReference: {fileID: 0}
     - target: {fileID: 682727678, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2, type: 3}
-      propertyPath: useFK
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 682727678, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2, type: 3}
       propertyPath: invertControlls
       value: 0
       objectReference: {fileID: 0}
@@ -911,6 +915,10 @@ PrefabInstance:
       propertyPath: rightFoot
       value: 
       objectReference: {fileID: 889883962}
+    - target: {fileID: 682727678, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2, type: 3}
+      propertyPath: jumpForce
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1015610421, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2, type: 3}
       propertyPath: m_Spring.spring
       value: 400

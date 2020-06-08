@@ -17,11 +17,18 @@ public class GroundDetector : MonoBehaviour
         
     }
 
+
+	/// <summary>
+	/// FROM UNITY GUY
+	/// If you just want a measurement of how strong the hit was (like, for example for damage calculations), the dot product of collision normal and collision velocity (ie the velocity of the two bodies relative to each other), times the mass of the other collider should give you useful values. 
+	/// </summary>
+	/// <param name="collision"></param>
 	private void OnCollisionEnter(Collision collision)
 	{
 		if (collision.collider.tag == "Environment")
 		{
 			touchesGround = true;
+			//Debug.Log("ground collision strength:" + collision.impactForceSum);
 		} 
 	}
 
