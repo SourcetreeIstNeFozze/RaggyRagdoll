@@ -688,7 +688,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trackingpoint: {fileID: 0}
-  applidedStrenght: 50
+  applidedStrenght: 1
 --- !u!1 &260578307
 GameObject:
   m_ObjectHideFlags: 0
@@ -1460,7 +1460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trackingpoint: {fileID: 0}
-  applidedStrenght: 50
+  applidedStrenght: 1
 --- !u!1 &474066340
 GameObject:
   m_ObjectHideFlags: 0
@@ -1826,7 +1826,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trackingpoint: {fileID: 0}
-  applidedStrenght: 50
+  applidedStrenght: 20
 --- !u!1 &551835700
 GameObject:
   m_ObjectHideFlags: 0
@@ -2918,7 +2918,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trackingpoint: {fileID: 0}
-  applidedStrenght: 50
+  applidedStrenght: 1
 --- !u!1 &1056825215
 GameObject:
   m_ObjectHideFlags: 0
@@ -4105,7 +4105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trackingpoint: {fileID: 0}
-  applidedStrenght: 50
+  applidedStrenght: 1
 --- !u!1 &1352277456
 GameObject:
   m_ObjectHideFlags: 0
@@ -5984,7 +5984,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trackingpoint: {fileID: 0}
-  applidedStrenght: 50
+  applidedStrenght: 20
 --- !u!1 &1988661466
 GameObject:
   m_ObjectHideFlags: 0
@@ -7865,12 +7865,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20490689a5d57bf4c9b7a2f20a56985d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useFK: 0
   invertControlls: 0
   handAnimator: {fileID: 640599766}
   hipJoint: {fileID: 1190431739}
   rotationSpeed: 1
   maxRotation: 40
   leftStickInput: {x: 0, y: 0}
+  rightStickInput: {x: 0, y: 0}
+  _rightBumperHeld: 0
+  _leftBumperHeld: 0
   PlayerRoot: {fileID: 2105938185}
   leftKneeCurled: 0
   rightKneeCurled: 0

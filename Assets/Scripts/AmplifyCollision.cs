@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class AmplifyCollision : MonoBehaviour
 {
-	private Rigidbody thisRigidbody;
+	private Rigidbody _thisRigidbody;
 	[Tooltip("transform used for traking the movement vector of this object")]
 	public Transform trackingpoint;
-	private  Vector3 lastPosition;
-	private Vector3 currentposition;
-	[Tooltip("how much strength should be applied when THIS rigidbody hits anothe")]
+	private  Vector3 _lastPosition;
+	private Vector3 _currentposition;
+
+	[Tooltip("how much strength should be applied when THIS rigidbody hits another")]
 	public float applidedStrenght;
 
 	
@@ -19,33 +20,35 @@ public class AmplifyCollision : MonoBehaviour
 		{
 			trackingpoint = this.transform;
 		}
-		lastPosition = currentposition = trackingpoint.position;
-		thisRigidbody = this.GetComponent<Rigidbody>();
+		_lastPosition = _currentposition = trackingpoint.position;
+		_thisRigidbody = this.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-		lastPosition = currentposition;
-		currentposition = trackingpoint.position;
+		_lastPosition = _currentposition;
+		_currentposition = trackingpoint.position;
     }
 
 	public Vector3 GetMovementVector()
 	{
-		return currentposition - lastPosition;
+		return _currentposition - _lastPosition;
 	}
 
 	public Vector3 GetMovementVectorNormalized()
 	{
-		return (currentposition - lastPosition).normalized;
+		return (_currentposition - _lastPosition).normalized;
 	}
 
 	private void OnCollisionEnter(Collision collision)
 	{
+		// when THIS object is kicked, the force applied to THIS object will be multipied by the appliedStrength of the OTHER OBECT
+		// eg when this object is hit by "foot" and foot's applied strength is 50, the strength of this collision will be amplified by 50
 		AmplifyCollision collisionAmplifier = collision.gameObject.GetComponent<AmplifyCollision>();
 		if (collisionAmplifier!= null)
 		{
-			thisRigidbody.AddForceAtPosition(
+			_thisRigidbody.AddForceAtPosition(
 				collisionAmplifier.applidedStrenght * collisionAmplifier.GetMovementVector(),
 				collision.contacts[0].point,
 				ForceMode.Impulse);

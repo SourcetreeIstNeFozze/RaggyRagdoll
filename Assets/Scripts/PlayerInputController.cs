@@ -19,9 +19,19 @@ public class PlayerInputController : MonoBehaviour
 	public bool _leftBumperHeld;
 
 	[Header("Physics Correction")]
+
 	public GameObject PlayerRoot;
 	private Rigidbody playerRigidbody;
 	private ConstantForce playerConstanctForce;
+	[Space]
+
+	[SerializeField] GroundDetector leftFoot;
+	[SerializeField] GroundDetector rightFoot;
+	[Space]
+
+	public float maxForceInFlight = 10;
+	public float jumpForce = 10;
+	[Space]
 
 	public bool leftKneeCurled = false;
 	public bool rightKneeCurled = false;
@@ -31,12 +41,9 @@ public class PlayerInputController : MonoBehaviour
 	public float lastRightKneeCurl = 0;
 	public float jumpReactionTime = 0.5f;
 
-	[SerializeField] GroundDetector leftFoot;
-	[SerializeField] GroundDetector rightFoot;
 
 
-	public float maxForceInFlight = 10;
-	public float jumpForce = 10;
+
 
 	System.Action onLanded;
 	public bool onLandedTriggered;
@@ -165,13 +172,6 @@ public class PlayerInputController : MonoBehaviour
 		}
 
 
-	}
-
-	public void BendHorizontally(float bendValue)
-	{
-		//JointSpring spring = wristJoint.spring;
-		//spring.targetPosition = Mathf.Clamp(spring.targetPosition + bendValue, -maxRotation, maxRotation);
-		//handTopJoint.spring = spring;
 	}
 
 	public void BendVertically(float bendValue)
