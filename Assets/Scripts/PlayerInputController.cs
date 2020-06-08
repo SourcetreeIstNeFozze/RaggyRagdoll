@@ -7,12 +7,16 @@ public class PlayerInputController : MonoBehaviour
 {
 
 	[Header("Input")]
+	public bool useFK;
 	public bool invertControlls;
 	public Animator handAnimator;
 	public HingeJoint hipJoint;
 	public float rotationSpeed;
 	public float maxRotation = 50;
 	public Vector2 leftStickInput = new Vector2();
+	public Vector2 rightStickInput = new Vector2();
+	public bool _rightBumperHeld;
+	public bool _leftBumperHeld;
 
 	[Header("Physics Correction")]
 	public GameObject PlayerRoot;
@@ -50,62 +54,115 @@ public class PlayerInputController : MonoBehaviour
 
 	// Start is called before the first frame update
 	void Start()
-    {
+	{
 		playerRigidbody = PlayerRoot.GetComponent<Rigidbody>();
 		playerConstanctForce = PlayerRoot.GetComponent<ConstantForce>();
 
 		// subscribe to events
-		onLanded += () => {
+		onLanded += () =>
+		{
 			Debug.Log("Jump");
 			Jump(Vector3.up, jumpForce);
 		};
-	
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-		// 1.MANAGE JUMPSif 
-		if (rightKneeCurled)
+	}
+
+	// Update is called once per frame
+	void Update()
+	{
+
+		
+		if (useFK)
 		{
-			rightKneeCurlTimer += Time.deltaTime;
-		}
-		if (leftKneeCurled)
-		{
-			leftKneeCurlTimer += Time.deltaTime;
+			//MANAGE POSES 
+			handAnimator.SetFloat("XInput_L", leftStickInput.x);
+			handAnimator.SetFloat("YInput_L", leftStickInput.y);
+			handAnimator.SetFloat("XInput_R", rightStickInput.x);
+			handAnimator.SetFloat("YInput_R", rightStickInput.y);
+
+			//MANAGE BENDING AND PUSHING
+
+			float bendDirection;
+
+			if (_rightBumperHeld && !_leftBumperHeld)
+			{
+				bendDirection = -1f;
+			}
+			else if (!_rightBumperHeld && _leftBumperHeld)
+			{
+				bendDirection = 1;
+			}
+			else
+			{
+				bendDirection = 0f;
+			}
+
+			if (invertControlls)
+			{
+				bendDirection *= -1f;
+			}
+
+			// Bend the body if getting input and on the floor 
+			if (!(GetGroundedState() == GroundedState.inAir))
+			{
+				BendVertically(bendDirection * rotationSpeed);
+			}
+			// When in air push the player
+			else if (GetGroundedState() == GroundedState.inAir)
+			{
+				SetPlayerPushForce(new Vector3(bendDirection, 0, 0), maxForceInFlight);
+
+			}
+			else
+			{
+				SetPlayerPushForce(Vector3.zero, 0);
+			}
+
 		}
 
-		if (GetGroundedState() == GroundedState.bothFeetonTheFloor && !onLandedTriggered && lastLeftKneeCurl >= jumpReactionTime && lastRightKneeCurl >= jumpReactionTime)
-		{
-			onLandedTriggered = true;
-			lastRightKneeCurl = 0;
-			lastLeftKneeCurl = 0;
-			onLanded?.Invoke();
-		}
-		else if (!(GetGroundedState() == GroundedState.bothFeetonTheFloor))
-		{
-			onLandedTriggered = false;
-		}
 
-
-		// 2. MANAGE BENDING AND MOVEMENT
-
-		// Bend the body if getting input and on the floor 
-		if (leftStickInput.x != 0f && !(GetGroundedState() == GroundedState.inAir))
-		{
-			BendVertically(leftStickInput.x * rotationSpeed * (invertControlls ? -1 : 1));
-		}
-		// When in air push the player
-		else if (leftStickInput.x != 0f && GetGroundedState() == GroundedState.inAir)
-		{
-			SetPlayerPushForce(new Vector3(leftStickInput.x, 0, 0), maxForceInFlight);
-
-		}
 		else
 		{
-			SetPlayerPushForce(Vector3.zero, 0);
-		}
+			// 1.MANAGE JUMPS
+			if (rightKneeCurled)
+			{
+				rightKneeCurlTimer += Time.deltaTime;
+			}
+			if (leftKneeCurled)
+			{
+				leftKneeCurlTimer += Time.deltaTime;
+			}
 
+			if (GetGroundedState() == GroundedState.bothFeetonTheFloor && !onLandedTriggered && lastLeftKneeCurl >= jumpReactionTime && lastRightKneeCurl >= jumpReactionTime)
+			{
+				onLandedTriggered = true;
+				lastRightKneeCurl = 0;
+				lastLeftKneeCurl = 0;
+				onLanded?.Invoke();
+			}
+			else if (!(GetGroundedState() == GroundedState.bothFeetonTheFloor))
+			{
+				onLandedTriggered = false;
+			}
+
+
+			// 2. MANAGE BENDING AND MOVEMENT
+			// Bend the body if getting input and on the floor 
+			if (leftStickInput.x != 0f && !(GetGroundedState() == GroundedState.inAir))
+			{
+				BendVertically(leftStickInput.x * rotationSpeed * (invertControlls ? -1 : 1));
+			}
+			// When in air push the player
+			else if (leftStickInput.x != 0f && GetGroundedState() == GroundedState.inAir)
+			{
+				SetPlayerPushForce(new Vector3(leftStickInput.x, 0, 0), maxForceInFlight);
+
+			}
+			else
+			{
+				SetPlayerPushForce(Vector3.zero, 0);
+			}
+		}
 
 
 	}
@@ -124,7 +181,7 @@ public class PlayerInputController : MonoBehaviour
 		hipJoint.spring = spring;
 	}
 
-	public void SetPlayerPushForce( Vector3 direction, float constancforceValue)
+	public void SetPlayerPushForce(Vector3 direction, float constancforceValue)
 	{
 		direction = direction.normalized;
 		playerConstanctForce.force = direction * constancforceValue;
@@ -160,60 +217,96 @@ public class PlayerInputController : MonoBehaviour
 
 	public void OnIndexFingerUP()
 	{
-		handAnimator.Play("IndexUP", 1);
+		if (!useFK)
+			handAnimator.Play("IndexUP", 1);
+
 	}
 
 	public void OnIndexFingerDOWN()
 	{
-		handAnimator.Play("IndexDOWN", 1);
+		if (!useFK)
+			handAnimator.Play("IndexDOWN", 1);
 	}
 
 	public void OnIndexFingerCurledIN()
 	{
-		handAnimator.Play("IndexIN", 2);
-		leftKneeCurled = true;
+		if (!useFK)
+		{
+			handAnimator.Play("IndexIN", 2);
+			leftKneeCurled = true;
+		}
+
+		_rightBumperHeld = true;
 	}
 
 	public void OnIndexFingerCurledOUT()
 	{
-		handAnimator.Play("IndexOUT", 2);
-		leftKneeCurled = false;
-		lastLeftKneeCurl = leftKneeCurlTimer;
-		leftKneeCurlTimer = 0;
+		if (!useFK)
+		{
+			handAnimator.Play("IndexOUT", 2);
+			leftKneeCurled = false;
+			lastLeftKneeCurl = leftKneeCurlTimer;
+			leftKneeCurlTimer = 0;
+		}
+
+		_rightBumperHeld = false;
 	}
 
 	public void OnMiddleFingerUP()
 	{
-		handAnimator.Play("MiddleUP", 3);
+		if (!useFK)
+			handAnimator.Play("MiddleUP", 3);
 	}
 
 	public void OnMiddleFingerDOWN()
 	{
-		handAnimator.Play("MiddleDOWN", 3);
-		
+		if (!useFK)
+			handAnimator.Play("MiddleDOWN", 3);
+
 	}
 
 	public void OnMiddleFingerCurledIN()
 	{
-		handAnimator.Play("MiddleIN", 4);
-		rightKneeCurled = true;
+		if (!useFK)
+		{
+			handAnimator.Play("MiddleIN", 4);
+			rightKneeCurled = true;
+		}
+
+		_leftBumperHeld = true;
 	}
 
 	public void OnMiddleFingerCurledOUT()
 	{
-		handAnimator.Play("MiddleOUT", 4);
-		rightKneeCurled = false;
-		lastRightKneeCurl = rightKneeCurlTimer;
-		rightKneeCurlTimer = 0;
+		if (!useFK)
+		{
+			handAnimator.Play("MiddleOUT", 4);
+			rightKneeCurled = false;
+			lastRightKneeCurl = rightKneeCurlTimer;
+			rightKneeCurlTimer = 0;
+		}
+
+		_leftBumperHeld = false;
 	}
 
 	public void OnLeftStick(InputValue value)
 	{
 		leftStickInput = value.Get<Vector2>();
+		if (invertControlls)
+		{
+			leftStickInput = leftStickInput * new Vector2(-1f, 1f);
+		}
+
 	}
 
-	//--- UTILITY FINCTIONS --- //
+	public void OnRightStick(InputValue value)
+	{
+		rightStickInput = value.Get<Vector2>();
+		if (invertControlls)
+		{
+			rightStickInput = rightStickInput * new Vector2(-1f, 1f);
+		}
 
-
+	}
 }
 
