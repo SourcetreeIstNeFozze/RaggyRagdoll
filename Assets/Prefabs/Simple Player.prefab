@@ -7883,7 +7883,7 @@ MonoBehaviour:
   leftFoot: {fileID: 1931987319}
   rightFoot: {fileID: 1931987319}
   maxForceInFlight: 5
-  jumpForce: 15
+  jumpForce: 10
   leftKneeCurled: 0
   rightKneeCurled: 0
   leftKneeCurlTimer: 0
