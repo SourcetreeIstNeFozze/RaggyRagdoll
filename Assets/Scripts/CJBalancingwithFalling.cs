@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CJBalancingwithFalling : MonoBehaviour
 {
+	
+	[Header("General Settings")]
 	[SerializeField] ConfigurableJoint affectedJoint;
 	[SerializeField] private Vector3 targetAngle;
 	[SerializeField] private AnimationCurve sprinngRelToAngle;
@@ -17,9 +19,12 @@ public class CJBalancingwithFalling : MonoBehaviour
 	public float minDrive = 100;
 	public float maxdrive = 1000;
 
+	[Header("Activating and deacivating Balance")]
+	private bool handCanFall = false;
+	private float canFallTimer;
 
-    // Start is called before the first frame update
-    void Start()
+	// Start is called before the first frame update
+	void Start()
     {
         
     }
@@ -31,13 +36,27 @@ public class CJBalancingwithFalling : MonoBehaviour
 		timer += Time.deltaTime;
 		tick += Time.deltaTime;
 
+		if (canFallTimer > 0)
+		{
+			canFallTimer -= Time.deltaTime;
+			handCanFall = true;
+
+			if (canFallTimer <= 0)
+			{
+				canFallTimer = 0;
+				handCanFall = false; 
+			}
+		}
+
+
+
 		// on every tick
 		if (tick >= maxTickValue)
 		{
 			tick = 0f;
 			pastAngles.Enqueue(transform.eulerAngles); // IMPORTANT this needs to be global rotation
 
-			// start dequeing when a delay is reached
+			// start dequeing when a delay is reached (eg. after 3 seconds)
 			if (timer >= reactionDelay)
 			{
 				//deque
@@ -46,12 +65,12 @@ public class CJBalancingwithFalling : MonoBehaviour
 				////get difference in rotation. IMPORTANt: DOING THIS IN QUATERNION SMARTER????
 				//Vector3 angleDifference = targetAngle - pastAngle; //gets actualdifference
 				//angleDifference = new Vector3(Mathf.Abs(angleDifference.x), Mathf.Abs(angleDifference.y), Mathf.Abs(angleDifference.z)); // gets absolue vlaues for teh differenc
-
-				SetSprings(pastAngle);
+				if (handCanFall)
+				{
+					SetSprings(pastAngle);
+				}
 			}
 		}
-
-		// something about adjusting the anchor to point upwards if the rotation is free grrr
     }
 
 	private void SetSprings(Vector3 angle)
@@ -80,6 +99,15 @@ public class CJBalancingwithFalling : MonoBehaviour
 			return value + 360;
 		}
 		return value;
+	}
 
+	public void SetFallTimer( float time)
+	{
+		canFallTimer = time;
+	}
+
+	public void IncreaseFallTimer(float time)
+	{
+		canFallTimer += time;
 	}
 }

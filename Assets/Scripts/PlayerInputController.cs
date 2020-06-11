@@ -66,8 +66,13 @@ public class PlayerInputController : MonoBehaviour
 	float Released_LX_timer;
 	float Released_LY_timer;
 
-
-
+	[Header("Interaction with other player")]
+	public PlayerInputController otherPlayer;
+	public Orientation orientation;
+	public CJBalancingwithFalling balance;
+	public System.Action onSideStep;
+	public System.Action oncontactWithOtherPlayer;
+	public List<AmplifyCollision> playerColliders;
 
 	public enum GroundedState
 	{
@@ -76,7 +81,11 @@ public class PlayerInputController : MonoBehaviour
 		rightFootOnTheFloor,
 		leftFootOnThefloor,
 		transitioning
+	}
 
+	private void Awake()
+	{
+		InitializeColliders();
 	}
 
 	// Start is called before the first frame update
@@ -85,13 +94,12 @@ public class PlayerInputController : MonoBehaviour
 		playerRigidbody = PlayerRoot.GetComponent<Rigidbody>();
 		playerConstanctForce = PlayerRoot.GetComponent<ConstantForce>();
 
-		CJBalancingwithFalling balance = PlayerRoot.GetComponent<CJBalancingwithFalling>();
+		balance = PlayerRoot.GetComponent<CJBalancingwithFalling>();
 		balance.enabled = handCanFall;
 
 		// subscribe to events
 		onLanded += () =>
 		{
-			Debug.Log("Jump");
 			Jump(Vector3.up, jumpForce);
 		};
 
@@ -192,8 +200,6 @@ public class PlayerInputController : MonoBehaviour
 				SetPlayerPushForce(Vector3.zero, 0);
 			}
 
-			//3.JUMPING
-
 		}
 
 
@@ -258,6 +264,7 @@ public class PlayerInputController : MonoBehaviour
 
 	public void Jump(Vector3 direction, float forceValue)
 	{
+		Debug.Log("Jump");
 		direction = direction.normalized;
 		playerRigidbody.AddForce(direction * forceValue, ForceMode.Impulse);
 	}
@@ -443,6 +450,15 @@ public class PlayerInputController : MonoBehaviour
 		}
 	}
 
+	private void InitializeColliders()
+	{
+		for (int i = 0; i < playerColliders.Count; i++)
+		{
+			playerColliders[i].thisPlayer = this;
+			playerColliders[i].otherPlayer = otherPlayer;
+
+		}
+	}
 	public struct InputTuple
 	{
 		public Vector2 value;
