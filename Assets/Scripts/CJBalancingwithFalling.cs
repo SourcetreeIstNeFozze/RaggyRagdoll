@@ -20,7 +20,7 @@ public class CJBalancingwithFalling : MonoBehaviour
 	public float maxdrive = 1000;
 
 	[Header("Activating and deacivating Balance")]
-	private bool handCanFall = false;
+	public  bool handCanFall;
 	private float canFallTimer;
 
 	// Start is called before the first frame update
