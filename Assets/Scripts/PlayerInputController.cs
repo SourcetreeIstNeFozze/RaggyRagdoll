@@ -13,44 +13,37 @@ public class PlayerInputController : MonoBehaviour
 	public bool handCanFall;
 	public bool bendingCoupledToMovement;
 
-	[Header("Input")]
-	public Animator handAnimator;
-	public HingeJoint hipJoint;
-	public float rotationSpeed;
-	public float maxRotation = 50;
-	public Vector2 leftStickInput = new Vector2();
-	public Vector2 rightStickInput = new Vector2();
-	public bool _rightBumperHeld;
-	public bool _leftBumperHeld;
 
-	[Header("Physics Correction")]
-
-	public GameObject PlayerRoot;
-	private Rigidbody playerRigidbody;
-	private ConstantForce playerConstanctForce;
-	public Vector3 playerVelocity;
 	[Space]
-
+	[Header("References")]
+	public Animator handAnimator;
+	public HingeJoint torsoJoint;
+	public GameObject playerRoot;
 	[SerializeField] GroundDetector leftFoot;
 	[SerializeField] GroundDetector rightFoot;
-	[Space]
+	public List<AmplifyCollision> playerColliders;
+	public Orientation orientation;
+	public CJBalancingwithFalling balance;
+	public PlayerInputController otherPlayer;
 
+	[Space]
+	[Header("Input")]
+	public float rotationSpeed;
+	public float maxRotation = 50;
+
+	[Space]
+	private Vector2 _leftStickInput = new Vector2();
+	private Vector2 _rightStickInput = new Vector2();
+	private bool _rightBumperHeld;
+	private bool _leftBumperHeld;
+
+	[Space]
+	[Header("Physics Correction")]
+	private Rigidbody playerRigidbody;
+	private ConstantForce playerConstanctForce;
+	private Vector3 playerVelocity;
 	public float maxForceInFlight = 10;
 	public float jumpForce = 10;
-	[Space]
-
-
-	[Header("bulshit jump parametres")]
-	public bool leftKneeCurled = false;
-	public bool rightKneeCurled = false;
-	public float leftKneeCurlTimer = 0;
-	public float rightKneeCurlTimer = 0;
-	public float lastLeftKneeCurl = 0;
-	public float lastRightKneeCurl = 0;
-	public float jumpReactionTime = 0.5f;
-	System.Action onLanded;
-	public bool onLandedTriggered;
-	public bool landed; // this should be done with a property but Im to dumb atm
 
 	[Header("Detect fast stick releases")]
 	// to do may need to meke the list have max N items to prevent memory leaks
@@ -67,12 +60,10 @@ public class PlayerInputController : MonoBehaviour
 	float Released_LY_timer;
 
 	[Header("Interaction with other player")]
-	public PlayerInputController otherPlayer;
-	public Orientation orientation;
-	public CJBalancingwithFalling balance;
+
 	public System.Action onSideStep;
 	public System.Action oncontactWithOtherPlayer;
-	public List<AmplifyCollision> playerColliders;
+	
 
 	public enum GroundedState
 	{
@@ -91,18 +82,11 @@ public class PlayerInputController : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-		playerRigidbody = PlayerRoot.GetComponent<Rigidbody>();
-		playerConstanctForce = PlayerRoot.GetComponent<ConstantForce>();
+		playerRigidbody = playerRoot.GetComponent<Rigidbody>();
+		playerConstanctForce = playerRoot.GetComponent<ConstantForce>();
 
-		balance = PlayerRoot.GetComponent<CJBalancingwithFalling>();
+		balance = playerRoot.GetComponent<CJBalancingwithFalling>();
 		balance.enabled = handCanFall;
-
-		// subscribe to events
-		onLanded += () =>
-		{
-			Jump(Vector3.up, jumpForce);
-		};
-
 
 		if (amplifyJump)
 		{
@@ -111,7 +95,7 @@ public class PlayerInputController : MonoBehaviour
 				{
 					Debug.Log("RY released");
 					Released_RY_timer = 0f;
-					Jump(PlayerRoot.transform.up, jumpForce);
+					Jump(playerRoot.transform.up, jumpForce);
 				}
 			};
 
@@ -126,7 +110,7 @@ public class PlayerInputController : MonoBehaviour
 				{
 					Debug.Log("LY released");
 					Released_LY_timer = 0f;
-					Jump(PlayerRoot.transform.up, jumpForce);
+					Jump(playerRoot.transform.up, jumpForce);
 				}
 			};
 			OnReleased_LX += () =>
@@ -141,8 +125,8 @@ public class PlayerInputController : MonoBehaviour
 	{
 		// gather data
 		playerVelocity = playerRigidbody.velocity;
-		historicRightStick.Add(new InputTuple(rightStickInput, Time.deltaTime));
-		historicLeftStick.Add(new InputTuple(leftStickInput, Time.deltaTime));
+		historicRightStick.Add(new InputTuple(_rightStickInput, Time.deltaTime));
+		historicLeftStick.Add(new InputTuple(_leftStickInput, Time.deltaTime));
 
 		// fire Stick release Events
 		Released_RX_timer += Time.deltaTime;
@@ -150,16 +134,16 @@ public class PlayerInputController : MonoBehaviour
 		Released_LX_timer += Time.deltaTime;
 		Released_LY_timer += Time.deltaTime;
 
-		CheckForFastStickReleases(stickReleaseTimeWindow, 1f, 0f, rightStickInput, historicRightStick, OnReleased_RX, OnReleased_RY);
-		CheckForFastStickReleases(stickReleaseTimeWindow, 1f, 0f, leftStickInput, historicLeftStick, OnReleased_LX, OnReleased_LY);
+		CheckForFastStickReleases(stickReleaseTimeWindow, 1f, 0f, _rightStickInput, historicRightStick, OnReleased_RX, OnReleased_RY);
+		CheckForFastStickReleases(stickReleaseTimeWindow, 1f, 0f, _leftStickInput, historicLeftStick, OnReleased_LX, OnReleased_LY);
 
 		if (useFK)
 		{
 			//MANAGE POSES 
-			handAnimator.SetFloat("XInput_L", leftStickInput.x);
-			handAnimator.SetFloat("YInput_L", leftStickInput.y);
-			handAnimator.SetFloat("XInput_R", rightStickInput.x);
-			handAnimator.SetFloat("YInput_R", rightStickInput.y);
+			handAnimator.SetFloat("XInput_L", _leftStickInput.x);
+			handAnimator.SetFloat("YInput_L", _leftStickInput.y);
+			handAnimator.SetFloat("XInput_R", _rightStickInput.x);
+			handAnimator.SetFloat("YInput_R", _rightStickInput.y);
 
 			//MANAGE BENDING AND PUSHING
 
@@ -205,39 +189,18 @@ public class PlayerInputController : MonoBehaviour
 
 		else
 		{
-			// 1.MANAGE JUMPS
-			if (rightKneeCurled)
-			{
-				rightKneeCurlTimer += Time.deltaTime;
-			}
-			if (leftKneeCurled)
-			{
-				leftKneeCurlTimer += Time.deltaTime;
-			}
 
-			if (GetGroundedState() == GroundedState.bothFeetonTheFloor && !onLandedTriggered && lastLeftKneeCurl >= jumpReactionTime && lastRightKneeCurl >= jumpReactionTime)
-			{
-				onLandedTriggered = true;
-				lastRightKneeCurl = 0;
-				lastLeftKneeCurl = 0;
-				onLanded?.Invoke();
-			}
-			else if (!(GetGroundedState() == GroundedState.bothFeetonTheFloor))
-			{
-				onLandedTriggered = false;
-			}
+			// MANAGE BENDING AND MOVEMENT
 
-
-			// 2. MANAGE BENDING AND MOVEMENT
 			// Bend the body if getting input and on the floor 
-			if (leftStickInput.x != 0f && !(GetGroundedState() == GroundedState.inAir))
+			if (_leftStickInput.x != 0f && !(GetGroundedState() == GroundedState.inAir))
 			{
-				BendVertically(leftStickInput.x * rotationSpeed * (invertControlls ? -1 : 1));
+				BendVertically(_leftStickInput.x * rotationSpeed * (invertControlls ? -1 : 1));
 			}
 			// When in air push the player
-			else if (leftStickInput.x != 0f && GetGroundedState() == GroundedState.inAir)
+			else if (_leftStickInput.x != 0f && GetGroundedState() == GroundedState.inAir)
 			{
-				SetPlayerPushForce(new Vector3(leftStickInput.x, 0, 0), maxForceInFlight);
+				SetPlayerPushForce(new Vector3(_leftStickInput.x, 0, 0), maxForceInFlight);
 
 			}
 			else
@@ -251,9 +214,9 @@ public class PlayerInputController : MonoBehaviour
 
 	public void BendVertically(float bendValue)
 	{
-		JointSpring spring = hipJoint.spring;
+		JointSpring spring = torsoJoint.spring;
 		spring.targetPosition = Mathf.Clamp(spring.targetPosition + bendValue, -maxRotation, maxRotation);
-		hipJoint.spring = spring;
+		torsoJoint.spring = spring;
 	}
 
 	public void SetPlayerPushForce(Vector3 direction, float constancforceValue)
@@ -289,6 +252,7 @@ public class PlayerInputController : MonoBehaviour
 			return GroundedState.inAir;
 		}
 	}
+
 	// --- ACTION FUNCTIONS ---//
 
 	public void OnIndexFingerUP()
@@ -309,7 +273,6 @@ public class PlayerInputController : MonoBehaviour
 		if (!useFK)
 		{
 			handAnimator.Play("IndexIN", 2);
-			leftKneeCurled = true;
 		}
 
 		_rightBumperHeld = true;
@@ -320,9 +283,6 @@ public class PlayerInputController : MonoBehaviour
 		if (!useFK)
 		{
 			handAnimator.Play("IndexOUT", 2);
-			leftKneeCurled = false;
-			lastLeftKneeCurl = leftKneeCurlTimer;
-			leftKneeCurlTimer = 0;
 		}
 
 		_rightBumperHeld = false;
@@ -346,7 +306,6 @@ public class PlayerInputController : MonoBehaviour
 		if (!useFK)
 		{
 			handAnimator.Play("MiddleIN", 4);
-			rightKneeCurled = true;
 		}
 
 		_leftBumperHeld = true;
@@ -357,9 +316,6 @@ public class PlayerInputController : MonoBehaviour
 		if (!useFK)
 		{
 			handAnimator.Play("MiddleOUT", 4);
-			rightKneeCurled = false;
-			lastRightKneeCurl = rightKneeCurlTimer;
-			rightKneeCurlTimer = 0;
 		}
 
 		_leftBumperHeld = false;
@@ -367,20 +323,20 @@ public class PlayerInputController : MonoBehaviour
 
 	public void OnLeftStick(InputValue value)
 	{
-		leftStickInput = value.Get<Vector2>();
+		_leftStickInput = value.Get<Vector2>();
 		if (invertControlls)
 		{
-			leftStickInput = leftStickInput * new Vector2(-1f, 1f);
+			_leftStickInput = _leftStickInput * new Vector2(-1f, 1f);
 		}
 
 	}
 
 	public void OnRightStick(InputValue value)
 	{
-		rightStickInput = value.Get<Vector2>();
+		_rightStickInput = value.Get<Vector2>();
 		if (invertControlls)
 		{
-			rightStickInput = rightStickInput * new Vector2(-1f, 1f);
+			_rightStickInput = _rightStickInput * new Vector2(-1f, 1f);
 		}
 
 	}
