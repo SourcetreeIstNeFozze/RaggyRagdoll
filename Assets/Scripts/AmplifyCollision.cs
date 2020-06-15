@@ -13,8 +13,10 @@ public class AmplifyCollision : MonoBehaviour
 	[Tooltip("how much strength should be applied when THIS rigidbody hits another")]
 	public float applidedStrenght;
 
-	[HideInInspector] public PlayerInputController thisPlayer;
-	[HideInInspector] public PlayerInputController otherPlayer;
+	//[HideInInspector]
+    public PlayerInputController thisPlayer;
+	//[HideInInspector]
+    public PlayerInputController otherPlayer;
 
 
 	// Start is called before the first frame update

@@ -21,7 +21,7 @@ public class PlayerInputController : MonoBehaviour
 	public GameObject playerRoot;
 	[SerializeField] GroundDetector leftFoot;
 	[SerializeField] GroundDetector rightFoot;
-	public List<AmplifyCollision> playerColliders;
+	AmplifyCollision[] playerColliders;
 	public Orientation orientation;
 	public CJBalancingwithFalling balance;
 	public PlayerInputController otherPlayer;
@@ -90,6 +90,8 @@ public class PlayerInputController : MonoBehaviour
 
 		balance = playerRoot.GetComponent<CJBalancingwithFalling>();
 		balance.enabled = handCanFall;
+
+        
 
 		if (amplifyJump)
 		{
@@ -409,7 +411,8 @@ public class PlayerInputController : MonoBehaviour
 
 	private void InitializeColliders()
 	{
-		for (int i = 0; i < playerColliders.Count; i++)
+        playerColliders = this.GetComponentsInChildren<AmplifyCollision>();
+        for (int i = 0; i < playerColliders.Length; i++)
 		{
 			playerColliders[i].thisPlayer = this;
 			playerColliders[i].otherPlayer = otherPlayer;
