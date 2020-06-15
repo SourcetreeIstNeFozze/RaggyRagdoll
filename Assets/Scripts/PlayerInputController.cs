@@ -98,7 +98,7 @@ public class PlayerInputController : MonoBehaviour
 			OnReleased_RY += () =>
 			{  if (Released_RY_timer >= stickReleaseTimeWindow && GetGroundedState() !=  GroundedState.inAir)
 				{
-					Debug.Log("RY released");
+					//Debug.Log("RY released");
 					Released_RY_timer = 0f;
 					Jump(playerRoot.transform.up, jumpForce);
 				}
@@ -106,21 +106,21 @@ public class PlayerInputController : MonoBehaviour
 
 			OnReleased_RX += () =>
 			{
-				Debug.Log("RX released");
+				//Debug.Log("RX released");
 			};
 
 			OnReleased_LY += () =>
 			{
 				if (Released_LY_timer >= stickReleaseTimeWindow && GetGroundedState() != GroundedState.inAir)
 				{
-					Debug.Log("LY released");
+					//Debug.Log("LY released");
 					Released_LY_timer = 0f;
 					Jump(playerRoot.transform.up, jumpForce);
 				}
 			};
 			OnReleased_LX += () =>
 			{
-				Debug.Log("LX released");
+				//Debug.Log("LX released");
 			};
 		}
 	}

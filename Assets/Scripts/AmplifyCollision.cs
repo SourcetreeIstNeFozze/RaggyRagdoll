@@ -13,9 +13,9 @@ public class AmplifyCollision : MonoBehaviour
 	[Tooltip("how much strength should be applied when THIS rigidbody hits another")]
 	public float applidedStrenght;
 
-	//[HideInInspector]
+	[HideInInspector]
     public PlayerInputController thisPlayer;
-	//[HideInInspector]
+	[HideInInspector]
     public PlayerInputController otherPlayer;
 
 
@@ -48,7 +48,8 @@ public class AmplifyCollision : MonoBehaviour
 
 	private void OnCollisionEnter(Collision collision)
 	{
-		Debug.Log($"collision: {this.gameObject.name} and {collision.gameObject.name}");
+        if (!collision.gameObject.tag.Equals("Environment"))
+		    Debug.Log($"collision: from {collision.gameObject.name} to {this.gameObject.name}");
 
 
 
@@ -72,12 +73,16 @@ public class AmplifyCollision : MonoBehaviour
 			AmplifyCollision collisionAmplifier = collision.gameObject.GetComponent<AmplifyCollision>();
 			if (collisionAmplifier != null)
 			{
-				Debug.Log("Amplifying collision on the object:" + gameObject.name);
-				_thisRigidbody.AddForceAtPosition(
-					collisionAmplifier.applidedStrenght * collisionAmplifier.GetMovementVector(),
+				//Debug.Log("Amplifying collision on: " + gameObject.name + "(" + this.transform.root.tag + "), velocity = " + this.GetComponent<Rigidbody>().velocity);
+                _thisRigidbody.AddForceAtPosition(
+                    collisionAmplifier.applidedStrenght * collisionAmplifier.GetComponent<Rigidbody>().velocity, // * collisionAmplifier.GetMovementVector(),
 					collision.contacts[0].point,
-					ForceMode.Impulse);
-			}
+					ForceMode.VelocityChange);
+
+                //Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + collisionAmplifier.GetComponent<Rigidbody>().velocity * collisionAmplifier.applidedStrenght, Color.red, 3f);
+                //Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + Vector3.right*5, Color.black);
+                //Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + Vector3.forward*5, Color.black);
+            }
 
 		}
 	}
