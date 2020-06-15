@@ -959,6 +959,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d505e9ccc2c0a2c489de1499de46ab96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  orientationCentre: {fileID: 1597849403}
+  configurableJoint: {fileID: 515594622}
+  lookAtTarget: {fileID: 0}
+  hightToLookAt: 0
+  LookAtActive: 1
   affectedJoint: {fileID: 515594627}
   targetAngle: {x: 0, y: 0, z: 0}
   sprinngRelToAngle:
@@ -988,7 +993,7 @@ MonoBehaviour:
   reactionDelay: 1
   minDrive: 0
   maxdrive: 300
-  handCanFall: 1
+  handCanFall: 0
 --- !u!75 &5822281549155430279
 ConstantForce:
   m_ObjectHideFlags: 0
@@ -2965,6 +2970,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d505e9ccc2c0a2c489de1499de46ab96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  orientationCentre: {fileID: 0}
+  configurableJoint: {fileID: 0}
+  lookAtTarget: {fileID: 0}
+  hightToLookAt: 0
+  LookAtActive: 0
   affectedJoint: {fileID: 2105938191}
   targetAngle: {x: 0, y: 0, z: 0}
   sprinngRelToAngle:
@@ -3846,7 +3856,7 @@ MonoBehaviour:
   handAnimator: {fileID: 640599766}
   torsoJoint: {fileID: 567169398}
   playerRoot: {fileID: 515594622}
-  orientation: {fileID: 1597849405}
+  orientation: {fileID: 0}
   balance: {fileID: 515594626}
   otherPlayer: {fileID: 0}
   rotationSpeed: 2

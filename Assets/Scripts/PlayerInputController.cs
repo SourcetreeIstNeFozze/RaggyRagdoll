@@ -23,8 +23,7 @@ public class PlayerInputController : MonoBehaviour
 	public HingeJoint torsoJoint;
 	public GameObject playerRoot;	
 	CollisionHandler[] playerColliders;
-	public Orientation orientation;
-	public CJBalancingwithFalling balance;
+	public OrientationAndBalance balance;
 	public PlayerInputController otherPlayer;
 
 	[Header("Input")]
@@ -76,7 +75,7 @@ public class PlayerInputController : MonoBehaviour
 		playerRigidbody = playerRoot.GetComponent<Rigidbody>();
 		playerConstanctForce = playerRoot.GetComponent<ConstantForce>();
 
-		balance = playerRoot.GetComponent<CJBalancingwithFalling>();
+		balance = playerRoot.GetComponent<OrientationAndBalance>();
 		balance.enabled = handCanFall;
 
 		if (amplifyJump)

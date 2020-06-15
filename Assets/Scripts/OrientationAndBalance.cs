@@ -2,10 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CJBalancingwithFalling : MonoBehaviour
+public class OrientationAndBalance : MonoBehaviour
 {
 	
-	[Header("General Settings")]
+	[Header("Orientation")]
+	public GameObject orientationCentre;
+	public GameObject configurableJoint;
+	public GameObject lookAtTarget;
+	public float hightToLookAt;
+
+	public bool LookAtActive;
+
+	[Header("Balance")]
 	[SerializeField] ConfigurableJoint affectedJoint;
 	[SerializeField] private Vector3 targetAngle;
 	[SerializeField] private AnimationCurve sprinngRelToAngle;
@@ -20,7 +28,7 @@ public class CJBalancingwithFalling : MonoBehaviour
 	public float maxdrive = 1000;
 
 	[Header("Activating and deacivating Balance")]
-	public  bool handCanFall;
+	public bool handCanFall;
 	private float canFallTimer;
 
 	// Start is called before the first frame update
@@ -32,6 +40,17 @@ public class CJBalancingwithFalling : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+		// ORIENTATION
+		orientationCentre.transform.position = configurableJoint.transform.position;
+
+		if (LookAtActive && lookAtTarget != null)
+		{
+			// TODO lerping this
+			orientationCentre.transform.LookAt(new Vector3(lookAtTarget.transform.position.x, orientationCentre.transform.position.y + hightToLookAt, lookAtTarget.transform.position.z));
+		}
+
+		// BALANCE
 		// update timers
 		timer += Time.deltaTime;
 		tick += Time.deltaTime;
