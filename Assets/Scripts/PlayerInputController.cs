@@ -63,6 +63,9 @@ public class PlayerInputController : MonoBehaviour
 
 	public System.Action onSideStep;
 	public System.Action oncontactWithOtherPlayer;
+
+
+    Vector3 invertX = new Vector3(-1f, 1f);
 	
 
 	public enum GroundedState
@@ -324,22 +327,20 @@ public class PlayerInputController : MonoBehaviour
 	public void OnLeftStick(InputValue value)
 	{
 		_leftStickInput = value.Get<Vector2>();
-		if (invertControlls)
-		{
-			_leftStickInput = _leftStickInput * new Vector2(-1f, 1f);
-		}
+
+        if (this.tag.Equals("player_right"))
+            _leftStickInput *= invertX;
 
 	}
 
 	public void OnRightStick(InputValue value)
 	{
 		_rightStickInput = value.Get<Vector2>();
-		if (invertControlls)
-		{
-			_rightStickInput = _rightStickInput * new Vector2(-1f, 1f);
-		}
 
-	}
+        if (this.tag.Equals("player_right"))
+            _rightStickInput *= invertX;
+
+    }
 
 	/// <summary>
 	/// 

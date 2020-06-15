@@ -234,6 +234,10 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.z
       value: 0.000000029802322
       objectReference: {fileID: 0}
+    - target: {fileID: 515594622, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 707801894, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2, type: 3}
       propertyPath: m_ConnectedAnchor.z
       value: -0.000000029802322
@@ -322,6 +326,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Simple Player (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5481868599362241687, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
+        type: 3}
+      propertyPath: m_TagString
+      value: player_left
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2, type: 3}
@@ -540,7 +549,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 211126383}
-  m_LocalRotation: {x: 0, y: -2.5e-44, z: 0.00009432912, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.000094329174, w: 1}
   m_LocalPosition: {x: -9.3265, y: 3.625, z: -4.3626027}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -841,7 +850,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746894800}
-  m_LocalRotation: {x: 0, y: -2.5e-44, z: 0.00009432912, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.000094329174, w: 1}
   m_LocalPosition: {x: -9.3265, y: 3.625, z: -8.58}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -950,6 +959,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 515594622, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 1597849405, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2, type: 3}
       propertyPath: LookAtActive
       value: 1
@@ -1022,6 +1035,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Simple Player (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5481868599362241687, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
+        type: 3}
+      propertyPath: m_TagString
+      value: player_right
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2, type: 3}
