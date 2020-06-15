@@ -126,7 +126,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.20000008, y: -0.042999938, z: -0.000000029802322}
+  m_ConnectedAnchor: {x: -0.19999999, y: -0.043000177, z: 0}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c956b083e64146a49a6c466b3ea0ed8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  touchesGround: 0
   trackingpoint: {fileID: 0}
   applidedStrenght: 1
   thisPlayer: {fileID: 0}
@@ -369,6 +370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c956b083e64146a49a6c466b3ea0ed8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  touchesGround: 0
   trackingpoint: {fileID: 0}
   applidedStrenght: 1
   thisPlayer: {fileID: 0}
@@ -555,6 +557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c956b083e64146a49a6c466b3ea0ed8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  touchesGround: 0
   trackingpoint: {fileID: 0}
   applidedStrenght: 1
   thisPlayer: {fileID: 0}
@@ -685,7 +688,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000074505806, y: -0.5839998, z: -0.000000029802322}
+  m_ConnectedAnchor: {x: 0.000000014901161, y: -0.5839998, z: 0}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -742,6 +745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c956b083e64146a49a6c466b3ea0ed8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  touchesGround: 0
   trackingpoint: {fileID: 0}
   applidedStrenght: 1
   thisPlayer: {fileID: 0}
@@ -1012,7 +1016,6 @@ GameObject:
   - component: {fileID: 535907136}
   - component: {fileID: 535907135}
   - component: {fileID: 535907134}
-  - component: {fileID: 535907140}
   - component: {fileID: 535907141}
   m_Layer: 0
   m_Name: index 1
@@ -1167,19 +1170,6 @@ MonoBehaviour:
   invert: 0
   targetRotation: {x: 0, y: 0, z: 0}
   convertedTargetRotation: {x: 0, y: 0, z: 0}
---- !u!114 &535907140
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 535907132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0209a88e8a43b8a468366865594f0ce1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  touchesGround: 0
 --- !u!114 &535907141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1192,6 +1182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c956b083e64146a49a6c466b3ea0ed8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  touchesGround: 0
   trackingpoint: {fileID: 0}
   applidedStrenght: 20
   thisPlayer: {fileID: 0}
@@ -1309,7 +1300,6 @@ GameObject:
   - component: {fileID: 707801895}
   - component: {fileID: 707801894}
   - component: {fileID: 707801893}
-  - component: {fileID: 707801892}
   - component: {fileID: 707801891}
   m_Layer: 0
   m_Name: middle 1
@@ -1420,7 +1410,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000000074505806, y: -0.49999994, z: 0.000000029802322}
+  m_ConnectedAnchor: {x: -0.000000014901161, y: -0.49999994, z: 0}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -1465,19 +1455,6 @@ MonoBehaviour:
   invert: 0
   targetRotation: {x: 0, y: 0, z: 0}
   convertedTargetRotation: {x: 0, y: 0, z: 0}
---- !u!114 &707801892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 707801889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0209a88e8a43b8a468366865594f0ce1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  touchesGround: 0
 --- !u!114 &707801891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1490,6 +1467,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c956b083e64146a49a6c466b3ea0ed8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  touchesGround: 0
   trackingpoint: {fileID: 0}
   applidedStrenght: 20
   thisPlayer: {fileID: 0}
@@ -1509,7 +1487,6 @@ GameObject:
   - component: {fileID: 758628628}
   - component: {fileID: 758628627}
   - component: {fileID: 758628626}
-  - component: {fileID: 758628625}
   - component: {fileID: 758628624}
   m_Layer: 0
   m_Name: index 1
@@ -1620,7 +1597,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000074505806, y: -0.5000001, z: -0.000000029802322}
+  m_ConnectedAnchor: {x: 0.000000014901161, y: -0.5000001, z: 0}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -1665,19 +1642,6 @@ MonoBehaviour:
   invert: 0
   targetRotation: {x: 0, y: 0, z: 0}
   convertedTargetRotation: {x: 0, y: 0, z: 0}
---- !u!114 &758628625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 758628622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0209a88e8a43b8a468366865594f0ce1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  touchesGround: 0
 --- !u!114 &758628624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1690,6 +1654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c956b083e64146a49a6c466b3ea0ed8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  touchesGround: 0
   trackingpoint: {fileID: 0}
   applidedStrenght: 20
   thisPlayer: {fileID: 0}
@@ -1876,6 +1841,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c956b083e64146a49a6c466b3ea0ed8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  touchesGround: 0
   trackingpoint: {fileID: 0}
   applidedStrenght: 1
   thisPlayer: {fileID: 0}
@@ -2159,6 +2125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c956b083e64146a49a6c466b3ea0ed8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  touchesGround: 0
   trackingpoint: {fileID: 0}
   applidedStrenght: 1
   thisPlayer: {fileID: 0}
@@ -2289,7 +2256,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000000074505806, y: -0.5830001, z: 0.000000029802322}
+  m_ConnectedAnchor: {x: -0.000000014901161, y: -0.5830001, z: 0}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -2346,6 +2313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c956b083e64146a49a6c466b3ea0ed8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  touchesGround: 0
   trackingpoint: {fileID: 0}
   applidedStrenght: 1
   thisPlayer: {fileID: 0}
@@ -2429,7 +2397,6 @@ GameObject:
   - component: {fileID: 1931987315}
   - component: {fileID: 1931987314}
   - component: {fileID: 1931987313}
-  - component: {fileID: 1931987319}
   - component: {fileID: 1931987320}
   m_Layer: 0
   m_Name: middle 1
@@ -2584,19 +2551,6 @@ MonoBehaviour:
   invert: 0
   targetRotation: {x: 0, y: 0, z: 0}
   convertedTargetRotation: {x: 0, y: 0, z: 0}
---- !u!114 &1931987319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1931987311}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0209a88e8a43b8a468366865594f0ce1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  touchesGround: 0
 --- !u!114 &1931987320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2609,6 +2563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c956b083e64146a49a6c466b3ea0ed8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  touchesGround: 0
   trackingpoint: {fileID: 0}
   applidedStrenght: 20
   thisPlayer: {fileID: 0}
@@ -2739,7 +2694,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.20000008, y: -0.043000177, z: 0.000000029802322}
+  m_ConnectedAnchor: {x: 0.19999999, y: -0.043000177, z: 0}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -2796,6 +2751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c956b083e64146a49a6c466b3ea0ed8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  touchesGround: 0
   trackingpoint: {fileID: 0}
   applidedStrenght: 1
   thisPlayer: {fileID: 0}
@@ -3879,12 +3835,17 @@ MonoBehaviour:
   amplifyJump: 1
   handCanFall: 0
   bendingCoupledToMovement: 0
+  indexFinger:
+    fingerTop: {fileID: 232455740}
+    fingerMiddle: {fileID: 397538278}
+    fingerBottom: {fileID: 758628624}
+  middleFinger:
+    fingerTop: {fileID: 1937918729}
+    fingerMiddle: {fileID: 1568695536}
+    fingerBottom: {fileID: 707801891}
   handAnimator: {fileID: 640599766}
   torsoJoint: {fileID: 567169398}
   playerRoot: {fileID: 515594622}
-  leftFoot: {fileID: 707801892}
-  rightFoot: {fileID: 758628625}
-  playerColliders: []
   orientation: {fileID: 1597849405}
   balance: {fileID: 515594626}
   otherPlayer: {fileID: 0}
@@ -4386,33 +4347,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 230ae4a5558137643af1d675f268bbbc, type: 3}
---- !u!4 &1972090335027618881 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 9116480649390329963, guid: 230ae4a5558137643af1d675f268bbbc,
-    type: 3}
-  m_PrefabInstance: {fileID: 7339314261454189610}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2255676427764779942 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8833738848472874892, guid: 230ae4a5558137643af1d675f268bbbc,
-    type: 3}
-  m_PrefabInstance: {fileID: 7339314261454189610}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2255676427764779963 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8833738848472874897, guid: 230ae4a5558137643af1d675f268bbbc,
-    type: 3}
-  m_PrefabInstance: {fileID: 7339314261454189610}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6432793051774688090 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4368390886205091696, guid: 230ae4a5558137643af1d675f268bbbc,
     type: 3}
   m_PrefabInstance: {fileID: 7339314261454189610}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &2255676429275781252 stripped
+--- !u!4 &1972090335027618881 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 8833738847031078062, guid: 230ae4a5558137643af1d675f268bbbc,
+  m_CorrespondingSourceObject: {fileID: 9116480649390329963, guid: 230ae4a5558137643af1d675f268bbbc,
     type: 3}
   m_PrefabInstance: {fileID: 7339314261454189610}
   m_PrefabAsset: {fileID: 0}
@@ -4425,6 +4368,24 @@ Transform:
 --- !u!4 &4866362537244303595 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2761464816720172225, guid: 230ae4a5558137643af1d675f268bbbc,
+    type: 3}
+  m_PrefabInstance: {fileID: 7339314261454189610}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2255676429275781252 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8833738847031078062, guid: 230ae4a5558137643af1d675f268bbbc,
+    type: 3}
+  m_PrefabInstance: {fileID: 7339314261454189610}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2255676427764779963 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8833738848472874897, guid: 230ae4a5558137643af1d675f268bbbc,
+    type: 3}
+  m_PrefabInstance: {fileID: 7339314261454189610}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2255676427764779942 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8833738848472874892, guid: 230ae4a5558137643af1d675f268bbbc,
     type: 3}
   m_PrefabInstance: {fileID: 7339314261454189610}
   m_PrefabAsset: {fileID: 0}

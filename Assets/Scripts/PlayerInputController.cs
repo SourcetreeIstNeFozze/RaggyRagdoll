@@ -14,50 +14,35 @@ public class PlayerInputController : MonoBehaviour
 	public bool bendingCoupledToMovement;
 
 
-	[Space]
 	[Header("References")]
+	public ActiveFinger indexFinger;
+	public ActiveFinger middleFinger;
+
+
 	public Animator handAnimator;
 	public HingeJoint torsoJoint;
-	public GameObject playerRoot;
-	[SerializeField] GroundDetector leftFoot;
-	[SerializeField] GroundDetector rightFoot;
-	AmplifyCollision[] playerColliders;
+	public GameObject playerRoot;	
+	CollisionHandler[] playerColliders;
 	public Orientation orientation;
 	public CJBalancingwithFalling balance;
 	public PlayerInputController otherPlayer;
 
-	[Space]
 	[Header("Input")]
 	public float rotationSpeed;
 	public float maxRotation = 50;
 
 	[Space]
-	private Vector2 _leftStickInput = new Vector2();
-	private Vector2 _rightStickInput = new Vector2();
 	private bool _rightBumperHeld;
 	private bool _leftBumperHeld;
 
-	[Space]
 	[Header("Physics Correction")]
 	private Rigidbody playerRigidbody;
 	private ConstantForce playerConstanctForce;
-	private Vector3 playerVelocity;
 	public float maxForceInFlight = 10;
 	public float jumpForce = 10;
 
 	[Header("Detect fast stick releases")]
-	// to do may need to meke the list have max N items to prevent memory leaks
 	public float stickReleaseTimeWindow = 0.1f;
-	List<InputTuple> historicLeftStick = new List<InputTuple>();
-	List<InputTuple> historicRightStick = new List<InputTuple>();
-	System.Action OnReleased_RX;
-	System.Action OnReleased_RY;
-	System.Action OnReleased_LX;
-	System.Action OnReleased_LY;
-	float Released_RX_timer;
-	float Released_RY_timer;
-	float Released_LX_timer;
-	float Released_LY_timer;
 
 	[Header("Interaction with other player")]
 
@@ -71,7 +56,7 @@ public class PlayerInputController : MonoBehaviour
 	public enum GroundedState
 	{
 		inAir,
-		bothFeetonTheFloor,
+		bothFeetOnTheFloor,
 		rightFootOnTheFloor,
 		leftFootOnThefloor,
 		transitioning
@@ -80,6 +65,9 @@ public class PlayerInputController : MonoBehaviour
 	private void Awake()
 	{
 		InitializeColliders();
+
+		middleFinger.stickInput = new StickInput();
+		indexFinger.stickInput = new StickInput();
 	}
 
 	// Start is called before the first frame update
@@ -91,34 +79,30 @@ public class PlayerInputController : MonoBehaviour
 		balance = playerRoot.GetComponent<CJBalancingwithFalling>();
 		balance.enabled = handCanFall;
 
-        
-
 		if (amplifyJump)
 		{
-			OnReleased_RY += () =>
-			{  if (Released_RY_timer >= stickReleaseTimeWindow && GetGroundedState() !=  GroundedState.inAir)
+			middleFinger.stickInput.OnReleased_Y += () =>
+			{  if (GetGroundedState() !=  GroundedState.inAir)
 				{
 					Debug.Log("RY released");
-					Released_RY_timer = 0f;
 					Jump(playerRoot.transform.up, jumpForce);
 				}
 			};
 
-			OnReleased_RX += () =>
+			middleFinger.stickInput.OnReleased_X += () =>
 			{
 				Debug.Log("RX released");
 			};
 
-			OnReleased_LY += () =>
+			indexFinger.stickInput.OnReleased_Y += () =>
 			{
-				if (Released_LY_timer >= stickReleaseTimeWindow && GetGroundedState() != GroundedState.inAir)
+				if ( GetGroundedState() != GroundedState.inAir)
 				{
 					Debug.Log("LY released");
-					Released_LY_timer = 0f;
 					Jump(playerRoot.transform.up, jumpForce);
 				}
 			};
-			OnReleased_LX += () =>
+			indexFinger.stickInput.OnReleased_X += () =>
 			{
 				Debug.Log("LX released");
 			};
@@ -129,26 +113,21 @@ public class PlayerInputController : MonoBehaviour
 	void Update()
 	{
 		// gather data
-		playerVelocity = playerRigidbody.velocity;
-		historicRightStick.Add(new InputTuple(_rightStickInput, Time.deltaTime));
-		historicLeftStick.Add(new InputTuple(_leftStickInput, Time.deltaTime));
 
-		// fire Stick release Events
-		Released_RX_timer += Time.deltaTime;
-		Released_RY_timer += Time.deltaTime;
-		Released_LX_timer += Time.deltaTime;
-		Released_LY_timer += Time.deltaTime;
+		middleFinger.stickInput.Update();
+		indexFinger.stickInput.Update();
 
-		CheckForFastStickReleases(stickReleaseTimeWindow, 1f, 0f, _rightStickInput, historicRightStick, OnReleased_RX, OnReleased_RY);
-		CheckForFastStickReleases(stickReleaseTimeWindow, 1f, 0f, _leftStickInput, historicLeftStick, OnReleased_LX, OnReleased_LY);
+		middleFinger.stickInput.CheckForFastStickReleases(stickReleaseTimeWindow, 1f, 0f, stickReleaseTimeWindow);
+		indexFinger.stickInput.CheckForFastStickReleases(stickReleaseTimeWindow, 1f, 0f, stickReleaseTimeWindow);
 
 		if (useFK)
 		{
 			//MANAGE POSES 
-			handAnimator.SetFloat("XInput_L", _leftStickInput.x);
-			handAnimator.SetFloat("YInput_L", _leftStickInput.y);
-			handAnimator.SetFloat("XInput_R", _rightStickInput.x);
-			handAnimator.SetFloat("YInput_R", _rightStickInput.y);
+			handAnimator.SetFloat("XInput_R", middleFinger.stickInput.value.x);
+			handAnimator.SetFloat("YInput_R", middleFinger.stickInput.value.y);
+			handAnimator.SetFloat("XInput_L", indexFinger.stickInput.value.x);
+			handAnimator.SetFloat("YInput_L", indexFinger.stickInput.value.y);
+
 
 			//MANAGE BENDING AND PUSHING
 
@@ -198,14 +177,14 @@ public class PlayerInputController : MonoBehaviour
 			// MANAGE BENDING AND MOVEMENT
 
 			// Bend the body if getting input and on the floor 
-			if (_leftStickInput.x != 0f && !(GetGroundedState() == GroundedState.inAir))
+			if (indexFinger.stickInput.value.x != 0f && !(GetGroundedState() == GroundedState.inAir))
 			{
-				BendVertically(_leftStickInput.x * rotationSpeed * (invertControlls ? -1 : 1));
+				BendVertically(indexFinger.stickInput.value.x * rotationSpeed * (invertControlls ? -1 : 1));
 			}
 			// When in air push the player
-			else if (_leftStickInput.x != 0f && GetGroundedState() == GroundedState.inAir)
+			else if (indexFinger.stickInput.value.x != 0f && GetGroundedState() == GroundedState.inAir)
 			{
-				SetPlayerPushForce(new Vector3(_leftStickInput.x, 0, 0), maxForceInFlight);
+				SetPlayerPushForce(new Vector3(indexFinger.stickInput.value.x, 0, 0), maxForceInFlight);
 
 			}
 			else
@@ -240,15 +219,15 @@ public class PlayerInputController : MonoBehaviour
 	// TO DO add some delays and stuff
 	private GroundedState GetGroundedState()
 	{
-		if (leftFoot.touchesGround && rightFoot.touchesGround)
+		if (indexFinger.fingerBottom.touchesGround && middleFinger.fingerBottom.touchesGround)
 		{
-			return GroundedState.bothFeetonTheFloor;
+			return GroundedState.bothFeetOnTheFloor;
 		}
-		else if (leftFoot.touchesGround)
+		else if (indexFinger.fingerBottom.touchesGround)
 		{
 			return GroundedState.leftFootOnThefloor;
 		}
-		else if (rightFoot.touchesGround)
+		else if (middleFinger.fingerBottom.touchesGround)
 		{
 			return GroundedState.rightFootOnTheFloor;
 		}
@@ -328,90 +307,25 @@ public class PlayerInputController : MonoBehaviour
 
 	public void OnLeftStick(InputValue value)
 	{
-		_leftStickInput = value.Get<Vector2>();
+		indexFinger.stickInput.value = value.Get<Vector2>();
 
         if (this.tag.Equals("player_right"))
-            _leftStickInput *= invertX;
+			indexFinger.stickInput.value *= invertX;
 
 	}
 
 	public void OnRightStick(InputValue value)
 	{
-		_rightStickInput = value.Get<Vector2>();
+		middleFinger.stickInput.value = value.Get<Vector2>();
 
         if (this.tag.Equals("player_right"))
-            _rightStickInput *= invertX;
+			middleFinger.stickInput.value *= invertX;
 
     }
 
-	/// <summary>
-	/// 
-	/// </summary>
-	/// <param name="timetoCheck"> how much into history to look for spikes</param>
-	/// <param name="fromValue"> value considered as "stick released"</param>
-	/// <param name="toValue">  value consideret as "stick at full"</param>
-	/// <param name="valueTocheck"> which value to check</param>
-	/// <param name="historyToCheckAgainst">against what list to check</param>
-	/// <param name="XEventToFire">event to fire when a spike in X axis is found </param>
-	/// <param name="YEventToFire">event to fire when a spike in Y axis is found </param>
-	public void CheckForFastStickReleases(float timetoCheck, float fromValue, float toValue, Vector2 valueTocheck,  List<InputTuple> historyToCheckAgainst, System.Action XEventToFire, System.Action YEventToFire)
-	{
-
-		// X VALUE
-		
-		// if the X value is low enough for checking
-		if (valueTocheck.x <= toValue)
-		{
-			float inspectedTime = 0f;
-
-			// loop backwards throuh input history up untill the given time
-			for (int i = historyToCheckAgainst.Count - 1; i >= 0; i--)
-			{
-				inspectedTime += historyToCheckAgainst[i].deltaTime;
-
-				// if desired time reached, stop checking
-				if (inspectedTime > timetoCheck)
-				{
-					break;
-				}
-
-				// else fire event if "spike" was found
-				if (historyToCheckAgainst[i].value.x >= fromValue)
-				{
-					XEventToFire?.Invoke();
-				}
-			}
-		}
-
-		//Y VALUE 
-		// if the Y value is low enough for checking
-		if (valueTocheck.y <= toValue)
-		{
-			float inspectedTime = 0f;
-
-			// loop backwards throuh input history up untill the given time
-			for (int i = historyToCheckAgainst.Count - 1; i >= 0; i--)
-			{
-				inspectedTime += historyToCheckAgainst[i].deltaTime;
-
-				// if desired time reached, stop checking
-				if (inspectedTime > timetoCheck)
-				{
-					break;
-				}
-
-				// else fire event if "spike" was found
-				if (historyToCheckAgainst[i].value.y >= fromValue)
-				{
-					YEventToFire?.Invoke();
-				}
-			}
-		}
-	}
-
 	private void InitializeColliders()
 	{
-        playerColliders = this.GetComponentsInChildren<AmplifyCollision>();
+        playerColliders = this.GetComponentsInChildren<CollisionHandler>();
         for (int i = 0; i < playerColliders.Length; i++)
 		{
 			playerColliders[i].thisPlayer = this;
@@ -419,16 +333,6 @@ public class PlayerInputController : MonoBehaviour
 
 		}
 	}
-	public struct InputTuple
-	{
-		public Vector2 value;
-		public float deltaTime;
-
-		public InputTuple(Vector2 value, float deltaTime)
-		{
-			this.value = value;
-			this.deltaTime = deltaTime;
-		}
-	}	
+	
 }
 
