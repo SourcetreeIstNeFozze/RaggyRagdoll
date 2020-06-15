@@ -4,30 +4,34 @@ using UnityEngine;
 
 public class AverageRotation : MonoBehaviour
 {
+
     Cinemachine.CinemachineTargetGroup.Target[] targets;
-    Vector3 averageRotation;
-    float i;
+    bool twoPlayers;
 
     // Start is called before the first frame update
     void Start()
     {
         targets = this.GetComponent<Cinemachine.CinemachineTargetGroup>().m_Targets;
+        if (targets.Length == 2)
+            twoPlayers = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        averageRotation = new Vector3();
-        i = 0;
-        foreach(Cinemachine.CinemachineTargetGroup.Target target in targets)
+        if (twoPlayers)
         {
-            averageRotation += target.target.eulerAngles;
-            i++;
-        }
-        averageRotation = averageRotation / i;
-        averageRotation = new Vector3(0, averageRotation.y, 0);
-        print("aveRot: " + averageRotation);
+            // get position of players
+            Vector3 player1pos = targets[0].target.transform.position;
+            Vector3 player2pos = targets[1].target.transform.position;
 
-        this.transform.localEulerAngles = averageRotation;
+            // calc direction from players' mid point to where the camera should be
+            Vector3 lineBetweenPlayers = player1pos - player2pos;
+            Vector3 direction2camera = Vector3.Cross(lineBetweenPlayers, Vector3.up).normalized;
+
+            // translate into angle
+            Quaternion finalAngle = Quaternion.FromToRotation(Vector3.forward, direction2camera);
+            this.transform.rotation = finalAngle;
+        }
     }
 }

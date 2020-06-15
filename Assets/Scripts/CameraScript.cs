@@ -33,6 +33,7 @@ public class CameraScript : MonoBehaviour
 
 		Vector3 lineBetweenPlayers = player12Dposition - player2DPosition;
 		Vector3 midPointBetweenPlayers = player2DPosition + new Vector3(0f, cameraHeight, 0f) + lineBetweenPlayers / 2;
+        
 
 		
 
