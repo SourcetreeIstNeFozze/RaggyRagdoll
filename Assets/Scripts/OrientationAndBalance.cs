@@ -10,7 +10,7 @@ public class OrientationAndBalance : MonoBehaviour
 	public GameObject configurableJoint;
 	public GameObject lookAtTarget;
 	public float hightToLookAt;
-
+	public bool simpleLookAt;
 	public bool LookAtActive;
 
 	[Header("Balance")]
@@ -44,28 +44,36 @@ public class OrientationAndBalance : MonoBehaviour
 		// ORIENTATION
 		orientationCentre.transform.position = configurableJoint.transform.position;
 
+
 		if (LookAtActive && lookAtTarget != null)
 		{
-			// TODO lerping this
+			if (simpleLookAt)
+			{
+				configurableJoint.transform.LookAt(new Vector3(lookAtTarget.transform.position.x, configurableJoint.transform.position.y + hightToLookAt, lookAtTarget.transform.position.z));
+			}
+			else {
+				// TODO lerping this
 			orientationCentre.transform.LookAt(new Vector3(lookAtTarget.transform.position.x, orientationCentre.transform.position.y + hightToLookAt, lookAtTarget.transform.position.z));
+			}
 		}
+
 
 		// BALANCE
 		// update timers
 		timer += Time.deltaTime;
 		tick += Time.deltaTime;
 
-		if (canFallTimer > 0)
-		{
-			canFallTimer -= Time.deltaTime;
-			handCanFall = true;
+		//if (canFallTimer > 0)
+		//{
+		//	canFallTimer -= Time.deltaTime;
+		//	handCanFall = true;
 
-			if (canFallTimer <= 0)
-			{
-				canFallTimer = 0;
-				handCanFall = false; 
-			}
-		}
+		//	if (canFallTimer <= 0)
+		//	{
+		//		canFallTimer = 0;
+		//		handCanFall = false; 
+		//	}
+		//}
 
 
 
@@ -94,6 +102,8 @@ public class OrientationAndBalance : MonoBehaviour
 
 	private void SetSprings(Vector3 angle)
 	{
+		Debug.Log("setting springs");
+
 		JointDrive XDrive =  affectedJoint.angularXDrive;
 		XDrive.positionSpring = minDrive + ((maxdrive - minDrive) * sprinngRelToAngle.Evaluate(Mathf.Abs(FloatTo180Spectrum(angle.x)) / 180f));
 		affectedJoint.angularXDrive = XDrive;
