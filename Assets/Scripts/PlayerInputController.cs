@@ -10,7 +10,6 @@ public class PlayerInputController : MonoBehaviour
 	public bool useFK;
 	public bool invertControlls;
 	public bool amplifyJump;
-	public bool handCanFall;
 	public bool bendingCoupledToMovement;
 
 
@@ -74,9 +73,6 @@ public class PlayerInputController : MonoBehaviour
 	{
 		playerRigidbody = playerRoot.GetComponent<Rigidbody>();
 		playerConstanctForce = playerRoot.GetComponent<ConstantForce>();
-
-		balance = playerRoot.GetComponent<OrientationAndBalance>();
-		balance.enabled = handCanFall;
 
 		if (amplifyJump)
 		{

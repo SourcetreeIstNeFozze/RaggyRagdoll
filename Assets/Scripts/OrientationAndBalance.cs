@@ -10,10 +10,13 @@ public class OrientationAndBalance : MonoBehaviour
 	public GameObject configurableJoint;
 	public GameObject lookAtTarget;
 	public float hightToLookAt;
-	public bool simpleLookAt;
 	public bool LookAtActive;
 
 	[Header("Balance")]
+
+	public bool fallinAndGettingUp;
+	private float canFallTimer;
+
 	[SerializeField] ConfigurableJoint affectedJoint;
 	[SerializeField] private Vector3 targetAngle;
 	[SerializeField] private AnimationCurve sprinngRelToAngle;
@@ -27,9 +30,7 @@ public class OrientationAndBalance : MonoBehaviour
 	public float minDrive = 100;
 	public float maxdrive = 1000;
 
-	[Header("Activating and deacivating Balance")]
-	public bool handCanFall;
-	private float canFallTimer;
+
 
 	// Start is called before the first frame update
 	void Start()
@@ -44,17 +45,9 @@ public class OrientationAndBalance : MonoBehaviour
 		// ORIENTATION
 		orientationCentre.transform.position = configurableJoint.transform.position;
 
-
 		if (LookAtActive && lookAtTarget != null)
 		{
-			if (simpleLookAt)
-			{
-				configurableJoint.transform.LookAt(new Vector3(lookAtTarget.transform.position.x, configurableJoint.transform.position.y + hightToLookAt, lookAtTarget.transform.position.z));
-			}
-			else {
-				// TODO lerping this
 			orientationCentre.transform.LookAt(new Vector3(lookAtTarget.transform.position.x, orientationCentre.transform.position.y + hightToLookAt, lookAtTarget.transform.position.z));
-			}
 		}
 
 
@@ -75,8 +68,6 @@ public class OrientationAndBalance : MonoBehaviour
 		//	}
 		//}
 
-
-
 		// on every tick
 		if (tick >= maxTickValue)
 		{
@@ -92,7 +83,7 @@ public class OrientationAndBalance : MonoBehaviour
 				////get difference in rotation. IMPORTANt: DOING THIS IN QUATERNION SMARTER????
 				//Vector3 angleDifference = targetAngle - pastAngle; //gets actualdifference
 				//angleDifference = new Vector3(Mathf.Abs(angleDifference.x), Mathf.Abs(angleDifference.y), Mathf.Abs(angleDifference.z)); // gets absolue vlaues for teh differenc
-				if (handCanFall)
+				if (fallinAndGettingUp)
 				{
 					SetSprings(pastAngle);
 				}

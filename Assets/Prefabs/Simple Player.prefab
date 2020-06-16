@@ -30,7 +30,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 232455737}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.2, y: -0.042999983, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -38,7 +38,7 @@ Transform:
   - {fileID: 397538276}
   m_Father: {fileID: 515594623}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &232455745
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -126,7 +126,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.20000008, y: -0.042999938, z: 0.000000029802322}
+  m_ConnectedAnchor: {x: -0.20000008, y: -0.042999938, z: -0.000000029802322}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -688,7 +688,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000000074505806, y: -0.5839998, z: -0.000000029802322}
+  m_ConnectedAnchor: {x: -0.000000074505806, y: -0.5839998, z: -0.000000029802322}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -923,12 +923,12 @@ ConfigurableJoint:
   m_RotationDriveMode: 0
   m_AngularXDrive:
     serializedVersion: 3
-    positionSpring: 300
+    positionSpring: 0
     positionDamper: 20
     maximumForce: 3.4028233e+38
   m_AngularYZDrive:
     serializedVersion: 3
-    positionSpring: 300
+    positionSpring: 100
     positionDamper: 20
     maximumForce: 3.4028233e+38
   m_SlerpDrive:
@@ -963,8 +963,9 @@ MonoBehaviour:
   configurableJoint: {fileID: 515594622}
   lookAtTarget: {fileID: 0}
   hightToLookAt: 0
-  simpleLookAt: 1
+  simpleLookAt: 0
   LookAtActive: 1
+  fallinAndGettingUp: 0
   affectedJoint: {fileID: 515594627}
   targetAngle: {x: 0, y: 0, z: 0}
   sprinngRelToAngle:
@@ -994,7 +995,6 @@ MonoBehaviour:
   reactionDelay: 3
   minDrive: 0
   maxdrive: 300
-  handCanFall: 1
 --- !u!75 &5822281549155430279
 ConstantForce:
   m_ObjectHideFlags: 0
@@ -1002,7 +1002,7 @@ ConstantForce:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 515594622}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Force: {x: 0, y: 0, z: 0}
   m_RelativeForce: {x: 0, y: 0, z: 0}
   m_Torque: {x: 0, y: 0, z: 0}
@@ -1219,14 +1219,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 567169396}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.04799986, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8365010909470056809}
   m_Father: {fileID: 515594623}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &567169400
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1416,7 +1416,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000074505806, y: -0.49999994, z: 0.000000029802322}
+  m_ConnectedAnchor: {x: 0.000000074505806, y: -0.49999994, z: 0.000000029802322}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -1603,7 +1603,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000000074505806, y: -0.5000001, z: -0.000000029802322}
+  m_ConnectedAnchor: {x: -0.000000074505806, y: -0.5000001, z: -0.000000029802322}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -2262,7 +2262,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000074505806, y: -0.5830001, z: 0.000000029802322}
+  m_ConnectedAnchor: {x: 0.000000074505806, y: -0.5830001, z: 0.000000029802322}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -2348,13 +2348,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1597849403}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: -0.16499996, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2214909150496912359}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!54 &1597849406
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2587,7 +2587,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1937918726}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.2, y: -0.04300022, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2595,7 +2595,7 @@ Transform:
   - {fileID: 1568695534}
   m_Father: {fileID: 515594623}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1937918734
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2683,7 +2683,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.20000008, y: -0.043000177, z: -0.000000029802322}
+  m_ConnectedAnchor: {x: 0.20000008, y: -0.043000177, z: 0.000000029802322}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -2960,6 +2960,7 @@ MonoBehaviour:
   hightToLookAt: 0
   simpleLookAt: 0
   LookAtActive: 0
+  fallinAndGettingUp: 0
   affectedJoint: {fileID: 2105938191}
   targetAngle: {x: 0, y: 0, z: 0}
   sprinngRelToAngle:
@@ -2989,7 +2990,6 @@ MonoBehaviour:
   reactionDelay: 1
   minDrive: 0
   maxdrive: 300
-  handCanFall: 0
 --- !u!75 &2105938189
 ConstantForce:
   m_ObjectHideFlags: 0
@@ -3809,7 +3809,7 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: Gamepad
+  m_DefaultControlScheme: KeyboardScheme1
   m_DefaultActionMap: HandMovement
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -3828,7 +3828,6 @@ MonoBehaviour:
   useFK: 1
   invertControlls: 1
   amplifyJump: 0
-  handCanFall: 1
   bendingCoupledToMovement: 0
   indexFinger:
     fingerTop: {fileID: 232455740}

@@ -70,8 +70,6 @@ public class CollisionHandler : MonoBehaviour
 
 			//DESTABILISATION
 
-			thisPlayer.balance.SetFallTimer(5f);
-			thisPlayer.balance.SetFallTimer(5f);
 
 
 			// COLLISION AMPLIFICATION
