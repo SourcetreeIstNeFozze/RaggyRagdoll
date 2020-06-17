@@ -22,7 +22,7 @@
                     "interactions": "Press(behavior=1)"
                 },
                 {
-                    "name": "IndexFingerCurledIN",
+                    "name": "IndexFingerCurlIN",
                     "type": "Button",
                     "id": "f22fc432-7836-46fe-b65d-0f5d25c7a771",
                     "expectedControlType": "Button",
@@ -30,7 +30,7 @@
                     "interactions": "Press"
                 },
                 {
-                    "name": "IndexFingerCurledOUT",
+                    "name": "IndexFingerCurlOUT",
                     "type": "Button",
                     "id": "bd16f9bb-438d-44a7-93ee-10c8e262397c",
                     "expectedControlType": "Button",
@@ -54,7 +54,7 @@
                     "interactions": "Press(behavior=1)"
                 },
                 {
-                    "name": "MiddleFingerCurledIN",
+                    "name": "MiddleFingerCurlIN",
                     "type": "Button",
                     "id": "58550246-fa03-4917-8eec-1657cba2016e",
                     "expectedControlType": "Button",
@@ -62,7 +62,7 @@
                     "interactions": "Press"
                 },
                 {
-                    "name": "MiddleFingerCurledOUT",
+                    "name": "MiddleFingerCurlOUT",
                     "type": "Button",
                     "id": "6bdf8d78-9951-44a3-bb81-0104b5fe4e0e",
                     "expectedControlType": "Button",
@@ -114,7 +114,7 @@
                 {
                     "name": "",
                     "id": "90caa107-9989-4d41-9988-4f7ec216e974",
-                    "path": "<Gamepad>/rightTrigger",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -147,40 +147,29 @@
                 {
                     "name": "",
                     "id": "b8afe06c-bc04-4178-8563-274df84d1d6f",
-                    "path": "<Gamepad>/leftShoulder",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MiddleFingerCurledIN",
+                    "action": "MiddleFingerCurlIN",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "d78fca9d-d955-40fa-a88a-e392ae54177b",
-                    "path": "<Keyboard>/s",
+                    "path": "<Keyboard>/ctrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardScheme1",
-                    "action": "MiddleFingerCurledIN",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4d1556ae-8765-4cd5-944c-b96b945c25cb",
-                    "path": "<Keyboard>/4",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KeyboardScheme2",
-                    "action": "MiddleFingerCurledIN",
+                    "action": "MiddleFingerCurlIN",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "bfea6db8-08c1-4a19-aa43-49e360f3b84a",
-                    "path": "<Gamepad>/rightTrigger",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -246,73 +235,51 @@
                 {
                     "name": "",
                     "id": "7e9186ce-6caf-4e38-86fb-17d945c515ef",
-                    "path": "<Gamepad>/rightShoulder",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "IndexFingerCurledIN",
+                    "action": "IndexFingerCurlIN",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "ce91849d-6fcd-4740-b3a6-73cadc286aed",
-                    "path": "<Keyboard>/a",
+                    "path": "<Keyboard>/numpad0",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardScheme1",
-                    "action": "IndexFingerCurledIN",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "5fb172ee-8734-4306-972b-de5ded0d52a3",
-                    "path": "<Keyboard>/5",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KeyboardScheme2",
-                    "action": "IndexFingerCurledIN",
+                    "action": "IndexFingerCurlIN",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "c18cceab-a851-4d3c-827c-2b0ab5ef3b92",
-                    "path": "<Gamepad>/rightShoulder",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "IndexFingerCurledOUT",
+                    "action": "IndexFingerCurlOUT",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "cc9300b3-91d0-42f0-a336-d13951bdeec5",
-                    "path": "<Keyboard>/a",
+                    "path": "<Keyboard>/numpad0",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardScheme1",
-                    "action": "IndexFingerCurledOUT",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9ce4cebd-7c6a-4505-b3ac-4a66228c9036",
-                    "path": "<Keyboard>/5",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KeyboardScheme2",
-                    "action": "IndexFingerCurledOUT",
+                    "action": "IndexFingerCurlOUT",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "803754cb-da3b-44cb-82f9-0ca4abf0e94d",
-                    "path": "<Gamepad>/leftTrigger",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -345,7 +312,7 @@
                 {
                     "name": "",
                     "id": "76cab51d-8438-41d6-bba0-8e74099fe4bb",
-                    "path": "<Gamepad>/leftTrigger",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -378,33 +345,22 @@
                 {
                     "name": "",
                     "id": "ca83dba5-2f98-45a6-ae3e-605a23781021",
-                    "path": "<Gamepad>/leftShoulder",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MiddleFingerCurledOUT",
+                    "action": "MiddleFingerCurlOUT",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "56fdf35b-27b4-4828-82be-824f28800e31",
-                    "path": "<Keyboard>/s",
+                    "path": "<Keyboard>/ctrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardScheme1",
-                    "action": "MiddleFingerCurledOUT",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "fb42b5fa-3a74-463b-b7e2-09f927b3ec98",
-                    "path": "<Keyboard>/4",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KeyboardScheme2",
-                    "action": "MiddleFingerCurledOUT",
+                    "action": "MiddleFingerCurlOUT",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

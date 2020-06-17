@@ -8,6 +8,7 @@ public class PlayerInputController : MonoBehaviour
 
 	[Header("Config")]
 	public bool useFK;
+    public bool useTriggersCurl = true;
 	public bool invertControlls;
 	public bool amplifyJump;
 	public bool bendingCoupledToMovement;
@@ -264,65 +265,64 @@ public class PlayerInputController : MonoBehaviour
 		if (!useFK)
 			handAnimator.Play("IndexUP", 1);
 
-	}
+        _rightBumperHeld = true;
+    }
 
 	public void OnIndexFingerDOWN()
 	{
-		if (!useFK)
-			handAnimator.Play("IndexDOWN", 1);
+        if (!useFK)
+            handAnimator.Play("IndexDOWN", 1);
+
+       _rightBumperHeld = false;
 	}
 
-	public void OnIndexFingerCurledIN()
+	public void OnIndexFingerCurlIN()
 	{
-		if (!useFK)
+		if (!useFK || useTriggersCurl)
 		{
 			handAnimator.Play("IndexIN", 2);
 		}
-
-		_rightBumperHeld = true;
 	}
 
-	public void OnIndexFingerCurledOUT()
+	public void OnIndexFingerCurlOUT()
 	{
-		if (!useFK)
+		if (!useFK || useTriggersCurl)
 		{
 			handAnimator.Play("IndexOUT", 2);
 		}
-
-		_rightBumperHeld = false;
 	}
 
 	public void OnMiddleFingerUP()
 	{
 		if (!useFK)
 			handAnimator.Play("MiddleUP", 3);
-	}
+
+        _leftBumperHeld = true;
+    }
 
 	public void OnMiddleFingerDOWN()
 	{
 		if (!useFK)
 			handAnimator.Play("MiddleDOWN", 3);
 
-	}
+        _leftBumperHeld = false;
+    }
 
-	public void OnMiddleFingerCurledIN()
+	public void OnMiddleFingerCurlIN()
 	{
-		if (!useFK)
+		if (!useFK || useTriggersCurl)
 		{
 			handAnimator.Play("MiddleIN", 4);
+            print("middleCurlIn");
 		}
-
-		_leftBumperHeld = true;
 	}
 
-	public void OnMiddleFingerCurledOUT()
+	public void OnMiddleFingerCurlOUT()
 	{
-		if (!useFK)
+		if (!useFK || useTriggersCurl)
 		{
 			handAnimator.Play("MiddleOUT", 4);
 		}
-
-		_leftBumperHeld = false;
 	}
 
 	public void OnLeftStick(InputValue value)
