@@ -263,7 +263,7 @@ public class PlayerInputController : MonoBehaviour
 	public void OnIndexFingerUP()
 	{
 		if (!useFK)
-			handAnimator.Play("IndexUP", 1);
+			handAnimator.Play("IndexUP", 2);
 
         _rightBumperHeld = true;
     }
@@ -271,7 +271,7 @@ public class PlayerInputController : MonoBehaviour
 	public void OnIndexFingerDOWN()
 	{
         if (!useFK)
-            handAnimator.Play("IndexDOWN", 1);
+            handAnimator.Play("IndexDOWN", 2);
 
        _rightBumperHeld = false;
 	}
@@ -280,7 +280,7 @@ public class PlayerInputController : MonoBehaviour
 	{
 		if (!useFK || useTriggersCurl)
 		{
-			handAnimator.Play("IndexIN", 2);
+			handAnimator.Play("IndexCURLin", 3);
 		}
 	}
 
@@ -288,14 +288,14 @@ public class PlayerInputController : MonoBehaviour
 	{
 		if (!useFK || useTriggersCurl)
 		{
-			handAnimator.Play("IndexOUT", 2);
+			handAnimator.Play("IndexCURLout", 3);
 		}
 	}
 
 	public void OnMiddleFingerUP()
 	{
 		if (!useFK)
-			handAnimator.Play("MiddleUP", 3);
+			handAnimator.Play("MiddleUP", 4);
 
         _leftBumperHeld = true;
     }
@@ -303,17 +303,17 @@ public class PlayerInputController : MonoBehaviour
 	public void OnMiddleFingerDOWN()
 	{
 		if (!useFK)
-			handAnimator.Play("MiddleDOWN", 3);
+			handAnimator.Play("MiddleDOWN", 4);
 
         _leftBumperHeld = false;
     }
 
-	public void OnMiddleFingerCurlIN()
+	public void OnMiddleFingerCurlIN(InputValue value)
 	{
 		if (!useFK || useTriggersCurl)
 		{
-			handAnimator.Play("MiddleIN", 4);
-            print("middleCurlIn");
+			handAnimator.Play("MiddleIN", 5);
+            print("middleCurlIn; value: " + value.Get<float>());
 		}
 	}
 
@@ -321,7 +321,7 @@ public class PlayerInputController : MonoBehaviour
 	{
 		if (!useFK || useTriggersCurl)
 		{
-			handAnimator.Play("MiddleOUT", 4);
+			handAnimator.Play("MiddleOUT", 5);
 		}
 	}
 
