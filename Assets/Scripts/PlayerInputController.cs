@@ -13,11 +13,12 @@ public class PlayerInputController : MonoBehaviour
 	public bool bendingCoupledToMovement;
 
 
-	[Header("References")]
+	[Header("Body")]
 	public ActiveFinger indexFinger;
 	public ActiveFinger middleFinger;
+	public CollisionHandler[] wristColliders;
 
-
+	[Header("References")]
 	public Animator handAnimator;
 	public HingeJoint torsoJoint;
 	public GameObject playerRoot;	
@@ -43,13 +44,17 @@ public class PlayerInputController : MonoBehaviour
 	public float stickReleaseTimeWindow = 0.1f;
 
 	[Header("Interaction with other player")]
-
+	public float timeSinceLastContact;
 	public System.Action onSideStep;
 	public System.Action oncontactWithOtherPlayer;
 
 
     Vector3 invertX = new Vector3(-1f, 1f);
-	
+
+	[Header("Resetting")]
+	List<Transform> childTransofrms = new List<Transform>();
+	List<Quaternion> originalRotations = new List<Quaternion>();
+	List<Vector3> originalPositions = new List<Vector3>();
 
 	public enum GroundedState
 	{
@@ -66,6 +71,15 @@ public class PlayerInputController : MonoBehaviour
 
 		middleFinger.stickInput = new StickInput();
 		indexFinger.stickInput = new StickInput();
+
+		// get initial state the hand
+		foreach (Transform child in transform)
+		{
+			childTransofrms.Add(child);
+			originalRotations.Add(child.rotation);
+			originalPositions.Add(child.position);
+		}
+
 	}
 
 	// Start is called before the first frame update
@@ -73,6 +87,9 @@ public class PlayerInputController : MonoBehaviour
 	{
 		playerRigidbody = playerRoot.GetComponent<Rigidbody>();
 		playerConstanctForce = playerRoot.GetComponent<ConstantForce>();
+
+		// WIRE EVENTS
+		
 
 		if (amplifyJump)
 		{
@@ -107,6 +124,14 @@ public class PlayerInputController : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			Reset();
+		}
+
+		// timers
+		timeSinceLastContact += Time.deltaTime;
+
 		// gather data
 
 		middleFinger.stickInput.Update();
@@ -328,6 +353,22 @@ public class PlayerInputController : MonoBehaviour
 
 		}
 	}
-	
+
+	public void Reset()
+	{
+		for (int i = 0; i < childTransofrms.Count; i++)
+		{
+			childTransofrms[i].position = originalPositions[i];
+			childTransofrms[i].rotation = originalRotations[i];
+
+			Rigidbody childRigidbody = childTransofrms[i].GetComponent<Rigidbody>();
+			if (childRigidbody != null)
+			{
+				childRigidbody.velocity = Vector3.zero;
+			}
+		}
+	}
+
+
 }
 

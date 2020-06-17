@@ -6,6 +6,8 @@ public class CollisionHandler : MonoBehaviour
 {
 	[Header("Ground Detection")]
 	public bool touchesGround;
+	public System.Action OnTouchedGround;
+	public System.Action OnLeftFound;
 
 	[Space]
 	[Header("Collision Amplification")]
@@ -58,6 +60,7 @@ public class CollisionHandler : MonoBehaviour
 		if (collision.collider.tag == "Environment")
 		{
 			touchesGround = true;
+			OnTouchedGround?.Invoke();
 
 		}
 
@@ -65,9 +68,10 @@ public class CollisionHandler : MonoBehaviour
 		if (!collision.gameObject.tag.Equals("Environment"))
 		    Debug.Log($"collision: from {collision.gameObject.name} to {this.gameObject.name}");
 
-		if (collision.gameObject.tag.Equals("Player"))
+		if (collision.gameObject.tag.Contains("Player"))
 		{
 
+			thisPlayer.timeSinceLastContact = 0;
 			//DESTABILISATION
 
 
@@ -90,6 +94,9 @@ public class CollisionHandler : MonoBehaviour
                 //Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + Vector3.forward*5, Color.black);
             }
 
+			
+
+
 		}
 	}
 
@@ -99,6 +106,27 @@ public class CollisionHandler : MonoBehaviour
 		if (collision.collider.tag == "Environment")
 		{
 			touchesGround = false;
+			OnLeftFound?.Invoke();
+		}
+	}
+
+
+	private void OnTriggerEnter(Collider collider)
+	{
+		// GROUND DETECTION
+		if (collider.tag == "Environment")
+		{
+			touchesGround = true;
+			OnTouchedGround?.Invoke();
+		}
+	}
+	private void OnTriggerExit(Collider collider)
+	{
+		// GROUND DETECTION
+		if (collider.tag == "Environment")
+		{
+			touchesGround = false;
+			OnLeftFound?.Invoke();
 		}
 	}
 }
