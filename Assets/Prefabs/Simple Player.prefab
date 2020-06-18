@@ -7170,7 +7170,7 @@ MonoBehaviour:
     fingerMiddle: {fileID: 1568695536}
     fingerBottom: {fileID: 707801891}
   wristColliders:
-  - {fileID: 8479993384622103454}
+  - {fileID: 1607904013}
   handAnimator: {fileID: 640599766}
   torsoJoint: {fileID: 1686694943}
   playerRoot: {fileID: 555273435}
