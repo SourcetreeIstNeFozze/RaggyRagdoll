@@ -5,7 +5,7 @@ public class CopyAnimation : MonoBehaviour
 {
 
 	public Joint jointToMove;
-	public Transform target;
+	public Transform source;
 	public Vector3 amplificationFactor = new Vector3(1f, 1f, 1f);
 
 	[Header("If Hinge Joint")]
@@ -29,7 +29,7 @@ public class CopyAnimation : MonoBehaviour
 
 	void Update()
 	{
-		if (jointToMove != null && target != null)
+		if (jointToMove != null && source != null)
 		{
 
 			/// use the axis in the joint to rotation azis -.-
@@ -41,15 +41,15 @@ public class CopyAnimation : MonoBehaviour
 
 				if (x)
 				{
-					js.targetPosition = target.transform.localEulerAngles.x;
+					js.targetPosition = source.transform.localEulerAngles.x;
 				}
 				else if (y)
 				{
-					js.targetPosition = target.transform.localEulerAngles.y;
+					js.targetPosition = source.transform.localEulerAngles.y;
 				}
 				else if (z)
 				{
-					js.targetPosition = target.transform.localEulerAngles.z;
+					js.targetPosition = source.transform.localEulerAngles.z;
 				}
 
 				if (js.targetPosition > 180)
@@ -68,7 +68,7 @@ public class CopyAnimation : MonoBehaviour
 			else if (jointToMove is ConfigurableJoint)
 			{
 				ConfigurableJoint cj = (ConfigurableJoint)jointToMove;
-				targetRotation = initialLocalrotation - target.localEulerAngles;
+				targetRotation = initialLocalrotation - source.localEulerAngles;
 				convertedTargetRotation = Vector3To180Spectrum(targetRotation); // commment this out and enter values manually for debugging
 				cj.targetRotation = Quaternion.Euler(new Vector3 (convertedTargetRotation.x * amplificationFactor.x, convertedTargetRotation.y * amplificationFactor.y, convertedTargetRotation.z * amplificationFactor.z));
                 //if (this.gameObject.name == "Index_3")

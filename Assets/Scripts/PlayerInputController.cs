@@ -12,6 +12,8 @@ public class PlayerInputController : MonoBehaviour
 	public bool invertControlls;
 	public bool amplifyJump;
 	public bool bendingCoupledToMovement;
+    public enum TransformType { global, local};
+    public TransformType poseSpace = TransformType.global;
 
 
 	[Header("Body")]
@@ -327,19 +329,48 @@ public class PlayerInputController : MonoBehaviour
 
 	public void OnLeftStick(InputValue value)
 	{
+        // input value
 		indexFinger.stickInput.value = value.Get<Vector2>();
 
+        
+
+        // mirror if right player
         if (this.tag.Equals("player_right"))
 			indexFinger.stickInput.value *= invertX;
+
+        // global / local translation
+        if (poseSpace == TransformType.global)
+        {
+            Vector2 inputValue = indexFinger.stickInput.value;
+            float bodyRotation = playerRoot.transform.localEulerAngles.x;
+
+            Vector2 newInputValue = inputValue.Rotate(-bodyRotation);
+            indexFinger.stickInput.value = newInputValue;
+
+            Debug.DrawLine(Vector3.zero, inputValue * new Vector2(-2f, 2f), Color.black, 0.5f);
+            Debug.DrawLine(Vector3.zero, newInputValue * new Vector2(-2f, 2f), Color.blue, 0.5f);
+        }
 
 	}
 
 	public void OnRightStick(InputValue value)
 	{
-		middleFinger.stickInput.value = value.Get<Vector2>();
+        // input value
+        middleFinger.stickInput.value = value.Get<Vector2>();
 
+        // mirror if right player
         if (this.tag.Equals("player_right"))
 			middleFinger.stickInput.value *= invertX;
+
+        // global / local translation
+        if (poseSpace == TransformType.global)
+        {
+            Vector2 inputValue = indexFinger.stickInput.value;
+            float bodyRotation = playerRoot.transform.localEulerAngles.x;
+
+            Vector2 newInputValue = inputValue.Rotate(-bodyRotation);
+            indexFinger.stickInput.value = newInputValue;
+        }
 
     }
 

@@ -126,7 +126,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.20000008, y: -0.042999983, z: 0.000000029802322}
+  m_ConnectedAnchor: {x: -0.19999999, y: -0.04300022, z: 0}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jointToMove: {fileID: 232455742}
-  target: {fileID: 2255676429275781252}
+  source: {fileID: 2255676427660738489}
   amplificationFactor: {x: 1, y: 1, z: 1}
   x: 1
   y: 0
@@ -350,7 +350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jointToMove: {fileID: 248667920}
-  target: {fileID: 4866362537244303595}
+  source: {fileID: 0}
   amplificationFactor: {x: 1, y: 1, z: 1}
   x: 1
   y: 0
@@ -537,7 +537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jointToMove: {fileID: 383805945}
-  target: {fileID: 2255676429275781252}
+  source: {fileID: 0}
   amplificationFactor: {x: 1, y: 1, z: 1}
   x: 1
   y: 0
@@ -688,7 +688,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000074505806, y: -0.5839999, z: 0.000000029802322}
+  m_ConnectedAnchor: {x: 0.000000014901161, y: -0.5839999, z: 0}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -725,7 +725,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jointToMove: {fileID: 397538280}
-  target: {fileID: 4866362537244303595}
+  source: {fileID: 1972090335027618881}
   amplificationFactor: {x: 1, y: 1, z: 1}
   x: 1
   y: 0
@@ -1167,7 +1167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jointToMove: {fileID: 535907135}
-  target: {fileID: 6432793051774688090}
+  source: {fileID: 0}
   amplificationFactor: {x: 1, y: 1, z: 1}
   x: 1
   y: 0
@@ -1416,7 +1416,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000000074505806, y: -0.49999994, z: -0.000000029802322}
+  m_ConnectedAnchor: {x: -0.000000014901161, y: -0.49999994, z: 0}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -1453,7 +1453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jointToMove: {fileID: 707801894}
-  target: {fileID: 6432793051774688090}
+  source: {fileID: 7293462211697819044}
   amplificationFactor: {x: 1, y: 1, z: 1}
   x: 1
   y: 0
@@ -1603,7 +1603,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000074505806, y: -0.5000001, z: 0.000000029802322}
+  m_ConnectedAnchor: {x: 0.000000014901161, y: -0.5000001, z: 0}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -1640,7 +1640,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jointToMove: {fileID: 758628627}
-  target: {fileID: 7293462211697819044}
+  source: {fileID: 6432793051774688090}
   amplificationFactor: {x: 1, y: 1, z: 1}
   x: 1
   y: 0
@@ -1827,7 +1827,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jointToMove: {fileID: 1015610421}
-  target: {fileID: 2255676427660738489}
+  source: {fileID: 0}
   amplificationFactor: {x: 1, y: 1, z: 1}
   x: 1
   y: 0
@@ -2111,7 +2111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jointToMove: {fileID: 1321383998}
-  target: {fileID: 1972090335027618881}
+  source: {fileID: 0}
   amplificationFactor: {x: 1, y: 1, z: 1}
   x: 1
   y: 0
@@ -2262,7 +2262,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000000074505806, y: -0.58299994, z: -0.000000029802322}
+  m_ConnectedAnchor: {x: -0.000000014901161, y: -0.5830002, z: 0}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -2299,7 +2299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jointToMove: {fileID: 1568695538}
-  target: {fileID: 1972090335027618881}
+  source: {fileID: 4866362537244303595}
   amplificationFactor: {x: 1, y: 1, z: 1}
   x: 1
   y: 0
@@ -2532,7 +2532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jointToMove: {fileID: 1931987314}
-  target: {fileID: 7293462211697819044}
+  source: {fileID: 0}
   amplificationFactor: {x: 1, y: 1, z: 1}
   x: 1
   y: 0
@@ -2683,7 +2683,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.20000008, y: -0.04300022, z: -0.000000029802322}
+  m_ConnectedAnchor: {x: 0.19999999, y: -0.04300022, z: 0}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -2720,7 +2720,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jointToMove: {fileID: 1937918731}
-  target: {fileID: 2255676427660738489}
+  source: {fileID: 2255676429275781252}
   amplificationFactor: {x: 1, y: 1, z: 1}
   x: 1
   y: 0
@@ -3825,9 +3825,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useFK: 1
+  useTriggersCurl: 1
   invertControlls: 1
   amplifyJump: 0
   bendingCoupledToMovement: 0
+  poseSpace: 0
   indexFinger:
     fingerTop: {fileID: 232455740}
     fingerMiddle: {fileID: 397538278}
