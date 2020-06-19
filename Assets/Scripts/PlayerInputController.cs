@@ -25,7 +25,7 @@ public class PlayerInputController : MonoBehaviour
 	public Animator handAnimator;
 	public HingeJoint torsoJoint;
 	public GameObject playerRoot;	
-	CollisionHandler[] playerColliders;
+	[HideInInspector] public List<CollisionHandler> playerColliders;
 	public OrientationAndBalance balance;
 	public PlayerInputController otherPlayer;
 
@@ -399,12 +399,15 @@ public class PlayerInputController : MonoBehaviour
 
 	private void InitializeColliders()
 	{
-        playerColliders = this.GetComponentsInChildren<CollisionHandler>();
-        for (int i = 0; i < playerColliders.Length; i++)
+		// get CollisionHandler array
+		CollisionHandler[] handlersInChildren = this.GetComponentsInChildren<CollisionHandler>();
+
+		// convert to List
+		for (int i = 0; i < handlersInChildren.Length; i++)
 		{
+			playerColliders.Add(handlersInChildren[i]);
 			playerColliders[i].thisPlayer = this;
 			playerColliders[i].otherPlayer = otherPlayer;
-
 		}
 	}
 

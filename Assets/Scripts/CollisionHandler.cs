@@ -7,7 +7,8 @@ public class CollisionHandler : MonoBehaviour
 	[Header("Ground Detection")]
 	public bool touchesGround;
 	public System.Action OnTouchedGround;
-	public System.Action OnLeftFound;
+	public System.Action OnLeftGound;
+	public System.Action OnLeftBounds;
 
 	[Space]
 	[Header("Collision Amplification")]
@@ -70,31 +71,33 @@ public class CollisionHandler : MonoBehaviour
 
 		if (collision.gameObject.tag.Contains("Player"))
 		{
+			CollisionHandler collisionHandler = collision.gameObject.GetComponent<CollisionHandler>();
 
-			thisPlayer.timeSinceLastContact = 0;
-			//DESTABILISATION
-
-
-
-			// COLLISION AMPLIFICATION
-
-			// when THIS object is kicked, the force applied to THIS object will be multipied by the appliedStrength of the OTHER OBECT
-			// eg when this object is hit by "foot" and foot's applied strength is 50, the strength of this collision will be amplified by 50
-			CollisionHandler collisionAmplifier = collision.gameObject.GetComponent<CollisionHandler>();
-			if (collisionAmplifier != null)
+			if (collisionHandler != null)
 			{
-				//Debug.Log("Amplifying collision on: " + gameObject.name + "(" + this.transform.root.tag + "), velocity = " + this.GetComponent<Rigidbody>().velocity);
-                _thisRigidbody.AddForceAtPosition(
-                    collisionAmplifier.applidedStrenght * collisionAmplifier.GetComponent<Rigidbody>().velocity, // * collisionAmplifier.GetMovementVector(),
-					collision.contacts[0].point,
-					ForceMode.VelocityChange);
+				// CONTACT WITH OTHE RPLAYER
+				if (otherPlayer.playerColliders.Contains(collisionHandler))
+				{
+					thisPlayer.timeSinceLastContact = 0;
+				
 
-                //Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + collisionAmplifier.GetComponent<Rigidbody>().velocity * collisionAmplifier.applidedStrenght, Color.red, 3f);
-                //Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + Vector3.right*5, Color.black);
-                //Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + Vector3.forward*5, Color.black);
-            }
+					// COLLISION AMPLIFICATION
 
-			
+					// when THIS object is kicked, the force applied to THIS object will be multipied by the appliedStrength of the OTHER OBECT
+					// eg when this object is hit by "foot" and foot's applied strength is 50, the strength of this collision will be amplified by 50
+
+					//Debug.Log("Amplifying collision on: " + gameObject.name + "(" + this.transform.root.tag + "), velocity = " + this.GetComponent<Rigidbody>().velocity);
+					_thisRigidbody.AddForceAtPosition(
+						collisionHandler.applidedStrenght * collisionHandler.GetComponent<Rigidbody>().velocity, // * collisionAmplifier.GetMovementVector(),
+						collision.contacts[0].point,
+						ForceMode.VelocityChange);
+
+					//Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + collisionAmplifier.GetComponent<Rigidbody>().velocity * collisionAmplifier.applidedStrenght, Color.red, 3f);
+					//Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + Vector3.right*5, Color.black);
+					//Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + Vector3.forward*5, Color.black);
+				}
+
+			}
 
 
 		}
@@ -106,7 +109,7 @@ public class CollisionHandler : MonoBehaviour
 		if (collision.collider.tag == "Environment")
 		{
 			touchesGround = false;
-			OnLeftFound?.Invoke();
+			OnLeftGound?.Invoke();
 		}
 	}
 
@@ -119,6 +122,12 @@ public class CollisionHandler : MonoBehaviour
 			touchesGround = true;
 			OnTouchedGround?.Invoke();
 		}
+
+		//BOUNDARY DETECTION
+		if (collider.tag == "Boundary")
+		{
+			OnLeftBounds?.Invoke();
+		}
 	}
 	private void OnTriggerExit(Collider collider)
 	{
@@ -126,7 +135,7 @@ public class CollisionHandler : MonoBehaviour
 		if (collider.tag == "Environment")
 		{
 			touchesGround = false;
-			OnLeftFound?.Invoke();
+			OnLeftGound?.Invoke();
 		}
 	}
 }
