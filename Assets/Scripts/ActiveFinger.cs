@@ -6,7 +6,8 @@ using UnityEngine;
 public class ActiveFinger
 {
 	public StickInput stickInput;
-	public CollisionHandler fingerTop;
+    public StickInput stickInput_original;
+    public CollisionHandler fingerTop;
 	public CollisionHandler fingerMiddle;
 	public CollisionHandler fingerBottom;
 

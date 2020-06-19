@@ -74,6 +74,9 @@ public class PlayerInputController : MonoBehaviour
 
 		middleFinger.stickInput = new StickInput();
 		indexFinger.stickInput = new StickInput();
+        middleFinger.stickInput_original = new StickInput();
+        indexFinger.stickInput_original = new StickInput();
+
 
 		// get initial state the hand
 		foreach (Transform child in transform)
@@ -218,21 +221,25 @@ public class PlayerInputController : MonoBehaviour
 
 
 
-        // global / local translation
-        //if (poseSpace == TransformType.global)
-        //{
-        //    Vector2 inputValue_Index = indexFinger.stickInput.value;
-        //    float bodyRotation = playerRoot.transform.localEulerAngles.x;
-        //    if (bodyRotation > 180)
-        //        bodyRotation -= 360;
+        // GLOBAL & LOCAL SPACE
+        // -> rotate the input-Vector2 by the rotation of the hand in order to fake global space
+        if (poseSpace == TransformType.global)
+        {
+            float bodyRotation = playerRoot.transform.localEulerAngles.x;
+            if (bodyRotation > 180)
+                bodyRotation -= 360;
+            if (bodyRotation < -180)
+                bodyRotation += 360;
 
-        //    Vector2 newInputValue = inputValue_Index.Rotate(-bodyRotation);
-        //    indexFinger.stickInput.value = newInputValue;
+            Vector2 index_stickInput_global = indexFinger.stickInput_original.value.Rotate(-bodyRotation);
+            Vector2 middle_stickInput_global = middleFinger.stickInput_original.value.Rotate(-bodyRotation);
+            indexFinger.stickInput.value = index_stickInput_global;
+            middleFinger.stickInput.value = middle_stickInput_global;
 
-        //    Debug.DrawLine(Vector3.zero, inputValue_Index * new Vector2(-2f, 2f), Color.black, 0.3f);
-        //    Debug.DrawLine(Vector3.zero, newInputValue * new Vector2(-2f, 2f), Color.blue, 0.3f);
-        //    print("bodyRot: " + bodyRotation + ", newRotation: " + newInputValue);
-        //}
+            Debug.DrawLine(Vector3.zero, indexFinger.stickInput_original.value * new Vector2(-2f, 2f), Color.black, 0.3f);
+            Debug.DrawLine(Vector3.zero, index_stickInput_global * new Vector2(-2f, 2f), Color.blue, 0.3f);
+            //print("bodyRot: " + bodyRotation + ", newRotation: " + Vector2.Angle(Vector2.up, index_stickInput_global) + ", " + index_stickInput_global);
+        }
 
 
     }
@@ -347,57 +354,25 @@ public class PlayerInputController : MonoBehaviour
 
 	public void OnLeftStick(InputValue value)
 	{
-        // input value
-		indexFinger.stickInput.value = value.Get<Vector2>();
-
+        //indexFinger.stickInput.value = value.Get<Vector2>();
+        indexFinger.stickInput_original.value = value.Get<Vector2>(); // -> stickInput.value gets assigned in update; keep using this for calculations
         
-
         // mirror if right player
         if (this.tag.Equals("player_right"))
-			indexFinger.stickInput.value *= invertX;
-
-        // global / local translation
-        if (poseSpace == TransformType.global)
-        {
-            Vector2 inputValue = indexFinger.stickInput.value;
-            float bodyRotation = playerRoot.transform.localEulerAngles.x;
-            if (bodyRotation > 180)
-                bodyRotation -= 360;
-
-            Vector2 newInputValue = inputValue.Rotate(-bodyRotation);
-            indexFinger.stickInput.value = newInputValue;
-
-            Debug.DrawLine(Vector3.zero, inputValue * new Vector2(-2f, 2f), Color.black, 0.3f);
-            Debug.DrawLine(Vector3.zero, newInputValue * new Vector2(-2f, 2f), Color.blue, 0.3f);
-            print("bodyRot: " + bodyRotation + ", newRotation: " + newInputValue);
-        }
-
+			indexFinger.stickInput_original.value *= invertX;
     }
 
 	public void OnRightStick(InputValue value)
 	{
-        // input value
-        middleFinger.stickInput.value = value.Get<Vector2>();
+        //middleFinger.stickInput.value = value.Get<Vector2>();
+        middleFinger.stickInput_original.value = value.Get<Vector2>(); // -> stickInput.value gets assigned in update; keep using this for calculations
 
         // mirror if right player
         if (this.tag.Equals("player_right"))
-			middleFinger.stickInput.value *= invertX;
-
-        // global / local translation
-        if (poseSpace == TransformType.global)
-        {
-            Vector2 inputValue = indexFinger.stickInput.value;
-            float bodyRotation = playerRoot.transform.localEulerAngles.x;
-            if (bodyRotation > 180)
-                bodyRotation -= 360;
-
-            Vector2 newInputValue = inputValue.Rotate(-bodyRotation);
-            indexFinger.stickInput.value = newInputValue;
-        }
-
+            middleFinger.stickInput_original.value *= invertX;
     }
 
-	private void InitializeColliders()
+    private void InitializeColliders()
 	{
         playerColliders = this.GetComponentsInChildren<CollisionHandler>();
         for (int i = 0; i < playerColliders.Length; i++)
