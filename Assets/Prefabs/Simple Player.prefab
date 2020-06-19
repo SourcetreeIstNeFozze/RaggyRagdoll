@@ -76,7 +76,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.15730533, y: -0.6289999, z: -0.00021623913}
+  m_ConnectedAnchor: {x: 0.15730545, y: -0.6289999, z: -0.00021624845}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -851,7 +851,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000074505806, y: -0.5839999, z: 0.000000029802322}
+  m_ConnectedAnchor: {x: -0.000000074505806, y: -0.58399975, z: 0.000000029802322}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -1040,7 +1040,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.19999999, y: -0.04300022, z: 0}
+  m_ConnectedAnchor: {x: 0.20000008, y: -0.04300022, z: -0.000000029802322}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -1178,7 +1178,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.015208855, y: -0.25659955, z: -0.029016808}
+  m_ConnectedAnchor: {x: 0.015209019, y: -0.25659966, z: -0.029016972}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -1285,7 +1285,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &515594623
 Transform:
   m_ObjectHideFlags: 0
@@ -1627,7 +1627,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.031315118, y: -0.4224994, z: -0.003379643}
+  m_ConnectedAnchor: {x: 0.031315297, y: -0.4224996, z: -0.0033797324}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -1859,7 +1859,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &555273436
 Transform:
   m_ObjectHideFlags: 0
@@ -2567,7 +2567,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000074505806, y: -0.5000001, z: 0.000000029802322}
+  m_ConnectedAnchor: {x: -0.000000074505806, y: -0.5, z: 0.000000029802322}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -2769,7 +2769,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.34000003, y: 0.6339998, z: 0.06700003}
+  m_ConnectedAnchor: {x: 0.34000006, y: 0.63399994, z: 0.06699988}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -2918,7 +2918,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000014901161, y: -0.49999994, z: 0}
+  m_ConnectedAnchor: {x: 0.000000074505806, y: -0.49999994, z: -0.000000029802322}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -3106,7 +3106,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000000014901161, y: -0.5000001, z: 0}
+  m_ConnectedAnchor: {x: -0.000000074505806, y: -0.5, z: 0.000000029802322}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -3245,7 +3245,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0054160245, y: -0.5095882, z: 0.00021606684}
+  m_ConnectedAnchor: {x: -0.0054158233, y: -0.50958824, z: 0.00021615624}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -3722,7 +3722,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.38077492, y: -0.4153406, z: -0.017}
+  m_ConnectedAnchor: {x: 0.38077495, y: -0.41534048, z: -0.01699995}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -3933,7 +3933,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000014901161, y: -0.5830002, z: 0}
+  m_ConnectedAnchor: {x: 0.000000074505806, y: -0.58300006, z: -0.000000029802322}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -4496,7 +4496,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000000074505806, y: -0.58299994, z: -0.000000029802322}
+  m_ConnectedAnchor: {x: 0.000000074505806, y: -0.58300006, z: -0.000000029802322}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -4925,7 +4925,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.19999999, y: -0.04300022, z: 0}
+  m_ConnectedAnchor: {x: -0.20000008, y: -0.042999983, z: 0.000000029802322}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -5843,7 +5843,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000000014901161, y: -0.5839999, z: 0}
+  m_ConnectedAnchor: {x: -0.000000074505806, y: -0.58399975, z: 0.000000029802322}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -6011,7 +6011,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.051965773, y: -0.4520514, z: 0.27367985}
+  m_ConnectedAnchor: {x: 0.05196604, y: -0.45205152, z: 0.2736795}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -7190,12 +7190,12 @@ MonoBehaviour:
     fingerMiddle: {fileID: 1568695536}
     fingerBottom: {fileID: 707801891}
   wristColliders:
-  - {fileID: 1607904013}
+  - {fileID: 8479993384622103454}
   handAnimator: {fileID: 640599766}
-  torsoJoint: {fileID: 1686694943}
-  playerRoot: {fileID: 555273435}
+  torsoJoint: {fileID: 567169398}
+  playerRoot: {fileID: 515594622}
   playerColliders: []
-  balance: {fileID: 555273439}
+  balance: {fileID: 515594626}
   otherPlayer: {fileID: 0}
   rotationSpeed: 2
   maxRotation: 50
