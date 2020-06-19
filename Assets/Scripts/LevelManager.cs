@@ -30,7 +30,6 @@ public class LevelManager : MonoBehaviour
 		{
 			handler.OnTouchedGround += () =>
 			{
-				Debug.Log("time since last contact:" + playerLEFT.timeSinceLastContact);
 				if (!immunity)
 				{
 					if (playerLEFT.timeSinceLastContact < otherPlayerInfluenceTime)
@@ -41,7 +40,23 @@ public class LevelManager : MonoBehaviour
 					{
 						playerRIGHTScore += 1;
 					}
+					playerRIGHTScorePanel.text = playerRIGHTScore.ToString();
+					StartCoroutine(Respawm(3));
+				}
+			};
 
+			handler.OnLeftBounds += () =>
+			{
+				if (!immunity)
+				{
+					if (playerLEFT.timeSinceLastContact < otherPlayerInfluenceTime)
+					{
+						playerRIGHTScore += 3;
+					}
+					else
+					{
+						playerRIGHTScore += 1;
+					}
 					playerRIGHTScorePanel.text = playerRIGHTScore.ToString();
 					StartCoroutine(Respawm(3));
 				}
@@ -51,6 +66,28 @@ public class LevelManager : MonoBehaviour
 		foreach (CollisionHandler handler in playerRIGHT.wristColliders)
 		{
 			handler.OnTouchedGround += () =>
+			{
+				Debug.Log("time since last contact:" + playerRIGHT.timeSinceLastContact);
+
+				if (!immunity)
+				{
+					if (playerRIGHT.timeSinceLastContact < otherPlayerInfluenceTime)
+					{
+						Debug.Log("Adding 3 points" + playerRIGHT.timeSinceLastContact);
+						playerLEFTScore += 3;
+					}
+					else
+					{
+
+						playerLEFTScore += 1;
+					}
+
+					playerLEFTScorePanel.text = playerLEFTScore.ToString();
+					StartCoroutine(Respawm(3));
+				}
+			};
+
+			handler.OnLeftBounds += () =>
 			{
 				Debug.Log("time since last contact:" + playerRIGHT.timeSinceLastContact);
 
