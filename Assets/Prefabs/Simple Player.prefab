@@ -57,14 +57,14 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 224868246}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.05
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!59 &224868249
 HingeJoint:
   m_ObjectHideFlags: 0
@@ -76,11 +76,11 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.15730545, y: -0.6289999, z: -0.00021624845}
+  m_ConnectedAnchor: {x: 0.15730533, y: -0.6289999, z: -0.00021623913}
   m_UseSpring: 1
   m_Spring:
-    spring: 10
-    damper: 0
+    spring: 5
+    damper: 1
     targetPosition: 0
   m_UseMotor: 0
   m_Motor:
@@ -1036,7 +1036,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.20000008, y: -0.04300022, z: -0.000000029802322}
+  m_ConnectedAnchor: {x: 0.19999999, y: -0.04300022, z: 0}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -1154,14 +1154,14 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 422706005}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.05
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!59 &422706007
 HingeJoint:
   m_ObjectHideFlags: 0
@@ -1173,11 +1173,11 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.015208761, y: -0.2565995, z: -0.02901657}
+  m_ConnectedAnchor: {x: 0.015208855, y: -0.25659955, z: -0.029016808}
   m_UseSpring: 1
   m_Spring:
-    spring: 10
-    damper: 0
+    spring: 5
+    damper: 1
     targetPosition: 0
   m_UseMotor: 0
   m_Motor:
@@ -1603,14 +1603,14 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534835571}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.05
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!59 &534835573
 HingeJoint:
   m_ObjectHideFlags: 0
@@ -1622,11 +1622,11 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.031315297, y: -0.4224996, z: -0.0033796132}
+  m_ConnectedAnchor: {x: 0.031315118, y: -0.4224994, z: -0.003379643}
   m_UseSpring: 1
   m_Spring:
-    spring: 10
-    damper: 0
+    spring: 5
+    damper: 1
     targetPosition: 0
   m_UseMotor: 0
   m_Motor:
@@ -2741,7 +2741,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 837876687}
   serializedVersion: 2
-  m_Mass: 0.4
+  m_Mass: 0.05
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
@@ -2760,11 +2760,11 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.34000006, y: 0.6339998, z: 0.06700036}
+  m_ConnectedAnchor: {x: 0.34000003, y: 0.6339998, z: 0.06700003}
   m_UseSpring: 1
   m_Spring:
-    spring: 20
-    damper: 0
+    spring: 5
+    damper: 2
     targetPosition: 0
   m_UseMotor: 0
   m_Motor:
@@ -2909,7 +2909,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000000074505806, y: -0.49999994, z: -0.000000029802322}
+  m_ConnectedAnchor: {x: -0.000000014901161, y: -0.49999994, z: 0}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -3096,7 +3096,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000074505806, y: -0.5000001, z: 0.000000029802322}
+  m_ConnectedAnchor: {x: 0.000000014901161, y: -0.5000001, z: 0}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -3215,14 +3215,14 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 948876026}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.05
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!59 &948876029
 HingeJoint:
   m_ObjectHideFlags: 0
@@ -3234,11 +3234,11 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0054158513, y: -0.5095883, z: 0.00021603703}
+  m_ConnectedAnchor: {x: -0.0054160245, y: -0.5095882, z: 0.00021606684}
   m_UseSpring: 1
   m_Spring:
-    spring: 10
-    damper: 0
+    spring: 5
+    damper: 1
     targetPosition: 0
   m_UseMotor: 0
   m_Motor:
@@ -3691,14 +3691,14 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1204387169}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.05
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!59 &1204387172
 HingeJoint:
   m_ObjectHideFlags: 0
@@ -3710,11 +3710,11 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.38077495, y: -0.4153406, z: -0.01699995}
+  m_ConnectedAnchor: {x: 0.38077492, y: -0.4153406, z: -0.017}
   m_UseSpring: 1
   m_Spring:
-    spring: 10
-    damper: 0
+    spring: 5
+    damper: 1
     targetPosition: 0
   m_UseMotor: 0
   m_Motor:
@@ -3921,7 +3921,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000000074505806, y: -0.58299994, z: -0.000000029802322}
+  m_ConnectedAnchor: {x: -0.000000014901161, y: -0.5830002, z: 0}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -4909,7 +4909,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.20000008, y: -0.042999983, z: 0.000000029802322}
+  m_ConnectedAnchor: {x: -0.19999999, y: -0.04300022, z: 0}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -5824,7 +5824,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000074505806, y: -0.5839999, z: 0.000000029802322}
+  m_ConnectedAnchor: {x: 0.000000014901161, y: -0.5839999, z: 0}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -5972,14 +5972,14 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2102195370}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.05
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!59 &2102195372
 HingeJoint:
   m_ObjectHideFlags: 0
@@ -5991,11 +5991,11 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.05196604, y: -0.45205146, z: 0.27367985}
+  m_ConnectedAnchor: {x: 0.051965773, y: -0.4520514, z: 0.27367985}
   m_UseSpring: 1
   m_Spring:
-    spring: 10
-    damper: 0
+    spring: 5
+    damper: 1
     targetPosition: 0
   m_UseMotor: 0
   m_Motor:
