@@ -356,10 +356,14 @@ public class PlayerInputController : MonoBehaviour
 	{
         //indexFinger.stickInput.value = value.Get<Vector2>();
         indexFinger.stickInput_original.value = value.Get<Vector2>(); // -> stickInput.value gets assigned in update; keep using this for calculations
-        
+
         // mirror if right player
         if (this.tag.Equals("player_right"))
 			indexFinger.stickInput_original.value *= invertX;
+
+        // local space
+        if (poseSpace == TransformType.local)
+            indexFinger.stickInput.value = indexFinger.stickInput_original.value;
     }
 
 	public void OnRightStick(InputValue value)
@@ -370,6 +374,10 @@ public class PlayerInputController : MonoBehaviour
         // mirror if right player
         if (this.tag.Equals("player_right"))
             middleFinger.stickInput_original.value *= invertX;
+
+        // local space
+        if (poseSpace == TransformType.local)
+            middleFinger.stickInput.value = middleFinger.stickInput_original.value;
     }
 
     private void InitializeColliders()
