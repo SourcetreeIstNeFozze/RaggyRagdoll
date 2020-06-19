@@ -217,7 +217,25 @@ public class PlayerInputController : MonoBehaviour
 		}
 
 
-	}
+
+        // global / local translation
+        //if (poseSpace == TransformType.global)
+        //{
+        //    Vector2 inputValue_Index = indexFinger.stickInput.value;
+        //    float bodyRotation = playerRoot.transform.localEulerAngles.x;
+        //    if (bodyRotation > 180)
+        //        bodyRotation -= 360;
+
+        //    Vector2 newInputValue = inputValue_Index.Rotate(-bodyRotation);
+        //    indexFinger.stickInput.value = newInputValue;
+
+        //    Debug.DrawLine(Vector3.zero, inputValue_Index * new Vector2(-2f, 2f), Color.black, 0.3f);
+        //    Debug.DrawLine(Vector3.zero, newInputValue * new Vector2(-2f, 2f), Color.blue, 0.3f);
+        //    print("bodyRot: " + bodyRotation + ", newRotation: " + newInputValue);
+        //}
+
+
+    }
 
 	public void BendVertically(float bendValue)
 	{
@@ -343,15 +361,18 @@ public class PlayerInputController : MonoBehaviour
         {
             Vector2 inputValue = indexFinger.stickInput.value;
             float bodyRotation = playerRoot.transform.localEulerAngles.x;
+            if (bodyRotation > 180)
+                bodyRotation -= 360;
 
             Vector2 newInputValue = inputValue.Rotate(-bodyRotation);
             indexFinger.stickInput.value = newInputValue;
 
-            Debug.DrawLine(Vector3.zero, inputValue * new Vector2(-2f, 2f), Color.black, 0.5f);
-            Debug.DrawLine(Vector3.zero, newInputValue * new Vector2(-2f, 2f), Color.blue, 0.5f);
+            Debug.DrawLine(Vector3.zero, inputValue * new Vector2(-2f, 2f), Color.black, 0.3f);
+            Debug.DrawLine(Vector3.zero, newInputValue * new Vector2(-2f, 2f), Color.blue, 0.3f);
+            print("bodyRot: " + bodyRotation + ", newRotation: " + newInputValue);
         }
 
-	}
+    }
 
 	public void OnRightStick(InputValue value)
 	{
@@ -367,6 +388,8 @@ public class PlayerInputController : MonoBehaviour
         {
             Vector2 inputValue = indexFinger.stickInput.value;
             float bodyRotation = playerRoot.transform.localEulerAngles.x;
+            if (bodyRotation > 180)
+                bodyRotation -= 360;
 
             Vector2 newInputValue = inputValue.Rotate(-bodyRotation);
             indexFinger.stickInput.value = newInputValue;
