@@ -17,7 +17,7 @@ public class CollisionHandler : MonoBehaviour
 	public Transform trackingpoint;
 	private Vector3 _lastPosition;
 	private Vector3 _currentposition;
-	private Rigidbody _thisRigidbody;
+	public Rigidbody rigidbody;
 
 	[Tooltip("how much strength should be applied when THIS rigidbody hits another")]
 	public float applidedStrenght;
@@ -34,7 +34,7 @@ public class CollisionHandler : MonoBehaviour
 			trackingpoint = this.transform;
 		}
 		_lastPosition = _currentposition = trackingpoint.position;
-		_thisRigidbody = this.GetComponent<Rigidbody>();
+		rigidbody = this.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -79,7 +79,7 @@ public class CollisionHandler : MonoBehaviour
 				if (otherPlayer.playerColliders.Contains(collisionHandler))
 				{
 					thisPlayer.timeSinceLastContact = 0;
-				
+
 
 					// COLLISION AMPLIFICATION
 
@@ -87,10 +87,12 @@ public class CollisionHandler : MonoBehaviour
 					// eg when this object is hit by "foot" and foot's applied strength is 50, the strength of this collision will be amplified by 50
 
 					//Debug.Log("Amplifying collision on: " + gameObject.name + "(" + this.transform.root.tag + "), velocity = " + this.GetComponent<Rigidbody>().velocity);
-					_thisRigidbody.AddForceAtPosition(
-						collisionHandler.applidedStrenght * collisionHandler.GetComponent<Rigidbody>().velocity, // * collisionAmplifier.GetMovementVector(),
-						collision.contacts[0].point,
-						ForceMode.VelocityChange);
+					//rigidbody.AddForceAtPosition(
+					//	collisionHandler.applidedStrenght * collisionHandler.rigidbody.velocity, // * collisionAmplifier.GetMovementVector(),
+					//	collision.contacts[0].point,
+					//	ForceMode.VelocityChange);
+
+					rigidbody.velocity = collisionHandler.applidedStrenght * collisionHandler.rigidbody.velocity;
 
 					//Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + collisionAmplifier.GetComponent<Rigidbody>().velocity * collisionAmplifier.applidedStrenght, Color.red, 3f);
 					//Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + Vector3.right*5, Color.black);
