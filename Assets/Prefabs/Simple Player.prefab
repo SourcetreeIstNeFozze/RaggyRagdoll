@@ -315,7 +315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchesGround: 0
   trackingpoint: {fileID: 0}
-  rigidbody: {fileID: 0}
+  rigid: {fileID: 0}
   applidedStrenght: 1
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
@@ -503,7 +503,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchesGround: 0
   trackingpoint: {fileID: 0}
-  rigidbody: {fileID: 0}
+  rigid: {fileID: 0}
   applidedStrenght: 1
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
@@ -721,7 +721,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchesGround: 0
   trackingpoint: {fileID: 0}
-  rigidbody: {fileID: 0}
+  rigid: {fileID: 0}
   applidedStrenght: 1
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
@@ -910,7 +910,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchesGround: 0
   trackingpoint: {fileID: 0}
-  rigidbody: {fileID: 0}
+  rigid: {fileID: 0}
   applidedStrenght: 1
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
@@ -1099,7 +1099,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchesGround: 0
   trackingpoint: {fileID: 0}
-  rigidbody: {fileID: 0}
+  rigid: {fileID: 0}
   applidedStrenght: 1
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
@@ -1279,6 +1279,7 @@ GameObject:
   - component: {fileID: 515594627}
   - component: {fileID: 515594626}
   - component: {fileID: 5822281549155430279}
+  - component: {fileID: 5655934034866910233}
   m_Layer: 0
   m_Name: Simple Hand Prototype  - realistic hand
   m_TagString: Untagged
@@ -1520,6 +1521,34 @@ ConstantForce:
   m_RelativeForce: {x: 0, y: 0, z: 0}
   m_Torque: {x: 0, y: 0, z: 0}
   m_RelativeTorque: {x: 0, y: 0, z: 0}
+--- !u!114 &5655934034866910233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515594622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd8a61b8d46a2a148adc7fcb5e3c7e22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  indexFinger:
+    fingerTop: {fileID: 232455740}
+    fingerMiddle: {fileID: 397538278}
+    fingerBottom: {fileID: 758628624}
+  middleFinger:
+    fingerTop: {fileID: 1937918729}
+    fingerMiddle: {fileID: 1568695536}
+    fingerBottom: {fileID: 707801891}
+  wristTriggers: []
+  torsoJoint: {fileID: 567169398}
+  playerRoot: {fileID: 515594622}
+  childHandlers: []
+  balance: {fileID: 0}
+  playerRigidbody: {fileID: 0}
+  playerConstanctForce: {fileID: 0}
+  childTransofrms: []
 --- !u!1 &523621677
 GameObject:
   m_ObjectHideFlags: 0
@@ -1834,7 +1863,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchesGround: 0
   trackingpoint: {fileID: 0}
-  rigidbody: {fileID: 0}
+  rigid: {fileID: 0}
   applidedStrenght: 20
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
@@ -1853,6 +1882,7 @@ GameObject:
   - component: {fileID: 555273440}
   - component: {fileID: 555273439}
   - component: {fileID: 555273438}
+  - component: {fileID: 5647237396872122862}
   m_Layer: 0
   m_Name: Simple Hand Prototype  - realistic hand 2
   m_TagString: Untagged
@@ -2095,6 +2125,34 @@ ConstantForce:
   m_RelativeForce: {x: 0, y: 0, z: 0}
   m_Torque: {x: 0, y: 0, z: 0}
   m_RelativeTorque: {x: 0, y: 0, z: 0}
+--- !u!114 &5647237396872122862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 555273435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd8a61b8d46a2a148adc7fcb5e3c7e22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  indexFinger:
+    fingerTop: {fileID: 1690850616}
+    fingerMiddle: {fileID: 1988398123}
+    fingerBottom: {fileID: 912015089}
+  middleFinger:
+    fingerTop: {fileID: 422443164}
+    fingerMiddle: {fileID: 1258177957}
+    fingerBottom: {fileID: 869616676}
+  wristTriggers: []
+  torsoJoint: {fileID: 1686694943}
+  playerRoot: {fileID: 555273435}
+  childHandlers: []
+  balance: {fileID: 0}
+  playerRigidbody: {fileID: 0}
+  playerConstanctForce: {fileID: 0}
+  childTransofrms: []
 --- !u!1 &567169396
 GameObject:
   m_ObjectHideFlags: 0
@@ -2438,7 +2496,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchesGround: 0
   trackingpoint: {fileID: 0}
-  rigidbody: {fileID: 0}
+  rigid: {fileID: 0}
   applidedStrenght: 2
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
@@ -2626,7 +2684,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchesGround: 0
   trackingpoint: {fileID: 0}
-  rigidbody: {fileID: 0}
+  rigid: {fileID: 0}
   applidedStrenght: 2
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
@@ -2977,7 +3035,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchesGround: 0
   trackingpoint: {fileID: 0}
-  rigidbody: {fileID: 0}
+  rigid: {fileID: 0}
   applidedStrenght: 2
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
@@ -3165,7 +3223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchesGround: 0
   trackingpoint: {fileID: 0}
-  rigidbody: {fileID: 0}
+  rigid: {fileID: 0}
   applidedStrenght: 2
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
@@ -3453,7 +3511,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchesGround: 0
   trackingpoint: {fileID: 0}
-  rigidbody: {fileID: 0}
+  rigid: {fileID: 0}
   applidedStrenght: 1
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
@@ -3992,7 +4050,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchesGround: 0
   trackingpoint: {fileID: 0}
-  rigidbody: {fileID: 0}
+  rigid: {fileID: 0}
   applidedStrenght: 1
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
@@ -4243,7 +4301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchesGround: 0
   trackingpoint: {fileID: 0}
-  rigidbody: {fileID: 0}
+  rigid: {fileID: 0}
   applidedStrenght: 1
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
@@ -4555,7 +4613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchesGround: 0
   trackingpoint: {fileID: 0}
-  rigidbody: {fileID: 0}
+  rigid: {fileID: 0}
   applidedStrenght: 1
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
@@ -4665,7 +4723,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchesGround: 0
   trackingpoint: {fileID: 0}
-  rigidbody: {fileID: 0}
+  rigid: {fileID: 0}
   applidedStrenght: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
@@ -4984,7 +5042,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchesGround: 0
   trackingpoint: {fileID: 0}
-  rigidbody: {fileID: 0}
+  rigid: {fileID: 0}
   applidedStrenght: 1
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
@@ -5494,7 +5552,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchesGround: 0
   trackingpoint: {fileID: 0}
-  rigidbody: {fileID: 0}
+  rigid: {fileID: 0}
   applidedStrenght: 20
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
@@ -5683,7 +5741,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchesGround: 0
   trackingpoint: {fileID: 0}
-  rigidbody: {fileID: 0}
+  rigid: {fileID: 0}
   applidedStrenght: 1
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
@@ -5902,7 +5960,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchesGround: 0
   trackingpoint: {fileID: 0}
-  rigidbody: {fileID: 0}
+  rigid: {fileID: 0}
   applidedStrenght: 1
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
@@ -6050,6 +6108,7 @@ GameObject:
   - component: {fileID: 2105938191}
   - component: {fileID: 2105938188}
   - component: {fileID: 2105938189}
+  - component: {fileID: 8862870143670413986}
   m_Layer: 0
   m_Name: Simple Hand Prototype  - hinge joint 2
   m_TagString: Untagged
@@ -6239,16 +6298,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2105938185}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d505e9ccc2c0a2c489de1499de46ab96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orientationCentre: {fileID: 0}
-  configurableJoint: {fileID: 0}
-  lookAtTarget: {fileID: 0}
+  orientationCentre: {fileID: 1597849403}
+  configurableJoint: {fileID: 2105938185}
+  lookAtTarget: {fileID: 2105938185}
   hightToLookAt: 0
-  LookAtActive: 0
+  LookAtActive: 1
   fallinAndGettingUp: 0
   affectedJoint: {fileID: 2105938191}
   targetAngle: {x: 0, y: 0, z: 0}
@@ -6291,6 +6350,34 @@ ConstantForce:
   m_RelativeForce: {x: 0, y: 0, z: 0}
   m_Torque: {x: 0, y: 0, z: 0}
   m_RelativeTorque: {x: 0, y: 0, z: 0}
+--- !u!114 &8862870143670413986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105938185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd8a61b8d46a2a148adc7fcb5e3c7e22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  indexFinger:
+    fingerTop: {fileID: 1015610425}
+    fingerMiddle: {fileID: 1321384002}
+    fingerBottom: {fileID: 535907141}
+  middleFinger:
+    fingerTop: {fileID: 422443164}
+    fingerMiddle: {fileID: 248667924}
+    fingerBottom: {fileID: 1931987320}
+  wristTriggers: []
+  torsoJoint: {fileID: 1190431739}
+  playerRoot: {fileID: 2105938185}
+  childHandlers: []
+  balance: {fileID: 0}
+  playerRigidbody: {fileID: 0}
+  playerConstanctForce: {fileID: 0}
+  childTransofrms: []
 --- !u!1 &2135946574
 GameObject:
   m_ObjectHideFlags: 0
@@ -7175,27 +7262,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20490689a5d57bf4c9b7a2f20a56985d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeAvatar: {fileID: 5655934034866910233}
   useFK: 1
   useTriggersCurl: 1
   invertControlls: 1
   amplifyJump: 0
-  bendingCoupledToMovement: 0
   poseSpace: 0
-  indexFinger:
-    fingerTop: {fileID: 232455740}
-    fingerMiddle: {fileID: 397538278}
-    fingerBottom: {fileID: 758628624}
-  middleFinger:
-    fingerTop: {fileID: 1937918729}
-    fingerMiddle: {fileID: 1568695536}
-    fingerBottom: {fileID: 707801891}
-  wristColliders:
-  - {fileID: 8479993384622103454}
   handAnimator: {fileID: 640599766}
-  torsoJoint: {fileID: 567169398}
-  playerRoot: {fileID: 515594622}
-  playerColliders: []
-  balance: {fileID: 515594626}
   otherPlayer: {fileID: 0}
   rotationSpeed: 2
   maxRotation: 50
@@ -7668,7 +7741,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchesGround: 0
   trackingpoint: {fileID: 0}
-  rigidbody: {fileID: 0}
+  rigid: {fileID: 0}
   applidedStrenght: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
@@ -7958,9 +8031,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 230ae4a5558137643af1d675f268bbbc, type: 3}
---- !u!4 &1972090335027618881 stripped
+--- !u!4 &2255676427764779963 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 9116480649390329963, guid: 230ae4a5558137643af1d675f268bbbc,
+  m_CorrespondingSourceObject: {fileID: 8833738848472874897, guid: 230ae4a5558137643af1d675f268bbbc,
+    type: 3}
+  m_PrefabInstance: {fileID: 7339314261454189610}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2255676427764779942 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8833738848472874892, guid: 230ae4a5558137643af1d675f268bbbc,
+    type: 3}
+  m_PrefabInstance: {fileID: 7339314261454189610}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6432793051774688090 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4368390886205091696, guid: 230ae4a5558137643af1d675f268bbbc,
     type: 3}
   m_PrefabInstance: {fileID: 7339314261454189610}
   m_PrefabAsset: {fileID: 0}
@@ -7982,27 +8067,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7339314261454189610}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1972090335027618881 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9116480649390329963, guid: 230ae4a5558137643af1d675f268bbbc,
+    type: 3}
+  m_PrefabInstance: {fileID: 7339314261454189610}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2255676429275781252 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8833738847031078062, guid: 230ae4a5558137643af1d675f268bbbc,
-    type: 3}
-  m_PrefabInstance: {fileID: 7339314261454189610}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2255676427764779963 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8833738848472874897, guid: 230ae4a5558137643af1d675f268bbbc,
-    type: 3}
-  m_PrefabInstance: {fileID: 7339314261454189610}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2255676427764779942 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8833738848472874892, guid: 230ae4a5558137643af1d675f268bbbc,
-    type: 3}
-  m_PrefabInstance: {fileID: 7339314261454189610}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &6432793051774688090 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4368390886205091696, guid: 230ae4a5558137643af1d675f268bbbc,
     type: 3}
   m_PrefabInstance: {fileID: 7339314261454189610}
   m_PrefabAsset: {fileID: 0}

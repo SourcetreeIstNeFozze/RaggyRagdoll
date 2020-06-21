@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class CollisionHandler : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class CollisionHandler : MonoBehaviour
 	public Transform trackingpoint;
 	private Vector3 _lastPosition;
 	private Vector3 _currentposition;
-	public Rigidbody rigidbody;
+	public Rigidbody rigid;
 
 	[Tooltip("how much strength should be applied when THIS rigidbody hits another")]
 	public float applidedStrenght;
@@ -25,6 +26,10 @@ public class CollisionHandler : MonoBehaviour
 	[HideInInspector] public PlayerInputController thisPlayer;
 	[HideInInspector] public PlayerInputController otherPlayer;
 
+	void Awake()
+	{
+		rigid = this.GetComponent<Rigidbody>();
+	}
 
 	// Start is called before the first frame update
 	void Start()
@@ -34,7 +39,7 @@ public class CollisionHandler : MonoBehaviour
 			trackingpoint = this.transform;
 		}
 		_lastPosition = _currentposition = trackingpoint.position;
-		rigidbody = this.GetComponent<Rigidbody>();
+
     }
 
     // Update is called once per frame
@@ -76,7 +81,7 @@ public class CollisionHandler : MonoBehaviour
 			if (collisionHandler != null)
 			{
 				// CONTACT WITH OTHE RPLAYER
-				if (otherPlayer.playerColliders.Contains(collisionHandler))
+				if (otherPlayer.activeAvatar.childHandlers.Contains(collisionHandler))
 				{
 					thisPlayer.timeSinceLastContact = 0;
 
@@ -92,7 +97,7 @@ public class CollisionHandler : MonoBehaviour
 					//	collision.contacts[0].point,
 					//	ForceMode.VelocityChange);
 
-					rigidbody.velocity = collisionHandler.applidedStrenght * collisionHandler.rigidbody.velocity;
+					rigid.velocity = collisionHandler.applidedStrenght * collisionHandler.rigid.velocity;
 
 					//Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + collisionAmplifier.GetComponent<Rigidbody>().velocity * collisionAmplifier.applidedStrenght, Color.red, 3f);
 					//Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + Vector3.right*5, Color.black);

@@ -3,31 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class PlayerInputController : MonoBehaviour
 {
+	public HandReferences activeAvatar;
 
 	[Header("Config")]
 	public bool useFK;
     public bool useTriggersCurl = true;
 	public bool invertControlls;
 	public bool amplifyJump;
-	public bool bendingCoupledToMovement;
     public enum TransformType { global, local};
     public TransformType poseSpace = TransformType.global;
-
-
-	[Header("Body")]
-	public ActiveFinger indexFinger;
-	public ActiveFinger middleFinger;
-	public CollisionHandler[] wristColliders;
+	
 
 	[Header("References")]
 	public Animator handAnimator;
-	public HingeJoint torsoJoint;
-	public GameObject playerRoot;	
-	[HideInInspector] public List<CollisionHandler> playerColliders;
-	public OrientationAndBalance balance;
 	public PlayerInputController otherPlayer;
+
 
 	[Header("Input")]
 	public float rotationSpeed;
@@ -38,8 +31,6 @@ public class PlayerInputController : MonoBehaviour
 	private bool _leftBumperHeld;
 
 	[Header("Physics Correction")]
-	private Rigidbody playerRigidbody;
-	private ConstantForce playerConstanctForce;
 	public float maxForceInFlight = 10;
 	public float jumpForce = 10;
 
@@ -54,10 +45,7 @@ public class PlayerInputController : MonoBehaviour
 
     Vector3 invertX = new Vector3(-1f, 1f);
 
-	[Header("Resetting")]
-	List<Transform> childTransofrms = new List<Transform>();
-	List<Quaternion> originalRotations = new List<Quaternion>();
-	List<Vector3> originalPositions = new List<Vector3>();
+
 
 	public enum GroundedState
 	{
@@ -70,57 +58,46 @@ public class PlayerInputController : MonoBehaviour
 
 	private void Awake()
 	{
-		InitializeColliders();
 
-		middleFinger.stickInput = new StickInput();
-		indexFinger.stickInput = new StickInput();
-        middleFinger.stickInput_original = new StickInput();
-        indexFinger.stickInput_original = new StickInput();
-
-
-		// get initial state the hand
-		foreach (Transform child in transform)
-		{
-			childTransofrms.Add(child);
-			originalRotations.Add(child.rotation);
-			originalPositions.Add(child.position);
-		}
 
 	}
 
 	// Start is called before the first frame update
 	void Start()
 	{
-		playerRigidbody = playerRoot.GetComponent<Rigidbody>();
-		playerConstanctForce = playerRoot.GetComponent<ConstantForce>();
+		//SET-UP
+		activeAvatar.middleFinger.stickInput = new StickInput();
+		activeAvatar.indexFinger.stickInput = new StickInput();
+		activeAvatar.middleFinger.stickInput_original = new StickInput();
+		activeAvatar.indexFinger.stickInput_original = new StickInput();
+
+		AssignPlayersToHandlers();
 
 		// WIRE EVENTS
-		
-
 		if (amplifyJump)
 		{
-			middleFinger.stickInput.OnReleased_Y += () =>
+			activeAvatar.middleFinger.stickInput.OnReleased_Y += () =>
 			{  if (GetGroundedState() !=  GroundedState.inAir)
 				{
 					Debug.Log("RY released");
-					Jump(playerRoot.transform.up, jumpForce);
+					Jump(activeAvatar.playerRoot.transform.up, jumpForce);
 				}
 			};
 
-			middleFinger.stickInput.OnReleased_X += () =>
+			activeAvatar.middleFinger.stickInput.OnReleased_X += () =>
 			{
 				Debug.Log("RX released");
 			};
 
-			indexFinger.stickInput.OnReleased_Y += () =>
+			activeAvatar.indexFinger.stickInput.OnReleased_Y += () =>
 			{
 				if ( GetGroundedState() != GroundedState.inAir)
 				{
 					Debug.Log("LY released");
-					Jump(playerRoot.transform.up, jumpForce);
+					Jump(activeAvatar.playerRoot.transform.up, jumpForce);
 				}
 			};
-			indexFinger.stickInput.OnReleased_X += () =>
+			activeAvatar.indexFinger.stickInput.OnReleased_X += () =>
 			{
 				Debug.Log("LX released");
 			};
@@ -132,7 +109,7 @@ public class PlayerInputController : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			Reset();
+			activeAvatar.Reset();
 		}
 
 		// timers
@@ -140,19 +117,19 @@ public class PlayerInputController : MonoBehaviour
 
 		// gather data
 
-		middleFinger.stickInput.Update();
-		indexFinger.stickInput.Update();
+		activeAvatar.middleFinger.stickInput.Update();
+		activeAvatar.indexFinger.stickInput.Update();
 
-		middleFinger.stickInput.CheckForFastStickReleases(stickReleaseTimeWindow, 1f, 0f, stickReleaseTimeWindow);
-		indexFinger.stickInput.CheckForFastStickReleases(stickReleaseTimeWindow, 1f, 0f, stickReleaseTimeWindow);
+		activeAvatar.middleFinger.stickInput.CheckForFastStickReleases(stickReleaseTimeWindow, 1f, 0f, stickReleaseTimeWindow);
+		activeAvatar.indexFinger.stickInput.CheckForFastStickReleases(stickReleaseTimeWindow, 1f, 0f, stickReleaseTimeWindow);
 
 		if (useFK)
 		{
 			//MANAGE POSES 
-			handAnimator.SetFloat("XInput_R", middleFinger.stickInput.value.x);
-			handAnimator.SetFloat("YInput_R", middleFinger.stickInput.value.y);
-			handAnimator.SetFloat("XInput_L", indexFinger.stickInput.value.x);
-			handAnimator.SetFloat("YInput_L", indexFinger.stickInput.value.y);
+			handAnimator.SetFloat("XInput_R", activeAvatar.middleFinger.stickInput.value.x);
+			handAnimator.SetFloat("YInput_R", activeAvatar.middleFinger.stickInput.value.y);
+			handAnimator.SetFloat("XInput_L", activeAvatar.indexFinger.stickInput.value.x);
+			handAnimator.SetFloat("YInput_L", activeAvatar.indexFinger.stickInput.value.y);
 
 
 			//MANAGE BENDING AND PUSHING
@@ -203,14 +180,14 @@ public class PlayerInputController : MonoBehaviour
 			// MANAGE BENDING AND MOVEMENT
 
 			// Bend the body if getting input and on the floor 
-			if (indexFinger.stickInput.value.x != 0f && !(GetGroundedState() == GroundedState.inAir))
+			if (activeAvatar.indexFinger.stickInput.value.x != 0f && !(GetGroundedState() == GroundedState.inAir))
 			{
-				BendVertically(indexFinger.stickInput.value.x * rotationSpeed * (invertControlls ? -1 : 1));
+				BendVertically(activeAvatar.indexFinger.stickInput.value.x * rotationSpeed * (invertControlls ? -1 : 1));
 			}
 			// When in air push the player
-			else if (indexFinger.stickInput.value.x != 0f && GetGroundedState() == GroundedState.inAir)
+			else if (activeAvatar.indexFinger.stickInput.value.x != 0f && GetGroundedState() == GroundedState.inAir)
 			{
-				SetPlayerPushForce(new Vector3(indexFinger.stickInput.value.x, 0, 0), maxForceInFlight);
+				SetPlayerPushForce(new Vector3(activeAvatar.indexFinger.stickInput.value.x, 0, 0), maxForceInFlight);
 
 			}
 			else
@@ -219,63 +196,59 @@ public class PlayerInputController : MonoBehaviour
 			}
 		}
 
-
-
         // GLOBAL & LOCAL SPACE
         // -> rotate the input-Vector2 by the rotation of the hand in order to fake global space
         if (poseSpace == TransformType.global)
         {
-            float bodyRotation = playerRoot.transform.localEulerAngles.x;
+            float bodyRotation = activeAvatar.playerRoot.transform.localEulerAngles.x;
             if (bodyRotation > 180)
                 bodyRotation -= 360;
             if (bodyRotation < -180)
                 bodyRotation += 360;
 
-            Vector2 index_stickInput_global = indexFinger.stickInput_original.value.Rotate(-bodyRotation);
-            Vector2 middle_stickInput_global = middleFinger.stickInput_original.value.Rotate(-bodyRotation);
-            indexFinger.stickInput.value = index_stickInput_global;
-            middleFinger.stickInput.value = middle_stickInput_global;
+            Vector2 index_stickInput_global = activeAvatar.indexFinger.stickInput_original.value.Rotate(-bodyRotation);
+            Vector2 middle_stickInput_global = activeAvatar.middleFinger.stickInput_original.value.Rotate(-bodyRotation);
+			activeAvatar.indexFinger.stickInput.value = index_stickInput_global;
+			activeAvatar.middleFinger.stickInput.value = middle_stickInput_global;
 
-            Debug.DrawLine(Vector3.zero, indexFinger.stickInput_original.value * new Vector2(-2f, 2f), Color.black, 0.3f);
+            Debug.DrawLine(Vector3.zero, activeAvatar.indexFinger.stickInput_original.value * new Vector2(-2f, 2f), Color.black, 0.3f);
             Debug.DrawLine(Vector3.zero, index_stickInput_global * new Vector2(-2f, 2f), Color.blue, 0.3f);
             //print("bodyRot: " + bodyRotation + ", newRotation: " + Vector2.Angle(Vector2.up, index_stickInput_global) + ", " + index_stickInput_global);
         }
-
-
     }
 
 	public void BendVertically(float bendValue)
 	{
-		JointSpring spring = torsoJoint.spring;
+		JointSpring spring = activeAvatar.torsoJoint.spring;
 		spring.targetPosition = Mathf.Clamp(spring.targetPosition + bendValue, -maxRotation, maxRotation);
-		torsoJoint.spring = spring;
+		activeAvatar.torsoJoint.spring = spring;
 	}
 
 	public void SetPlayerPushForce(Vector3 direction, float constancforceValue)
 	{
 		direction = direction.normalized;
-		playerConstanctForce.force = direction * constancforceValue;
+		activeAvatar.playerConstanctForce.force = direction * constancforceValue;
 	}
 
 	public void Jump(Vector3 direction, float forceValue)
 	{
 		Debug.Log("Jump");
 		direction = direction.normalized;
-		playerRigidbody.AddForce(direction * forceValue, ForceMode.Impulse);
+		activeAvatar.playerRigidbody.AddForce(direction * forceValue, ForceMode.Impulse);
 	}
 
 	// TO DO add some delays and stuff
 	private GroundedState GetGroundedState()
 	{
-		if (indexFinger.fingerBottom.touchesGround && middleFinger.fingerBottom.touchesGround)
+		if (activeAvatar.indexFinger.fingerBottom.touchesGround && activeAvatar.middleFinger.fingerBottom.touchesGround)
 		{
 			return GroundedState.bothFeetOnTheFloor;
 		}
-		else if (indexFinger.fingerBottom.touchesGround)
+		else if (activeAvatar.indexFinger.fingerBottom.touchesGround)
 		{
 			return GroundedState.leftFootOnThefloor;
 		}
-		else if (middleFinger.fingerBottom.touchesGround)
+		else if (activeAvatar.middleFinger.fingerBottom.touchesGround)
 		{
 			return GroundedState.rightFootOnTheFloor;
 		}
@@ -354,61 +327,40 @@ public class PlayerInputController : MonoBehaviour
 
 	public void OnLeftStick(InputValue value)
 	{
-        //indexFinger.stickInput.value = value.Get<Vector2>();
-        indexFinger.stickInput_original.value = value.Get<Vector2>(); // -> stickInput.value gets assigned in update; keep using this for calculations
+		//indexFinger.stickInput.value = value.Get<Vector2>();
+		activeAvatar.indexFinger.stickInput_original.value = value.Get<Vector2>(); // -> stickInput.value gets assigned in update; keep using this for calculations
 
         // mirror if right player
         if (this.tag.Equals("player_right"))
-			indexFinger.stickInput_original.value *= invertX;
+			activeAvatar.indexFinger.stickInput_original.value *= invertX;
 
         // local space
         if (poseSpace == TransformType.local)
-            indexFinger.stickInput.value = indexFinger.stickInput_original.value;
+			activeAvatar.indexFinger.stickInput.value = activeAvatar.indexFinger.stickInput_original.value;
     }
 
 	public void OnRightStick(InputValue value)
 	{
-        //middleFinger.stickInput.value = value.Get<Vector2>();
-        middleFinger.stickInput_original.value = value.Get<Vector2>(); // -> stickInput.value gets assigned in update; keep using this for calculations
+		//middleFinger.stickInput.value = value.Get<Vector2>();
+		activeAvatar.middleFinger.stickInput_original.value = value.Get<Vector2>(); // -> stickInput.value gets assigned in update; keep using this for calculations
 
         // mirror if right player
         if (this.tag.Equals("player_right"))
-            middleFinger.stickInput_original.value *= invertX;
+			activeAvatar.middleFinger.stickInput_original.value *= invertX;
 
         // local space
         if (poseSpace == TransformType.local)
-            middleFinger.stickInput.value = middleFinger.stickInput_original.value;
+			activeAvatar.middleFinger.stickInput.value = activeAvatar.middleFinger.stickInput_original.value;
     }
 
-    private void InitializeColliders()
+    private void AssignPlayersToHandlers()
 	{
-		// get CollisionHandler array
-		CollisionHandler[] handlersInChildren = this.GetComponentsInChildren<CollisionHandler>();
-
 		// convert to List
-		for (int i = 0; i < handlersInChildren.Length; i++)
+		for (int i = 0; i < activeAvatar.childHandlers.Length; i++)
 		{
-			playerColliders.Add(handlersInChildren[i]);
-			playerColliders[i].thisPlayer = this;
-			playerColliders[i].otherPlayer = otherPlayer;
+			activeAvatar.childHandlers[i].thisPlayer = this;
+			activeAvatar.childHandlers[i].otherPlayer = otherPlayer;
 		}
 	}
-
-	public void Reset()
-	{
-		for (int i = 0; i < childTransofrms.Count; i++)
-		{
-			childTransofrms[i].position = originalPositions[i];
-			childTransofrms[i].rotation = originalRotations[i];
-
-			Rigidbody childRigidbody = childTransofrms[i].GetComponent<Rigidbody>();
-			if (childRigidbody != null)
-			{
-				childRigidbody.velocity = Vector3.zero;
-			}
-		}
-	}
-
-
 }
 

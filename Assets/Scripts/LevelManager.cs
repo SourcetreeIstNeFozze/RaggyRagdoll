@@ -26,7 +26,7 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		foreach (CollisionHandler handler in playerLEFT.wristColliders)
+		foreach (CollisionHandler handler in playerLEFT.activeAvatar.wristTriggers)
 		{
 			handler.OnTouchedGround += () =>
 			{
@@ -63,7 +63,7 @@ public class LevelManager : MonoBehaviour
 			};
 		}
 
-		foreach (CollisionHandler handler in playerRIGHT.wristColliders)
+		foreach (CollisionHandler handler in playerRIGHT.activeAvatar.wristTriggers)
 		{
 			handler.OnTouchedGround += () =>
 			{
@@ -126,8 +126,8 @@ public class LevelManager : MonoBehaviour
 
 		immunity = false;
 		timeCounter.gameObject.SetActive(false);
-		playerLEFT.Reset();
-		playerRIGHT.Reset();
+		playerLEFT.activeAvatar.Reset();
+		playerRIGHT.activeAvatar.Reset();
 	}
 
 }
