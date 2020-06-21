@@ -9,6 +9,8 @@ TagManager:
   - player_right
   - player_left
   - Environment
+  - Boundary
+  - Shell
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - Hand
   - HandContainer
   - Environment
-  - 
+  - Boundary
   - 
   - 
   - 

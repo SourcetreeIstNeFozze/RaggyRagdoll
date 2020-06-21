@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class OrientationAndBalance : MonoBehaviour
 {
-	
+	Settings settings { get { return Settings.instance; } }
+
 	[Header("Orientation")]
 	public GameObject orientationCentre;
 	public GameObject configurableJoint;
 	public GameObject lookAtTarget;
 	public float hightToLookAt;
-	public bool LookAtActive;
+	public bool lookAtActive;
 
 	[Header("Balance")]
 
@@ -35,77 +36,104 @@ public class OrientationAndBalance : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-        
+		lookAtActive = settings.lookAtActive;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+	// Update is called once per frame
+	void Update()
+	{
 
 		// ORIENTATION
 		orientationCentre.transform.position = configurableJoint.transform.position;
 
-		if (LookAtActive && lookAtTarget != null)
+		if (lookAtActive && lookAtTarget != null)
 		{
 			orientationCentre.transform.LookAt(new Vector3(lookAtTarget.transform.position.x, orientationCentre.transform.position.y + hightToLookAt, lookAtTarget.transform.position.z));
 		}
 
-
-		// BALANCE
-		// update timers
-		timer += Time.deltaTime;
-		tick += Time.deltaTime;
-
-		//if (canFallTimer > 0)
-		//{
-		//	canFallTimer -= Time.deltaTime;
-		//	handCanFall = true;
-
-		//	if (canFallTimer <= 0)
-		//	{
-		//		canFallTimer = 0;
-		//		handCanFall = false; 
-		//	}
-		//}
-
-		// on every tick
-		if (tick >= maxTickValue)
+		if (settings.fallMode == Settings.FallMode.getUpAutomatically)
 		{
-			tick = 0f;
-			pastAngles.Enqueue(transform.eulerAngles); // IMPORTANT this needs to be global rotation
 
-			// start dequeing when a delay is reached (eg. after 3 seconds)
-			if (timer >= reactionDelay)
+			// BALANCE
+			// update timers
+			timer += Time.deltaTime;
+			tick += Time.deltaTime;
+
+			// on every tick
+			if (tick >= maxTickValue)
 			{
-				//deque
-				Vector3 pastAngle = pastAngles.Dequeue();
+				tick = 0f;
+				pastAngles.Enqueue(transform.eulerAngles); // IMPORTANT this needs to be global rotation
 
-				////get difference in rotation. IMPORTANt: DOING THIS IN QUATERNION SMARTER????
-				//Vector3 angleDifference = targetAngle - pastAngle; //gets actualdifference
-				//angleDifference = new Vector3(Mathf.Abs(angleDifference.x), Mathf.Abs(angleDifference.y), Mathf.Abs(angleDifference.z)); // gets absolue vlaues for teh differenc
-				if (fallinAndGettingUp)
+				// start dequeing when a delay is reached (eg. after 3 seconds)
+				if (timer >= reactionDelay)
 				{
+					//deque
+					Vector3 pastAngle = pastAngles.Dequeue();
+
+					////get difference in rotation. IMPORTANt: DOING THIS IN QUATERNION SMARTER????
+					//Vector3 angleDifference = targetAngle - pastAngle; //gets actualdifference
+					//angleDifference = new Vector3(Mathf.Abs(angleDifference.x), Mathf.Abs(angleDifference.y), Mathf.Abs(angleDifference.z)); // gets absolue vlaues for teh differenc
 					SetSprings(pastAngle);
+
 				}
 			}
 		}
-    }
+
+		if (settings.fallMode == Settings.FallMode.neverFall)
+		{
+			SetXDrive(maxdrive);
+			SetYZDrive(maxdrive);
+
+		}
+		else if (settings.fallMode == Settings.FallMode.dontGetUp)
+		{
+			SetXDrive(0f);
+
+			if (settings.fallDirection == Settings.FallDirection.XandZ)
+			{
+				SetYZDrive(0f);
+			}
+			else
+			{
+				SetYZDrive(maxdrive);
+			}	
+		}
+	}
 
 	private void SetSprings(Vector3 angle)
 	{
 		Debug.Log("setting springs");
 
-		JointDrive XDrive =  affectedJoint.angularXDrive;
-		XDrive.positionSpring = minDrive + ((maxdrive - minDrive) * sprinngRelToAngle.Evaluate(Mathf.Abs(FloatTo180Spectrum(angle.x)) / 180f));
-		affectedJoint.angularXDrive = XDrive;
+		SetXDrive(minDrive + ((maxdrive - minDrive) * sprinngRelToAngle.Evaluate(Mathf.Abs(FloatTo180Spectrum(angle.x)) / 180f)));
 
-		JointDrive YZDrive = affectedJoint.angularYZDrive;
-		YZDrive.positionSpring = minDrive + ((maxdrive - minDrive) * sprinngRelToAngle.Evaluate(Mathf.Abs(FloatTo180Spectrum(angle.z)) / 180f));
-		affectedJoint.angularYZDrive = YZDrive;
+		if (settings.fallDirection == Settings.FallDirection.XandZ)
+		{
+			SetYZDrive(minDrive + ((maxdrive - minDrive) * sprinngRelToAngle.Evaluate(Mathf.Abs(FloatTo180Spectrum(angle.z)) / 180f)));
+		}
+		else
+		{
+			SetYZDrive(maxdrive);
+		}
 
 		//Debug.Log($"x value: {FloatTo180Spectrum(angle.x)}, x drive: {minDrive + ((maxdrive - minDrive) * sprinngRelToAngle.Evaluate(Mathf.Abs(FloatTo180Spectrum(angle.x)) / 180f))}, z value  {FloatTo180Spectrum(angle.z)},  y drive: {minDrive + ((maxdrive - minDrive) * sprinngRelToAngle.Evaluate(Mathf.Abs(FloatTo180Spectrum(angle.z)) / 180f))} ");
 
 	}
+
+	private void SetXDrive(float value)
+	{
+		JointDrive XDrive = affectedJoint.angularXDrive;
+		XDrive.positionSpring = value;
+		affectedJoint.angularXDrive = XDrive;
+	}
+
+	private void SetYZDrive(float value)
+	{
+		JointDrive YZDrive = affectedJoint.angularYZDrive;
+		YZDrive.positionSpring = value;
+		affectedJoint.angularYZDrive = YZDrive;
+	}
+
 
 	private float FloatTo180Spectrum(float value)
 	{

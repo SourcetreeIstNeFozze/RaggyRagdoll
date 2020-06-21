@@ -6,37 +6,16 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputController : MonoBehaviour
 {
-	public HandReferences activeAvatar;
-
-	[Header("Config")]
-	public bool useFK;
-    public bool useTriggersCurl = true;
-	public bool invertControlls;
-	public bool amplifyJump;
-	public bool compassBending;
-    public enum TransformType { global, local};
-    public TransformType poseSpace = TransformType.global;
-	
+	[HideInInspector] public HandReferences activeAvatar;
+	private bool invertControls;
 
 	[Header("References")]
 	public Animator handAnimator;
 	public PlayerInputController otherPlayer;
 
-
-	[Header("Input")]
-	public float rotationSpeed;
-	public float maxRotation = 50;
-
 	[Space]
 	private bool _rightBumperHeld;
 	private bool _leftBumperHeld;
-
-	[Header("Physics Correction")]
-	public float maxForceInFlight = 10;
-	public float jumpForce = 10;
-
-	[Header("Detect fast stick releases")]
-	public float stickReleaseTimeWindow = 0.1f;
 
 	[Header("Interaction with other player")]
 	public float timeSinceLastContact;
@@ -46,7 +25,7 @@ public class PlayerInputController : MonoBehaviour
 
     Vector3 invertX = new Vector3(-1f, 1f);
 
-
+	Settings settings { get { return Settings.instance; } }
 
 	public enum GroundedState
 	{
@@ -66,22 +45,39 @@ public class PlayerInputController : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
+		if (this.tag.Equals("player_right"))
+		{
+			activeAvatar = settings.RIGHT;
+			invertControls = true;
+		}
+		else if (this.tag.Equals("player_right"))
+		{
+			activeAvatar = settings.LEFT;
+			
+			invertControls = false;
+		}
+
+		activeAvatar.playerRoot.SetActive(true);
+
 		//SET-UP
 		activeAvatar.middleFinger.stickInput = new StickInput();
 		activeAvatar.indexFinger.stickInput = new StickInput();
 		activeAvatar.middleFinger.stickInput_original = new StickInput();
 		activeAvatar.indexFinger.stickInput_original = new StickInput();
 
+
+		activeAvatar.balance.lookAtTarget = otherPlayer.activeAvatar.playerRoot;
 		AssignPlayersToHandlers();
 
+
 		// WIRE EVENTS
-		if (amplifyJump)
+		if (  settings.amplifyJump)
 		{
 			activeAvatar.middleFinger.stickInput.OnReleased_Y += () =>
 			{  if (GetGroundedState() !=  GroundedState.inAir)
 				{
 					Debug.Log("RY released");
-					Jump(activeAvatar.playerRoot.transform.up, jumpForce);
+					Jump(activeAvatar.playerRoot.transform.up, settings.jumpForce);
 				}
 			};
 
@@ -95,7 +91,7 @@ public class PlayerInputController : MonoBehaviour
 				if ( GetGroundedState() != GroundedState.inAir)
 				{
 					Debug.Log("LY released");
-					Jump(activeAvatar.playerRoot.transform.up, jumpForce);
+					Jump(activeAvatar.playerRoot.transform.up, settings.jumpForce);
 				}
 			};
 			activeAvatar.indexFinger.stickInput.OnReleased_X += () =>
@@ -121,10 +117,10 @@ public class PlayerInputController : MonoBehaviour
 		activeAvatar.middleFinger.stickInput.Update();
 		activeAvatar.indexFinger.stickInput.Update();
 
-		activeAvatar.middleFinger.stickInput.CheckForFastStickReleases(stickReleaseTimeWindow, 1f, 0f, stickReleaseTimeWindow);
-		activeAvatar.indexFinger.stickInput.CheckForFastStickReleases(stickReleaseTimeWindow, 1f, 0f, stickReleaseTimeWindow);
+		activeAvatar.middleFinger.stickInput.CheckForFastStickReleases(settings.stickReleaseTimeWindow, 1f, 0f, settings.stickReleaseTimeWindow);
+		activeAvatar.indexFinger.stickInput.CheckForFastStickReleases(settings.stickReleaseTimeWindow, 1f, 0f, settings.stickReleaseTimeWindow);
 
-		if (useFK)
+		if (settings.useFK)
 		{
 			//MANAGE POSES 
 			handAnimator.SetFloat("XInput_R", activeAvatar.middleFinger.stickInput.value.x);
@@ -150,21 +146,21 @@ public class PlayerInputController : MonoBehaviour
 				bendDirection = 0f;
 			}
 
-			if (invertControlls)
+			if (invertControls)
 			{
 				bendDirection *= -1f;
 			}
 
 			//2.BENDING
 			// Bend the body if getting input and on the floor 
-			if (!(GetGroundedState() == GroundedState.inAir) && !compassBending)
+			if (!(GetGroundedState() == GroundedState.inAir) && !settings.compassBending)
 			{
-				BendVertically(bendDirection * rotationSpeed);
+				BendVertically(bendDirection * settings.hipRotationSpeed);
 			}
 			// When in air push the player
-			else if ((GetGroundedState() == GroundedState.inAir) || !(GetGroundedState() == GroundedState.inAir && compassBending))
+			else if ((GetGroundedState() == GroundedState.inAir) || !(GetGroundedState() == GroundedState.inAir && settings.compassBending))
 			{
-				SetPlayerPushForce(new Vector3(bendDirection, 0, 0), maxForceInFlight);
+				SetPlayerPushForce(new Vector3(bendDirection, 0, 0), settings.maxHipPushForce);
 
 			}
 			else
@@ -183,12 +179,12 @@ public class PlayerInputController : MonoBehaviour
 			// Bend the body if getting input and on the floor 
 			if (activeAvatar.indexFinger.stickInput.value.x != 0f && !(GetGroundedState() == GroundedState.inAir))
 			{
-				BendVertically(activeAvatar.indexFinger.stickInput.value.x * rotationSpeed * (invertControlls ? -1 : 1));
+				BendVertically(activeAvatar.indexFinger.stickInput.value.x * settings.hipRotationSpeed * (invertControls ? -1 : 1));
 			}
 			// When in air push the player
 			else if (activeAvatar.indexFinger.stickInput.value.x != 0f && GetGroundedState() == GroundedState.inAir)
 			{
-				SetPlayerPushForce(new Vector3(activeAvatar.indexFinger.stickInput.value.x, 0, 0), maxForceInFlight);
+				SetPlayerPushForce(new Vector3(activeAvatar.indexFinger.stickInput.value.x, 0, 0), settings.maxHipPushForce);
 
 			}
 			else
@@ -199,7 +195,7 @@ public class PlayerInputController : MonoBehaviour
 
         // GLOBAL & LOCAL SPACE
         // -> rotate the input-Vector2 by the rotation of the hand in order to fake global space
-        if (poseSpace == TransformType.global)
+        if (settings.poseSpace == Settings.TransformType.global)
         {
             float bodyRotation = activeAvatar.playerRoot.transform.localEulerAngles.x;
             if (bodyRotation > 180)
@@ -221,7 +217,7 @@ public class PlayerInputController : MonoBehaviour
 	public void BendVertically(float bendValue)
 	{
 		JointSpring spring = activeAvatar.torsoJoint.spring;
-		spring.targetPosition = Mathf.Clamp(spring.targetPosition + bendValue, -maxRotation, maxRotation);
+		spring.targetPosition = Mathf.Clamp(spring.targetPosition + bendValue, -settings.maxHipRotation, settings.maxHipRotation);
 		activeAvatar.torsoJoint.spring = spring;
 	}
 
@@ -263,7 +259,7 @@ public class PlayerInputController : MonoBehaviour
 
 	public void OnIndexFingerUP()
 	{
-		if (!useFK)
+		if (!settings.useFK)
 			handAnimator.Play("IndexUP", 2);
 
         _rightBumperHeld = true;
@@ -271,7 +267,7 @@ public class PlayerInputController : MonoBehaviour
 
 	public void OnIndexFingerDOWN()
 	{
-        if (!useFK)
+        if (!settings.useFK)
             handAnimator.Play("IndexDOWN", 2);
 
        _rightBumperHeld = false;
@@ -279,7 +275,7 @@ public class PlayerInputController : MonoBehaviour
 
 	public void OnIndexFingerCurlIN()
 	{
-		if (!useFK || useTriggersCurl)
+		if (!settings.useFK || settings.useTriggersCurl)
 		{
 			handAnimator.Play("IndexCURLin", 3);
 		}
@@ -287,7 +283,7 @@ public class PlayerInputController : MonoBehaviour
 
 	public void OnIndexFingerCurlOUT()
 	{
-		if (!useFK || useTriggersCurl)
+		if (!settings.useFK || settings.useTriggersCurl)
 		{
 			handAnimator.Play("IndexCURLout", 3);
 		}
@@ -295,7 +291,7 @@ public class PlayerInputController : MonoBehaviour
 
 	public void OnMiddleFingerUP()
 	{
-		if (!useFK)
+		if (!settings.useFK)
 			handAnimator.Play("MiddleUP", 4);
 
         _leftBumperHeld = true;
@@ -303,7 +299,7 @@ public class PlayerInputController : MonoBehaviour
 
 	public void OnMiddleFingerDOWN()
 	{
-		if (!useFK)
+		if (!settings.useFK)
 			handAnimator.Play("MiddleDOWN", 4);
 
         _leftBumperHeld = false;
@@ -311,7 +307,7 @@ public class PlayerInputController : MonoBehaviour
 
 	public void OnMiddleFingerCurlIN(InputValue value)
 	{
-		if (!useFK || useTriggersCurl)
+		if (!settings.useFK || settings.useTriggersCurl)
 		{
 			handAnimator.Play("MiddleIN", 5);
             print("middleCurlIn; value: " + value.Get<float>());
@@ -320,7 +316,7 @@ public class PlayerInputController : MonoBehaviour
 
 	public void OnMiddleFingerCurlOUT()
 	{
-		if (!useFK || useTriggersCurl)
+		if (!settings.useFK || settings.useTriggersCurl)
 		{
 			handAnimator.Play("MiddleOUT", 5);
 		}
@@ -336,7 +332,7 @@ public class PlayerInputController : MonoBehaviour
 			activeAvatar.indexFinger.stickInput_original.value *= invertX;
 
         // local space
-        if (poseSpace == TransformType.local)
+        if (settings.poseSpace == Settings.TransformType.local)
 			activeAvatar.indexFinger.stickInput.value = activeAvatar.indexFinger.stickInput_original.value;
     }
 
@@ -350,7 +346,7 @@ public class PlayerInputController : MonoBehaviour
 			activeAvatar.middleFinger.stickInput_original.value *= invertX;
 
         // local space
-        if (poseSpace == TransformType.local)
+        if (settings.poseSpace == Settings.TransformType.local)
 			activeAvatar.middleFinger.stickInput.value = activeAvatar.middleFinger.stickInput_original.value;
     }
 

@@ -5,14 +5,18 @@ using System.Linq;
 
 public class CollisionHandler : MonoBehaviour
 {
+	Settings settings { get { return Settings.instance; } }
+
 	[Header("Ground Detection")]
 	public bool touchesGround;
 	public System.Action OnTouchedGround;
 	public System.Action OnLeftGound;
 	public System.Action OnLeftBounds;
+	public System.Action OnKickTriggerEntered;
 
 	[Space]
 	[Header("Collision Amplification")]
+	[HideInInspector] public bool shockWave;
 	
 	[Tooltip("transform used for traking the movement vector of this object")]
 	public Transform trackingpoint;
@@ -90,18 +94,26 @@ public class CollisionHandler : MonoBehaviour
 
 					// when THIS object is kicked, the force applied to THIS object will be multipied by the appliedStrength of the OTHER OBECT
 					// eg when this object is hit by "foot" and foot's applied strength is 50, the strength of this collision will be amplified by 50
+					if (settings.colisionAmplificationMode == Settings.ColisionAmplificationMode.velocityChange)
+					{
+						//Debug.Log("Amplifying collision on: " + gameObject.name + "(" + this.transform.root.tag + "), velocity = " + this.GetComponent<Rigidbody>().velocity);
+						rigid.AddForceAtPosition(
+							collisionHandler.applidedStrenght * collisionHandler.rigid.velocity, // * collisionAmplifier.GetMovementVector(),
+							collision.contacts[0].point,
+							ForceMode.VelocityChange);
 
-					//Debug.Log("Amplifying collision on: " + gameObject.name + "(" + this.transform.root.tag + "), velocity = " + this.GetComponent<Rigidbody>().velocity);
-					//rigidbody.AddForceAtPosition(
-					//	collisionHandler.applidedStrenght * collisionHandler.rigidbody.velocity, // * collisionAmplifier.GetMovementVector(),
-					//	collision.contacts[0].point,
-					//	ForceMode.VelocityChange);
+						//Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + collisionAmplifier.GetComponent<Rigidbody>().velocity * collisionAmplifier.applidedStrenght, Color.red, 3f);
+						//Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + Vector3.right*5, Color.black);
+						//Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + Vector3.forward*5, Color.black);
+					}
 
-					rigid.velocity = collisionHandler.applidedStrenght * collisionHandler.rigid.velocity;
+					else if (settings.colisionAmplificationMode == Settings.ColisionAmplificationMode.velocityChange)
+					{
+						rigid.velocity = collisionHandler.applidedStrenght * collisionHandler.rigid.velocity;
+					}  
 
-					//Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + collisionAmplifier.GetComponent<Rigidbody>().velocity * collisionAmplifier.applidedStrenght, Color.red, 3f);
-					//Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + Vector3.right*5, Color.black);
-					//Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + Vector3.forward*5, Color.black);
+
+
 				}
 
 			}
@@ -134,6 +146,12 @@ public class CollisionHandler : MonoBehaviour
 		if (collider.tag == "Boundary")
 		{
 			OnLeftBounds?.Invoke();
+		}
+
+		//BOUNDARY DETECTION
+		if (collider.tag == "Shell")
+		{
+			OnKickTriggerEntered?.Invoke();
 		}
 	}
 	private void OnTriggerExit(Collider collider)

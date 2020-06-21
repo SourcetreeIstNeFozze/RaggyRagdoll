@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class HandReferences : MonoBehaviour
 {
+	public GameObject playerRoot;
+	public HingeJoint torsoJoint;
 
 	public ActiveFinger indexFinger;
 	public ActiveFinger middleFinger;
 	public CollisionHandler[] wristTriggers;
-	public HingeJoint torsoJoint;
-	public GameObject playerRoot;
+	public CollisionHandler[] shokwavetriggers;
+
 
 	[HideInInspector] public CollisionHandler[] childHandlers;
 	[HideInInspector] public OrientationAndBalance balance;
