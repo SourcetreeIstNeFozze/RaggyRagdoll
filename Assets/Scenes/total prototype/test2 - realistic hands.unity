@@ -315,6 +315,11 @@ PrefabInstance:
       propertyPath: activeAvatar
       value: 
       objectReference: {fileID: 2018568231}
+    - target: {fileID: 3111363127572703764, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
+        type: 3}
+      propertyPath: compassBending
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3708256570900325861, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -1732,6 +1737,11 @@ PrefabInstance:
       propertyPath: activeAvatar
       value: 
       objectReference: {fileID: 1039625886}
+    - target: {fileID: 3111363127572703764, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
+        type: 3}
+      propertyPath: compassBending
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3708256570900325861, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
         type: 3}
       propertyPath: m_ConnectedAnchor.x

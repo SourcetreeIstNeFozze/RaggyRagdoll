@@ -13,6 +13,7 @@ public class PlayerInputController : MonoBehaviour
     public bool useTriggersCurl = true;
 	public bool invertControlls;
 	public bool amplifyJump;
+	public bool compassBending;
     public enum TransformType { global, local};
     public TransformType poseSpace = TransformType.global;
 	
@@ -156,12 +157,12 @@ public class PlayerInputController : MonoBehaviour
 
 			//2.BENDING
 			// Bend the body if getting input and on the floor 
-			if (!(GetGroundedState() == GroundedState.inAir))
+			if (!(GetGroundedState() == GroundedState.inAir) && !compassBending)
 			{
 				BendVertically(bendDirection * rotationSpeed);
 			}
 			// When in air push the player
-			else if (GetGroundedState() == GroundedState.inAir)
+			else if ((GetGroundedState() == GroundedState.inAir) || !(GetGroundedState() == GroundedState.inAir && compassBending))
 			{
 				SetPlayerPushForce(new Vector3(bendDirection, 0, 0), maxForceInFlight);
 
