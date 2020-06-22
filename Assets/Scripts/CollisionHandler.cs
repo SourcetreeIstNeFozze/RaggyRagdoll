@@ -33,6 +33,8 @@ public class CollisionHandler : MonoBehaviour
 	void Awake()
 	{
 		rigid = this.GetComponent<Rigidbody>();
+
+		OnKickTriggerEntered += () => { Debug.Log("Shell Collision"); };
 	}
 
 	// Start is called before the first frame update
@@ -151,9 +153,20 @@ public class CollisionHandler : MonoBehaviour
 		//BOUNDARY DETECTION
 		if (collider.tag == "Shell")
 		{
-			OnKickTriggerEntered?.Invoke();
+			CollisionHandler collisionHandler = collider.gameObject.GetComponent<CollisionHandler>();
+
+			if (collisionHandler != null)
+			{
+				// CONTACT WITH OTHE RPLAYER
+				if (otherPlayer.activeAvatar.shokwavetriggers.Contains(collisionHandler))
+				{
+					OnKickTriggerEntered?.Invoke();
+					
+				}
+			}
 		}
 	}
+
 	private void OnTriggerExit(Collider collider)
 	{
 		// GROUND DETECTION
