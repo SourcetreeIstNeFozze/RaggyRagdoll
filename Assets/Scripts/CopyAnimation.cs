@@ -21,10 +21,25 @@ public class CopyAnimation : MonoBehaviour
 	private Quaternion initialRotation;
 	private Vector3 initialLocalrotation;
 
+    private Transform[] animatorFingers;
+
 	void Start()
 	{
 		initialRotation = this.transform.rotation;
 		initialLocalrotation = this.transform.localEulerAngles;
+
+        // dynamically get copyAnimation sources
+        animatorFingers = this.transform.root.GetComponent<PlayerInputController>().handAnimator.gameObject.GetComponentsInChildren<Transform>();
+        foreach(Transform finger in animatorFingers)
+        {
+            if (finger.name == this.name)
+            {
+                this.source = finger;
+                break;
+            }
+        }
+        if (this.source == null)
+            print("MISSING REFERENCE");
 	}
 
 	void Update()

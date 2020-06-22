@@ -24,6 +24,7 @@ public class PlayerInputController : MonoBehaviour
 
 
     Vector3 invertX = new Vector3(-1f, 1f);
+    ConfigurableJoint configJoint;
 
 	Settings settings { get { return Settings.instance; } }
 
@@ -49,13 +50,14 @@ public class PlayerInputController : MonoBehaviour
 		{
 			activeAvatar = settings.RIGHT;
 			invertControls = true;
+            configJoint = activeAvatar.GetComponent<ConfigurableJoint>();
 		}
-		else if (this.tag.Equals("player_right"))
+		else if (this.tag.Equals("player_left"))
 		{
 			activeAvatar = settings.LEFT;
-			
 			invertControls = false;
-		}
+            configJoint = activeAvatar.GetComponent<ConfigurableJoint>();
+        }
 
 		activeAvatar.playerRoot.SetActive(true);
 
@@ -168,7 +170,18 @@ public class PlayerInputController : MonoBehaviour
 				SetPlayerPushForce(Vector3.zero, 0);
 			}
 
-		}
+
+            // NEW STABILISATION
+            if (settings.fallMode == Settings.FallMode.spring)
+            {
+                configJoint.connectedAnchor = new Vector3(
+                    activeAvatar.transform.position.x, 
+                    activeAvatar.transform.position.y, 
+                    activeAvatar.transform.position.z)
+                    + settings.configJoint_Y_Offset * activeAvatar.transform.up;
+            }
+
+        }
 
 
 		else

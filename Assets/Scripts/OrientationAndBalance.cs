@@ -43,13 +43,22 @@ public class OrientationAndBalance : MonoBehaviour
 	void Update()
 	{
 
-		// ORIENTATION
-		orientationCentre.transform.position = configurableJoint.transform.position;
+        // ORIENTATION
+        orientationCentre.transform.position = configurableJoint.transform.position;
+        //orientationCentre.transform.position = this.transform.TransformPoint(configJoint_comp.connectedAnchor);
 
-		if (lookAtActive && lookAtTarget != null)
+
+        if (lookAtActive && lookAtTarget != null)
 		{
 			orientationCentre.transform.LookAt(new Vector3(lookAtTarget.transform.position.x, orientationCentre.transform.position.y + hightToLookAt, lookAtTarget.transform.position.z));
 		}
+
+        if (settings.fallMode != Settings.FallMode.spring)
+        {
+
+            SetYDrive(0);
+            SetZDrive(0);
+        }
 
 		if (settings.fallMode == Settings.FallMode.getUpAutomatically)
 		{
@@ -82,21 +91,21 @@ public class OrientationAndBalance : MonoBehaviour
 
 		if (settings.fallMode == Settings.FallMode.neverFall)
 		{
-			SetXDrive(maxdrive);
-			SetYZDrive(maxdrive);
+			SetAngularXDrive(maxdrive);
+			SetAngularYZDrive(maxdrive);
 
 		}
 		else if (settings.fallMode == Settings.FallMode.dontGetUp)
 		{
-			SetXDrive(0f);
+			SetAngularXDrive(0f);
 
 			if (settings.fallDirection == Settings.FallDirection.XandZ)
 			{
-				SetYZDrive(0f);
+				SetAngularYZDrive(0f);
 			}
 			else
 			{
-				SetYZDrive(maxdrive);
+				SetAngularYZDrive(maxdrive);
 			}	
 		}
 	}
@@ -105,37 +114,51 @@ public class OrientationAndBalance : MonoBehaviour
 	{
 		Debug.Log("setting springs");
 
-		SetXDrive(minDrive + ((maxdrive - minDrive) * sprinngRelToAngle.Evaluate(Mathf.Abs(FloatTo180Spectrum(angle.x)) / 180f)));
+		SetAngularXDrive(minDrive + ((maxdrive - minDrive) * sprinngRelToAngle.Evaluate(Mathf.Abs(FloatTo180Spectrum(angle.x)) / 180f)));
 
 		if (settings.fallDirection == Settings.FallDirection.XandZ)
 		{
-			SetYZDrive(minDrive + ((maxdrive - minDrive) * sprinngRelToAngle.Evaluate(Mathf.Abs(FloatTo180Spectrum(angle.z)) / 180f)));
+			SetAngularYZDrive(minDrive + ((maxdrive - minDrive) * sprinngRelToAngle.Evaluate(Mathf.Abs(FloatTo180Spectrum(angle.z)) / 180f)));
 		}
 		else
 		{
-			SetYZDrive(maxdrive);
+			SetAngularYZDrive(maxdrive);
 		}
 
 		//Debug.Log($"x value: {FloatTo180Spectrum(angle.x)}, x drive: {minDrive + ((maxdrive - minDrive) * sprinngRelToAngle.Evaluate(Mathf.Abs(FloatTo180Spectrum(angle.x)) / 180f))}, z value  {FloatTo180Spectrum(angle.z)},  y drive: {minDrive + ((maxdrive - minDrive) * sprinngRelToAngle.Evaluate(Mathf.Abs(FloatTo180Spectrum(angle.z)) / 180f))} ");
 
 	}
 
-	private void SetXDrive(float value)
+	private void SetAngularXDrive(float value)
 	{
 		JointDrive XDrive = affectedJoint.angularXDrive;
 		XDrive.positionSpring = value;
 		affectedJoint.angularXDrive = XDrive;
 	}
 
-	private void SetYZDrive(float value)
+	private void SetAngularYZDrive(float value)
 	{
 		JointDrive YZDrive = affectedJoint.angularYZDrive;
 		YZDrive.positionSpring = value;
 		affectedJoint.angularYZDrive = YZDrive;
 	}
 
+    private void SetYDrive(float value)
+    {
+        JointDrive yDrive = new JointDrive();
+        yDrive.positionSpring = value;
+        affectedJoint.yDrive = yDrive;
+    }
 
-	private float FloatTo180Spectrum(float value)
+    private void SetZDrive(float value)
+    {
+        JointDrive zDrive = new JointDrive();
+        zDrive.positionSpring = value;
+        affectedJoint.yDrive = zDrive;
+    }
+
+
+    private float FloatTo180Spectrum(float value)
 	{
 		if (value > 180)
 		{

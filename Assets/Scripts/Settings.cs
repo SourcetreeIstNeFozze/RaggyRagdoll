@@ -16,7 +16,7 @@ public class Settings : MonoBehaviour
 	public bool lookAtActive;
 	public enum FallDirection { X, XandZ}
 	public FallDirection fallDirection;
-	public enum FallMode { neverFall, getUpAutomatically, dontGetUp}
+	public enum FallMode { neverFall, getUpAutomatically, dontGetUp, spring}
 	public FallMode fallMode;
 	public enum ColisionAmplificationMode { velocityChange, velocityAddition, shockwave};
 	public ColisionAmplificationMode colisionAmplificationMode;
@@ -32,6 +32,9 @@ public class Settings : MonoBehaviour
 
 	[Header("Detect fast stick releases")]
 	public float stickReleaseTimeWindow = 0.1f;
+
+    [Header("If spring fall mode")]
+    public float configJoint_Y_Offset = 2f;
 
 	private void Awake()
 	{

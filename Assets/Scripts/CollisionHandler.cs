@@ -27,8 +27,10 @@ public class CollisionHandler : MonoBehaviour
 	[Tooltip("how much strength should be applied when THIS rigidbody hits another")]
 	public float applidedStrenght;
 
-	[HideInInspector] public PlayerInputController thisPlayer;
-	[HideInInspector] public PlayerInputController otherPlayer;
+	[HideInInspector]
+    public PlayerInputController thisPlayer = null;
+    [HideInInspector]
+    public PlayerInputController otherPlayer = null;
 
 	void Awake()
 	{
@@ -43,6 +45,18 @@ public class CollisionHandler : MonoBehaviour
 			trackingpoint = this.transform;
 		}
 		_lastPosition = _currentposition = trackingpoint.position;
+
+        // Dynamically assign collision references
+        if (transform.root.tag.Equals("player_left"))
+        {
+            thisPlayer = Settings.instance.LEFT.GetComponent<PlayerInputController>();
+            otherPlayer = Settings.instance.RIGHT.GetComponent<PlayerInputController>();
+        }
+        else
+        {
+            thisPlayer = Settings.instance.RIGHT.GetComponent<PlayerInputController>();
+            otherPlayer = Settings.instance.LEFT.GetComponent<PlayerInputController>();
+        }
 
     }
 
@@ -84,7 +98,7 @@ public class CollisionHandler : MonoBehaviour
 
 			if (collisionHandler != null)
 			{
-				// CONTACT WITH OTHE RPLAYER
+                // CONTACT WITH OTHE RPLAYER
 				if (otherPlayer.activeAvatar.childHandlers.Contains(collisionHandler))
 				{
 					thisPlayer.timeSinceLastContact = 0;
