@@ -126,8 +126,8 @@ public class LevelManager : MonoBehaviour
 
 		immunity = false;
 		timeCounter.gameObject.SetActive(false);
-		playerLEFT.activeAvatar.Reset();
-		playerRIGHT.activeAvatar.Reset();
+		playerLEFT.Reset();
+		playerRIGHT.Reset();
 	}
 
 }

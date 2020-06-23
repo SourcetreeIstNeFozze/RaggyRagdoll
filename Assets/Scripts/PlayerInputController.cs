@@ -28,6 +28,11 @@ public class PlayerInputController : MonoBehaviour
 
 	Settings settings { get { return Settings.instance; } }
 
+	[Header("Resetting")]
+	[HideInInspector] public List<Transform> childTransofrms = new List<Transform>();
+	private List<Quaternion> originalRotations = new List<Quaternion>();
+	private List<Vector3> originalPositions = new List<Vector3>();
+
 	public enum GroundedState
 	{
 		inAir,
@@ -39,7 +44,13 @@ public class PlayerInputController : MonoBehaviour
 
 	private void Awake()
 	{
-
+		// get initial state the hand
+		foreach (Transform child in transform)
+		{
+			childTransofrms.Add(child);
+			originalRotations.Add(child.rotation);
+			originalPositions.Add(child.position);
+		}
 
 	}
 
@@ -108,7 +119,7 @@ public class PlayerInputController : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			activeAvatar.Reset();
+			Reset();
 		}
 
 		// timers
@@ -370,6 +381,21 @@ public class PlayerInputController : MonoBehaviour
 		{
 			activeAvatar.childHandlers[i].thisPlayer = this;
 			activeAvatar.childHandlers[i].otherPlayer = otherPlayer;
+		}
+	}
+
+	public void Reset()
+	{
+		for (int i = 0; i < childTransofrms.Count; i++)
+		{
+			childTransofrms[i].position = originalPositions[i];
+			childTransofrms[i].rotation = originalRotations[i];
+
+			Rigidbody childRigidbody = activeAvatar.childHandlers[i].rigid;
+			if (childRigidbody != null)
+			{
+				childRigidbody.velocity = Vector3.zero;
+			}
 		}
 	}
 }
