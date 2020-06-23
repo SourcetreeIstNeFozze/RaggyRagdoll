@@ -19,6 +19,7 @@ public class Settings : MonoBehaviour
 	public enum FallMode { neverFall, getUpAutomatically, dontGetUp, spring}
 	public FallMode fallMode;
 	public enum ColisionAmplificationMode { velocityChange, velocityAddition, shockwave};
+	public float springForce;
 	public ColisionAmplificationMode colisionAmplificationMode;
 	public enum TransformType { global, local };
 	public TransformType poseSpace = TransformType.global;

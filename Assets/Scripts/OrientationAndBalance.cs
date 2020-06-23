@@ -97,11 +97,11 @@ public class OrientationAndBalance : MonoBehaviour
 		}
 		else if (settings.fallMode == Settings.FallMode.dontGetUp)
 		{
-			SetAngularXDrive(0f);
+			SetAngularXDrive(settings.springForce);
 
 			if (settings.fallDirection == Settings.FallDirection.XandZ)
 			{
-				SetAngularYZDrive(0f);
+				SetAngularYZDrive(settings.springForce);
 			}
 			else
 			{
