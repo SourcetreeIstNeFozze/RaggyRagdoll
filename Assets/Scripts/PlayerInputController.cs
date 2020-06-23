@@ -52,23 +52,25 @@ public class PlayerInputController : MonoBehaviour
 			originalPositions.Add(child.position);
 		}
 
-	}
+
+        if (this.tag.Equals("player_right"))
+        {
+            activeAvatar = settings.RIGHT;
+            invertControls = true;
+            configJoint = activeAvatar.GetComponent<ConfigurableJoint>();
+        }
+        else if (this.tag.Equals("player_left"))
+        {
+            activeAvatar = settings.LEFT;
+            invertControls = false;
+            configJoint = activeAvatar.GetComponent<ConfigurableJoint>();
+        }
+    }
 
 	// Start is called before the first frame update
 	void Start()
 	{
-		if (this.tag.Equals("player_right"))
-		{
-			activeAvatar = settings.RIGHT;
-			invertControls = true;
-            configJoint = activeAvatar.GetComponent<ConfigurableJoint>();
-		}
-		else if (this.tag.Equals("player_left"))
-		{
-			activeAvatar = settings.LEFT;
-			invertControls = false;
-            configJoint = activeAvatar.GetComponent<ConfigurableJoint>();
-        }
+		
 
 		activeAvatar.playerRoot.SetActive(true);
 
@@ -384,19 +386,22 @@ public class PlayerInputController : MonoBehaviour
 		}
 	}
 
-	public void Reset()
-	{
-		for (int i = 0; i < childTransofrms.Count; i++)
-		{
-			childTransofrms[i].position = originalPositions[i];
-			childTransofrms[i].rotation = originalRotations[i];
+    public void Reset()
+    {
+        for (int i = 0; i < childTransofrms.Count; i++)
+        {
+            childTransofrms[i].position = originalPositions[i];
+            childTransofrms[i].rotation = originalRotations[i];
+        }
 
-			Rigidbody childRigidbody = activeAvatar.childHandlers[i].rigid;
-			if (childRigidbody != null)
-			{
-				childRigidbody.velocity = Vector3.zero;
-			}
-		}
-	}
+        for (int i = 0; i < activeAvatar.childHandlers.Length; i++)
+        {
+            Rigidbody childRigidbody = activeAvatar.childHandlers[i].rigid;
+            if (childRigidbody != null)
+            {
+                childRigidbody.velocity = Vector3.zero;
+            }
+        }
+    }
 }
 
