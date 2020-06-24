@@ -36,6 +36,7 @@ public class Settings : MonoBehaviour
 
     [Header("If spring fall mode")]
     public float configJoint_Y_Offset = 2f;
+    public float anchorForce = 0.1f;
 
 	private void Awake()
 	{

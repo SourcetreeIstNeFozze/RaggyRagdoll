@@ -33,6 +33,11 @@ public class PlayerInputController : MonoBehaviour
 	private List<Quaternion> originalRotations = new List<Quaternion>();
 	private List<Vector3> originalPositions = new List<Vector3>();
 
+    // Achor stabilization
+    private Vector3 backFingerTip, frontFingerTip, relevantFingerTip, indexTipPos, middleTipPos;
+    float inputDirection;
+    Vector3 playerMidPoint;
+
 	public enum GroundedState
 	{
 		inAir,
@@ -184,16 +189,12 @@ public class PlayerInputController : MonoBehaviour
 			}
 
 
+
             // NEW ANCHOR-STABILISATION
             if (settings.fallMode == Settings.FallMode.spring)
             {
-                configJoint.connectedAnchor = new Vector3(
-                    activeAvatar.transform.position.x, 
-                    activeAvatar.transform.position.y, 
-                    activeAvatar.transform.position.z)
-                    + settings.configJoint_Y_Offset * activeAvatar.transform.up;
+                CalcAnchorStabilization();
             }
-
         }
 
 
@@ -220,7 +221,7 @@ public class PlayerInputController : MonoBehaviour
 		}
 
         // GLOBAL & LOCAL SPACE
-        // -> rotate the input-Vector2 by the rotation of the hand in order to fake global space
+        // -> rotate the input-Vector2 in order to fake global space
         if (settings.poseSpace == Settings.TransformType.global)
         {
             float bodyRotation = activeAvatar.playerRoot.transform.localEulerAngles.x;
@@ -402,6 +403,71 @@ public class PlayerInputController : MonoBehaviour
                 childRigidbody.velocity = Vector3.zero;
             }
         }
+    }
+
+    void CalcAnchorStabilization()
+    {
+        // -- Suche Finger, der am weitesten hinten ist in Relation zur Bewegungsrichtung --
+
+        // 1. GET INPUT DIRECTION
+        if (activeAvatar == settings.RIGHT)
+        {
+            indexTipPos = settings.RIGHT.indexFinger.fingerBottom.transform.GetChild(settings.RIGHT.indexFinger.fingerBottom.transform.childCount - 1).position;
+            middleTipPos = settings.RIGHT.middleFinger.fingerBottom.transform.GetChild(settings.RIGHT.middleFinger.fingerBottom.transform.childCount - 1).position;
+            playerMidPoint = (settings.LEFT.transform.position - settings.RIGHT.transform.position) / 2f + settings.RIGHT.transform.position;
+        }
+        else
+        {
+            indexTipPos = settings.LEFT.indexFinger.fingerBottom.transform.GetChild(settings.LEFT.indexFinger.fingerBottom.transform.childCount - 1).position;
+            middleTipPos = settings.LEFT.middleFinger.fingerBottom.transform.GetChild(settings.LEFT.middleFinger.fingerBottom.transform.childCount - 1).position;
+            playerMidPoint = (settings.RIGHT.transform.position - settings.LEFT.transform.position) / 2f + settings.LEFT.transform.position;
+        }
+        inputDirection = Mathf.Clamp01(activeAvatar.indexFinger.stickInput.value.x + activeAvatar.middleFinger.stickInput.value.x);
+
+
+        // 2. SETZE FINGER, DER AM WEITESTEN HINTEN IST IN RELATION ZUR BEWEGUNGS-RICHTUNG
+        //Vector3 playerMidPoint = (settings.LEFT.transform.position - settings.RIGHT.transform.position) / 2f + settings.RIGHT.transform.position;
+        if (inputDirection > 0)
+        {
+            // Spieler bewegt sich nach VORNE, ermittle Finger der am weitesten HINTEN ist
+            if ((indexTipPos - playerMidPoint).magnitude > (middleTipPos - playerMidPoint).magnitude)
+                relevantFingerTip = indexTipPos;
+            else
+                relevantFingerTip = middleTipPos;
+        }
+        else if (inputDirection < 0)
+        {
+            // Spieler bewegt sich nach HINTEN, ermittle Finger der am weitesten VORNE ist
+            if ((indexTipPos - playerMidPoint).magnitude < (middleTipPos - playerMidPoint).magnitude)
+                relevantFingerTip = indexTipPos;
+            else
+                relevantFingerTip = middleTipPos;
+        }
+        else
+            // kein Input
+            relevantFingerTip = (indexTipPos + middleTipPos) / 2f;
+
+        // 3. Vector holen
+
+        Vector3 lookDirection = (otherPlayer.transform.position - activeAvatar.transform.position);
+        lookDirection = new Vector3(lookDirection.x, 0, lookDirection.z);
+        Plane plane = new Plane(lookDirection, activeAvatar.transform.position);
+        Vector3 direction = plane.ClosestPointOnPlane(relevantFingerTip) - relevantFingerTip;
+        Vector3 newAchorPosition = activeAvatar.transform.InverseTransformPoint(activeAvatar.transform.position + direction);
+        Debug.DrawLine(plane.ClosestPointOnPlane(relevantFingerTip), relevantFingerTip, Color.blue);
+        Debug.DrawLine(activeAvatar.transform.position, activeAvatar.transform.position + new Vector3(0, -3, 0), Color.magenta);
+        Debug.DrawLine(relevantFingerTip, Vector3.zero, Color.black);
+
+
+        // 4. CONNECTED ANCHOR SETZEN
+        configJoint.connectedAnchor = new Vector3(
+            newAchorPosition.x,
+            settings.configJoint_Y_Offset, // nur y bleibt
+            newAchorPosition.z) -
+            activeAvatar.transform.InverseTransformVector(lookDirection.normalized * inputDirection * settings.anchorForce); // * strength;
+
+        Debug.DrawLine(activeAvatar.transform.TransformPoint(configJoint.connectedAnchor), Vector3.zero, Color.gray);
+        Debug.DrawLine(activeAvatar.transform.InverseTransformVector(lookDirection.normalized * inputDirection), Vector3.zero, Color.red);
     }
 }
 
