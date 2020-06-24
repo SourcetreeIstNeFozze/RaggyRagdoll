@@ -178,7 +178,7 @@ MonoBehaviour:
   compassBending: 1
   lookAtActive: 1
   fallDirection: 0
-  fallMode: 2
+  fallMode: 3
   springForce: 5
   colisionAmplificationMode: 0
   poseSpace: 1
@@ -1469,8 +1469,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 211126383}
-  m_LocalRotation: {x: 0.000000007450581, y: -7.0280956e-13, z: 0.0000943295, w: 1}
-  m_LocalPosition: {x: -4.483484, y: -1.3133215, z: -9.44926}
+  m_LocalRotation: {x: -1e-45, y: -0, z: 0.0000943295, w: 1}
+  m_LocalPosition: {x: -4.483484, y: -1.3133215, z: -11.44926}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 945575786}
@@ -1942,7 +1942,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746894800}
-  m_LocalRotation: {x: 0.000000007450581, y: -7.0280956e-13, z: 0.0000943295, w: 1}
+  m_LocalRotation: {x: -1e-45, y: -0, z: 0.0000943295, w: 1}
   m_LocalPosition: {x: -4.483484, y: -1.3133215, z: -11.44926}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

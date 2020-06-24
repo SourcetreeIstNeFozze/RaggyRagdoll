@@ -184,7 +184,7 @@ public class PlayerInputController : MonoBehaviour
 			}
 
 
-            // NEW STABILISATION
+            // NEW ANCHOR-STABILISATION
             if (settings.fallMode == Settings.FallMode.spring)
             {
                 configJoint.connectedAnchor = new Vector3(
