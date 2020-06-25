@@ -145,14 +145,14 @@ public class OrientationAndBalance : MonoBehaviour
 
     private void SetYDrive(float value)
     {
-        JointDrive yDrive = new JointDrive();
+        JointDrive yDrive = affectedJoint.yDrive;
         yDrive.positionSpring = value;
         affectedJoint.yDrive = yDrive;
     }
 
     private void SetZDrive(float value)
     {
-        JointDrive zDrive = new JointDrive();
+        JointDrive zDrive = affectedJoint.zDrive;
         zDrive.positionSpring = value;
         affectedJoint.yDrive = zDrive;
     }
