@@ -28,19 +28,12 @@ public class PlayerSound : MonoBehaviour
 			// sound 
 			soundManager.Play(ExtensionMethods.GetRandomElement<string>(new List<string>() { "guitar1", "guitar2", "guitar3", "guitar4", "guitar5", "guitar6", "guitar7", "guitar8" }));
 
-			////partickle effects
-			//EffectTuple effectToSpawn = GetUnusedEffect();
+		};
 
-			//// if no free effect found, make a new one
-			//if (effectToSpawn == null)
-			//{
-			//	//spawn new Kick effect
-			//	EffectTuple newEffect = new EffectTuple(GameObject.Instantiate(contactParticlePrefab);
-			//	kickEffects.Add(newEffect);
-			//	effectToSpawn = newEffect;
-			//}
-
-			//effectToSpawn.gameobject.transform.position = 
+		this.thisPlayer.activeAvatar.middleFinger.fingerBottom.OnTouchedGround += () =>
+		{
+			// sound 
+			soundManager.Play(ExtensionMethods.GetRandomElement<string>(new List<string>() { "guitar1", "guitar2", "guitar3", "guitar4", "guitar5", "guitar6", "guitar7", "guitar8" }));
 
 		};
 
