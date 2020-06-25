@@ -7,11 +7,16 @@ public class PlayerFeedback : MonoBehaviour
 	PlayerInputController thisPlayer;
 	SoundManager soundManager { get { return SoundManager.instance; } }
 
-	public GameObject contactParticlePrefab;
-	public List<EffectTuple> kickEffects;
-	public Transform poolingPlace;
-	// Start is called before the first frame update
+	[Header("Effects")]
+	public GameObject kickEffect_prefab;
+	//public bool kickEffectinCameraSpace;
+	//public GameObject stompEffect;
+	//public GameObject fallEffect;
+	private List<EffectTuple> kickEffects = new List<EffectTuple>();
 
+	public Transform particlePoolingPlace;
+
+	// finger references
 	private ActiveFinger indexFinger;
 	private ActiveFinger middleFinger;
 	private CollisionHandler[] wristTriggers;
@@ -44,7 +49,8 @@ public class PlayerFeedback : MonoBehaviour
 	}
 
 	private void WireFingerEvents(ActiveFinger finger)
-	{ 
+	{
+		// stomping
 		finger.fingerBottom.OnTouchedGround += () =>
 		{
 			// sound 
@@ -52,20 +58,31 @@ public class PlayerFeedback : MonoBehaviour
 
 		};
 
-		// stomping
+		//kicking
 		finger.fingerBottom.OnContactWithOtherPlayer += (collision) =>
 		{
 			Debug.Log("Cimbals");
 			// sound 
 			soundManager.PlayOrRestart(ExtensionMethods.GetRandomElement<string>(new List<string>() { "cimbals1", "cimbals1", "cimbals2", "cimbals3", "cimbals4", "cimbals5" }));
 
+			//particles
+			EffectTuple effectToSpawn = GetUnusedEffect(kickEffects);
+			if (effectToSpawn == null)
+			{
+				effectToSpawn = new EffectTuple(GameObject.Instantiate(kickEffect_prefab));
+				kickEffects.Add(effectToSpawn);
+			}
+			SpawnParticleEffect(effectToSpawn, collision.contacts[0].point);
+
+
 		};
+
+
 
 	}
 
 	public  class EffectTuple
 	{
-		public string effectType;
 		public GameObject gameobject;
 		public bool isUsed = false;
 
@@ -90,7 +107,22 @@ public class PlayerFeedback : MonoBehaviour
 		}
 
 		return null;
-	} 
+	}
+
+	public void SpawnParticleEffect(EffectTuple effect, Vector3 wordspace, bool toCameraSpace = false, float depth = 5f)
+	{
+		effect.gameobject.transform.position = wordspace;
+		effect.particleSystem.Clear();
+		effect.particleSystem.Play();
+		effect.isUsed = true;
+	}
+
+	public void PoolParticleEffect(EffectTuple effect) 
+	{
+		effect.gameobject.transform.position = particlePoolingPlace.position;
+		effect.particleSystem.Stop();
+		effect.isUsed = false;
+	}
 
 	public void FreeEffect(EffectTuple effect)
 	{ }
