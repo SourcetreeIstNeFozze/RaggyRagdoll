@@ -20,4 +20,16 @@ public static class ExtensionMethods
         v.y = (sin * tx) + (cos * ty);
         return v;
     }
+
+	public static T GetRandomElement<T>(List<T> list)
+	{
+		int randomIndex = Random.Range(0, list.Count);
+		return list[randomIndex];
+	}
+
+	public static T GetRandomElement<T>(T[] array)
+	{
+		int randomIndex = Random.Range(0, array.Length);
+		return array[randomIndex];
+	}
 }

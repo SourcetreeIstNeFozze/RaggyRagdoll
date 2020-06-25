@@ -46,6 +46,7 @@ public class CollisionHandler : MonoBehaviour
 		{
 			trackingpoint = this.transform;
 		}
+
 		_lastPosition = _currentposition = trackingpoint.position;
 
         // Dynamically assign collision references
@@ -85,9 +86,9 @@ public class CollisionHandler : MonoBehaviour
 		// GROUND DETECTION
 		if (collision.collider.tag == "Environment")
 		{
+			Debug.Log("Collision mit dem environment");
 			touchesGround = true;
 			OnTouchedGround?.Invoke();
-
 		}
 
 
