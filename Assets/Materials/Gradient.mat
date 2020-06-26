@@ -10,7 +10,7 @@ Material:
   m_Name: Gradient
   m_Shader: {fileID: -6465566751694194690, guid: ba7856b4edb8d694e8abb53b89a0a687,
     type: 3}
-  m_ShaderKeywords: ENUM_36980BBA_C ENUM_36980BBA_OBJECT ENUM_ED820FB5_DOTS ENUM_ED820FB5_STRIPES
+  m_ShaderKeywords: ENUM_36980BBA_C ENUM_36980BBA_OBJECT ENUM_ED820FB5_STRIPES ENUM_ED820FB5_TRUCHET
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -60,8 +60,8 @@ Material:
     - Boolean_485FB105: 1
     - Boolean_75096CA8: 0
     - ENUM_36980BBA: 3
-    - ENUM_ED820FB5: 1
-    - Vector1_13D399D9: 0.3
+    - ENUM_ED820FB5: 3
+    - Vector1_13D399D9: 0.317
     - Vector1_36AE5F7E: 2.5
     - Vector1_6FDF0C71: 0
     - Vector1_AE8CA116: 3.92

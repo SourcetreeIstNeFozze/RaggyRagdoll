@@ -77,7 +77,7 @@ Material:
     - ENUM_E4DCC60A: 2
     - ENUM_ED820FB5: 1
     - Vector1_13D399D9: 1
-    - Vector1_2C9D5D25: 0.202
+    - Vector1_2C9D5D25: 0.143
     - Vector1_36AE5F7E: 1.57
     - Vector1_503B8EB: -0.12
     - Vector1_6FDF0C71: 0.42
@@ -112,7 +112,7 @@ Material:
     m_Colors:
     - Color_1991687: {r: 0.1792453, g: 0.1246584, b: 0.04142934, a: 1}
     - Color_396B1D31: {r: 0.2735849, g: 0.20857622, b: 0.15356888, a: 0}
-    - Color_5AD9E11C: {r: 0.26415092, g: 0.21005382, b: 0.088465646, a: 0}
+    - Color_5AD9E11C: {r: 0.20754719, g: 0.16965558, b: 0.07929869, a: 0}
     - Color_F5136894: {r: 1, g: 0.5130693, b: 0, a: 0}
     - Vector2_58730590: {r: 0.36, g: 27.99, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
