@@ -1,0 +1,127 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3404538152600249787
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3992062290277705012}
+  - component: {fileID: 6349461857838795310}
+  m_Layer: 0
+  m_Name: Audio Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3992062290277705012
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3404538152600249787}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.7543073, y: 2.0390208, z: 1.5452747}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6349461857838795310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3404538152600249787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63753315da8a4a244998fe3ceffa6d09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24300002, guid: 7b7583039ee4a304684060cb42369819, type: 2}
+  sounds:
+  - name: guitar1
+    clip: {fileID: 8300000, guid: b41583b300e88624e9faaab73f3639be, type: 3}
+    targetVolume: 1
+    pitch: 1
+    source: {fileID: 0}
+    fadeActivated: 0
+    fadeTime: 0
+    sustained: 0
+  - name: guitar2
+    clip: {fileID: 8300000, guid: 905917ca264a4674a80ec45f7bb321d8, type: 3}
+    targetVolume: 1
+    pitch: 1
+    source: {fileID: 0}
+    fadeActivated: 0
+    fadeTime: 0
+    sustained: 0
+  - name: guitar3
+    clip: {fileID: 8300000, guid: ce438cb2fee0cd9499ff2eacf02ec45f, type: 3}
+    targetVolume: 1
+    pitch: 1
+    source: {fileID: 0}
+    fadeActivated: 0
+    fadeTime: 0
+    sustained: 0
+  - name: guitar4
+    clip: {fileID: 8300000, guid: 1d1defc715316a949a03f4103d6c4462, type: 3}
+    targetVolume: 1
+    pitch: 1
+    source: {fileID: 0}
+    fadeActivated: 0
+    fadeTime: 0
+    sustained: 0
+  - name: guitar5
+    clip: {fileID: 8300000, guid: def9cec8960bbb84bbf2002160132d4a, type: 3}
+    targetVolume: 1
+    pitch: 1
+    source: {fileID: 0}
+    fadeActivated: 0
+    fadeTime: 0
+    sustained: 0
+  - name: guitar6
+    clip: {fileID: 8300000, guid: d3d3cd9132362e848902630c2485acfc, type: 3}
+    targetVolume: 1
+    pitch: 1
+    source: {fileID: 0}
+    fadeActivated: 0
+    fadeTime: 0
+    sustained: 0
+  - name: guitar7
+    clip: {fileID: 8300000, guid: a3642d698971c2143a9f23d9387132d5, type: 3}
+    targetVolume: 1
+    pitch: 1
+    source: {fileID: 0}
+    fadeActivated: 0
+    fadeTime: 0
+    sustained: 0
+  - name: guitar8
+    clip: {fileID: 8300000, guid: 88df0da9bb16abf40aa719b17418f0ef, type: 3}
+    targetVolume: 1
+    pitch: 1
+    source: {fileID: 0}
+    fadeActivated: 0
+    fadeTime: 0
+    sustained: 0
+  - name: gong
+    clip: {fileID: 8300000, guid: 97c80eea6175e0245a31fa9609eba985, type: 3}
+    targetVolume: 1
+    pitch: 1
+    source: {fileID: 0}
+    fadeActivated: 0
+    fadeTime: 0
+    sustained: 0
+  - name: cimbals1
+    clip: {fileID: 8300000, guid: 14fd59d04915abc46b5ec1b57d7dec8a, type: 3}
+    targetVolume: 1
+    pitch: 1
+    source: {fileID: 0}
+    fadeActivated: 0
+    fadeTime: 0
+    sustained: 0
