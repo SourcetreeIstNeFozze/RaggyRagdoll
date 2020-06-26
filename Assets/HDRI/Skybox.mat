@@ -20,6 +20,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_E172041E:
+        m_Texture: {fileID: 2800000, guid: 0b343b179d2251243a8bbed3fe8e2773, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -44,17 +48,22 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SkyboxTextureProjection_BEDE7F8E_Texture2DE411DF53_1799580399:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Boolean_CA743AB6: 1
-    - Boolean_D3DBAD06: 0
-    - Vector1_5552711D: -0.76
+    - Boolean_D3DBAD06: 1
+    - Vector1_13C1DDF2: 1.04
+    - Vector1_5552711D: 1
     - Vector1_81A2958B: -1.19
     - Vector1_C7525268: 0.301
-    - Vector1_E5710C17: 0.01
+    - Vector1_E5710C17: 1
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -79,6 +88,7 @@ Material:
     m_Colors:
     - Color_79FB02FA: {r: 1, g: 0.38841468, b: 0, a: 0}
     - Color_839F572D: {r: 0, g: 0, b: 0, a: 0}
+    - Vector2_890D18D7: {r: 4, g: 1, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
