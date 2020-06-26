@@ -6,6 +6,7 @@ using System.Linq;
 public class CollisionHandler : MonoBehaviour
 {
 	Settings settings { get { return Settings.instance; } }
+	CollisionManager collisionManager { get { return CollisionManager.instance; } }
 
 	[Header("Ground Detection")]
 	public bool touchesGround;
@@ -18,13 +19,15 @@ public class CollisionHandler : MonoBehaviour
 	[Space]
 	[Header("Collision Amplification")]
 	[HideInInspector] public bool shockWave;
-	
+	//public Vector3 lastCollisionPoint_this;
+	//public Vector3 lastCollisionPoint_other;
+
 	[Tooltip("transform used for traking the movement vector of this object")]
 	public Transform trackingpoint;
 	private Vector3 _lastPosition;
 	private Vector3 _currentposition;
-	public Rigidbody rigid;
-
+	[HideInInspector] public Rigidbody rigid;
+	[HideInInspector] public Collider collider;
 	[Tooltip("how much strength should be applied when THIS rigidbody hits another")]
 	public float applidedStrenght;
 
@@ -35,6 +38,7 @@ public class CollisionHandler : MonoBehaviour
 	void Awake()
 	{
 		rigid = this.GetComponent<Rigidbody>();
+		collider = this.GetComponent<Collider>();
 
 		OnKickTriggerEntered += () => { Debug.Log("Shell Collision"); };
 	}
@@ -83,6 +87,8 @@ public class CollisionHandler : MonoBehaviour
 	private void OnCollisionEnter(Collision collision)
 	{
 
+		bool uniqueCollision = collisionManager.AddCollision(new ExtendedCollision(this.gameObject, this.rigid, this.collider, collision));
+		//if (uniqueCollision) { 
 		// GROUND DETECTION
 		if (collision.collider.tag == "Environment")
 		{
@@ -91,48 +97,48 @@ public class CollisionHandler : MonoBehaviour
 		}
 
 
-		if (!collision.gameObject.tag.Equals("Environment"))
+		//if (!collision.gameObject.tag.Equals("Environment"))
 			Debug.Log($"collision: from {collision.gameObject.name} on {collision.transform.root} to {this.gameObject.name} on {this.gameObject.transform.root}");
 
-		if (collision.gameObject.tag.Contains("Player"))
-		{
-			CollisionHandler collisionHandler = collision.gameObject.GetComponent<CollisionHandler>();
-
-			if (collisionHandler != null)
+			if (collision.gameObject.tag.Contains("Player"))
 			{
-                // CONTACT WITH OTHE RPLAYER
+				CollisionHandler collisionHandler = collision.gameObject.GetComponent<CollisionHandler>();
 
-				if (otherPlayer.activeAvatar.childHandlers.Contains(collisionHandler))
+				if (collisionHandler != null)
 				{
+					// CONTACT WITH OTHE RPLAYER
 
-					OnContactWithOtherPlayer?.Invoke(collision);
-					thisPlayer.timeSinceLastContact = 0;
-					// COLLISION AMPLIFICATION
-
-					// when THIS object is kicked, the force applied to THIS object will be multipied by the appliedStrength of the OTHER OBECT
-					// eg when this object is hit by "foot" and foot's applied strength is 50, the strength of this collision will be amplified by 50
-					if (settings.colisionAmplificationMode == Settings.ColisionAmplificationMode.velocityAddition)
+					if (otherPlayer.activeAvatar.childHandlers.Contains(collisionHandler))
 					{
-						//Debug.Log("Amplifying collision on: " + gameObject.name + "(" + this.transform.root.tag + "), velocity = " + this.GetComponent<Rigidbody>().velocity);
-						rigid.AddForceAtPosition(
-							collisionHandler.applidedStrenght * collisionHandler.rigid.velocity, // * collisionAmplifier.GetMovementVector(),
-							collision.contacts[0].point,
-							ForceMode.VelocityChange);
 
-						//Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + collisionAmplifier.GetComponent<Rigidbody>().velocity * collisionAmplifier.applidedStrenght, Color.red, 3f);
-						//Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + Vector3.right*5, Color.black);
-						//Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + Vector3.forward*5, Color.black);
+						OnContactWithOtherPlayer?.Invoke(collision);
+						thisPlayer.timeSinceLastContact = 0;
+						// COLLISION AMPLIFICATION
+
+						// when THIS object is kicked, the force applied to THIS object will be multipied by the appliedStrength of the OTHER OBECT
+						// eg when this object is hit by "foot" and foot's applied strength is 50, the strength of this collision will be amplified by 50
+						if (settings.colisionAmplificationMode == Settings.ColisionAmplificationMode.velocityAddition)
+						{
+							//Debug.Log("Amplifying collision on: " + gameObject.name + "(" + this.transform.root.tag + "), velocity = " + this.GetComponent<Rigidbody>().velocity);
+							rigid.AddForceAtPosition(
+								collisionHandler.applidedStrenght * collisionHandler.rigid.velocity, // * collisionAmplifier.GetMovementVector(),
+								collision.contacts[0].point,
+								ForceMode.VelocityChange);
+
+							//Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + collisionAmplifier.GetComponent<Rigidbody>().velocity * collisionAmplifier.applidedStrenght, Color.red, 3f);
+							//Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + Vector3.right*5, Color.black);
+							//Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + Vector3.forward*5, Color.black);
+						}
+
+						else if (settings.colisionAmplificationMode == Settings.ColisionAmplificationMode.velocityChange)
+						{
+							rigid.velocity = collisionHandler.applidedStrenght * collisionHandler.rigid.velocity;
+						}
+
 					}
 
-					else if (settings.colisionAmplificationMode == Settings.ColisionAmplificationMode.velocityChange)
-					{
-						rigid.velocity = collisionHandler.applidedStrenght * collisionHandler.rigid.velocity;
-					}  
-	
 				}
-
-			}
-
+			//}
 
 		}
 	}
@@ -190,4 +196,6 @@ public class CollisionHandler : MonoBehaviour
 		}
 	}
 }
+
+
 
