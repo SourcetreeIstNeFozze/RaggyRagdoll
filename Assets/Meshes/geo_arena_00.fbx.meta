@@ -1,23 +1,9 @@
 fileFormatVersion: 2
-guid: 3d4381ad12d345d418809bfcf53e8727
+guid: d448802a6a3b52f4a933d3cd4f5b5583
 ModelImporter:
   serializedVersion: 19300
-  internalIDToNameTable:
-  - first:
-      74: -797241134248266168
-    second: Arm|ArmatureAction
-  - first:
-      74: -6517933886045618512
-    second: Arm_ungleicheFinger|Arm_ungleicheFinger|Arm_ungleicheFinger|ArmAction.001|Arm_ungle
-  - first:
-      74: 5702279181152855933
-    second: Arm_ungleicheFinger|Arm_ungleicheFinger|Arm_ungleicheFinger|ArmAction|Arm_ungleiche
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: GREY
-    second: {fileID: 2100000, guid: de9388e2684312549a46afd2399cade5, type: 2}
+  internalIDToNameTable: []
+  externalObjects: {}
   materials:
     materialImportMode: 1
     materialName: 0
