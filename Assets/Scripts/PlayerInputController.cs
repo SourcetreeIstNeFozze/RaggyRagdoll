@@ -41,6 +41,8 @@ public class PlayerInputController : MonoBehaviour
     float jointDrive_startMaxForce;
     enum AnchorState { connected, broken};
     AnchorState anchorState = AnchorState.connected;
+    HandReferences otherPlayerRef;
+    Vector3 lookDirection, newAchorPosition;
 
     public enum GroundedState
     {
@@ -123,6 +125,7 @@ public class PlayerInputController : MonoBehaviour
             };
         }
         jointDrive_startValue = configJoint.xDrive.positionSpring;
+        otherPlayerRef = otherPlayer.GetComponentInChildren<HandReferences>();
         //jointDrive_startMaxForce = configJoint.xDrive.maximumForce;
     }
 
@@ -196,9 +199,16 @@ public class PlayerInputController : MonoBehaviour
 
 
             // NEW ANCHOR-STABILISATION
-            if (settings.fallMode == Settings.FallMode.spring)
+            if (settings.fallMode == Settings.FallMode.spring_backFoot)
             {
                 CalcAnchorStabilization();
+                CalcAnchorBreakForce();
+            }
+
+            if (settings.fallMode == Settings.FallMode.spring_feet)
+            {
+                FeetBalance();
+                AnchorInputForce();
                 CalcAnchorBreakForce();
             }
         }
@@ -411,28 +421,22 @@ public class PlayerInputController : MonoBehaviour
                 childRigidbody.velocity = Vector3.zero;
             }
         }
-        SetXYZDrive(jointDrive_startValue);
-        anchorState = AnchorState.connected;
-        print("reset");
+
+        if (settings.fallMode == Settings.FallMode.spring_backFoot || settings.fallMode == Settings.FallMode.spring_feet)
+        {
+            SetXYZDrive(jointDrive_startValue);
+            anchorState = AnchorState.connected;
+        }
     }
+
+
 
     void CalcAnchorStabilization()
     {
         // -- Suche Finger, der am weitesten hinten ist in Relation zur Bewegungsrichtung --
 
         // 1. GET INPUT DIRECTION
-        if (activeAvatar == settings.RIGHT)
-        {
-            indexTipPos = settings.RIGHT.indexFinger.fingerBottom.transform.GetChild(settings.RIGHT.indexFinger.fingerBottom.transform.childCount - 1).position;
-            middleTipPos = settings.RIGHT.middleFinger.fingerBottom.transform.GetChild(settings.RIGHT.middleFinger.fingerBottom.transform.childCount - 1).position;
-            playerMidPoint = (settings.LEFT.transform.position - settings.RIGHT.transform.position) / 2f + settings.RIGHT.transform.position;
-        }
-        else
-        {
-            indexTipPos = settings.LEFT.indexFinger.fingerBottom.transform.GetChild(settings.LEFT.indexFinger.fingerBottom.transform.childCount - 1).position;
-            middleTipPos = settings.LEFT.middleFinger.fingerBottom.transform.GetChild(settings.LEFT.middleFinger.fingerBottom.transform.childCount - 1).position;
-            playerMidPoint = (settings.RIGHT.transform.position - settings.LEFT.transform.position) / 2f + settings.LEFT.transform.position;
-        }
+        GetFingerTipData();
         inputDirection = Mathf.Clamp01(activeAvatar.indexFinger.stickInput.value.x + activeAvatar.middleFinger.stickInput.value.x);
 
 
@@ -515,9 +519,72 @@ public class PlayerInputController : MonoBehaviour
         if (Mathf.Abs(handAngle) > settings.anchorBreakAngleLimit)
             {
                 anchorState = AnchorState.broken;
-                SetXYZDrive(0);
+                //SetXYZDrive(0);
                 print("BREAK " + handAngle);
             }
+    }
+
+    void GetFingerTipData()
+    {
+        indexTipPos = activeAvatar.indexFinger.fingerBottom.transform.GetChild(activeAvatar.indexFinger.fingerBottom.transform.childCount - 1).position;
+        middleTipPos = activeAvatar.middleFinger.fingerBottom.transform.GetChild(activeAvatar.middleFinger.fingerBottom.transform.childCount - 1).position;
+        playerMidPoint = (otherPlayerRef.transform.position - activeAvatar.transform.position) / 2f + activeAvatar.transform.position;
+        lookDirection = (otherPlayerRef.transform.position - activeAvatar.transform.position);
+        lookDirection = new Vector3(lookDirection.x, 0, lookDirection.z);
+    }
+
+    private void FeetBalance()
+    {
+            GetFingerTipData();
+            GroundedState groundedState = GetGroundedState();
+            float conAnchorYPos = activeAvatar.transform.position.y + settings.configJoint_Y_Offset;
+            //print("gounrdedState: " + groundedState);
+            switch (groundedState)
+            {
+                case GroundedState.inAir:
+                    configJoint.connectedAnchor = activeAvatar.transform.position;
+                    break;
+
+                case GroundedState.bothFeetOnTheFloor:
+                    Vector3 fingerMiddlePos = (indexTipPos + middleTipPos) / 2f;
+                    configJoint.connectedAnchor = new Vector3(fingerMiddlePos.x, conAnchorYPos, fingerMiddlePos.z);
+                    break;
+
+                case GroundedState.leftFootOnThefloor:
+                    newAchorPosition = HandPlusFingertipDirection(indexTipPos);
+                    configJoint.connectedAnchor = new Vector3(newAchorPosition.x, conAnchorYPos, newAchorPosition.z);
+                    break;
+
+                case GroundedState.rightFootOnTheFloor:
+                    newAchorPosition = HandPlusFingertipDirection(middleTipPos);
+                    configJoint.connectedAnchor = new Vector3(newAchorPosition.x, conAnchorYPos, newAchorPosition.z);
+                    break;
+            }
+        if (anchorState == AnchorState.broken)
+            configJoint.connectedAnchor = activeAvatar.transform.position;// - Vector3.up * settings.configJoint_Y_Offset;
+
+            Debug.DrawLine(configJoint.connectedAnchor, Vector3.zero, Color.blue);
+    }
+
+    private void AnchorInputForce()
+    {
+        inputDirection = Mathf.Clamp(activeAvatar.indexFinger.stickInput.value.x + activeAvatar.middleFinger.stickInput.value.x, -1f, 1f);
+        configJoint.connectedAnchor += lookDirection.normalized * inputDirection * settings.anchorInputStrength;
+    }
+
+
+    private Vector3 HandPlusFingertipDirection(Vector3 fingerTipPos)
+    {
+        // too weird zu explain; just a bit math
+        Plane plane = new Plane(lookDirection, activeAvatar.transform.position);
+        Vector3 fingerTipToHand_xDistance = fingerTipPos - plane.ClosestPointOnPlane(fingerTipPos);
+        Vector3 newAchorPosition = activeAvatar.transform.position + fingerTipToHand_xDistance;
+
+        Debug.DrawLine(plane.ClosestPointOnPlane(fingerTipPos), fingerTipPos, Color.blue);
+        Debug.DrawLine(activeAvatar.transform.position, activeAvatar.transform.position + new Vector3(0, -3, 0), Color.magenta);
+        Debug.DrawLine(fingerTipPos, Vector3.zero, Color.black);
+
+        return newAchorPosition;
     }
 
     private void SetXYZDrive(float value)

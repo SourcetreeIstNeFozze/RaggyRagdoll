@@ -53,9 +53,9 @@ public class OrientationAndBalance : MonoBehaviour
 			orientationCentre.transform.LookAt(new Vector3(lookAtTarget.transform.position.x, orientationCentre.transform.position.y + hightToLookAt, lookAtTarget.transform.position.z));
 		}
 
-        if (settings.fallMode != Settings.FallMode.spring)
+        if (settings.fallMode != Settings.FallMode.spring_backFoot && settings.fallMode != Settings.FallMode.spring_feet)
         {
-
+            SetXDrive(0);
             SetYDrive(0);
             SetZDrive(0);
         }
@@ -143,6 +143,13 @@ public class OrientationAndBalance : MonoBehaviour
 		affectedJoint.angularYZDrive = YZDrive;
 	}
 
+    private void SetXDrive(float value)
+    {
+        JointDrive xDrive = affectedJoint.xDrive;
+        xDrive.positionSpring = value;
+        affectedJoint.xDrive = xDrive;
+    }
+
     private void SetYDrive(float value)
     {
         JointDrive yDrive = affectedJoint.yDrive;
@@ -154,7 +161,7 @@ public class OrientationAndBalance : MonoBehaviour
     {
         JointDrive zDrive = affectedJoint.zDrive;
         zDrive.positionSpring = value;
-        affectedJoint.yDrive = zDrive;
+        affectedJoint.zDrive = zDrive;
     }
 
 

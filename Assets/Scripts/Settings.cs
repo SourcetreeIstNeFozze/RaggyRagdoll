@@ -16,7 +16,7 @@ public class Settings : MonoBehaviour
 	public bool lookAtActive;
 	public enum FallDirection { X, XandZ}
 	public FallDirection fallDirection;
-	public enum FallMode { neverFall, getUpAutomatically, dontGetUp, spring}
+	public enum FallMode { neverFall, getUpAutomatically, dontGetUp, spring_backFoot, spring_feet, bend}
 	public FallMode fallMode;
 	public enum ColisionAmplificationMode { velocityChange, velocityAddition, shockwave};
 	public float springForce;
