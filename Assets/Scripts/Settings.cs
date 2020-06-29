@@ -8,29 +8,38 @@ public class Settings : MonoBehaviour
 	public HandReferences LEFT;
 	public HandReferences RIGHT;
 
-	[Header("Config")]
+	[Header("Movement")]
 	public bool useFK;
 	public bool useTriggersCurl = true;
 	public bool amplifyJump;
+	public float jumpForce = 10;
 	public bool compassBending;
 	public bool lookAtActive;
-	public enum FallDirection { X, XandZ}
-	public FallDirection fallDirection;
-	public enum FallMode { neverFall, getUpAutomatically, dontGetUp, spring_backFoot, spring_feet, bend}
-	public FallMode fallMode;
-	public enum ColisionAmplificationMode { none, velocityChange, velocityAddition, shockwave};
-	public float springForce;
-	public ColisionAmplificationMode colisionAmplificationMode;
 	public enum TransformType { global, local };
 	public TransformType poseSpace = TransformType.global;
-
-
-	[Header("Physics Correction")]
 	public float hipRotationSpeed;
 	public float maxHipRotation = 50;
 	public float maxHipPushForce = 10;
-	public float jumpForce = 10;
+	
 
+	[Header("Falling and Stabilisation")]
+	public FallDirection fallDirection;
+	public enum FallDirection { X, XandZ }
+	public enum FallMode { neverFall, getUpAutomatically, dontGetUp, spring_backFoot, spring_feet, bend}
+	public FallMode fallMode;
+	public float springForce;
+
+	[Header("Collision Amplification")]
+	public ColisionAmplificationMode colisionAmplificationMode;
+	public enum ColisionAmplificationMode { none, velocityChange, velocityAddition }
+	public enum VelocityMode { accuratePhysics, actualVelocityWrongDirection,velocityAndDirectionPulledFromYourAss }
+	public VelocityMode velocityMode;
+	[Range(0, 100)] public float fingerTipsAdditionalForce = 3;
+	[Range(0, 100)] public float otherPartsAdditionalForce = 1;
+	[Range(0, 300)] public float jointSpringForceWhenWeek = 20;
+	public enum JointWeakening { none, instantReturn, gradualReturn}
+	public JointWeakening jointsWeakening;
+	
 	[Header("Detect fast stick releases")]
 	public float stickReleaseTimeWindow = 0.1f;
 
@@ -47,16 +56,4 @@ public class Settings : MonoBehaviour
 			Settings.instance = this;
 		}
 	}
-	// Start is called before the first frame update
-	void Start()
-    {
-    
-		
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

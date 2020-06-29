@@ -145,24 +145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd8a61b8d46a2a148adc7fcb5e3c7e22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &39513856 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 144884747939419957, guid: 89d06bee7f264a044b220f050619900c,
-    type: 3}
-  m_PrefabInstance: {fileID: 113699487}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &39513862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 39513856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39a5fe79a28d64b44aed45483f66fa85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &68451383
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,17 +193,22 @@ MonoBehaviour:
   useFK: 1
   useTriggersCurl: 1
   amplifyJump: 0
+  jumpForce: 10
   compassBending: 1
   lookAtActive: 1
-  fallDirection: 0
-  fallMode: 0
-  springForce: 1
-  colisionAmplificationMode: 0
   poseSpace: 0
   hipRotationSpeed: 1
   maxHipRotation: 50
   maxHipPushForce: 10
-  jumpForce: 10
+  fallDirection: 0
+  fallMode: 0
+  springForce: 1
+  colisionAmplificationMode: 2
+  velocityMode: 1
+  fingerTipsAdditionalForce: 2
+  otherPartsAdditionalForce: 1
+  jointSpringForceWhenWeek: 20
+  jointsWeakening: 0
   stickReleaseTimeWindow: 0.1
   configJoint_Y_Offset: 0.5
   anchorInputStrength: 0.1
@@ -1222,6 +1209,11 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.z
       value: -0.029016972
       objectReference: {fileID: 0}
+    - target: {fileID: 8788283816192771441, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
+        type: 3}
+      propertyPath: particlePoolingPlace
+      value: 
+      objectReference: {fileID: 149090769}
     - target: {fileID: 8891347199588412149, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
         type: 3}
       propertyPath: m_ConnectedAnchor.z
@@ -1542,27 +1534,6 @@ Transform:
   m_Father: {fileID: 335060929}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &123850555 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5481868599362241687, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
-    type: 3}
-  m_PrefabInstance: {fileID: 2071286444}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &123850558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 123850555}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1324755a1630ae543956df819fc540c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  kickEffect_prefab: {fileID: 2058587245799093297, guid: e99f137096f65124cbd02d5fcd050480,
-    type: 3}
-  particlePoolingPlace: {fileID: 149090769}
 --- !u!1 &145486238
 GameObject:
   m_ObjectHideFlags: 3
@@ -1995,11 +1966,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
+  applidedStrenght: 0
   rigid: {fileID: 0}
   collider: {fileID: 0}
-  applidedStrenght: 0
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!114 &454253318 stripped
@@ -2008,7 +1980,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 2071286444}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 123850555}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20490689a5d57bf4c9b7a2f20a56985d, type: 3}
@@ -2367,33 +2339,12 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 84505653}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1453721954}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20490689a5d57bf4c9b7a2f20a56985d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1453721954 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5481868599362241687, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
-    type: 3}
-  m_PrefabInstance: {fileID: 84505653}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1453721957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1453721954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1324755a1630ae543956df819fc540c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  kickEffect_prefab: {fileID: 2058587245799093297, guid: 6d3aed39ed9a1bf44aeb383657aab31c,
-    type: 3}
-  particlePoolingPlace: {fileID: 149090769}
 --- !u!1 &1504014097 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1156043727, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
@@ -2763,11 +2714,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
+  applidedStrenght: 0
   rigid: {fileID: 0}
   collider: {fileID: 0}
-  applidedStrenght: 0
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &1947333809 stripped
@@ -3321,6 +3273,11 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.z
       value: -0.029016972
       objectReference: {fileID: 0}
+    - target: {fileID: 8788283816192771441, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
+        type: 3}
+      propertyPath: particlePoolingPlace
+      value: 
+      objectReference: {fileID: 149090769}
     - target: {fileID: 8912757690010562931, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
         type: 3}
       propertyPath: lookAtTarget

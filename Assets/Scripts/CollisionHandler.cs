@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 public class CollisionHandler : MonoBehaviour
 {
@@ -14,38 +15,50 @@ public class CollisionHandler : MonoBehaviour
 	public System.Action OnLeftGound;
 	public System.Action OnLeftBounds;
 	public System.Action OnKickTriggerEntered;
-	public System.Action<Collision> OnContactWithOtherPlayer;
+	public System.Action<Collision> OnTouchedOtherPlayer;
+	public System.Action<Collision> OnWasWouchedByOtherPlayer;
 
 	[Space]
-	[Header("Collision Amplification")]
-	[HideInInspector] public bool shockWave;
-	//public Vector3 lastCollisionPoint_this;
-	//public Vector3 lastCollisionPoint_other;
 
 	[Tooltip("transform used for traking the movement vector of this object")]
 	public Transform trackingpoint;
 	private Vector3 _lastPosition;
 	private Vector3 _currentposition;
-	[HideInInspector] public Rigidbody rigid;
-	[HideInInspector] public Collider collider;
 	[Tooltip("how much strength should be applied when THIS rigidbody hits another")]
 	public float applidedStrenght;
 
-	
-    public PlayerInputController thisPlayer;
-    public PlayerInputController otherPlayer;
+	[Header("References")]
+	[HideInInspector] public Rigidbody rigid;
+	[HideInInspector] public Collider collider;
+	[HideInInspector] public Joint joint;
+	[HideInInspector] public float originalSpringforce;
+
+
+	public PlayerInputController thisPlayer;
+	public PlayerInputController otherPlayer;
 
 	void Awake()
 	{
 		rigid = this.GetComponent<Rigidbody>();
 		collider = this.GetComponent<Collider>();
+		joint = this.GetComponent<Joint>();
+		if (joint != null && joint is HingeJoint)
+		{
+			HingeJoint hj = (HingeJoint)joint;
+			originalSpringforce = hj.spring.spring;
+		}
 
 		OnKickTriggerEntered += () => { Debug.Log("Shell Collision"); };
+
+
+
 	}
 
 	// Start is called before the first frame update
 	void Start()
-    {
+	{
+		applidedStrenght = settings.otherPartsAdditionalForce;
+
 		if (trackingpoint == null)
 		{
 			trackingpoint = this.transform;
@@ -53,26 +66,26 @@ public class CollisionHandler : MonoBehaviour
 
 		_lastPosition = _currentposition = trackingpoint.position;
 
-        //// Dynamically assign collision references
-        //if (transform.root.tag.Equals("player_left"))
-        //{
-        //    thisPlayer = Settings.instance.LEFT.GetComponent<PlayerInputController>();
-        //    otherPlayer = Settings.instance.RIGHT.GetComponent<PlayerInputController>();
-        //}
-        //else
-        //{
-        //    thisPlayer = Settings.instance.RIGHT.GetComponent<PlayerInputController>();
-        //    otherPlayer = Settings.instance.LEFT.GetComponent<PlayerInputController>();
-        //}
+		//// Dynamically assign collision references
+		//if (transform.root.tag.Equals("player_left"))
+		//{
+		//    thisPlayer = Settings.instance.LEFT.GetComponent<PlayerInputController>();
+		//    otherPlayer = Settings.instance.RIGHT.GetComponent<PlayerInputController>();
+		//}
+		//else
+		//{
+		//    thisPlayer = Settings.instance.RIGHT.GetComponent<PlayerInputController>();
+		//    otherPlayer = Settings.instance.LEFT.GetComponent<PlayerInputController>();
+		//}
 
-    }
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
+	// Update is called once per frame
+	void Update()
+	{
 		_lastPosition = _currentposition;
 		_currentposition = trackingpoint.position;
-    }
+	}
 
 	public Vector3 GetMovementVector()
 	{
@@ -86,9 +99,9 @@ public class CollisionHandler : MonoBehaviour
 
 	private void OnCollisionEnter(Collision collision)
 	{
+		//if (!collision.gameObject.tag.Equals("Environment"))
+		Debug.Log($"collision: from {collision.gameObject.name} on {collision.transform.root} to {this.gameObject.name} on {this.gameObject.transform.root}");
 
-		bool uniqueCollision = collisionManager.AddCollision(new ExtendedCollision(this.gameObject, this.rigid, this.collider, collision));
-		//if (uniqueCollision) { 
 		// GROUND DETECTION
 		if (collision.collider.tag == "Environment")
 		{
@@ -96,51 +109,109 @@ public class CollisionHandler : MonoBehaviour
 			OnTouchedGround?.Invoke();
 		}
 
+		// COLLISION WITH OTHER PLAYER
+		if (collision.gameObject.tag.Contains("Player"))
+		{
+			CollisionHandler otherCollisionHandler = collision.gameObject.GetComponent<CollisionHandler>();
 
-		//if (!collision.gameObject.tag.Equals("Environment"))
-			Debug.Log($"collision: from {collision.gameObject.name} on {collision.transform.root} to {this.gameObject.name} on {this.gameObject.transform.root}");
-
-			if (collision.gameObject.tag.Contains("Player"))
+			if (otherCollisionHandler != null)
 			{
-				CollisionHandler collisionHandler = collision.gameObject.GetComponent<CollisionHandler>();
-
-				if (collisionHandler != null)
+				if (otherPlayer.activeAvatar.childHandlers.Contains(otherCollisionHandler))
 				{
-					// CONTACT WITH OTHE RPLAYER
+					thisPlayer.timeSinceLastContact = 0;
 
-					if (otherPlayer.activeAvatar.childHandlers.Contains(collisionHandler))
+					// if this is the faster object 
+					if (rigid.velocity.sqrMagnitude > otherCollisionHandler.rigid.velocity.sqrMagnitude)
 					{
+						OnTouchedOtherPlayer?.Invoke(collision);
 
-						OnContactWithOtherPlayer?.Invoke(collision);
-						thisPlayer.timeSinceLastContact = 0;
-						// COLLISION AMPLIFICATION
-
-						// when THIS object is kicked, the force applied to THIS object will be multipied by the appliedStrength of the OTHER OBECT
-						// eg when this object is hit by "foot" and foot's applied strength is 50, the strength of this collision will be amplified by 50
-						if (settings.colisionAmplificationMode == Settings.ColisionAmplificationMode.velocityAddition)
-						{
-							//Debug.Log("Amplifying collision on: " + gameObject.name + "(" + this.transform.root.tag + "), velocity = " + this.GetComponent<Rigidbody>().velocity);
-							rigid.AddForceAtPosition(
-								collisionHandler.applidedStrenght * collisionHandler.rigid.velocity, // * collisionAmplifier.GetMovementVector(),
-								collision.contacts[0].point,
-								ForceMode.VelocityChange);
-
-							//Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + collisionAmplifier.GetComponent<Rigidbody>().velocity * collisionAmplifier.applidedStrenght, Color.red, 3f);
-							//Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + Vector3.right*5, Color.black);
-							//Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + Vector3.forward*5, Color.black);
-						}
-
-						else if (settings.colisionAmplificationMode == Settings.ColisionAmplificationMode.velocityChange)
-						{
-							rigid.velocity = collisionHandler.applidedStrenght * collisionHandler.rigid.velocity;
-						}
+						AmplifyCollision(collision, this, otherCollisionHandler);
 
 					}
+					else
+					{
+						OnWasWouchedByOtherPlayer?.Invoke(collision);
 
+
+					}
 				}
-			//}
 
+			}
 		}
+	}
+
+	private void AmplifyCollision(Collision collision, CollisionHandler hittingHandler, CollisionHandler hitHandler)
+	{
+		////SOTEN JOINTS 
+		//if(settings.jointsWeakening == Settings.JointWeakening.instantReturn)	
+		//	StartCoroutine(SoftenJointForTime(hitHandler, 3f));
+
+		//else if (settings.jointsWeakening == Settings.JointWeakening.gradualReturn)
+		//	StartCoroutine(SoftenJointsOverTime(hitHandler, 3f));
+
+
+
+		//GET HIT VECTOR and FORCE
+		Vector3 hitDirection = Vector3.zero;
+		float hitMagnitude = 0f;
+
+		if (settings.velocityMode == Settings.VelocityMode.accuratePhysics)
+		{
+			// use the actual velocity of the 
+			hitDirection = hittingHandler.rigid.velocity.normalized;
+			hitMagnitude = hittingHandler.rigid.velocity.magnitude;
+		}
+
+		else if (settings.velocityMode == Settings.VelocityMode.actualVelocityWrongDirection)
+		{
+			Vector3 vecBetweenPlayers = hitHandler.thisPlayer.activeAvatar.playerRoot.transform.position - hittingHandler.thisPlayer.activeAvatar.playerRoot.transform.position;
+			hitDirection = vecBetweenPlayers.normalized;
+
+			hitMagnitude = hittingHandler.rigid.velocity.magnitude;
+		}
+
+		else if (settings.velocityMode == Settings.VelocityMode.velocityAndDirectionPulledFromYourAss)
+		{
+			Vector3 vecBetweenPlayers = hitHandler.thisPlayer.activeAvatar.playerRoot.transform.position - hittingHandler.thisPlayer.activeAvatar.playerRoot.transform.position;
+			hitDirection = vecBetweenPlayers.normalized;
+
+			Vector3 vecBetweenHittingObjectAndPlayerRoot = hittingHandler.thisPlayer.activeAvatar.playerRoot.transform.position - hittingHandler.gameObject.transform.position;
+			hitMagnitude = Mathf.Pow(vecBetweenHittingObjectAndPlayerRoot.magnitude, 2);
+		}
+
+		Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + hitDirection * 10f, Color.blue, 3f);
+
+
+		// ACTUALLY AMPLIFY COLLISION
+
+		if (settings.colisionAmplificationMode == Settings.ColisionAmplificationMode.velocityAddition)
+		{
+			hitHandler.rigid.AddForceAtPosition(
+				hittingHandler.applidedStrenght * hitDirection * hitMagnitude, // * collisionAmplifier.GetMovementVector(),
+				collision.contacts[0].point,
+				ForceMode.VelocityChange);
+
+			Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + hittingHandler.applidedStrenght * hitDirection * hitMagnitude, Color.red, 3f);
+
+			//Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + collisionAmplifier.GetComponent<Rigidbody>().velocity * collisionAmplifier.applidedStrenght, Color.red, 3f);
+			//Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + Vector3.right * 5, Color.black);
+			//Debug.DrawLine(collision.contacts[0].point, collision.contacts[0].point + Vector3.forward * 5, Color.black);
+		}
+
+		if (settings.colisionAmplificationMode == Settings.ColisionAmplificationMode.velocityAddition)
+		{
+			hitHandler.rigid.AddForceAtPosition(
+				hittingHandler.applidedStrenght * hitDirection * hitMagnitude, // * collisionAmplifier.GetMovementVector(),
+				collision.contacts[0].point,
+				ForceMode.VelocityChange);
+		}
+
+		else if (settings.colisionAmplificationMode == Settings.ColisionAmplificationMode.velocityChange)
+		{
+			hittingHandler.rigid.velocity = hittingHandler.applidedStrenght * hittingHandler.rigid.velocity;
+		}
+
+
 	}
 
 	private void OnCollisionExit(Collision collision)
@@ -180,7 +251,7 @@ public class CollisionHandler : MonoBehaviour
 				if (otherPlayer.activeAvatar.shokwavetriggers.Contains(collisionHandler))
 				{
 					OnKickTriggerEntered?.Invoke();
-					
+
 				}
 			}
 		}
@@ -195,7 +266,47 @@ public class CollisionHandler : MonoBehaviour
 			OnLeftGound?.Invoke();
 		}
 	}
+
+
+	private void SetSpringForce(Joint joint, float springToSet)
+	{
+		if (joint is HingeJoint)
+		{
+			HingeJoint hingeJoint = (HingeJoint)joint;
+			JointSpring jointSpring = hingeJoint.spring;
+			jointSpring.spring = springToSet;
+			hingeJoint.spring = jointSpring;
+		}
+	}
+
+
+	private IEnumerator SoftenJointForTime(CollisionHandler jointHandler, float timeToStiffen)
+	{
+		SetSpringForce(jointHandler.joint, settings.jointSpringForceWhenWeek);
+
+		yield return new WaitForSeconds(timeToStiffen);
+
+		SetSpringForce(jointHandler.joint, jointHandler.originalSpringforce);
+	}
+
+	private IEnumerator SoftenJointsOverTime(CollisionHandler jointHandler, float timeToStiffen)
+	{
+		float minSpring = settings.jointSpringForceWhenWeek;
+		float maxSpring = jointHandler.originalSpringforce;
+		float timer = 0f;
+
+		while (timer < timeToStiffen)
+		{
+			timer += Time.deltaTime;
+			SetSpringForce(jointHandler.joint, minSpring + (timer / timeToStiffen) * (maxSpring - minSpring));
+			yield return null;
+		}
+
+		SetSpringForce(jointHandler.joint, maxSpring);
+
+	}
 }
+
 
 
 

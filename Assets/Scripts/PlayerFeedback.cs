@@ -33,7 +33,6 @@ public class PlayerFeedback : MonoBehaviour
 		wristTriggers = thisPlayer.activeAvatar.wristTriggers;
 
 		// wire events
-		//NOTE: At this point the PlayerInputController should already have its references in place
 		WireFingerEvents(indexFinger);
 		WireFingerEvents(middleFinger);
 
@@ -41,7 +40,7 @@ public class PlayerFeedback : MonoBehaviour
 		{
 			wristTriggers[i].OnTouchedGround += () =>
 			{
-				soundManager.Play(ExtensionMethods.GetRandomElement<string>(new List<string>() { "gong" }));
+				soundManager?.Play(ExtensionMethods.GetRandomElement<string>(new List<string>() { "gong" }));
 			};
 
 		}
@@ -54,16 +53,17 @@ public class PlayerFeedback : MonoBehaviour
 		finger.fingerBottom.OnTouchedGround += () =>
 		{
 			// sound 
-			soundManager.Play(ExtensionMethods.GetRandomElement<string>(new List<string>() { "guitar1", "guitar2", "guitar3", "guitar4", "guitar5", "guitar6", "guitar7", "guitar8" }));
+			
+			soundManager?.Play(ExtensionMethods.GetRandomElement<string>(new List<string>() { "guitar1", "guitar2", "guitar3", "guitar4", "guitar5", "guitar6", "guitar7", "guitar8" }));
 
 		};
 
 		//kicking
-		finger.fingerBottom.OnContactWithOtherPlayer += (collision) =>
+		finger.fingerBottom.OnTouchedOtherPlayer += (collision) =>
 		{
 			Debug.Log("Cimbals");
 			// sound 
-			soundManager.PlayOrRestart(ExtensionMethods.GetRandomElement<string>(new List<string>() { "cimbals1", "cimbals1", "cimbals2", "cimbals3", "cimbals4", "cimbals5" }));
+			soundManager?.PlayOrRestart(ExtensionMethods.GetRandomElement<string>(new List<string>() { "cimbals1", "cimbals1", "cimbals2", "cimbals3", "cimbals4", "cimbals5" }));
 
 			//particles
 			EffectTuple effectToSpawn = GetUnusedEffect(kickEffects);
@@ -72,10 +72,15 @@ public class PlayerFeedback : MonoBehaviour
 				effectToSpawn = new EffectTuple(GameObject.Instantiate(kickEffect_prefab));
 				kickEffects.Add(effectToSpawn);
 			}
-			SpawnParticleEffect(effectToSpawn, collision.contacts[0].point);
 
+			SpawnParticleEffect(effectToSpawn, collision.contacts[0].point);
+			StartCoroutine(PoolParticleEffect(effectToSpawn, 3f));
 
 		};
+
+		// forceChanges
+
+		finger.fingerBottom.applidedStrenght = Settings.instance.fingerTipsAdditionalForce;
 
 
 
@@ -119,11 +124,17 @@ public class PlayerFeedback : MonoBehaviour
 
 	public void PoolParticleEffect(EffectTuple effect) 
 	{
-		effect.gameobject.transform.position = particlePoolingPlace.position;
+		if(particlePoolingPlace!= null)
+			effect.gameobject.transform.position = particlePoolingPlace.position;
+
 		effect.particleSystem.Stop();
 		effect.isUsed = false;
 	}
 
-	public void FreeEffect(EffectTuple effect)
-	{ }
+	public IEnumerator PoolParticleEffect(EffectTuple effect, float secondsToPool)
+	{
+		yield return new WaitForSeconds(secondsToPool);
+		PoolParticleEffect(effect);
+	}
+
 }

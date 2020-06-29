@@ -436,10 +436,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 1
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &248667916
@@ -625,10 +627,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 1
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &265022793
@@ -1010,10 +1014,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 1
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &397538275
@@ -1200,10 +1206,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 1
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &418810792
@@ -1452,10 +1460,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 1
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &422706005
@@ -1864,10 +1874,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 1
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &515594622
@@ -2469,10 +2481,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 20
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &555273435
@@ -2950,10 +2964,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 0
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &649239891
@@ -3261,10 +3277,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 2
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &725603579
@@ -3450,10 +3468,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 2
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &758628622
@@ -3639,10 +3659,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 2
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &770301296
@@ -3991,10 +4013,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 2
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &895279518
@@ -4211,10 +4235,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 2
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &948876026
@@ -4500,10 +4526,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 1
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &1046294935
@@ -4822,10 +4850,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 1
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &1107114219
@@ -5863,10 +5893,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 1
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &1264132646
@@ -6209,10 +6241,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 1
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &1356599531
@@ -6430,10 +6464,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 1
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &1385575621
@@ -6651,10 +6687,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 1
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &1406518760
@@ -6962,10 +7000,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 2
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &1514452082
@@ -7214,10 +7254,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 1
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &1597849403
@@ -7325,10 +7367,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 0
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &1659780254
@@ -7676,10 +7720,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 1
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &1722502295
@@ -8252,10 +8298,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 20
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &1937918726
@@ -8442,10 +8490,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 1
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &1940488630
@@ -8724,10 +8774,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 1
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &2052951183
@@ -9570,10 +9622,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 2
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &509638383851855140
@@ -10751,10 +10805,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 1
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &1713280754282122979
@@ -11434,10 +11490,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 1
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &2509143210435321822
@@ -11917,10 +11975,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 0
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &3071704881804925896
@@ -11981,10 +12041,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 0
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &3138792456130019833
@@ -12689,10 +12751,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 0
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &4217325248640902611
@@ -12945,10 +13009,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 1
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &4603254174792525968
@@ -13133,10 +13199,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 0
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &4852852508114634982
@@ -13386,10 +13454,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 1
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &5358808254643842982
@@ -13533,6 +13603,7 @@ GameObject:
   - component: {fileID: 2214909150496912359}
   - component: {fileID: 682727679}
   - component: {fileID: 3111363127572703764}
+  - component: {fileID: 8788283816192771441}
   m_Layer: 0
   m_Name: Simple Player
   m_TagString: player_right
@@ -13610,6 +13681,21 @@ MonoBehaviour:
   otherPlayer: {fileID: 0}
   timeSinceLastContact: 5
   childTransofrms: []
+--- !u!114 &8788283816192771441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5481868599362241687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1324755a1630ae543956df819fc540c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kickEffect_prefab: {fileID: 2058587245799093297, guid: 6d3aed39ed9a1bf44aeb383657aab31c,
+    type: 3}
+  particlePoolingPlace: {fileID: 0}
 --- !u!1 &5488199827807230213
 GameObject:
   m_ObjectHideFlags: 0
@@ -14138,10 +14224,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 1
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &6523540224622089813
@@ -14728,10 +14816,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 1
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &7382921007982118278
@@ -14915,10 +15005,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 0
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &7635187490817757757
@@ -15453,10 +15545,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 1
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &8072020504774819566
@@ -15735,10 +15829,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 2
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &8213388758363407990
@@ -16024,10 +16120,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 1
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &8346262895344427315
@@ -16368,10 +16466,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 2
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &8646825847613393791
@@ -16589,10 +16689,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchesGround: 0
-  shockWave: 0
   trackingpoint: {fileID: 0}
-  rigid: {fileID: 0}
   applidedStrenght: 2
+  rigid: {fileID: 0}
+  collider: {fileID: 0}
+  joint: {fileID: 0}
+  originalSpringforce: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
 --- !u!1 &8734335190728387086
@@ -17153,6 +17255,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7339314261454189610}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &2255676427660738489 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8833738848612633491, guid: 230ae4a5558137643af1d675f268bbbc,
+    type: 3}
+  m_PrefabInstance: {fileID: 7339314261454189610}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7293462211697819044 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 66971606745139598, guid: 230ae4a5558137643af1d675f268bbbc,
@@ -17165,6 +17273,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7339314261454189610}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &2255676429275781252 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8833738847031078062, guid: 230ae4a5558137643af1d675f268bbbc,
+    type: 3}
+  m_PrefabInstance: {fileID: 7339314261454189610}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2255676427764779963 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8833738848472874897, guid: 230ae4a5558137643af1d675f268bbbc,
@@ -17174,18 +17288,6 @@ Transform:
 --- !u!1 &2255676427764779942 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8833738848472874892, guid: 230ae4a5558137643af1d675f268bbbc,
-    type: 3}
-  m_PrefabInstance: {fileID: 7339314261454189610}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2255676427660738489 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8833738848612633491, guid: 230ae4a5558137643af1d675f268bbbc,
-    type: 3}
-  m_PrefabInstance: {fileID: 7339314261454189610}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2255676429275781252 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8833738847031078062, guid: 230ae4a5558137643af1d675f268bbbc,
     type: 3}
   m_PrefabInstance: {fileID: 7339314261454189610}
   m_PrefabAsset: {fileID: 0}

@@ -27,6 +27,8 @@ public class CollisionManager : MonoBehaviour
 	{
 		for (int i = 0; i < collisionsThisFrame.Count; i++)
 		{
+			// I asume two collisions are two calls of the same collision if they have the same set of contact points
+			// technically is not true but the possibility for it being wrong is negligible
 			if (collisionToAdd.IsTheSameCollisionAs(collisionsThisFrame[i]))
 			{
 				return false;
@@ -40,16 +42,13 @@ public class CollisionManager : MonoBehaviour
 public class ExtendedCollision
 {
 	public Collision collision;
-	public Rigidbody receiverRigidbody;
-	public Collider receiverCollider;
-	public GameObject receiverGameobject;
+	List<CollisionHandler> collisionObjects;
 
-	public ExtendedCollision(GameObject receiverGameobject, Rigidbody receiverRigidbody, Collider receiverCollider, Collision collision)
+	
+	public ExtendedCollision( Collision collision, List<CollisionHandler> collisionObjects)
 	{
 		this.collision = collision;
-		this.receiverRigidbody = receiverRigidbody;
-		this.receiverCollider = receiverCollider;
-		this.receiverGameobject = receiverGameobject;
+		this.collisionObjects = collisionObjects;
 	}
 
 	public bool IsTheSameCollisionAs(ExtendedCollision otherCollision)
@@ -63,3 +62,4 @@ public class ExtendedCollision
 		return false;
 	}
 }
+
