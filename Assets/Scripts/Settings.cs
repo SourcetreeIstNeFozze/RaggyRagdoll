@@ -46,7 +46,8 @@ public class Settings : MonoBehaviour
     [Header("If spring fall mode")]
     public float configJoint_Y_Offset = 2f;
     public float anchorInputStrength = 0.1f;
-    public float anchorBreakDistanceLimit = 0.8f;
+    public bool breakAnchorAtLimit = true;
+    //public float anchorBreakDistanceLimit = 0.8f;
     public float anchorBreakAngleLimit = 45f;
 
 	private void Awake()

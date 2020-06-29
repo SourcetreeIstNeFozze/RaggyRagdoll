@@ -148,6 +148,7 @@ public class PlayerInputController : MonoBehaviour
         activeAvatar.middleFinger.stickInput.CheckForFastStickReleases(settings.stickReleaseTimeWindow, 1f, 0f, settings.stickReleaseTimeWindow);
         activeAvatar.indexFinger.stickInput.CheckForFastStickReleases(settings.stickReleaseTimeWindow, 1f, 0f, settings.stickReleaseTimeWindow);
 
+        // IF USING POSES
         if (settings.useFK)
         {
             //MANAGE POSES 
@@ -189,7 +190,6 @@ public class PlayerInputController : MonoBehaviour
             else if ((GetGroundedState() == GroundedState.inAir) || !(GetGroundedState() == GroundedState.inAir && settings.compassBending))
             {
                 SetPlayerPushForce(new Vector3(bendDirection, 0, 0), settings.maxHipPushForce);
-
             }
             else
             {
@@ -201,15 +201,15 @@ public class PlayerInputController : MonoBehaviour
             // NEW ANCHOR-STABILISATION
             if (settings.fallMode == Settings.FallMode.spring_backFoot)
             {
-                CalcAnchorStabilization();
-                CalcAnchorBreakForce();
+                AnchorStabilization();
+                AnchorBreakForce();
             }
 
             if (settings.fallMode == Settings.FallMode.spring_feet)
             {
-                FeetBalance();
+                Anchor_AutomaticFeetBalance();
                 AnchorInputForce();
-                CalcAnchorBreakForce();
+                //AnchorBreakForce();
             }
         }
 
@@ -240,23 +240,28 @@ public class PlayerInputController : MonoBehaviour
         // -> rotate the input-Vector2 in order to fake global space
         if (settings.poseSpace == Settings.TransformType.global)
         {
-            float bodyRotation = activeAvatar.playerRoot.transform.localEulerAngles.x;
-            if (bodyRotation > 180)
-                bodyRotation -= 360;
-            if (bodyRotation < -180)
-                bodyRotation += 360;
-
-            Vector2 index_stickInput_global = activeAvatar.indexFinger.stickInput_original.value.Rotate(-bodyRotation);
-            Vector2 middle_stickInput_global = activeAvatar.middleFinger.stickInput_original.value.Rotate(-bodyRotation);
-            activeAvatar.indexFinger.stickInput.value = index_stickInput_global;
-            activeAvatar.middleFinger.stickInput.value = middle_stickInput_global;
-
-            Debug.DrawLine(Vector3.zero, activeAvatar.indexFinger.stickInput_original.value * new Vector2(-2f, 2f), Color.black, 0.3f);
-            Debug.DrawLine(Vector3.zero, index_stickInput_global * new Vector2(-2f, 2f), Color.blue, 0.3f);
-            //print("bodyRot: " + bodyRotation + ", newRotation: " + Vector2.Angle(Vector2.up, index_stickInput_global) + ", " + index_stickInput_global);
+            FakeGlobalSpace();
         }
 
 
+    }
+
+    void FakeGlobalSpace()
+    {
+        float bodyRotation = activeAvatar.playerRoot.transform.localEulerAngles.x;
+        if (bodyRotation > 180)
+            bodyRotation -= 360;
+        if (bodyRotation < -180)
+            bodyRotation += 360;
+
+        Vector2 index_stickInput_global = activeAvatar.indexFinger.stickInput_original.value.Rotate(-bodyRotation);
+        Vector2 middle_stickInput_global = activeAvatar.middleFinger.stickInput_original.value.Rotate(-bodyRotation);
+        activeAvatar.indexFinger.stickInput.value = index_stickInput_global;
+        activeAvatar.middleFinger.stickInput.value = middle_stickInput_global;
+
+        Debug.DrawLine(Vector3.zero, activeAvatar.indexFinger.stickInput_original.value * new Vector2(-2f, 2f), Color.black, 0.3f);
+        Debug.DrawLine(Vector3.zero, index_stickInput_global * new Vector2(-2f, 2f), Color.blue, 0.3f);
+        //print("bodyRot: " + bodyRotation + ", newRotation: " + Vector2.Angle(Vector2.up, index_stickInput_global) + ", " + index_stickInput_global);
     }
 
     public void BendVertically(float bendValue)
@@ -431,7 +436,7 @@ public class PlayerInputController : MonoBehaviour
 
 
 
-    void CalcAnchorStabilization()
+    void AnchorStabilization()
     {
         // -- Suche Finger, der am weitesten hinten ist in Relation zur Bewegungsrichtung --
 
@@ -498,7 +503,7 @@ public class PlayerInputController : MonoBehaviour
         Debug.DrawLine(activeAvatar.transform.InverseTransformVector(lookDirection.normalized * inputDirection), Vector3.zero, Color.red);
     }
 
-    void CalcAnchorBreakForce()
+    void AnchorBreakForce()
     {
         // V1: use distance
         //float anchorDistance = (activeAvatar.transform.TransformPoint(configJoint.connectedAnchor) - activeAvatar.transform.position).magnitude;
@@ -516,12 +521,19 @@ public class PlayerInputController : MonoBehaviour
         else if (handAngle < -180f)
             handAngle += 360f;
 
-        if (Mathf.Abs(handAngle) > settings.anchorBreakAngleLimit)
+        // Break Anchor
+        if (settings.breakAnchorAtLimit)
+        {
+            if (anchorState == AnchorState.connected && Mathf.Abs(handAngle) > settings.anchorBreakAngleLimit)
             {
                 anchorState = AnchorState.broken;
+                configJoint.connectedAnchor = Vector3.zero;// - Vector3.up * settings.configJoint_Y_Offset;
                 //SetXYZDrive(0);
                 print("BREAK " + handAngle);
             }
+        }
+
+            
     }
 
     void GetFingerTipData()
@@ -533,43 +545,45 @@ public class PlayerInputController : MonoBehaviour
         lookDirection = new Vector3(lookDirection.x, 0, lookDirection.z);
     }
 
-    private void FeetBalance()
+    private void Anchor_AutomaticFeetBalance()
     {
-            GetFingerTipData();
-            GroundedState groundedState = GetGroundedState();
-            float conAnchorYPos = activeAvatar.transform.position.y + settings.configJoint_Y_Offset;
-            //print("gounrdedState: " + groundedState);
-            switch (groundedState)
-            {
-                case GroundedState.inAir:
-                    configJoint.connectedAnchor = activeAvatar.transform.position;
-                    break;
+        GetFingerTipData();
+        GroundedState groundedState = GetGroundedState();
+        float conAnchorYPos = activeAvatar.transform.position.y + settings.configJoint_Y_Offset;
 
-                case GroundedState.bothFeetOnTheFloor:
-                    Vector3 fingerMiddlePos = (indexTipPos + middleTipPos) / 2f;
-                    configJoint.connectedAnchor = new Vector3(fingerMiddlePos.x, conAnchorYPos, fingerMiddlePos.z);
-                    break;
+        switch (groundedState)
+        {
+            case GroundedState.inAir:
+                newAchorPosition = activeAvatar.transform.position;
+                break;
 
-                case GroundedState.leftFootOnThefloor:
-                    newAchorPosition = HandPlusFingertipDirection(indexTipPos);
-                    configJoint.connectedAnchor = new Vector3(newAchorPosition.x, conAnchorYPos, newAchorPosition.z);
-                    break;
+            case GroundedState.bothFeetOnTheFloor:
+                Vector3 fingerMiddlePos = (indexTipPos + middleTipPos) / 2f;
+                newAchorPosition = new Vector3(fingerMiddlePos.x, conAnchorYPos, fingerMiddlePos.z);
+                break;
 
-                case GroundedState.rightFootOnTheFloor:
-                    newAchorPosition = HandPlusFingertipDirection(middleTipPos);
-                    configJoint.connectedAnchor = new Vector3(newAchorPosition.x, conAnchorYPos, newAchorPosition.z);
-                    break;
-            }
-        if (anchorState == AnchorState.broken)
-            configJoint.connectedAnchor = activeAvatar.transform.position;// - Vector3.up * settings.configJoint_Y_Offset;
+            case GroundedState.leftFootOnThefloor:
+                newAchorPosition = HandPlusFingertipDirection(indexTipPos);
+                newAchorPosition = new Vector3(newAchorPosition.x, conAnchorYPos, newAchorPosition.z);
+                break;
 
-            Debug.DrawLine(configJoint.connectedAnchor, Vector3.zero, Color.blue);
+            case GroundedState.rightFootOnTheFloor:
+                newAchorPosition = HandPlusFingertipDirection(middleTipPos);
+                newAchorPosition = new Vector3(newAchorPosition.x, conAnchorYPos, newAchorPosition.z);
+                break;
+        }
+
+        // set & convert to local space
+        configJoint.connectedAnchor = activeAvatar.transform.InverseTransformPoint(newAchorPosition);
+
+        Debug.DrawLine(configJoint.connectedAnchor, Vector3.zero, Color.blue);
     }
 
     private void AnchorInputForce()
     {
         inputDirection = Mathf.Clamp(activeAvatar.indexFinger.stickInput.value.x + activeAvatar.middleFinger.stickInput.value.x, -1f, 1f);
-        configJoint.connectedAnchor += lookDirection.normalized * inputDirection * settings.anchorInputStrength;
+        //configJoint.connectedAnchor += lookDirection.normalized * inputDirection * settings.anchorInputStrength;
+        configJoint.connectedAnchor = activeAvatar.transform.InverseTransformPoint(newAchorPosition + lookDirection.normalized * inputDirection * settings.anchorInputStrength);
     }
 
 
