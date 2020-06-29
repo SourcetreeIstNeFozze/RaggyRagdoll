@@ -194,7 +194,7 @@ MonoBehaviour:
   durationOfJointWeakness: 3
   stickReleaseTimeWindow: 0.1
   configJoint_Y_Offset: 0.5
-  anchorInputStrength: 0.25
+  anchorInputStrength: 0.35
   breakAnchorAtLimit: 1
   anchorBreakAngleLimit: 37
 --- !u!1 &71352516
@@ -1504,7 +1504,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 211126383}
-  m_LocalRotation: {x: 3e-45, y: 1e-45, z: 0.00009433057, w: 1}
+  m_LocalRotation: {x: -0, y: -1e-45, z: 0.00009433058, w: 1}
   m_LocalPosition: {x: -4.483484, y: -1.4668214, z: -9.44926}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2084,7 +2084,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746894800}
-  m_LocalRotation: {x: 3e-45, y: 1e-45, z: 0.00009433057, w: 1}
+  m_LocalRotation: {x: -0, y: -1e-45, z: 0.00009433058, w: 1}
   m_LocalPosition: {x: -4.483484, y: -1.4668214, z: -11.44926}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

@@ -172,7 +172,7 @@ public class PlayerInputController : MonoBehaviour
             if (settings.fallMode == Settings.FallMode.spring_feet)
             {
                 Anchor_AutomaticFeetBalance();
-                //AnchorInputForce();
+                AnchorInputForce();
                 //AnchorBreakForce();
             }
         }
@@ -586,8 +586,10 @@ public class PlayerInputController : MonoBehaviour
     private void AnchorInputForce()
     {
         inputDirection = Mathf.Clamp(activeAvatar.indexFinger.stickInput.value.x + activeAvatar.middleFinger.stickInput.value.x, -1f, 1f);
-        //configJoint.connectedAnchor += lookDirection.normalized * inputDirection * settings.anchorInputStrength;
-        configJoint.connectedAnchor = activeAvatar.transform.InverseTransformPoint(newAchorPosition + lookDirection.normalized * inputDirection * settings.anchorInputStrength);
+        // calc
+        newAchorPosition = newAchorPosition + lookDirection.normalized * inputDirection * settings.anchorInputStrength;
+        // convert & set
+        configJoint.connectedAnchor = configJoint.connectedBody.transform.InverseTransformPoint(newAchorPosition);
     }
 
 
