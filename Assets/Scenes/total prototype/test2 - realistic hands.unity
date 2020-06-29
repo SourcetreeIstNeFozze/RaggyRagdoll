@@ -214,7 +214,7 @@ MonoBehaviour:
   fingerTipsAdditionalForce: 2
   otherPartsAdditionalForce: 1
   jointSpringForceWhenWeek: 10
-  jointsWeakening: 1
+  jointsWeakening: 0
   durationOfJointWeakness: 3
   stickReleaseTimeWindow: 0.1
   configJoint_Y_Offset: 0.5
