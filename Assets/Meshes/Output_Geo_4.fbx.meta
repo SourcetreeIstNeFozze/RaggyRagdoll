@@ -6,6 +6,12 @@ ModelImporter:
   - first:
       74: -797241134248266168
     second: Arm|ArmatureAction
+  - first:
+      74: -6517933886045618512
+    second: Arm_ungleicheFinger|Arm_ungleicheFinger|Arm_ungleicheFinger|ArmAction.001|Arm_ungle
+  - first:
+      74: 5702279181152855933
+    second: Arm_ungleicheFinger|Arm_ungleicheFinger|Arm_ungleicheFinger|ArmAction|Arm_ungleiche
   externalObjects:
   - first:
       type: UnityEngine:Material
