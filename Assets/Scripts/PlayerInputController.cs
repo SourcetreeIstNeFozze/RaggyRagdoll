@@ -159,43 +159,7 @@ public class PlayerInputController : MonoBehaviour
 
 
             //MANAGE BENDING AND PUSHING
-
-            float bendDirection;
-
-            if (_rightBumperHeld && !_leftBumperHeld)
-            {
-                bendDirection = -1f;
-            }
-            else if (!_rightBumperHeld && _leftBumperHeld)
-            {
-                bendDirection = 1;
-            }
-            else
-            {
-                bendDirection = 0f;
-            }
-
-            if (invertControls)
-            {
-                bendDirection *= -1f;
-            }
-
-            //2.BENDING
-            // Bend the body if getting input and on the floor 
-            if (!(GetGroundedState() == GroundedState.inAir) && !settings.compassBending)
-            {
-                BendVertically(bendDirection * settings.hipRotationSpeed);
-            }
-            // When in air push the player
-            else if ((GetGroundedState() == GroundedState.inAir) || !(GetGroundedState() == GroundedState.inAir && settings.compassBending))
-            {
-                SetPlayerPushForce(new Vector3(bendDirection, 0, 0), settings.maxHipPushForce);
-            }
-            else
-            {
-                SetPlayerPushForce(Vector3.zero, 0);
-            }
-
+            ManageBending();
 
 
             // NEW ANCHOR-STABILISATION
@@ -208,7 +172,7 @@ public class PlayerInputController : MonoBehaviour
             if (settings.fallMode == Settings.FallMode.spring_feet)
             {
                 Anchor_AutomaticFeetBalance();
-                AnchorInputForce();
+                //AnchorInputForce();
                 //AnchorBreakForce();
             }
         }
@@ -282,6 +246,46 @@ public class PlayerInputController : MonoBehaviour
         Debug.Log("Jump");
         direction = direction.normalized;
         activeAvatar.playerRigidbody.AddForce(direction * forceValue, ForceMode.Impulse);
+    }
+
+    void ManageBending()
+    {
+
+        float bendDirection;
+
+        if (_rightBumperHeld && !_leftBumperHeld)
+        {
+            bendDirection = -1f;
+        }
+        else if (!_rightBumperHeld && _leftBumperHeld)
+        {
+            bendDirection = 1;
+        }
+        else
+        {
+            bendDirection = 0f;
+        }
+
+        if (invertControls)
+        {
+            bendDirection *= -1f;
+        }
+
+        //2.BENDING
+        // Bend the body if getting input and on the floor 
+        if (!(GetGroundedState() == GroundedState.inAir) && !settings.compassBending)
+        {
+            BendVertically(bendDirection * settings.hipRotationSpeed);
+        }
+        // When in air push the player
+        else if ((GetGroundedState() == GroundedState.inAir) || !(GetGroundedState() == GroundedState.inAir && settings.compassBending))
+        {
+            SetPlayerPushForce(new Vector3(bendDirection, 0, 0), settings.maxHipPushForce);
+        }
+        else
+        {
+            SetPlayerPushForce(Vector3.zero, 0);
+        }
     }
 
     // TO DO add some delays and stuff
@@ -574,9 +578,10 @@ public class PlayerInputController : MonoBehaviour
         }
 
         // set & convert to local space
+        //newAchorPosition = activeAvatar.transform.
         configJoint.connectedAnchor = activeAvatar.transform.InverseTransformPoint(newAchorPosition);
 
-        Debug.DrawLine(configJoint.connectedAnchor, Vector3.zero, Color.blue);
+        Debug.DrawLine(activeAvatar.transform.TransformPoint(configJoint.connectedAnchor), Vector3.zero, Color.blue);
     }
 
     private void AnchorInputForce()
