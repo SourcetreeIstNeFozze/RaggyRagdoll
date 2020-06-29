@@ -110,6 +110,10 @@ public class OrientationAndBalance : MonoBehaviour
 		}
 	}
 
+	public void SetLookAt(bool value)
+	{
+		lookAtActive = value;
+	}
 	private void SetSprings(Vector3 angle)
 	{
 		Debug.Log("setting springs");

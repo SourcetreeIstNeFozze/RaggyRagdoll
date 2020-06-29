@@ -36,9 +36,16 @@ public class Settings : MonoBehaviour
 	public VelocityMode velocityMode;
 	[Range(0, 100)] public float fingerTipsAdditionalForce = 3;
 	[Range(0, 100)] public float otherPartsAdditionalForce = 1;
-	[Range(0, 300)] public float jointSpringForceWhenWeek = 20;
+
+	[Header("Joint weakening")]
+	[Range(0, 50)] public float jointSpringForceWhenWeek = 20;
 	public enum JointWeakening { none, instantReturn, gradualReturn}
 	public JointWeakening jointsWeakening;
+	public float durationOfJointWeakness = 3f;
+	
+	//[Header("Loosing orientation")]
+	//public bool loseOrientationOnCollision = false;
+	//public float timeOfLostOrientation = 3;
 	
 	[Header("Detect fast stick releases")]
 	public float stickReleaseTimeWindow = 0.1f;

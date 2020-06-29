@@ -30,12 +30,13 @@ public class CollisionHandler : MonoBehaviour
 	[Header("References")]
 	[HideInInspector] public Rigidbody rigid;
 	[HideInInspector] public Collider collider;
-	[HideInInspector] public Joint joint;
-	[HideInInspector] public float originalSpringforce;
-
 
 	public PlayerInputController thisPlayer;
 	public PlayerInputController otherPlayer;
+	[Header("Joint Softening")]
+	[HideInInspector] public Joint joint;
+	[HideInInspector] public float originalSpringforce;
+	public float jointWeakeningTimer = 0;
 
 	void Awake()
 	{
@@ -85,6 +86,62 @@ public class CollisionHandler : MonoBehaviour
 	{
 		_lastPosition = _currentposition;
 		_currentposition = trackingpoint.position;
+
+		// MANAGE JOINT SOFTENING
+		if (settings.jointsWeakening == Settings.JointWeakening.gradualReturn)
+		{
+			if (jointWeakeningTimer > 0)
+			{
+				jointWeakeningTimer -= Time.deltaTime;
+
+				if (jointWeakeningTimer <= 0)
+				{
+					jointWeakeningTimer = 0f;
+
+				}
+				else
+				{
+					float minSpring = settings.jointSpringForceWhenWeek;
+					float maxSpring = originalSpringforce;
+					SetSpringForce(joint, minSpring + ((settings.durationOfJointWeakness - jointWeakeningTimer) / settings.durationOfJointWeakness) * (maxSpring - minSpring));
+
+				}
+			}
+		}
+		else if (settings.jointsWeakening == Settings.JointWeakening.instantReturn)
+		{
+			float minSpring = settings.jointSpringForceWhenWeek;
+			float maxSpring = originalSpringforce;
+
+			if (jointWeakeningTimer > 0)
+			{
+				jointWeakeningTimer -= Time.deltaTime;
+				
+				if (jointWeakeningTimer <= 0)
+				{
+					jointWeakeningTimer = 0f;
+					SetSpringForce(joint, maxSpring);
+				}
+				else
+				{
+					SetSpringForce(joint, minSpring);
+				}
+			}
+		}
+
+
+		////ORIENTATION LOSS
+
+		//if (settings.loseOrientationOnCollision)
+		//{
+		//	if (jointWeakeningTimer > 0)
+		//	{
+		//		thisPlayer.activeAvatar.balance.SetLookAt(false);
+		//	}
+		//	{
+		//		thisPlayer.activeAvatar.balance.SetLookAt(true);
+		//	}
+		//}
 	}
 
 	public Vector3 GetMovementVector()
@@ -120,14 +177,16 @@ public class CollisionHandler : MonoBehaviour
 				{
 					thisPlayer.timeSinceLastContact = 0;
 
-					// if this is the faster object 
+					// if this is the faster object ie object performing the hit
 					if (rigid.velocity.sqrMagnitude > otherCollisionHandler.rigid.velocity.sqrMagnitude)
 					{
 						OnTouchedOtherPlayer?.Invoke(collision);
 
+						otherCollisionHandler.SetJointSofteningTime(settings.durationOfJointWeakness);
 						AmplifyCollision(collision, this, otherCollisionHandler);
 
 					}
+					// IF this is the object receiving the hit
 					else
 					{
 						OnWasWouchedByOtherPlayer?.Invoke(collision);
@@ -142,14 +201,6 @@ public class CollisionHandler : MonoBehaviour
 
 	private void AmplifyCollision(Collision collision, CollisionHandler hittingHandler, CollisionHandler hitHandler)
 	{
-		////SOTEN JOINTS 
-		//if(settings.jointsWeakening == Settings.JointWeakening.instantReturn)	
-		//	StartCoroutine(SoftenJointForTime(hitHandler, 3f));
-
-		//else if (settings.jointsWeakening == Settings.JointWeakening.gradualReturn)
-		//	StartCoroutine(SoftenJointsOverTime(hitHandler, 3f));
-
-
 
 		//GET HIT VECTOR and FORCE
 		Vector3 hitDirection = Vector3.zero;
@@ -210,8 +261,20 @@ public class CollisionHandler : MonoBehaviour
 		{
 			hittingHandler.rigid.velocity = hittingHandler.applidedStrenght * hittingHandler.rigid.velocity;
 		}
+	}
 
+	//private void SoftenJoint(CollisionHandler hitHandler)
+	//{
+	//	if (settings.jointsWeakening == Settings.JointWeakening.instantReturn)
+	//		StartCoroutine(SoftenJointForTime(hitHandler, 3f));
 
+	//	else if (settings.jointsWeakening == Settings.JointWeakening.gradualReturn)
+	//		StartCoroutine(SoftenJointsOverTime(hitHandler, 3f));
+	//}
+
+	private void SetJointSofteningTime(float time)
+	{
+		jointWeakeningTimer = time;
 	}
 
 	private void OnCollisionExit(Collision collision)
@@ -223,7 +286,6 @@ public class CollisionHandler : MonoBehaviour
 			OnLeftGound?.Invoke();
 		}
 	}
-
 
 	private void OnTriggerEnter(Collider collider)
 	{
@@ -280,31 +342,31 @@ public class CollisionHandler : MonoBehaviour
 	}
 
 
-	private IEnumerator SoftenJointForTime(CollisionHandler jointHandler, float timeToStiffen)
-	{
-		SetSpringForce(jointHandler.joint, settings.jointSpringForceWhenWeek);
+	//private IEnumerator SoftenJointForTime(CollisionHandler jointHandler, float timeToStiffen)
+	//{
+	//	SetSpringForce(jointHandler.joint, settings.jointSpringForceWhenWeek);
 
-		yield return new WaitForSeconds(timeToStiffen);
+	//	yield return new WaitForSeconds(timeToStiffen);
 
-		SetSpringForce(jointHandler.joint, jointHandler.originalSpringforce);
-	}
+	//	SetSpringForce(jointHandler.joint, jointHandler.originalSpringforce);
+	//}
 
-	private IEnumerator SoftenJointsOverTime(CollisionHandler jointHandler, float timeToStiffen)
-	{
-		float minSpring = settings.jointSpringForceWhenWeek;
-		float maxSpring = jointHandler.originalSpringforce;
-		float timer = 0f;
+	//private IEnumerator SoftenJointsOverTime(CollisionHandler jointHandler, float timeToStiffen)
+	//{
+	//	float minSpring = settings.jointSpringForceWhenWeek;
+	//	float maxSpring = jointHandler.originalSpringforce;
+	//	float timer = 0f;
 
-		while (timer < timeToStiffen)
-		{
-			timer += Time.deltaTime;
-			SetSpringForce(jointHandler.joint, minSpring + (timer / timeToStiffen) * (maxSpring - minSpring));
-			yield return null;
-		}
+	//	while (timer < timeToStiffen)
+	//	{
+	//		timer += Time.deltaTime;
+	//		SetSpringForce(jointHandler.joint, minSpring + (timer / timeToStiffen) * (maxSpring - minSpring));
+	//		yield return null;
+	//	}
 
-		SetSpringForce(jointHandler.joint, maxSpring);
+	//	SetSpringForce(jointHandler.joint, maxSpring);
 
-	}
+	//}
 }
 
 
