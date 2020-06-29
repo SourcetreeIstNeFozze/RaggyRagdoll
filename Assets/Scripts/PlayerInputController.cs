@@ -578,8 +578,7 @@ public class PlayerInputController : MonoBehaviour
         }
 
         // set & convert to local space
-        //newAchorPosition = activeAvatar.transform.
-        configJoint.connectedAnchor = activeAvatar.transform.InverseTransformPoint(newAchorPosition);
+        configJoint.connectedAnchor = configJoint.connectedBody.transform.InverseTransformPoint(newAchorPosition);
 
         Debug.DrawLine(activeAvatar.transform.TransformPoint(configJoint.connectedAnchor), Vector3.zero, Color.blue);
     }
