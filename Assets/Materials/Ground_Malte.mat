@@ -23,7 +23,7 @@ Material:
   m_Name: Ground_Malte
   m_Shader: {fileID: -6465566751694194690, guid: b7dec22795bb02941b8e633b7194c7ff,
     type: 3}
-  m_ShaderKeywords: ENUM_36980BBA_OBJECT ENUM_E4DCC60A_NOISE ENUM_ED820FB5_DOTS
+  m_ShaderKeywords: ENUM_36980BBA_OBJECT ENUM_E4DCC60A_TEXTURE ENUM_ED820FB5_DOTS
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -34,7 +34,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_47F17A79:
-        m_Texture: {fileID: 2800000, guid: 2b1208ea3ad88884ebf2e1fe012641e0, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3e437becd2b6c874aba09410037e6f72, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -74,19 +74,19 @@ Material:
     - Boolean_929D1079: 0
     - Boolean_D8864075: 1
     - ENUM_36980BBA: 3
-    - ENUM_E4DCC60A: 2
+    - ENUM_E4DCC60A: 1
     - ENUM_ED820FB5: 1
     - Vector1_13D399D9: 1
-    - Vector1_2C9D5D25: 0.143
+    - Vector1_2C9D5D25: 0.147
     - Vector1_36AE5F7E: 1.57
     - Vector1_503B8EB: -0.12
     - Vector1_6FDF0C71: 0.42
-    - Vector1_750FDCCE: 0.1
-    - Vector1_9548E4B0: 0.871
+    - Vector1_750FDCCE: 0.048
+    - Vector1_9548E4B0: 0
     - Vector1_AE8CA116: 0.86
-    - Vector1_B1568B14: 0.182
+    - Vector1_B1568B14: 0
     - Vector1_B5E9B05A: 0
-    - Vector1_C7B61D8B: 0.18
+    - Vector1_C7B61D8B: 0.26
     - Vector1_D5DD97BD: 4.93
     - _AlphaClip: 0
     - _Blend: 0
@@ -110,8 +110,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_1991687: {r: 0.1792453, g: 0.1246584, b: 0.04142934, a: 1}
-    - Color_396B1D31: {r: 0.2735849, g: 0.20857622, b: 0.15356888, a: 0}
+    - Color_1991687: {r: 0.4528302, g: 0.36365896, b: 0.22855109, a: 1}
+    - Color_396B1D31: {r: 0.6037736, g: 0.5299223, b: 0.46991813, a: 1}
     - Color_5AD9E11C: {r: 0.20754719, g: 0.16965558, b: 0.07929869, a: 0}
     - Color_F5136894: {r: 1, g: 0.5130693, b: 0, a: 0}
     - Vector2_58730590: {r: 0.36, g: 27.99, b: 0, a: 0}

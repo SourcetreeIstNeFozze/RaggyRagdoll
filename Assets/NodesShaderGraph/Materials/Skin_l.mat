@@ -26,7 +26,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_3900C93A:
-        m_Texture: {fileID: 2800000, guid: e68aeddcb1cd9794d87148aea903ad5d, type: 3}
+        m_Texture: {fileID: 2800000, guid: f625b826c03d69644bd33530ced40f7b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_4396ACB8:
@@ -42,7 +42,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_A82179B8:
-        m_Texture: {fileID: 2800000, guid: d542dd74334fa654a95f83b6a9495cc3, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_B47C6B8F:
@@ -66,7 +66,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_F8938F4B:
-        m_Texture: {fileID: 2800000, guid: bfdb52a1fecaa2346ac0c50b81101aa6, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -118,18 +118,18 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_5127C35D: 0.388
+    - Vector1_5127C35D: 1
     - Vector1_6C4C265B: 0.433
     - Vector1_7741C03: 1
-    - Vector1_7DAD511F: 0.4
+    - Vector1_7DAD511F: 0.51
     - Vector1_8ADF3397: 0.018
-    - Vector1_983341C2: 0.738
+    - Vector1_983341C2: 0.391
     - Vector1_9A27D27: 0.868
     - Vector1_9B3F9A63: 0.411
     - Vector1_9F755350: 0
     - Vector1_A9E64BBA: 0.702
     - Vector1_ACE3C66F: 0.623
-    - Vector1_E030FF4A: 0.294
+    - Vector1_E030FF4A: 1
     - Vector1_FC20164B: 1
     - _AlphaClip: 0
     - _Blend: 0

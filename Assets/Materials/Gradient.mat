@@ -10,7 +10,7 @@ Material:
   m_Name: Gradient
   m_Shader: {fileID: -6465566751694194690, guid: ba7856b4edb8d694e8abb53b89a0a687,
     type: 3}
-  m_ShaderKeywords: ENUM_36980BBA_C ENUM_36980BBA_OBJECT ENUM_ED820FB5_STRIPES ENUM_ED820FB5_TRUCHET
+  m_ShaderKeywords: ENUM_36980BBA_C ENUM_36980BBA_OBJECT ENUM_ED820FB5_BRICK ENUM_ED820FB5_STRIPES
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -20,6 +20,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_5E78F7F2:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - Texture2D_7F7A192:
         m_Texture: {fileID: 2800000, guid: 0b343b179d2251243a8bbed3fe8e2773, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -59,13 +63,17 @@ Material:
     m_Floats:
     - Boolean_485FB105: 1
     - Boolean_75096CA8: 0
+    - Boolean_7FB98E48: 1
+    - Boolean_B1ABF4BE: 0
     - ENUM_36980BBA: 3
-    - ENUM_ED820FB5: 3
-    - Vector1_13D399D9: 0.317
-    - Vector1_36AE5F7E: 2.5
-    - Vector1_6FDF0C71: 0
-    - Vector1_AE8CA116: 3.92
+    - ENUM_ED820FB5: 5
+    - Vector1_13D399D9: 0.032
+    - Vector1_2E92E9A3: 0.056
+    - Vector1_36AE5F7E: 3.39
+    - Vector1_6FDF0C71: -0.3
+    - Vector1_AE8CA116: 1.05
     - Vector1_B2F93161: 0.55
+    - Vector1_CCB64D9B: 0
     - _AlphaClip: 0
     - _Blend: 0
     - _BlendOp: 0
@@ -104,8 +112,11 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Color_156C4CC1: {r: 1, g: 1, b: 1, a: 0}
+    - Color_9E7C045E: {r: 0.2264151, g: 0.06728373, b: 0.06728373, a: 0}
     - Color_C1ADBAB: {r: 0, g: 0, b: 0, a: 0}
     - Color_F5136894: {r: 1, g: 1, b: 1, a: 0}
+    - Vector2_78E5B8F5: {r: 1, g: 1, b: 0, a: 0}
+    - Vector2_A088B696: {r: 13.4, g: 11.6, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
     - _CameraFadeParams: {r: 0, g: 0, b: 0, a: 0}

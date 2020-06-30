@@ -86,11 +86,10 @@ public class CopyComponentsWindow : EditorWindow
             for (int m = capacity; m < childObjects.Count; m++)
                 childObjects.RemoveAt(childObjects.Count - 1);
 
+            //display the field
             for (int m = 0; m < childObjects.Count; m++)
             {
-                //display the field
                 childObjects[m] = (EditorGUILayout.ObjectField(childNamingObjects[m].transform.name , childObjects[m], typeof(GameObject), true, GUILayout.Width(500))) as GameObject;
-
             }
         }
     }
