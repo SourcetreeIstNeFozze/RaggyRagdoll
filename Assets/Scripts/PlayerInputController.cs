@@ -173,7 +173,12 @@ public class PlayerInputController : MonoBehaviour
             {
                 Anchor_AutomaticFeetBalance();
                 AnchorInputForce();
-                //AnchorBreakForce();
+                AnchorBreakForce();
+            }
+
+            if (settings.fallMode == Settings.FallMode.autoBend)
+            {
+
             }
         }
 
@@ -528,7 +533,7 @@ public class PlayerInputController : MonoBehaviour
         // Break Anchor
         if (settings.breakAnchorAtLimit)
         {
-            if (anchorState == AnchorState.connected && Mathf.Abs(handAngle) > settings.anchorBreakAngleLimit)
+            if (Mathf.Abs(handAngle) > settings.anchorBreakAngleLimit)
             {
                 anchorState = AnchorState.broken;
                 configJoint.connectedAnchor = Vector3.zero;// - Vector3.up * settings.configJoint_Y_Offset;

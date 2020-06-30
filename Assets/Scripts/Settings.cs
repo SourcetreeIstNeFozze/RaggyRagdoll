@@ -25,7 +25,7 @@ public class Settings : MonoBehaviour
 	[Header("Falling and Stabilisation")]
 	public FallDirection fallDirection;
 	public enum FallDirection { X, XandZ }
-	public enum FallMode { neverFall, getUpAutomatically, dontGetUp, spring_backFoot, spring_feet, bend}
+	public enum FallMode { neverFall, getUpAutomatically, dontGetUp, spring_backFoot, spring_feet, bend, autoBend}
 	public FallMode fallMode;
 	public float springForce;
 

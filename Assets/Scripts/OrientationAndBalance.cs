@@ -53,7 +53,7 @@ public class OrientationAndBalance : MonoBehaviour
 			orientationCentre.transform.LookAt(new Vector3(lookAtTarget.transform.position.x, orientationCentre.transform.position.y + hightToLookAt, lookAtTarget.transform.position.z));
 		}
 
-        if (settings.fallMode != Settings.FallMode.spring_backFoot && settings.fallMode != Settings.FallMode.spring_feet)
+        if (settings.fallMode != Settings.FallMode.spring_backFoot && settings.fallMode != Settings.FallMode.spring_feet && settings.fallMode != Settings.FallMode.autoBend)
         {
             SetXDrive(0);
             SetYDrive(0);

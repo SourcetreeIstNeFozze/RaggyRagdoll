@@ -157,7 +157,7 @@ public class CollisionHandler : MonoBehaviour
 	private void OnCollisionEnter(Collision collision)
 	{
 		//if (!collision.gameObject.tag.Equals("Environment"))
-		Debug.Log($"collision: from {collision.gameObject.name} on {collision.transform.root} to {this.gameObject.name} on {this.gameObject.transform.root}");
+		//Debug.Log($"collision: from {collision.gameObject.name} on {collision.transform.root} to {this.gameObject.name} on {this.gameObject.transform.root}");
 
 		// GROUND DETECTION
 		if (collision.collider.tag == "Environment")
