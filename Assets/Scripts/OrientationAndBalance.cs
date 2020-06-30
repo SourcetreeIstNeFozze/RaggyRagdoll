@@ -91,22 +91,22 @@ public class OrientationAndBalance : MonoBehaviour
 
 		if (settings.fallMode == Settings.FallMode.neverFall)
 		{
-			SetAngularXDrive(maxdrive);
-			SetAngularYZDrive(maxdrive);
+			//SetAngularXDrive(maxdrive);
+			//SetAngularYZDrive(maxdrive);
 
 		}
 		else if (settings.fallMode == Settings.FallMode.dontGetUp)
 		{
-			SetAngularXDrive(settings.springForce);
+			//SetAngularXDrive(settings.springForce);
 
-			if (settings.fallDirection == Settings.FallDirection.XandZ)
-			{
-				SetAngularYZDrive(settings.springForce);
-			}
-			else
-			{
-				SetAngularYZDrive(maxdrive);
-			}	
+			//if (settings.fallDirection == Settings.FallDirection.XandZ)
+			//{
+			//	SetAngularYZDrive(settings.springForce);
+			//}
+			//else
+			//{
+			//	SetAngularYZDrive(maxdrive);
+			//}	
 		}
 	}
 
