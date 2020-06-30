@@ -303,7 +303,7 @@ public class @InputController : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""8abf6c58-2776-4cfa-ad44-d30d685da8c5"",
-                    ""path"": ""<Keyboard>/w"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardScheme1"",
@@ -336,7 +336,7 @@ public class @InputController : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""193ff8cc-60af-4563-bf37-ba39055321dd"",
-                    ""path"": ""<Keyboard>/w"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardScheme1"",
