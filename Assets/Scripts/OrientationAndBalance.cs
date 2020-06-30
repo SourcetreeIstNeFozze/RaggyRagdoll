@@ -53,7 +53,7 @@ public class OrientationAndBalance : MonoBehaviour
 			orientationCentre.transform.LookAt(new Vector3(lookAtTarget.transform.position.x, orientationCentre.transform.position.y + hightToLookAt, lookAtTarget.transform.position.z));
 		}
 
-        if (settings.fallMode != Settings.FallMode.spring_backFoot && settings.fallMode != Settings.FallMode.spring_feet)
+        if (settings.fallMode != Settings.FallMode.spring_backFoot && settings.fallMode != Settings.FallMode.spring_feet && settings.fallMode != Settings.FallMode.autoBend)
         {
             SetXDrive(0);
             SetYDrive(0);
@@ -91,22 +91,22 @@ public class OrientationAndBalance : MonoBehaviour
 
 		if (settings.fallMode == Settings.FallMode.neverFall)
 		{
-			SetAngularXDrive(maxdrive);
-			SetAngularYZDrive(maxdrive);
+			//SetAngularXDrive(maxdrive);
+			//SetAngularYZDrive(maxdrive);
 
 		}
 		else if (settings.fallMode == Settings.FallMode.dontGetUp)
 		{
-			SetAngularXDrive(settings.springForce);
+			//SetAngularXDrive(settings.springForce);
 
-			if (settings.fallDirection == Settings.FallDirection.XandZ)
-			{
-				SetAngularYZDrive(settings.springForce);
-			}
-			else
-			{
-				SetAngularYZDrive(maxdrive);
-			}	
+			//if (settings.fallDirection == Settings.FallDirection.XandZ)
+			//{
+			//	SetAngularYZDrive(settings.springForce);
+			//}
+			//else
+			//{
+			//	SetAngularYZDrive(maxdrive);
+			//}	
 		}
 	}
 
