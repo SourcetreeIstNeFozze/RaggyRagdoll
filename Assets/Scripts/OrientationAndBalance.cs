@@ -35,30 +35,30 @@ public class OrientationAndBalance : MonoBehaviour
 
 	// Start is called before the first frame update
 	void Start()
-	{
+    {
 		lookAtActive = settings.lookAtActive;
-	}
+    }
 
 	// Update is called once per frame
 	void Update()
 	{
 
-		// ORIENTATION
-		orientationCentre.transform.position = configurableJoint.transform.position;
-		//orientationCentre.transform.position = this.transform.TransformPoint(configJoint_comp.connectedAnchor);
+        // ORIENTATION
+        orientationCentre.transform.position = configurableJoint.transform.position;
+        //orientationCentre.transform.position = this.transform.TransformPoint(configJoint_comp.connectedAnchor);
 
 
-		if (lookAtActive && lookAtTarget != null)
+        if (lookAtActive && lookAtTarget != null)
 		{
 			orientationCentre.transform.LookAt(new Vector3(lookAtTarget.transform.position.x, orientationCentre.transform.position.y + hightToLookAt, lookAtTarget.transform.position.z));
 		}
 
-		if (settings.fallMode != Settings.FallMode.spring_backFoot && settings.fallMode != Settings.FallMode.spring_feet && settings.fallMode != Settings.FallMode.autoBend)
-		{
-			SetXDrive(0);
-			SetYDrive(0);
-			SetZDrive(0);
-		}
+        if (settings.fallMode != Settings.FallMode.spring_backFoot && settings.fallMode != Settings.FallMode.spring_feet && settings.fallMode != Settings.FallMode.autoBend)
+        {
+            SetXDrive(0);
+            SetYDrive(0);
+            SetZDrive(0);
+        }
 
 		if (settings.fallMode == Settings.FallMode.getUpAutomatically)
 		{
@@ -147,29 +147,29 @@ public class OrientationAndBalance : MonoBehaviour
 		affectedJoint.angularYZDrive = YZDrive;
 	}
 
-	private void SetXDrive(float value)
-	{
-		JointDrive xDrive = affectedJoint.xDrive;
-		xDrive.positionSpring = value;
-		affectedJoint.xDrive = xDrive;
-	}
+    private void SetXDrive(float value)
+    {
+        JointDrive xDrive = affectedJoint.xDrive;
+        xDrive.positionSpring = value;
+        affectedJoint.xDrive = xDrive;
+    }
 
-	private void SetYDrive(float value)
-	{
-		JointDrive yDrive = affectedJoint.yDrive;
-		yDrive.positionSpring = value;
-		affectedJoint.yDrive = yDrive;
-	}
+    private void SetYDrive(float value)
+    {
+        JointDrive yDrive = affectedJoint.yDrive;
+        yDrive.positionSpring = value;
+        affectedJoint.yDrive = yDrive;
+    }
 
-	private void SetZDrive(float value)
-	{
-		JointDrive zDrive = affectedJoint.zDrive;
-		zDrive.positionSpring = value;
-		affectedJoint.zDrive = zDrive;
-	}
+    private void SetZDrive(float value)
+    {
+        JointDrive zDrive = affectedJoint.zDrive;
+        zDrive.positionSpring = value;
+        affectedJoint.zDrive = zDrive;
+    }
 
 
-	private float FloatTo180Spectrum(float value)
+    private float FloatTo180Spectrum(float value)
 	{
 		if (value > 180)
 		{
@@ -183,7 +183,7 @@ public class OrientationAndBalance : MonoBehaviour
 		return value;
 	}
 
-	public void SetFallTimer(float time)
+	public void SetFallTimer( float time)
 	{
 		canFallTimer = time;
 	}
