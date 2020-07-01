@@ -54,7 +54,7 @@ public class ChangeHand : EditorWindow
         {
             SetInputHandToReferernce();
         }
-        if (GUILayout.Button("Delete old Objects") && !objectPreviousList.Contains(null)) // ADD ICONDITION SO THAT EVERYTHING HAS TO BE FILLED IN
+        if (GUILayout.Button("Delete old Objects")) // ADD ICONDITION SO THAT EVERYTHING HAS TO BE FILLED IN
         {
             DeleteOldObjects();
         }
@@ -144,9 +144,9 @@ public class ChangeHand : EditorWindow
     {
 
         for (int i = 0; i < objectFieldListNames.Count; i++)
-        {
-            Undo.RecordObject(objectPreviousList[i], "Deleting Objects");
-            DeleteObject(objectPreviousList[i]);
+        {  
+            if(objectPreviousList[i] != null)
+                DeleteObject(objectPreviousList[i]);
         }
     }
 
