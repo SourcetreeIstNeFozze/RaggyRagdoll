@@ -66,13 +66,13 @@ public class PlayerInputController : MonoBehaviour
 
         if (this.tag.Equals("player_right"))
         {
-            activeAvatar = settings.RIGHT;
+            activeAvatar = FindObjectOfType<Settings>().RIGHT;
             invertControls = true;
             configJoint = activeAvatar.GetComponent<ConfigurableJoint>();
         }
         else if (this.tag.Equals("player_left"))
         {
-            activeAvatar = settings.LEFT;
+            activeAvatar = FindObjectOfType<Settings>().LEFT;
             invertControls = false;
             configJoint = activeAvatar.GetComponent<ConfigurableJoint>();
         }
@@ -196,8 +196,7 @@ public class PlayerInputController : MonoBehaviour
             // When in air push the player
             else if (activeAvatar.indexFinger.stickInput.value.x != 0f && GetGroundedState() == GroundedState.inAir)
             {
-                SetPlayerPushForce(new Vector3(activeAvatar.indexFinger.stickInput.value.x, 0, 0), settings.maxHipPushForce);
-
+                SetPlayerPushForce(new Vector3(activeAvatar.indexFinger.stickInput.value.x, 0, 0), settings.maxHipPushForce * (invertControls ? -1 : 1));
             }
             else
             {
@@ -280,12 +279,12 @@ public class PlayerInputController : MonoBehaviour
         // Bend the body if getting input and on the floor 
         if (!(GetGroundedState() == GroundedState.inAir) && !settings.compassBending)
         {
-            BendVertically(bendDirection * settings.hipRotationSpeed);
+            BendVertically(bendDirection * settings.hipRotationSpeed * (invertControls ? 1 : -1));
         }
         // When in air push the player
         else if ((GetGroundedState() == GroundedState.inAir) || !(GetGroundedState() == GroundedState.inAir && settings.compassBending))
         {
-            SetPlayerPushForce(new Vector3(bendDirection, 0, 0), settings.maxHipPushForce);
+            SetPlayerPushForce(new Vector3(bendDirection, 0, 0), settings.maxHipPushForce * (invertControls ? 1 : -1));
         }
         else
         {
