@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.35269594, g: 0.3185615, b: 0.30296037, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 434f5032f34c92f45a162447a71323a3,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1245,8 +1245,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 211126383}
-  m_LocalRotation: {x: -0, y: -1e-45, z: 0.000094331, w: 1}
-  m_LocalPosition: {x: -4.403484, y: -1.2718216, z: -12.96926}
+  m_LocalRotation: {x: 7.906734e-13, y: 0.000000008381903, z: 0.00009433101, w: 1}
+  m_LocalPosition: {x: -4.403484, y: -1.2718216, z: -10.96926}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 945575786}
@@ -12915,7 +12915,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e1f73f7d3039d634c845de1532176fc0, type: 2}
+  - {fileID: 2100000, guid: 4aa2b9781ad0dde4a87d0279dec5153d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17960,7 +17960,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746894800}
-  m_LocalRotation: {x: -0, y: -1e-45, z: 0.000094331, w: 1}
+  m_LocalRotation: {x: 7.906734e-13, y: 0.000000008381903, z: 0.00009433101, w: 1}
   m_LocalPosition: {x: -4.403484, y: -1.2718216, z: -12.96926}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -19809,7 +19809,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fb673452938b2284dae32809d1f74beb, type: 2}
+      objectReference: {fileID: 2100000, guid: a81695645c1cbd34eb76c2e3efb194e9, type: 2}
     - target: {fileID: 3637888786331902287, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
         type: 3}
       propertyPath: m_Materials.Array.data[4]
