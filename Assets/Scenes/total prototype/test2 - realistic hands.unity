@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.5310609, g: 0.59622073, b: 0.735849, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 0
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 04d317e8363b07844a5818e7faef9d8a, type: 2}
   m_HaloStrength: 0.5
@@ -1857,8 +1857,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 211126383}
-  m_LocalRotation: {x: -0, y: -0, z: 0.000094330455, w: 1}
-  m_LocalPosition: {x: -4.748484, y: -0.07232165, z: -12.86926}
+  m_LocalRotation: {x: 0.00022930972, y: -0.0009569865, z: 0.00009454996, w: 0.9999996}
+  m_LocalPosition: {x: -4.7522163, y: -0.0732162, z: -10.919265}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 945575786}
@@ -2237,8 +2237,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.24, z: 0.18}
-  m_Center: {x: 0, y: -0.29, z: 0}
+  m_Size: {x: 0.2, y: 0.26, z: 0.18}
+  m_Center: {x: 0.06, y: -0.29, z: 0}
 --- !u!23 &476055493
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2737,7 +2737,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.55, z: 0.2}
-  m_Center: {x: 0, y: -0.23, z: -0.09}
+  m_Center: {x: 0, y: -0.3, z: 0}
 --- !u!23 &667490544
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3363,8 +3363,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.19, y: 0.44, z: 0.2}
-  m_Center: {x: 0, y: -0.22, z: 0}
+  m_Size: {x: 0.2, y: 0.4, z: 0.2}
+  m_Center: {x: 0.04, y: -0.26, z: 0}
 --- !u!23 &997047713
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3581,7 +3581,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.4, z: 0.19}
-  m_Center: {x: 0, y: -0.2, z: 0.06}
+  m_Center: {x: -0.02, y: -0.17, z: 0.07}
 --- !u!23 &1111515126
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3774,7 +3774,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.4, z: 0.17}
-  m_Center: {x: -0.03, y: -0.24, z: 0.01}
+  m_Center: {x: 0.13, y: -0.25, z: -0.03}
 --- !u!23 &1154684401
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4039,8 +4039,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.22, y: 0.5, z: 0.22}
-  m_Center: {x: -0.07, y: -0.3, z: 0.02}
+  m_Size: {x: 0.24, y: 0.59, z: 0.22}
+  m_Center: {x: 0, y: -0.26, z: 0.02}
 --- !u!23 &1379900797
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4238,8 +4238,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.58, z: 0.24}
-  m_Center: {x: -0.04, y: -0.22, z: 0}
+  m_Size: {x: 0.2, y: 0.55, z: 0.24}
+  m_Center: {x: -0.04, y: -0.3, z: 0}
 --- !u!23 &1391016417
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4432,7 +4432,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.4, z: 0.2}
-  m_Center: {x: 0, y: -0.18, z: 0.04}
+  m_Center: {x: -0.07, y: -0.22, z: 0.09}
 --- !u!23 &1415781861
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4624,7 +4624,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.27, z: 0.16}
-  m_Center: {x: 0, y: -0.22, z: 0.02}
+  m_Center: {x: -0.04, y: -0.22, z: 0.02}
 --- !u!23 &1449050408
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4816,7 +4816,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.26, z: 0.18}
-  m_Center: {x: 0, y: -0.22, z: 0.01}
+  m_Center: {x: -0.12, y: -0.23, z: 0.06}
 --- !u!23 &1499900412
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5058,7 +5058,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1706595895
 Transform:
   m_ObjectHideFlags: 0
@@ -5381,7 +5381,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746894800}
-  m_LocalRotation: {x: -0, y: -0, z: 0.000094330455, w: 1}
+  m_LocalRotation: {x: 0.00022930972, y: -0.0009569865, z: 0.00009454996, w: 0.9999996}
   m_LocalPosition: {x: -4.748484, y: -0.07232165, z: -12.86926}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5532,8 +5532,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.19, y: 0.3, z: 0.16}
-  m_Center: {x: -0.03, y: -0.28, z: 0}
+  m_Size: {x: 0.2, y: 0.27, z: 0.16}
+  m_Center: {x: 0.17, y: -0.33, z: 0.02}
 --- !u!23 &1841128658
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5772,7 +5772,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5e2c3470e797a934692075d222c4593a, type: 2}
+  - {fileID: 2100000, guid: 4aa2b9781ad0dde4a87d0279dec5153d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5960,7 +5960,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.24, y: 0.55, z: 0.22}
-  m_Center: {x: 0, y: -0.26, z: -0.05}
+  m_Center: {x: 0, y: -0.26, z: 0.02}
 --- !u!23 &2038123569
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8230,7 +8230,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 734385dfceb60574c835a4923986dc2f, type: 2}
+  - {fileID: 2100000, guid: 95beb4cd6eb0e7e4c98f68003d69625c, type: 2}
   - {fileID: 2100000, guid: f4c7926a1a2384a4d870c61ea47945e8, type: 2}
   - {fileID: 2100000, guid: 8839ccf9df30ff44d98fbe3c83204855, type: 2}
   - {fileID: 2100000, guid: 8839ccf9df30ff44d98fbe3c83204855, type: 2}
@@ -8316,7 +8316,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4ce5c222b04b4d1488714b259efa1151, type: 2}
+  - {fileID: 2100000, guid: 95beb4cd6eb0e7e4c98f68003d69625c, type: 2}
   - {fileID: 2100000, guid: 45f5c7ade11786c42b85544d4e62ac51, type: 2}
   - {fileID: 2100000, guid: 8839ccf9df30ff44d98fbe3c83204855, type: 2}
   - {fileID: 2100000, guid: 8839ccf9df30ff44d98fbe3c83204855, type: 2}
