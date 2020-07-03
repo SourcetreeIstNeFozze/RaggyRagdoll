@@ -84,7 +84,7 @@ public class CopyAnimation : MonoBehaviour
 			{
 				ConfigurableJoint cj = (ConfigurableJoint)jointToMove;
 				targetRotation = initialLocalrotation - source.localEulerAngles;
-				convertedTargetRotation = Vector3To180Spectrum(targetRotation); // commment this out and enter values manually for debugging
+				convertedTargetRotation = ExtensionMethods.Vector3To180Spectrum(targetRotation); // commment this out and enter values manually for debugging
 				cj.targetRotation = Quaternion.Euler(new Vector3 (convertedTargetRotation.x * amplificationFactor.x, convertedTargetRotation.y * amplificationFactor.y, convertedTargetRotation.z * amplificationFactor.z));
                 //if (this.gameObject.name == "Index_3")
                 //    print("targetRotation: " + new Vector3(convertedTargetRotation.x * amplificationFactor.x, convertedTargetRotation.y * amplificationFactor.y, convertedTargetRotation.z * amplificationFactor.z));
@@ -94,25 +94,6 @@ public class CopyAnimation : MonoBehaviour
 		}
 	}
 
-	private Vector3 Vector3To180Spectrum(Vector3 vector)
-	{
-		return (new Vector3(FloatTo180Spectrum(vector.x), FloatTo180Spectrum(vector.y), FloatTo180Spectrum(vector.z)));
-	}
 
-	// needs reworking for angles bigger than 360???
-	private float FloatTo180Spectrum(float value)
-	{
-		if (value > 180)
-		{
-			return value - 360;
-		}
-
-		if (value < -180)
-		{
-			return value + 360; 
-		}
-		return value;
-
-	}
 }
 
