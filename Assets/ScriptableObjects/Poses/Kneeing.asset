@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6fc2bf43f94943468270338d3f3b04c, type: 3}
+  m_Name: Kneeing
+  m_EditorClassIdentifier: 
+  name: Kneeing
+  jointPositions:
+  - jointName: middle 3
+    targetRotation: {x: 0, y: 0, z: 0}
+    tolerance: {x: 10, y: 10, z: 10}
+  - jointName: middle 2
+    targetRotation: {x: -90, y: 0, z: 0}
+    tolerance: {x: 10, y: 360, z: 360}
+  - jointName: middle 1
+    targetRotation: {x: 0, y: 0, z: 0}
+    tolerance: {x: 360, y: 360, z: 360}
+  - jointName: index 3
+    targetRotation: {x: 0, y: 0, z: 0}
+    tolerance: {x: 10, y: 10, z: 10}
+  - jointName: index 2
+    targetRotation: {x: -90, y: 0, z: 0}
+    tolerance: {x: 10, y: 360, z: 360}
+  - jointName: index 1
+    targetRotation: {x: 0, y: 0, z: 0}
+    tolerance: {x: 360, y: 360, z: 360}

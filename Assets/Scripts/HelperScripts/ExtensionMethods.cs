@@ -57,7 +57,7 @@ public static class ExtensionMethods
 	public static float FloatTo180Spectrum(float value)
 	{
 		//reduce the value if its bigger than 360
-		//value = value - (Mathf.Sign(value) * (value % 360) * 360);
+		value = value - ((Mathf.Sign(value) *  (value - Mathf.Abs(value) % 360)));
 
 		//convert
 		if (value > 180)
