@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using DitzelGames.FastIK;
 using UnityEditor;
 
 public class PlayerInputControllerRealisticHand : MonoBehaviour
 {
     [Header("Input method")]
     public bool IK_controls = false;
-    public FastIKFabric IK_solver_index;
-    public FastIKFabric IK_solver_middle;
     [Space]
     public bool blendTreePoses = false;
     public Animator IK_animator;
@@ -44,17 +41,6 @@ public class PlayerInputControllerRealisticHand : MonoBehaviour
 	void Start()
 	{
         mirrorX = new Vector2(-1f, 1f);
-
-        if (!IK_controls)
-        {
-            IK_solver_index.enabled = false;
-            IK_solver_middle.enabled = false;
-        }
-        else
-        {
-            IK_solver_index.enabled = true;
-            IK_solver_middle.enabled = true;
-        }
 
         // POSES - activate
         if (blendTreePoses)
