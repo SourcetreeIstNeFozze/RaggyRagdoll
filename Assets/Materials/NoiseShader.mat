@@ -32,10 +32,10 @@ Material:
     MotionVector: User
   disabledShaderPasses:
   - DistortionVectors
-  - MOTIONVECTORS
+  - TransparentBackface
   - TransparentDepthPrepass
   - TransparentDepthPostpass
-  - TransparentBackface
+  - MOTIONVECTORS
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -125,16 +125,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Boolean_58B8DF0A: 1
-    - Vector1_2FFAA2DC: 0.686
-    - Vector1_384682DF: 55.5
-    - Vector1_58BA9C48: 34.3
-    - Vector1_6F315F55: 2.7
+    - Vector1_2FFAA2DC: 0.653
+    - Vector1_384682DF: 58
+    - Vector1_58BA9C48: 113.2
+    - Vector1_6F315F55: 4.03
     - Vector1_9DA590A2: 1
-    - Vector1_B1B0056E: -0.145
-    - Vector1_B504FF73: 0.231
+    - Vector1_B1B0056E: -0.167
+    - Vector1_B504FF73: 0.246
     - Vector1_B5F6D68E: 0.515
-    - Vector1_C5DA7E6A: 0.125
-    - Vector1_D6DCEE4F: -0.068
+    - Vector1_C5DA7E6A: 0.188
+    - Vector1_D6DCEE4F: -0.024
     - Vector1_EED35ABC: -0.71
     - _AORemapMax: 1
     - _AORemapMin: 0
@@ -258,9 +258,9 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
-    - Color_32E26DCB: {r: 1, g: 0.674681, b: 0, a: 0}
-    - Color_3BD85EF: {r: 0.3018868, g: 0.19989063, b: 0.19793521, a: 0}
-    - Color_7E9F0FE7: {r: 0.3773585, g: 0.15284903, b: 0.10857955, a: 0}
+    - Color_32E26DCB: {r: 1, g: 1, b: 1, a: 1}
+    - Color_3BD85EF: {r: 0, g: 0, b: 0, a: 1}
+    - Color_7E9F0FE7: {r: 0.754717, g: 0.754717, b: 0.754717, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
