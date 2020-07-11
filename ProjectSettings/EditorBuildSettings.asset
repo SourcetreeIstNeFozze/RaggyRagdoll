@@ -4,7 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/total prototype/test6 - multiplayer.unity
+    guid: c174f5384e8e01b43b4f4d8acf8b9971
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: beb86905836154645951eb15767ab755,
       type: 2}
