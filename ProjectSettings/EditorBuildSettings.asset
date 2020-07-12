@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: e5eec9ba9224d93469eb26a0fa7fa33e
+  - enabled: 1
+    path: Assets/Scenes/total prototype/test3 - new stabi 1.unity
+    guid: 00bef35f4404c414b9aa7707b3346ff7
+  - enabled: 1
     path: Assets/Scenes/total prototype/test6 - multiplayer.unity
     guid: c174f5384e8e01b43b4f4d8acf8b9971
   m_configObjects:

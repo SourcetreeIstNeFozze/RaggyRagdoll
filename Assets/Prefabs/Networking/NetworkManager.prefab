@@ -9,9 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 875328396730360643}
-  - component: {fileID: 4226002898224047375}
-  - component: {fileID: 4772005888895256557}
-  - component: {fileID: 3829248053585736039}
+  - component: {fileID: 1821493889}
+  - component: {fileID: 1821493888}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -33,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4226002898224047375
+--- !u!114 &1821493889
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7506035699747068117}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8aab4c8111b7c411b9b92cf3dbc5bd4e, type: 3}
+  m_Script: {fileID: 11500000, guid: 10dc8c40f4e2e9240a443b66a3b0dcc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
@@ -52,18 +51,28 @@ MonoBehaviour:
   serverTickRate: 30
   offlineScene: 
   onlineScene: 
-  transport: {fileID: 4772005888895256557}
+  transport: {fileID: 1821493888}
   networkAddress: localhost
-  maxConnections: 4
+  maxConnections: 2
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 0}
+  playerPrefab: {fileID: 2360517535222304015, guid: f8f92ae0a648b784ba9916f04bce8d4a,
+    type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
   spawnPrefabs:
-  - {fileID: 5481868599362241687, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2, type: 3}
---- !u!114 &4772005888895256557
+  - {fileID: 2360517535222304015, guid: f8f92ae0a648b784ba9916f04bce8d4a, type: 3}
+  lobbyPlayers: []
+  gamePlayers: []
+  mainMenuScene: 
+  gameScene: 
+  lastScene: 
+  NETPlayerInGame_prefab: {fileID: 0}
+  NETPlayerLobby_prefab: {fileID: 2435286139696010129, guid: f8f92ae0a648b784ba9916f04bce8d4a,
+    type: 3}
+  fightManager_prefab: {fileID: 0}
+--- !u!114 &1821493888
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,18 +114,3 @@ MonoBehaviour:
   serverMaxReceivesPerTick: 10000
   clientMaxMessageSize: 16384
   clientMaxReceivesPerTick: 1000
---- !u!114 &3829248053585736039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7506035699747068117}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showGUI: 1
-  offsetX: 0
-  offsetY: 0
