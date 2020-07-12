@@ -17,7 +17,7 @@ public class NetworkManagerHand : NetworkManager
 
 	[Scene] public string mainMenuScene;
 	[Scene] public string gameScene;
-	[Scene] public string lastScene;
+	[Scene] private string lastScene;
 
 	[Header("Prefabs")]
 	public NetworkedPlayerInGame NETPlayerInGame_prefab;
@@ -27,10 +27,12 @@ public class NetworkManagerHand : NetworkManager
 
 	public static System.Action OnClientConnected;
 	public static System.Action OnClientDisconnected;
+	public static System.Action<NetworkConnection> OnServerReadied; // Called ON SERVER when a CLIENT has readied, ot when the server is readied!!!
 
+	public bool debugs; 
 	public override void OnClientConnect(NetworkConnection conn)
 	{
-		Debug.Log("Connecting Client...");
+		if (debugs) Debug.Log("Connecting Client...");
 		base.OnClientConnect(conn);
 
 		OnClientConnected?.Invoke();
@@ -38,7 +40,7 @@ public class NetworkManagerHand : NetworkManager
 
 	public override void OnClientDisconnect(NetworkConnection conn)
 	{
-		Debug.Log("Disconnecting Client");
+		if (debugs)  Debug.Log("Disconnecting Client");
 		base.OnClientConnect(conn);
 
 		OnClientDisconnected?.Invoke();
@@ -47,7 +49,7 @@ public class NetworkManagerHand : NetworkManager
 
 	public override void OnServerConnect(NetworkConnection conn)
 	{
-		Debug.Log("Connecting Server...");
+		if (debugs)  Debug.Log("Connecting Server...");
 		//base.OnServerConnect(conn);
 
 		//disconnect (== dont allow to jain) a player if max number of players has been reached
@@ -65,18 +67,27 @@ public class NetworkManagerHand : NetworkManager
 
 	public override void OnServerAddPlayer(NetworkConnection conn)
 	{
-		Debug.Log("Adding player...");
 		if (SceneManager.GetActiveScene().path == mainMenuScene)
 		{
+			if (debugs) Debug.Log("Adding player in MainMenu ...");
 			NetworkPlayerLobby networkPlayerLobby = Instantiate(NETPlayerLobby_prefab);
 			NetworkServer.AddPlayerForConnection(conn, networkPlayerLobby.gameObject);
 		}
 	}
 
+	public override void OnStopServer()
+	{
+		//lobbyPlayers.Clear();
+		base.OnStopServer();
+
+	}
+
+	
 	public void StartGame()
 	{
 		if (SceneManager.GetActiveScene().path == mainMenuScene)
 		{
+			if (debugs)  Debug.Log("Starting Level...");
 			// TO DO?:
 			//- check if all the players are ready
 
@@ -86,23 +97,60 @@ public class NetworkManagerHand : NetworkManager
 		
 	}
 
+	public override void ServerChangeScene(string newSceneName)
+	{
+		if (debugs)  Debug.Log("Changing Scene on Server....");
+
+		lastScene = SceneManager.GetActiveScene().path;
+
+		base.ServerChangeScene(newSceneName);
+	}
 	public override void OnServerSceneChanged(string sceneName)
 	{
+		if (debugs)  Debug.Log("Changed Scene on Server....");
+
 		base.OnServerSceneChanged(sceneName);
-
-		//menu to game
-		if (SceneManager.GetActiveScene().path == mainMenuScene)
+				
+		//ON GAME SCENE LOADED
+		if (SceneManager.GetActiveScene().path == gameScene)
 		{
-			//replace lobby players with the game players
-			for (int i = 0; i < lobbyPlayers.Count; i++)
+			//menu to game
+			if (lastScene == mainMenuScene)
 			{
-				NetworkConnection conn = lobbyPlayers[i].connectionToClient;
-				NetworkedPlayerInGame playerInstance = Instantiate(NETPlayerInGame_prefab);
+				if (debugs) Debug.Log("Reinstantiating players..");
 
-				NetworkServer.Destroy(conn.identity.gameObject); // actually destroys the lobbyPlayer
-				NetworkServer.ReplacePlayerForConnection(conn, playerInstance.gameObject);
+				//replace lobby players with the game players
+				for (int i = 0; i < lobbyPlayers.Count; i++)	
+				{
+					if (debugs) Debug.Log("Reinstantiating playr:" + i);
+					NetworkConnection conn = lobbyPlayers[i].connectionToClient;
+					NetworkedPlayerInGame playerInstance = Instantiate(NETPlayerInGame_prefab);
+
+					NetworkServer.Destroy(conn.identity.gameObject); // actually destroys the lobbyPlayer object
+					NetworkServer.ReplacePlayerForConnection(conn, playerInstance.gameObject); // bind the connection of the destroyed object with the newly instantiated object
+				}
+
+				//lobbyPlayers.Clear();
 			}
+			//game to game 
+			else
+			{
+				//TO BE IMPELMENTED
+			}
+
+			//if (debugs) Debug.Log("Spawning Fight Manager playrs..");
+			////Spawn fight manager
+			//GameObject fightManager = GameObject.Instantiate(fightManager_prefab);
+			//NetworkServer.Spawn(fightManager); // if no second argument is given than the server has authority over this object
+
 		}
+	}
+
+	public override void OnServerReady(NetworkConnection conn)
+	{
+		//if (debugs) Debug.Log( conn.identity.gameObject.name + " is ready", conn.identity.gameObject); 
+		base.OnServerReady(conn);
+		OnServerReadied?.Invoke(conn);
 	}
 
 }

@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7506035699747068117}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.19726706, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -63,15 +63,18 @@ MonoBehaviour:
   playerSpawnMethod: 0
   spawnPrefabs:
   - {fileID: 2360517535222304015, guid: f8f92ae0a648b784ba9916f04bce8d4a, type: 3}
+  - {fileID: 1366507250547647976, guid: 198c973d1568f7e4ebd6e5a43b01fcb0, type: 3}
+  - {fileID: 7723209281047769475, guid: be0efae5474fdbe44a0b32fcb04bab5f, type: 3}
   lobbyPlayers: []
   gamePlayers: []
-  mainMenuScene: 
-  gameScene: 
-  lastScene: 
-  NETPlayerInGame_prefab: {fileID: 0}
+  mainMenuScene: Assets/Scenes/MainMenu.unity
+  gameScene: Assets/Scenes/total prototype/test6 - multiplayer.unity
+  NETPlayerInGame_prefab: {fileID: 5069831549189392367, guid: be0efae5474fdbe44a0b32fcb04bab5f,
+    type: 3}
   NETPlayerLobby_prefab: {fileID: 2435286139696010129, guid: f8f92ae0a648b784ba9916f04bce8d4a,
     type: 3}
-  fightManager_prefab: {fileID: 0}
+  fightManager_prefab: {fileID: 1366507250547647976, guid: 198c973d1568f7e4ebd6e5a43b01fcb0,
+    type: 3}
 --- !u!114 &1821493888
 MonoBehaviour:
   m_ObjectHideFlags: 0

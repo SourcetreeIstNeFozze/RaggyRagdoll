@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 2837673122413903660}
   - component: {fileID: 2079704058728699123}
   - component: {fileID: 3917326055460217084}
-  - component: {fileID: 6579084476602188056}
   m_Layer: 0
-  m_Name: PlayerGhost
+  m_Name: PlayerInGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,23 +62,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
---- !u!114 &6579084476602188056
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8019828149133925462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d3e1dcf18fd4754186f1f4c02b13bbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  inputController: {fileID: 0}
-  avatar: {fileID: 0}
-  score: {fileID: 0}
-  feedback: {fileID: 0}
-  customization:
-    skinToneID: 0

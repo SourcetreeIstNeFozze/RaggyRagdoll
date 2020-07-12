@@ -8,40 +8,34 @@ using UnityEngine;
 public class NetworkedPlayerInGame : NetworkBehaviour
 {
 
+	private NetworkManagerHand networkManagerHand;
+	private NetworkManagerHand NetworkManagerHand
+	{
+		get
+		{
+			if (networkManagerHand == null)
+				networkManagerHand = NetworkManager.singleton as NetworkManagerHand;
 
-    //void Start()
-    //{
-    //    if (isLocalPlayer && isServer)
-    //    {
-    //        // run is this is the player controlled by this computer
-    //        Debug.Log("Local player joined");
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("Remote player joined");
-    //        // run if this is a player controled by a different computer
-    //    }
+			return networkManagerHand;
+		}
+	}
 
-    //    FightManager.instance.AddPlayer(GetComponent<PlayerInstance>());
+	public override void OnStartClient()
+	{
+		base.OnStartClient();
+		NetworkManagerHand.gamePlayers.Add(this);
 
-    //    // run on all player regardles who controlls them
+		//if (NetworkManagerHand.lobbyPlayers.Count == 2) 
+		//{
+		//	NetworkManagerHand.StartGame();
+		//}
+	}
 
-    //}
-
-    //// Update is called once per frame
-    //void Update()
-    //{
-    //    if (hasAuthority)
-    //    {
-    //        Debug.Log("cats", gameObject);
-    //        // run is this is the player controlled by this computer
-    //    }
-    //    else
-    //    {
-    //        // run if this is a player controled by a different computer
-    //    }
-
-    //    // run on all player regardles who controlls them
-    //}
+	public override void OnStopClient()
+	{
+		NetworkManagerHand.gamePlayers.Remove(this);
+		base.OnStopClient();
+	}
 }
+
 

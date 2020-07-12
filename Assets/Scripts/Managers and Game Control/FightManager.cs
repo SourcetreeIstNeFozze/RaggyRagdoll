@@ -7,62 +7,90 @@ using UnityEngine;
 public class FightManager : NetworkBehaviour
 {
     public static FightManager instance;
-    // Active Players
-    public List<PlayerInstance> players;
-    public bool localMultiplayer;
 
+    [Header("Spawning players")]
     public GameObject playerPrefab;
     public float initialPlayerOffSet;
+    private int playerIndex = 0;
+    public List<GameObject> players;
+    public bool localMultiplayer;
 
-	private void Awake()
-	{
-        instance = this;
-	}
+	//SPAWING PLAYERS AND SCENE SET UP
 
-	// Start is called before the first frame update
-	void Start()
+	public override void OnStartServer() // this is the equivalent of the Start() for networked objects
     {
+        base.OnStartServer();
+        instance = this;
+        NetworkManagerHand.OnServerReadied += SpawnPlayerAvatar;
     }
 
-    // Update is called once per frame
-    void Update()
+	private void OnDestroy() //not sure if I need this
+	{
+        NetworkManagerHand.OnServerReadied -= SpawnPlayerAvatar;
+    }
+
+
+	//public void AddPlayer(PlayerInstance player) 
+ //   {
+ //       players.Add(player);
+
+ //       if (players.Count == 2) 
+ //       {
+ //           OnBothPlayersJoined();
+ //       }
+ //   }
+
+
+    public void SpawnPlayerAvatar(NetworkConnection conn)
     {
         
-    }
+        // is this left player or right player?
+        int side;
+        if (playerIndex == 0) 
+            side = 1;
+        else
+            side = -1;
 
-    public void AddPlayer(PlayerInstance player) 
-    {
-        players.Add(player);
-
-        if (players.Count == 2) 
-        {
-            OnBothPlayersJoined();
-        }
-    }
-
-
-
-    [Command]
-    public void CmdSpawnPlayerAvatar(int side)
-    {
+        //spawn player
         GameObject newPlayer = GameObject.Instantiate(playerPrefab, new Vector3(playerPrefab.transform.position.x, playerPrefab.transform.position.y, initialPlayerOffSet * side), Quaternion.Euler(0, -180 * side, 0) );
+       
+        ////assign references
+        //players[playerIndex].inputController = newPlayer.GetComponent<PlayerInputController>();
+        //players[playerIndex].feedback = newPlayer.GetComponent <PlayerFeedback>();
+        //players[playerIndex].activeAvatar = newPlayer.GetComponentInChildren<HandReferences>();
 
+        //assign player authority
+        NetworkServer.Spawn(newPlayer, conn); // the second argument determines who has the authority over the object
+        players.Add(newPlayer);
+        //load customisation??????
         LoadPlayerCustomisation();
 
-        newPlayer.GetComponent<NetworkIdentity>().AssignClientAuthority(connectionToClient);
-
-        NetworkServer.Spawn(newPlayer);
+        playerIndex ++;
     }
 
 
     private void LoadPlayerCustomisation()
 	{
-        Debug.Log("here some customisation should be applied");
+        Debug.Log("Here some customisation should be applied");
 	}
 
     private void OnBothPlayersJoined() 
     {
-        CmdSpawnPlayerAvatar(1);
-        CmdSpawnPlayerAvatar(-1);
+        //SpawnPlayerAvatar(1);
+        //SpawnPlayerAvatar(-1);
+
+        //SetCamera();
     }
+
+	//private void PrepCamera()
+	//{
+ //       Cinemachine.CinemachineTargetGroup targetGroup = FindObjectOfType<Cinemachine.CinemachineTargetGroup>();
+	//	for (int i = 0; i < players.Count; i++)
+	//	{
+ //           targetGroup.m_Targets[i].target = players[i].activeAvatar.transform;
+ //       }
+
+ //       AverageRotation averageRotation = FindObjectOfType<AverageRotation>();
+ //       averageRotation.Initialize();
+ //   }
 }
