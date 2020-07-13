@@ -57,6 +57,10 @@ public class Settings : MonoBehaviour
     //public float anchorBreakDistanceLimit = 0.8f;
     public float anchorBreakAngleLimit = 45f;
 
+    [Header("If AngleAndCOM fall mode")]
+    public bool useAllFingersForCOM = true;
+    public float fallDistance = 0.3f;
+
 	private void Awake()
 	{
 		if (Settings.instance == null)

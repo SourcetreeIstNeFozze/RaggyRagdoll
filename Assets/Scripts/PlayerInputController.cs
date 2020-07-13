@@ -44,6 +44,10 @@ public class PlayerInputController : MonoBehaviour
     HandReferences otherPlayerRef;
     Vector3 lookDirection, newAchorPosition;
 
+    // angular drive stabilization
+    Vector3 COM;
+    List<Rigidbody> rigids;
+
     public enum GroundedState
     {
         inAir,
@@ -126,7 +130,10 @@ public class PlayerInputController : MonoBehaviour
         }
         jointDrive_startValue = configJoint.xDrive.positionSpring;
         otherPlayerRef = otherPlayer.GetComponentInChildren<HandReferences>();
-        //jointDrive_startMaxForce = configJoint.xDrive.maximumForce;
+
+        // get rigids for COM
+        GetRigids();
+        //if (settings.fallMode = Settings.FallMode.angleAndCOM)
     }
 
     // Update is called once per frame
@@ -179,6 +186,11 @@ public class PlayerInputController : MonoBehaviour
             if (settings.fallMode == Settings.FallMode.autoBend)
             {
 
+            }
+
+            else if (settings.fallMode == Settings.FallMode.angleAndCOM)
+            {
+                Calculate_COM();
             }
         }
 
@@ -620,6 +632,86 @@ public class PlayerInputController : MonoBehaviour
         configJoint.xDrive = drive;
         configJoint.yDrive = drive;
         configJoint.zDrive = drive;
+    }
+
+    private void SetAngularXYZDrive (float value)
+    {
+
+        JointDrive drive = configJoint.angularXDrive;
+        drive.positionSpring = value;
+        //drive.maximumForce = jointDrive_startMaxForce;
+        configJoint.angularXDrive = drive;
+        configJoint.angularYZDrive = drive;
+    }
+
+
+    void GetRigids()
+    {
+        rigids = new List<Rigidbody>();
+        rigids.Add(activeAvatar.indexFinger.fingerTop.GetComponent<Rigidbody>());
+        rigids.Add(activeAvatar.indexFinger.fingerMiddle.GetComponent<Rigidbody>());
+        rigids.Add(activeAvatar.indexFinger.fingerBottom.GetComponent<Rigidbody>());
+        rigids.Add(activeAvatar.middleFinger.fingerTop.GetComponent<Rigidbody>());
+        rigids.Add(activeAvatar.middleFinger.fingerMiddle.GetComponent<Rigidbody>());
+        rigids.Add(activeAvatar.middleFinger.fingerBottom.GetComponent<Rigidbody>());
+        rigids.Add(activeAvatar.torsoJoint.GetComponent<Rigidbody>());
+
+        if (settings.useAllFingersForCOM)
+        {
+            Rigidbody[] remainingFingerRigids = activeAvatar.torsoJoint.GetComponentsInChildren<Rigidbody>();
+            foreach (Rigidbody rigid in remainingFingerRigids)
+                rigids.Add(rigid);
+        }
+    }
+
+    void Calculate_COM()
+    {
+        //COM = (JointParts[0].GetComponent<Rigidbody>().mass * JointParts[0].transform.position +
+        //    JointParts[1].GetComponent<Rigidbody>().mass * JointParts[1].transform.position +
+        //    JointParts[2].GetComponent<Rigidbody>().mass * JointParts[2].transform.position +
+        //    JointParts[3].GetComponent<Rigidbody>().mass * JointParts[3].transform.position +
+        //    JointParts[4].GetComponent<Rigidbody>().mass * JointParts[4].transform.position +
+        //    JointParts[5].GetComponent<Rigidbody>().mass * JointParts[5].transform.position +
+        //    JointParts[6].GetComponent<Rigidbody>().mass * JointParts[6].transform.position +
+        //    JointParts[7].GetComponent<Rigidbody>().mass * JointParts[7].transform.position +
+        //    JointParts[8].GetComponent<Rigidbody>().mass * JointParts[8].transform.position +
+        //    JointParts[9].GetComponent<Rigidbody>().mass * JointParts[9].transform.position) /
+        //    (JointParts[0].GetComponent<Rigidbody>().mass + JointParts[1].GetComponent<Rigidbody>().mass +
+        //    JointParts[2].GetComponent<Rigidbody>().mass + JointParts[3].GetComponent<Rigidbody>().mass +
+        //    JointParts[4].GetComponent<Rigidbody>().mass + JointParts[5].GetComponent<Rigidbody>().mass +
+        //    JointParts[6].GetComponent<Rigidbody>().mass + JointParts[7].GetComponent<Rigidbody>().mass +
+        //    JointParts[8].GetComponent<Rigidbody>().mass + JointParts[9].GetComponent<Rigidbody>().mass);
+
+        // declaration
+        Vector3 mass_multipliedBy_position = Vector3.zero;
+        float masses = 0;
+
+        // calculation
+        foreach (Rigidbody rigid in rigids)
+        {
+            mass_multipliedBy_position += (rigid.mass * rigid.transform.position);
+            masses += rigid.mass;
+        }
+        COM = mass_multipliedBy_position / masses;
+
+        // visualization
+        GameObject com_obj = GameObject.Find("COM");
+        if (com_obj != null)
+            com_obj.transform.position = COM;
+    }
+
+    private void COM_balance()
+    {
+        if (Mathf.Abs((COM - indexTipPos).x) > settings.fallDistance ||
+            Mathf.Abs((COM - middleTipPos).x) > settings.fallDistance)
+        {
+            // break angular drive
+        }
+        else
+        {
+            // set angular drive
+        }
+
     }
 }
 

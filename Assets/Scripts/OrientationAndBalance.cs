@@ -59,7 +59,7 @@ public class OrientationAndBalance : MonoBehaviour
 			orientationCentre.transform.LookAt(new Vector3(lookAtTarget.transform.position.x, orientationCentre.transform.position.y + hightToLookAt, lookAtTarget.transform.position.z));
 		}
 
-        if (settings.fallMode != Settings.FallMode.spring_backFoot && settings.fallMode != Settings.FallMode.spring_feet && settings.fallMode != Settings.FallMode.autoBend && settings.fallMode != Settings.FallMode.angleAndCOM)
+        if (settings.fallMode != Settings.FallMode.spring_backFoot && settings.fallMode != Settings.FallMode.spring_feet && settings.fallMode != Settings.FallMode.autoBend)
         {
             SetXDrive(0);
             SetYDrive(0);
@@ -198,25 +198,4 @@ public class OrientationAndBalance : MonoBehaviour
 	{
 		canFallTimer += time;
 	}
-
-    //void Calculate_COM()
-    //{
-    //    COM = (JointParts[0].GetComponent<Rigidbody>().mass * JointParts[0].transform.position +
-    //        JointParts[1].GetComponent<Rigidbody>().mass * JointParts[1].transform.position +
-    //        JointParts[2].GetComponent<Rigidbody>().mass * JointParts[2].transform.position +
-    //        JointParts[3].GetComponent<Rigidbody>().mass * JointParts[3].transform.position +
-    //        JointParts[4].GetComponent<Rigidbody>().mass * JointParts[4].transform.position +
-    //        JointParts[5].GetComponent<Rigidbody>().mass * JointParts[5].transform.position +
-    //        JointParts[6].GetComponent<Rigidbody>().mass * JointParts[6].transform.position +
-    //        JointParts[7].GetComponent<Rigidbody>().mass * JointParts[7].transform.position +
-    //        JointParts[8].GetComponent<Rigidbody>().mass * JointParts[8].transform.position +
-    //        JointParts[9].GetComponent<Rigidbody>().mass * JointParts[9].transform.position) /
-    //        (JointParts[0].GetComponent<Rigidbody>().mass + JointParts[1].GetComponent<Rigidbody>().mass +
-    //        JointParts[2].GetComponent<Rigidbody>().mass + JointParts[3].GetComponent<Rigidbody>().mass +
-    //        JointParts[4].GetComponent<Rigidbody>().mass + JointParts[5].GetComponent<Rigidbody>().mass +
-    //        JointParts[6].GetComponent<Rigidbody>().mass + JointParts[7].GetComponent<Rigidbody>().mass +
-    //        JointParts[8].GetComponent<Rigidbody>().mass + JointParts[9].GetComponent<Rigidbody>().mass);
-    //}
-
-    // HIER WEITERMACHEN
 }
