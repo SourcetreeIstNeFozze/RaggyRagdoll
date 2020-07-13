@@ -13976,7 +13976,7 @@ GameObject:
   - component: {fileID: 682727679}
   - component: {fileID: 3111363127572703764}
   - component: {fileID: 8788283816192771441}
-  - component: {fileID: -40394352134785477}
+  - component: {fileID: 2017629636159643730}
   m_Layer: 0
   m_Name: Simple Player
   m_TagString: player_left
@@ -13991,8 +13991,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5481868599362241687}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.45969772, y: 4.932, z: -1.854}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1597849404}
@@ -14049,9 +14049,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20490689a5d57bf4c9b7a2f20a56985d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initializeOnStart: 1
+  thisPlayer: {fileID: 0}
+  otherPlayer: {fileID: 0}
   activeAvatar: {fileID: 5647237396872122862}
   handAnimator: {fileID: 640599766}
-  otherPlayer: {fileID: 0}
   timeSinceLastContact: 5
   childTransofrms: []
 --- !u!114 &8788283816192771441
@@ -14069,7 +14071,7 @@ MonoBehaviour:
   kickEffect_prefab: {fileID: 2058587245799093297, guid: 6d3aed39ed9a1bf44aeb383657aab31c,
     type: 3}
   particlePoolingPlace: {fileID: 0}
---- !u!114 &-40394352134785477
+--- !u!114 &2017629636159643730
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14078,13 +14080,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5481868599362241687}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d3e1dcf18fd4754186f1f4c02b13bbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneId: 0
-  serverOnly: 0
-  m_AssetId: 
-  hasSpawned: 0
+  inputController: {fileID: 0}
+  activeAvatar: {fileID: 0}
+  score: {fileID: 0}
+  feedback: {fileID: 0}
+  customization:
+    skinToneID: 0
 --- !u!1 &5488199827807230213
 GameObject:
   m_ObjectHideFlags: 0
@@ -15803,7 +15807,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7930167493261209281}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.52, y: 0, z: -1.95}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6151411907626373125}
