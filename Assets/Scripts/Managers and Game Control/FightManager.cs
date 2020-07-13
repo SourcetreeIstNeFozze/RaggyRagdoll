@@ -56,8 +56,14 @@ public class FightManager : MonoBehaviour
 
 		//spawn player
 		GameObject newPlayer = GameObject.Instantiate(playerPrefab, new Vector3(playerPrefab.transform.position.x, playerPrefab.transform.position.y, initialPlayerOffSet * side), Quaternion.Euler(0, -90 * side, 0));
-		
-		playerIndex++;
+
+        string tag;
+        if (side == 1) tag = "player_right";
+        else tag = "player_left";
+
+        newPlayer.tag = tag;
+
+        playerIndex++;
 
 		return newPlayer;
 	}
@@ -96,7 +102,7 @@ public class FightManager : MonoBehaviour
 
     private void PrepCamera()
     {
-        Debug.Log("preparing camera");
+        if (debugs)  Debug.Log("preparing camera");
         Cinemachine.CinemachineTargetGroup targetGroup = FindObjectOfType<Cinemachine.CinemachineTargetGroup>();
         for (int i = 0; i < players.Count; i++)
         {
