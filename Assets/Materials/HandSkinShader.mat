@@ -21,14 +21,16 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: HandSkinShader
-  m_Shader: {fileID: 4800000, guid: b834f51b770778c42b8dce34c57a1b90, type: 3}
+  m_Shader: {fileID: 4800000, guid: c5dbf7212e850084e98bec4967b40bda, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
+  stringTagMap:
+    MotionVector: User
+  disabledShaderPasses:
+  - MOTIONVECTORS
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -82,7 +84,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_5127C35D: 0.291
+    - Vector1_59D73497: 0
     - Vector1_7DAD511F: 0.207
+    - Vector1_82140A69: 0
     - Vector1_983341C2: 0.598
     - Vector1_E030FF4A: 0.582
     - Vector1_FC20164B: 1
@@ -108,7 +112,11 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - Color_19043615: {r: 1, g: 0, b: 0, a: 0}
     - Color_A035A7E2: {r: 1, g: 1, b: 1, a: 0}
+    - Color_BA72ABE3: {r: 1, g: 0, b: 0, a: 0}
+    - Color_F7F779FB: {r: 1, g: 1, b: 1, a: 0}
+    - Vector4_CC59CFDF: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

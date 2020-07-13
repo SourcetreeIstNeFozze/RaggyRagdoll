@@ -23,16 +23,27 @@ Material:
   m_Name: PatternShadows
   m_Shader: {fileID: -6465566751694194690, guid: aac5017fb58c9634e96824c0d825488e,
     type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: ENUM_4D8FA626_OBJECT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
+  m_CustomRenderQueue: 2000
+  stringTagMap:
+    MotionVector: User
+  disabledShaderPasses:
+  - TransparentBackface
+  - MOTIONVECTORS
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_16FA9F90:
+        m_Texture: {fileID: 2800000, guid: 58fc1f4365722024db1fec669c56a6c1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_8BC8DBE3:
+        m_Texture: {fileID: 2800000, guid: 66f8154ddc8dce142ad713b4a591d38e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - Texture2D_9C1992BC:
         m_Texture: {fileID: 2800000, guid: 292dfe836bb67cb489864704769f12c1, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -68,20 +79,35 @@ Material:
     m_Floats:
     - Boolean_4015BF34: 1
     - Boolean_6A0971B0: 1
-    - Vector1_19F9BAB1: 1
-    - Vector1_1B627376: 1.11
-    - Vector1_1D33A87B: 0.7
-    - Vector1_7012CA1B: 0.931
-    - Vector1_ADD90D46: 0.376
-    - Vector1_C4E73D4: 0.029
-    - Vector1_CC3903E6: 3.99
-    - Vector1_D825E5B5: 0.197
+    - Boolean_9DC7E87D: 1
+    - ENUM_4D8FA626: 0
+    - Vector1_19F9BAB1: 0.674
+    - Vector1_1B627376: 0.225
+    - Vector1_1D33A87B: 0.849
+    - Vector1_391A2D8D: 0.109
+    - Vector1_7012CA1B: 1
+    - Vector1_ADD90D46: 0
+    - Vector1_C4E73D4: 0.212
+    - Vector1_CAA822BE: 0.548
+    - Vector1_CC3903E6: 3.8
+    - Vector1_D825E5B5: 0.253
+    - Vector1_DC02F0C6: -0.734
+    - Vector1_F5CBEF54: -0.652
     - _AlphaClip: 0
+    - _AlphaCutoffEnable: 0
+    - _AlphaDstBlend: 0
+    - _AlphaSrcBlend: 1
     - _Blend: 0
+    - _BlendMode: 0
     - _BumpScale: 1
     - _Cull: 2
+    - _CullMode: 2
+    - _CullModeForward: 2
     - _Cutoff: 0.5
+    - _DoubleSidedEnable: 0
+    - _DoubleSidedNormalMode: 2
     - _DstBlend: 0
+    - _EnableFogOnTransparent: 1
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -90,20 +116,47 @@ Material:
     - _OcclusionStrength: 1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _ReceivesSSR: 0
+    - _RenderQueueType: 1
+    - _RequireSplitLighting: 0
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _StencilRef: 0
+    - _StencilRefDepth: 0
+    - _StencilRefDistortionVec: 4
+    - _StencilRefGBuffer: 2
+    - _StencilRefMV: 32
+    - _StencilWriteMask: 6
+    - _StencilWriteMaskDepth: 8
+    - _StencilWriteMaskDistortionVec: 4
+    - _StencilWriteMaskGBuffer: 14
+    - _StencilWriteMaskMV: 40
     - _Surface: 0
+    - _SurfaceType: 0
+    - _TransparentBackfaceEnable: 0
+    - _TransparentCullMode: 2
+    - _TransparentSortPriority: 0
+    - _TransparentZWrite: 1
+    - _UseShadowThreshold: 0
     - _WorkflowMode: 1
+    - _ZTestDepthEqualForOpaque: 3
+    - _ZTestGBuffer: 4
+    - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
-    - Color_16231AA: {r: 0.26415092, g: 0.07600568, b: 0.07600568, a: 0}
+    - Color_16231AA: {r: 0.38679248, g: 0.14413494, b: 0.14413494, a: 0}
     - Color_64742396: {r: 1, g: 1, b: 1, a: 1}
-    - Color_7F27D82E: {r: 1, g: 0, b: 0, a: 0}
-    - Color_C8B6B50C: {r: 0.25511748, g: 0.42072707, b: 0.5943396, a: 0}
+    - Color_7F27D82E: {r: 1, g: 1, b: 1, a: 1}
+    - Color_C8B6B50C: {r: 1, g: 0.6869104, b: 0.4481132, a: 0}
     - Vector2_2DD3D559: {r: 1, g: 1, b: 0, a: 0}
+    - Vector2_5DF3F430: {r: 1.17, g: 0.58, b: 0, a: 0}
+    - Vector2_AC728E7C: {r: 4, g: 4, b: 0, a: 0}
+    - Vector3_5654EE69: {r: 0, g: 1, b: -0.9, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _WorldSpaceLightPos0: {r: 0, g: 0, b: 0, a: 0}
