@@ -6,12 +6,17 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputController : MonoBehaviour
 {
+    public bool initializeOnStart = true;
+    private bool initialized = false;
+
+    public PlayerInstance thisPlayer;
+    public PlayerInstance otherPlayer;
+
     [HideInInspector] public HandReferences activeAvatar;
     private bool invertControls;
 
     [Header("References")]
     public Animator handAnimator;
-    public PlayerInputController otherPlayer;
 
     [Space]
     private bool _rightBumperHeld;
@@ -57,173 +62,180 @@ public class PlayerInputController : MonoBehaviour
         transitioning
     }
 
-    private void Awake()
-    {
-        // get initial state the hand
-        foreach (Transform child in transform)
-        {
-            childTransofrms.Add(child);
-            originalRotations.Add(child.rotation);
-            originalPositions.Add(child.position);
-        }
-
-
-        if (this.tag.Equals("player_right"))
-        {
-            activeAvatar = FindObjectOfType<Settings>().RIGHT;
-            invertControls = true;
-            configJoint = activeAvatar.GetComponent<ConfigurableJoint>();
-        }
-        else if (this.tag.Equals("player_left"))
-        {
-            activeAvatar = FindObjectOfType<Settings>().LEFT;
-            invertControls = false;
-            configJoint = activeAvatar.GetComponent<ConfigurableJoint>();
-        }
-    }
-
     // Start is called before the first frame update
     void Start()
-    {
-        activeAvatar.playerRoot.SetActive(true);
+	{
+        if (initializeOnStart)
+            Initialize();
+      }
 
-        //SET-UP
-        activeAvatar.middleFinger.stickInput = new StickInput();
-        activeAvatar.indexFinger.stickInput = new StickInput();
-        activeAvatar.middleFinger.stickInput_original = new StickInput();
-        activeAvatar.indexFinger.stickInput_original = new StickInput();
+	public void Initialize()
+	{ 
+		// get initial state the hand
+		foreach (Transform child in transform)
+		{
+			childTransofrms.Add(child);
+			originalRotations.Add(child.rotation);
+			originalPositions.Add(child.position);
+		}
+
+		activeAvatar = GetComponentInChildren<HandReferences>();
+
+		if (this.tag.Equals("player_right"))
+		{
+			invertControls = true;
+			configJoint = activeAvatar.GetComponent<ConfigurableJoint>();
+		}
+		else if (this.tag.Equals("player_left"))
+		{
+
+			invertControls = false;
+			configJoint = activeAvatar.GetComponent<ConfigurableJoint>();
+		}
+
+		activeAvatar.playerRoot.SetActive(true);
+
+		//SET-UP
+		activeAvatar.middleFinger.stickInput = new StickInput();
+		activeAvatar.indexFinger.stickInput = new StickInput();
+		activeAvatar.middleFinger.stickInput_original = new StickInput();
+		activeAvatar.indexFinger.stickInput_original = new StickInput();
 
 
-        activeAvatar.balance.lookAtTarget = otherPlayer.activeAvatar.playerRoot;
-        AssignPlayersToHandlers();
+		activeAvatar.balance.lookAtTarget = otherPlayer.activeAvatar.playerRoot;
+		AssignPlayersToHandlers();
 
 
-        // WIRE EVENTS
-        if (settings.amplifyJump)
-        {
-            activeAvatar.middleFinger.stickInput.OnReleased_Y += () =>
-            {
-                if (GetGroundedState() != GroundedState.inAir)
-                {
-                    Debug.Log("RY released");
-                    Jump(activeAvatar.playerRoot.transform.up, settings.jumpForce);
-                }
-            };
+		// WIRE EVENTS
+		if (settings.amplifyJump)
+		{
+			activeAvatar.middleFinger.stickInput.OnReleased_Y += () =>
+			{
+				if (GetGroundedState() != GroundedState.inAir)
+				{
+					Debug.Log("RY released");
+					Jump(activeAvatar.playerRoot.transform.up, settings.jumpForce);
+				}
+			};
 
-            activeAvatar.middleFinger.stickInput.OnReleased_X += () =>
-            {
-                Debug.Log("RX released");
-            };
+			activeAvatar.middleFinger.stickInput.OnReleased_X += () =>
+			{
+				Debug.Log("RX released");
+			};
 
-            activeAvatar.indexFinger.stickInput.OnReleased_Y += () =>
-            {
-                if (GetGroundedState() != GroundedState.inAir)
-                {
-                    Debug.Log("LY released");
-                    Jump(activeAvatar.playerRoot.transform.up, settings.jumpForce);
-                }
-            };
-            activeAvatar.indexFinger.stickInput.OnReleased_X += () =>
-            {
-                Debug.Log("LX released");
-            };
-        }
-        jointDrive_startValue = configJoint.xDrive.positionSpring;
-        otherPlayerRef = otherPlayer.GetComponentInChildren<HandReferences>();
+			activeAvatar.indexFinger.stickInput.OnReleased_Y += () =>
+			{
+				if (GetGroundedState() != GroundedState.inAir)
+				{
+					Debug.Log("LY released");
+					Jump(activeAvatar.playerRoot.transform.up, settings.jumpForce);
+				}
+			};
+			activeAvatar.indexFinger.stickInput.OnReleased_X += () =>
+			{
+				Debug.Log("LX released");
+			};
+		}
+		jointDrive_startValue = configJoint.xDrive.positionSpring;
+		otherPlayerRef = otherPlayer.activeAvatar;
 
         // get rigids for COM
         GetRigids();
+
+        initialized = true;
         //if (settings.fallMode = Settings.FallMode.angleAndCOM)
-    }
+	}
+     
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (initialized)
         {
-            Reset();
-        }
-
-        // timers
-        timeSinceLastContact += Time.deltaTime;
-
-        // gather data
-
-        activeAvatar.middleFinger.stickInput.Update();
-        activeAvatar.indexFinger.stickInput.Update();
-
-        activeAvatar.middleFinger.stickInput.CheckForFastStickReleases(settings.stickReleaseTimeWindow, 1f, 0f, settings.stickReleaseTimeWindow);
-        activeAvatar.indexFinger.stickInput.CheckForFastStickReleases(settings.stickReleaseTimeWindow, 1f, 0f, settings.stickReleaseTimeWindow);
-
-        // IF USING POSES
-        if (settings.useFK)
-        {
-            //MANAGE POSES 
-            handAnimator.SetFloat("XInput_R", activeAvatar.middleFinger.stickInput.value.x);
-            handAnimator.SetFloat("YInput_R", activeAvatar.middleFinger.stickInput.value.y);
-            handAnimator.SetFloat("XInput_L", activeAvatar.indexFinger.stickInput.value.x);
-            handAnimator.SetFloat("YInput_L", activeAvatar.indexFinger.stickInput.value.y);
-
-
-            //MANAGE BENDING AND PUSHING
-            ManageBending();
-
-
-            // NEW ANCHOR-STABILISATION
-            if (settings.fallMode == Settings.FallMode.spring_backFoot)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                AnchorStabilization();
-                AnchorBreakForce();
+                Reset();
             }
 
-            if (settings.fallMode == Settings.FallMode.spring_feet)
-            {
-                Anchor_AutomaticFeetBalance();
-                AnchorInputForce();
-                AnchorBreakForce();
-            }
+            // timers
+            timeSinceLastContact += Time.deltaTime;
 
-            if (settings.fallMode == Settings.FallMode.autoBend)
-            {
+            // gather data
 
-            }
+            activeAvatar.middleFinger.stickInput.Update();
+            activeAvatar.indexFinger.stickInput.Update();
+
+            activeAvatar.middleFinger.stickInput.CheckForFastStickReleases(settings.stickReleaseTimeWindow, 1f, 0f, settings.stickReleaseTimeWindow);
+            activeAvatar.indexFinger.stickInput.CheckForFastStickReleases(settings.stickReleaseTimeWindow, 1f, 0f, settings.stickReleaseTimeWindow);
+
+            // IF USING POSES
+            if (settings.useFK)
+            {
+                //MANAGE POSES 
+                handAnimator.SetFloat("XInput_R", activeAvatar.middleFinger.stickInput.value.x);
+                handAnimator.SetFloat("YInput_R", activeAvatar.middleFinger.stickInput.value.y);
+                handAnimator.SetFloat("XInput_L", activeAvatar.indexFinger.stickInput.value.x);
+                handAnimator.SetFloat("YInput_L", activeAvatar.indexFinger.stickInput.value.y);
+
+
+                //MANAGE BENDING AND PUSHING
+                ManageBending();
+
+
+                // NEW ANCHOR-STABILISATION
+                if (settings.fallMode == Settings.FallMode.spring_backFoot)
+                {
+                    AnchorStabilization();
+                    AnchorBreakForce();
+                }
+
+                if (settings.fallMode == Settings.FallMode.spring_feet)
+                {
+                    Anchor_AutomaticFeetBalance();
+                    AnchorInputForce();
+                    AnchorBreakForce();
+                }
+
+                if (settings.fallMode == Settings.FallMode.autoBend)
+                {
+
+                }
 
             else if (settings.fallMode == Settings.FallMode.angleAndCOM)
             {
                 Calculate_COM();
             }
-        }
-
-
-        else
-        {
-
-            // MANAGE BENDING AND MOVEMENT
-
-            // Bend the body if getting input and on the floor 
-            if (activeAvatar.indexFinger.stickInput.value.x != 0f && !(GetGroundedState() == GroundedState.inAir))
-            {
-                BendVertically(activeAvatar.indexFinger.stickInput.value.x * settings.hipRotationSpeed * (invertControls ? -1 : 1));
             }
-            // When in air push the player
-            else if (activeAvatar.indexFinger.stickInput.value.x != 0f && GetGroundedState() == GroundedState.inAir)
-            {
-                SetPlayerPushForce(new Vector3(activeAvatar.indexFinger.stickInput.value.x, 0, 0), settings.maxHipPushForce * (invertControls ? -1 : 1));
-            }
+
+
             else
             {
-                SetPlayerPushForce(Vector3.zero, 0);
+
+                // MANAGE BENDING AND MOVEMENT
+
+                // Bend the body if getting input and on the floor 
+                if (activeAvatar.indexFinger.stickInput.value.x != 0f && !(GetGroundedState() == GroundedState.inAir))
+                {
+                    BendVertically(activeAvatar.indexFinger.stickInput.value.x * settings.hipRotationSpeed * (invertControls ? -1 : 1));
+                }
+                // When in air push the player
+                else if (activeAvatar.indexFinger.stickInput.value.x != 0f && GetGroundedState() == GroundedState.inAir)
+                {
+                    SetPlayerPushForce(new Vector3(activeAvatar.indexFinger.stickInput.value.x, 0, 0), settings.maxHipPushForce * (invertControls ? -1 : 1));
+                }
+                else
+                {
+                    SetPlayerPushForce(Vector3.zero, 0);
+                }
+            }
+
+            // GLOBAL & LOCAL SPACE
+            // -> rotate the input-Vector2 in order to fake global space
+            if (settings.poseSpace == Settings.TransformType.global)
+            {
+                FakeGlobalSpace();
             }
         }
-
-        // GLOBAL & LOCAL SPACE
-        // -> rotate the input-Vector2 in order to fake global space
-        if (settings.poseSpace == Settings.TransformType.global)
-        {
-            FakeGlobalSpace();
-        }
-
-
     }
 
     void FakeGlobalSpace()
@@ -426,7 +438,7 @@ public class PlayerInputController : MonoBehaviour
         for (int i = 0; i < activeAvatar.childHandlers.Length; i++)
         {
             activeAvatar.childHandlers[i].thisPlayer = this;
-            activeAvatar.childHandlers[i].otherPlayer = otherPlayer;
+            activeAvatar.childHandlers[i].otherPlayer = otherPlayer.inputController;
         }
     }
 
@@ -502,7 +514,7 @@ public class PlayerInputController : MonoBehaviour
 
         // 3. Vector holen
 
-        Vector3 lookDirection = (otherPlayer.transform.position - activeAvatar.transform.position);
+        Vector3 lookDirection = (otherPlayer.activeAvatar.transform.position - activeAvatar.transform.position);
         lookDirection = new Vector3(lookDirection.x, 0, lookDirection.z);
         Plane plane = new Plane(lookDirection, activeAvatar.transform.position);
         Vector3 direction = plane.ClosestPointOnPlane(relevantFingerTip) - relevantFingerTip;

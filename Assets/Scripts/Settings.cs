@@ -4,9 +4,6 @@ public class Settings : MonoBehaviour
 {
 
 	public static Settings instance;
-	[Header("Player References")]
-	public HandReferences LEFT;
-	public HandReferences RIGHT;
 
 	[Header("Movement")]
 	public bool useFK;
