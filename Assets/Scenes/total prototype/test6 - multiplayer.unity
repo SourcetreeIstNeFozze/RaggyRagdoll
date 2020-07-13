@@ -164,8 +164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d793d1afebec8543a54cc144a79f605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LEFT: {fileID: 0}
-  RIGHT: {fileID: 0}
   useFK: 1
   useTriggersCurl: 0
   amplifyJump: 0

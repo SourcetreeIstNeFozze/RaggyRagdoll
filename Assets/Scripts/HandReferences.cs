@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Mirror.Examples.Basic;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,8 +20,7 @@ public class HandReferences : MonoBehaviour
 	[HideInInspector] public ConstantForce playerConstanctForce;
 
 
-
-	private void Awake()
+	public void GetReferences() 
 	{
 		//get References
 		childHandlers = GetComponentsInChildren<CollisionHandler>();
@@ -28,6 +28,7 @@ public class HandReferences : MonoBehaviour
 		playerConstanctForce = playerRoot.GetComponent<ConstantForce>();
 		balance = playerRoot.GetComponent<OrientationAndBalance>();
 
+		Debug.Log("Player Avatar Initialized");
 	}
 
 

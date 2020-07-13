@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3403,44 +3403,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1821493888, guid: 7fa3201b3146dff44b93ef1b7e2cf48f, type: 3}
-      propertyPath: port
-      value: 7777
-      objectReference: {fileID: 0}
-    - target: {fileID: 1821493889, guid: 7fa3201b3146dff44b93ef1b7e2cf48f, type: 3}
-      propertyPath: spawnPrefabs.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1821493889, guid: 7fa3201b3146dff44b93ef1b7e2cf48f, type: 3}
-      propertyPath: mainMenuScene
-      value: Assets/Scenes/MainMenu.unity
-      objectReference: {fileID: 0}
-    - target: {fileID: 1821493889, guid: 7fa3201b3146dff44b93ef1b7e2cf48f, type: 3}
-      propertyPath: maxConnections
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1821493889, guid: 7fa3201b3146dff44b93ef1b7e2cf48f, type: 3}
-      propertyPath: gameScene
-      value: Assets/Scenes/total prototype/test6 - multiplayer.unity
-      objectReference: {fileID: 0}
-    - target: {fileID: 1821493889, guid: 7fa3201b3146dff44b93ef1b7e2cf48f, type: 3}
-      propertyPath: test
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1821493889, guid: 7fa3201b3146dff44b93ef1b7e2cf48f, type: 3}
-      propertyPath: debugs
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1821493889, guid: 7fa3201b3146dff44b93ef1b7e2cf48f, type: 3}
-      propertyPath: spawnPrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 8019828149133925462, guid: db98e9111c8d46742bb28d680426e6bc,
-        type: 3}
-    - target: {fileID: 1821493889, guid: 7fa3201b3146dff44b93ef1b7e2cf48f, type: 3}
-      propertyPath: spawnPrefabs.Array.data[3]
-      value: 
-      objectReference: {fileID: 7723209281047769475, guid: be0efae5474fdbe44a0b32fcb04bab5f,
-        type: 3}
     - target: {fileID: 875328396730360643, guid: 7fa3201b3146dff44b93ef1b7e2cf48f,
         type: 3}
       propertyPath: m_LocalPosition.x

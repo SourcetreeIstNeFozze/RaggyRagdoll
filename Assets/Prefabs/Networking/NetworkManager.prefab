@@ -53,7 +53,7 @@ MonoBehaviour:
   onlineScene: 
   transport: {fileID: 1821493888}
   networkAddress: localhost
-  maxConnections: 2
+  maxConnections: 4
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
@@ -64,7 +64,9 @@ MonoBehaviour:
   spawnPrefabs:
   - {fileID: 2360517535222304015, guid: f8f92ae0a648b784ba9916f04bce8d4a, type: 3}
   - {fileID: 1366507250547647976, guid: 198c973d1568f7e4ebd6e5a43b01fcb0, type: 3}
+  - {fileID: 8019828149133925462, guid: db98e9111c8d46742bb28d680426e6bc, type: 3}
   - {fileID: 7723209281047769475, guid: be0efae5474fdbe44a0b32fcb04bab5f, type: 3}
+  - {fileID: 5481868599362241687, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2, type: 3}
   lobbyPlayers: []
   gamePlayers: []
   mainMenuScene: Assets/Scenes/MainMenu.unity
@@ -75,8 +77,8 @@ MonoBehaviour:
     type: 3}
   fightManager_prefab: {fileID: 1366507250547647976, guid: 198c973d1568f7e4ebd6e5a43b01fcb0,
     type: 3}
-  debugs: 0
-  test: 0
+  debugs: 1
+  test: 1
 --- !u!114 &1821493888
 MonoBehaviour:
   m_ObjectHideFlags: 0

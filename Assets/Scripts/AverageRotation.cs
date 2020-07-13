@@ -7,17 +7,25 @@ public class AverageRotation : MonoBehaviour
 
     Cinemachine.CinemachineTargetGroup.Target[] targets;
     bool twoPlayers;
-
+    public bool initializeAtStart = true;
     // Start is called before the first frame update
     void Start()
-    {
-        targets = this.GetComponent<Cinemachine.CinemachineTargetGroup>().m_Targets;
-        if (targets.Length == 2)
-            twoPlayers = true;
-    }
+	{
+        if (initializeAtStart)
+        {
+            Initialize();
+        }
+	}
 
-    // Update is called once per frame
-    void Update()
+	public void Initialize()
+	{
+		targets = this.GetComponent<Cinemachine.CinemachineTargetGroup>().m_Targets;
+		if (targets.Length == 2)
+			twoPlayers = true;
+	}
+
+	// Update is called once per frame
+	void Update()
     {
         if (twoPlayers)
         {
