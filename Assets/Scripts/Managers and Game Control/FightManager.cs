@@ -59,9 +59,10 @@ public class FightManager : NetworkBehaviour
         //players[playerIndex].feedback = newPlayer.GetComponent <PlayerFeedback>();
         //players[playerIndex].activeAvatar = newPlayer.GetComponentInChildren<HandReferences>();
 
-        //assign player authority
+        //spawn player on server
         NetworkServer.Spawn(newPlayer, conn); // the second argument determines who has the authority over the object
         players.Add(newPlayer);
+       
         //load customisation??????
         LoadPlayerCustomisation();
 

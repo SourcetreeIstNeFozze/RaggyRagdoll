@@ -22,13 +22,8 @@ public class NetworkedPlayerInGame : NetworkBehaviour
 
 	public override void OnStartClient()
 	{
-		base.OnStartClient();
+		DontDestroyOnLoad(gameObject);
 		NetworkManagerHand.gamePlayers.Add(this);
-
-		//if (NetworkManagerHand.lobbyPlayers.Count == 2) 
-		//{
-		//	NetworkManagerHand.StartGame();
-		//}
 	}
 
 	public override void OnStopClient()

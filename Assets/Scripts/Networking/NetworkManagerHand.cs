@@ -29,7 +29,8 @@ public class NetworkManagerHand : NetworkManager
 	public static System.Action OnClientDisconnected;
 	public static System.Action<NetworkConnection> OnServerReadied; // Called ON SERVER when a CLIENT has readied, ot when the server is readied!!!
 
-	public bool debugs; 
+	public bool debugs;
+	public bool test;
 	public override void OnClientConnect(NetworkConnection conn)
 	{
 		if (debugs) Debug.Log("Connecting Client...");
@@ -99,52 +100,83 @@ public class NetworkManagerHand : NetworkManager
 
 	public override void ServerChangeScene(string newSceneName)
 	{
-		if (debugs)  Debug.Log("Changing Scene on Server....");
+		if (debugs) Debug.Log("Changing Scene on Server....");
 
 		lastScene = SceneManager.GetActiveScene().path;
+		
+		// From menu to game
+		if (SceneManager.GetActiveScene().path == mainMenuScene)
+		{
+			if (debugs) Debug.Log("Reinstantiating players..");
+
+			Debug.Log("Players Count:" + lobbyPlayers.Count);
+			//replace lobby players with the game players
+			for (int i = 0; i < lobbyPlayers.Count; i++)
+			{
+				if (debugs) Debug.Log("Reinstantiating player: " + i);
+
+				NetworkConnection conn = lobbyPlayers[i].connectionToClient;
+				NetworkedPlayerInGame playerInstance = Instantiate(NETPlayerInGame_prefab);
+				//NetworkServer.Spawn(playerInstance.gameObject, conn); //spawn the new game player on server
+				NetworkServer.Destroy(conn.identity.gameObject); // destroy the old lobby player
+				NetworkServer.ReplacePlayerForConnection(conn, playerInstance.gameObject, true); // bind the connection of the destroyed object with the newly instantiated object
+			}
+		}
 
 		base.ServerChangeScene(newSceneName);
 	}
+
 	public override void OnServerSceneChanged(string sceneName)
 	{
-		if (debugs)  Debug.Log("Changed Scene on Server....");
-
-		base.OnServerSceneChanged(sceneName);
-				
-		//ON GAME SCENE LOADED
-		if (SceneManager.GetActiveScene().path == gameScene)
+		if (sceneName == gameScene)
 		{
-			//menu to game
-			if (lastScene == mainMenuScene)
-			{
-				if (debugs) Debug.Log("Reinstantiating players..");
-
-				//replace lobby players with the game players
-				for (int i = 0; i < lobbyPlayers.Count; i++)	
-				{
-					if (debugs) Debug.Log("Reinstantiating playr:" + i);
-					NetworkConnection conn = lobbyPlayers[i].connectionToClient;
-					NetworkedPlayerInGame playerInstance = Instantiate(NETPlayerInGame_prefab);
-
-					NetworkServer.Destroy(conn.identity.gameObject); // actually destroys the lobbyPlayer object
-					NetworkServer.ReplacePlayerForConnection(conn, playerInstance.gameObject); // bind the connection of the destroyed object with the newly instantiated object
-				}
-
-				//lobbyPlayers.Clear();
-			}
-			//game to game 
-			else
-			{
-				//TO BE IMPELMENTED
-			}
-
-			//if (debugs) Debug.Log("Spawning Fight Manager playrs..");
 			////Spawn fight manager
-			//GameObject fightManager = GameObject.Instantiate(fightManager_prefab);
-			//NetworkServer.Spawn(fightManager); // if no second argument is given than the server has authority over this object
-
+			GameObject fightManager = GameObject.Instantiate(fightManager_prefab);
+			NetworkServer.Spawn(fightManager); // if no second argument is given than the server has authority over this object
 		}
 	}
+
+	//public override void OnServerSceneChanged(string sceneName)
+	//{
+	//	if (debugs)  Debug.Log("Changed Scene on Server....");
+
+	//	base.OnServerSceneChanged(sceneName);
+				
+	//	//ON GAME SCENE LOADED
+	//	if (SceneManager.GetActiveScene().path == gameScene)
+	//	{
+	//		//menu to game
+	//		if (lastScene == mainMenuScene)
+	//		{
+	//			if (debugs) Debug.Log("Reinstantiating players..");
+
+	//			//replace lobby players with the game players
+	//			for (int i = 0; i < lobbyPlayers.Count; i++)	
+	//			{
+	//				if (debugs) Debug.Log("Reinstantiating player:" + i);
+	//				NetworkConnection conn = lobbyPlayers[i].connectionToClient;
+	//				NetworkedPlayerInGame playerInstance = Instantiate(NETPlayerInGame_prefab);
+	//				NetworkServer.Spawn(playerInstance.gameObject, conn); //spawn the new game player on server
+	//				NetworkServer.Destroy(conn.identity.gameObject); // destroy the old lobby player
+	//				NetworkServer.ReplacePlayerForConnection(conn, playerInstance.gameObject, true); // bind the connection of the destroyed object with the newly instantiated object
+	//			}
+
+	//			//lobbyPlayers.Clear();
+	//		}
+	//		//game to game 
+	//		else
+	//		{
+	//			//TO BE IMPELMENTED
+	//		}
+
+	//		if (debugs) Debug.Log("Spawning Fight Manager..");
+
+	//		////Spawn fight manager
+	//		GameObject fightManager = GameObject.Instantiate(fightManager_prefab);
+	//		NetworkServer.Spawn(fightManager); // if no second argument is given than the server has authority over this object
+
+	//	}
+	//}
 
 	public override void OnServerReady(NetworkConnection conn)
 	{

@@ -8,9 +8,9 @@ using UnityEngine;
 public class NetworkPlayerLobby : NetworkBehaviour
 {
 	private NetworkManagerHand networkManagerHand;
-	private NetworkManagerHand NetworkManagerHand 
+	private NetworkManagerHand NetworkManagerHand
 	{
-		get 
+		get
 		{
 			if (networkManagerHand == null)
 				networkManagerHand = NetworkManager.singleton as NetworkManagerHand;
@@ -19,7 +19,13 @@ public class NetworkPlayerLobby : NetworkBehaviour
 		}
 	}
 
-
+	public void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			CmdStartGame();
+		}
+	}
 	public override void OnStartAuthority()
 	{
 		base.OnStartAuthority();
@@ -27,18 +33,19 @@ public class NetworkPlayerLobby : NetworkBehaviour
 
 	public override void OnStartClient()
 	{
-		base.OnStartClient();
+		//base.OnStartClient();
+
 		NetworkManagerHand.lobbyPlayers.Add(this);
 
-		if (NetworkManagerHand.lobbyPlayers.Count == 2) 
+		if (NetworkManagerHand.lobbyPlayers.Count == 2)
 		{
-			NetworkManagerHand.StartGame();
+			CmdStartGame();
 		}
 	}
 
-	public override void OnStopClient()
+	[Command]
+	public void CmdStartGame() 
 	{
-		NetworkManagerHand.lobbyPlayers.Remove(this);
-		base.OnStopClient();
+		NetworkManagerHand.StartGame();
 	}
 }

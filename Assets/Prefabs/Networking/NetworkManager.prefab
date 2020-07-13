@@ -69,12 +69,14 @@ MonoBehaviour:
   gamePlayers: []
   mainMenuScene: Assets/Scenes/MainMenu.unity
   gameScene: Assets/Scenes/total prototype/test6 - multiplayer.unity
-  NETPlayerInGame_prefab: {fileID: 5069831549189392367, guid: be0efae5474fdbe44a0b32fcb04bab5f,
+  NETPlayerInGame_prefab: {fileID: 3917326055460217084, guid: db98e9111c8d46742bb28d680426e6bc,
     type: 3}
   NETPlayerLobby_prefab: {fileID: 2435286139696010129, guid: f8f92ae0a648b784ba9916f04bce8d4a,
     type: 3}
   fightManager_prefab: {fileID: 1366507250547647976, guid: 198c973d1568f7e4ebd6e5a43b01fcb0,
     type: 3}
+  debugs: 0
+  test: 0
 --- !u!114 &1821493888
 MonoBehaviour:
   m_ObjectHideFlags: 0
