@@ -3,8 +3,10 @@ using System.Net.NetworkInformation;
 using System.Net.Sockets;
 
 public class IPManager
-{
-    public static string GetIP(ADDRESSFAM Addfam)
+{ 
+    public static string externalIP;
+
+    public static string GetLocalIP(ADDRESSFAM Addfam)
     {
         //Return null if ADDRESSFAM is Ipv6 but Os does not support it
         if (Addfam == ADDRESSFAM.IPv6 && !Socket.OSSupportsIPv6)
@@ -46,6 +48,12 @@ public class IPManager
             }
         }
         return output;
+    }
+
+    public static void RequestExternalIP()
+    {
+        externalIP = new WebClient().DownloadString("http://icanhazip.com");
+
     }
 }
 

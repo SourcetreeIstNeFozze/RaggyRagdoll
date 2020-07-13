@@ -17,6 +17,7 @@ public class NetworkMenu : MonoBehaviour
     
 	private void Awake()
 	{
+        IPManager.RequestExternalIP();
 	}
 	void Start()
     {
@@ -45,7 +46,8 @@ public class NetworkMenu : MonoBehaviour
 
 	public void HostLobby() 
     {
-        networkManager.networkAddress = IPManager.GetIP(ADDRESSFAM.IPv4);
+        //networkManager.networkAddress = IPManager.GetLocalIP(ADDRESSFAM.IPv4);
+        networkManager.networkAddress = IPManager.externalIP;
         hostIP.text = networkManager.networkAddress;
         Debug.Log(networkManager.networkAddress);
         networkManager.StartHost();
