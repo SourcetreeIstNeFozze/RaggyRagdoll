@@ -84,15 +84,15 @@ Material:
     - Vector1_19F9BAB1: 0.674
     - Vector1_1B627376: 0.225
     - Vector1_1D33A87B: 0.849
-    - Vector1_391A2D8D: 0.109
+    - Vector1_391A2D8D: 0.076
     - Vector1_7012CA1B: 1
     - Vector1_ADD90D46: 0
     - Vector1_C4E73D4: 0.212
     - Vector1_CAA822BE: 0.548
     - Vector1_CC3903E6: 3.8
     - Vector1_D825E5B5: 0.253
-    - Vector1_DC02F0C6: -0.734
-    - Vector1_F5CBEF54: -0.652
+    - Vector1_DC02F0C6: 0
+    - Vector1_F5CBEF54: 0.076
     - _AlphaClip: 0
     - _AlphaCutoffEnable: 0
     - _AlphaDstBlend: 0
