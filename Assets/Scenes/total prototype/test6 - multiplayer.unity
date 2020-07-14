@@ -175,7 +175,7 @@ MonoBehaviour:
   maxHipRotation: 50
   maxHipPushForce: 10
   fallDirection: 0
-  fallMode: 4
+  fallMode: 0
   springForce: 5
   colisionAmplificationMode: 2
   velocityMode: 2
@@ -502,8 +502,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 211126383}
-  m_LocalRotation: {x: -1e-45, y: -0, z: 0.00009432501, w: 1}
-  m_LocalPosition: {x: -0.92348385, y: -1.3133215, z: -12.679259}
+  m_LocalRotation: {x: 0.08533034, y: -0.1786903, z: 0.015653962, w: 0.9800732}
+  m_LocalPosition: {x: -2.19037, y: -1.9433408, z: -9.320298}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 945575786}
@@ -1077,7 +1077,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746894800}
-  m_LocalRotation: {x: -1e-45, y: -0, z: 0.00009432501, w: 1}
+  m_LocalRotation: {x: 0.08533034, y: -0.1786903, z: 0.015653962, w: 0.9800732}
   m_LocalPosition: {x: -0.92348385, y: -1.3133215, z: -12.679259}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

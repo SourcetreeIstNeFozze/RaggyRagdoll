@@ -10742,7 +10742,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.03131485, y: -0.4224993, z: -0.0033797622}
+  m_ConnectedAnchor: {x: 0.031315267, y: -0.42249942, z: -0.003379643}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -10892,7 +10892,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.17601609, y: -0.21241045, z: 0.069366455}
+  m_ConnectedAnchor: {x: -0.17601568, y: -0.21241045, z: 0.06936695}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -10903,10 +10903,10 @@ HingeJoint:
     targetVelocity: 0
     force: 0
     freeSpin: 0
-  m_UseLimits: 0
+  m_UseLimits: 1
   m_Limits:
-    min: 0
-    max: 0
+    min: -90
+    max: 90
     bounciness: 0
     bounceMinVelocity: 0.2
     contactDistance: 0
@@ -11430,7 +11430,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0054161996, y: -0.50958824, z: 0.00021624565}
+  m_ConnectedAnchor: {x: -0.005415952, y: -0.50958824, z: 0.00021606684}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -11753,7 +11753,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.051965386, y: -0.4520514, z: 0.2736795}
+  m_ConnectedAnchor: {x: 0.051965922, y: -0.45205146, z: 0.2736796}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -11914,7 +11914,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0152085535, y: -0.25659972, z: -0.029016659}
+  m_ConnectedAnchor: {x: 0.015208928, y: -0.25659955, z: -0.029016942}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -12769,7 +12769,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.15730484, y: -0.6289999, z: -0.00021621678}
+  m_ConnectedAnchor: {x: 0.15730545, y: -0.6289999, z: -0.00021624845}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -13008,7 +13008,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.33999968, y: 0.63399994, z: 0.066999435}
+  m_ConnectedAnchor: {x: 0.34000006, y: 0.63400006, z: 0.067}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -13767,7 +13767,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.19094396, y: -0.22030783, z: 0.06084943}
+  m_ConnectedAnchor: {x: 0.19094431, y: -0.22030783, z: 0.060850024}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -13778,10 +13778,10 @@ HingeJoint:
     targetVelocity: 0
     force: 0
     freeSpin: 0
-  m_UseLimits: 0
+  m_UseLimits: 1
   m_Limits:
-    min: 0
-    max: 0
+    min: -90
+    max: 90
     bounciness: 0
     bounceMinVelocity: 0.2
     contactDistance: 0
@@ -13910,7 +13910,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.3807747, y: -0.41534048, z: -0.017000142}
+  m_ConnectedAnchor: {x: 0.3807751, y: -0.4153406, z: -0.01699996}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -16220,7 +16220,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.04878193, y: -0.57892275, z: -0.06198001}
+  m_ConnectedAnchor: {x: 0.04878229, y: -0.57892275, z: -0.06197965}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -16231,9 +16231,9 @@ HingeJoint:
     targetVelocity: 0
     force: 0
     freeSpin: 0
-  m_UseLimits: 0
+  m_UseLimits: 1
   m_Limits:
-    min: 0
+    min: -90
     max: 0
     bounciness: 0
     bounceMinVelocity: 0.2
@@ -16505,7 +16505,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.042296827, y: -0.35527253, z: 0.063483834}
+  m_ConnectedAnchor: {x: 0.042297244, y: -0.35527253, z: 0.06348443}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -16516,9 +16516,9 @@ HingeJoint:
     targetVelocity: 0
     force: 0
     freeSpin: 0
-  m_UseLimits: 0
+  m_UseLimits: 1
   m_Limits:
-    min: 0
+    min: -90
     max: 0
     bounciness: 0
     bounceMinVelocity: 0.2
@@ -16797,7 +16797,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.098930925, y: -0.52640915, z: 0.03182447}
+  m_ConnectedAnchor: {x: -0.09893045, y: -0.52640915, z: 0.031824976}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -16808,9 +16808,9 @@ HingeJoint:
     targetVelocity: 0
     force: 0
     freeSpin: 0
-  m_UseLimits: 0
+  m_UseLimits: 1
   m_Limits:
-    min: 0
+    min: -90
     max: 0
     bounciness: 0
     bounceMinVelocity: 0.2
@@ -17204,7 +17204,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.030139834, y: -0.327147, z: 0.028447747}
+  m_ConnectedAnchor: {x: -0.030139476, y: -0.327147, z: 0.028448254}
   m_UseSpring: 1
   m_Spring:
     spring: 400
@@ -17215,9 +17215,9 @@ HingeJoint:
     targetVelocity: 0
     force: 0
     freeSpin: 0
-  m_UseLimits: 0
+  m_UseLimits: 1
   m_Limits:
-    min: 0
+    min: -90
     max: 0
     bounciness: 0
     bounceMinVelocity: 0.2
