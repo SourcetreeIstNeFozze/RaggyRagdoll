@@ -14049,7 +14049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20490689a5d57bf4c9b7a2f20a56985d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initializeOnStart: 1
+  initializeOnStart: 0
   thisPlayer: {fileID: 0}
   otherPlayer: {fileID: 0}
   activeAvatar: {fileID: 5647237396872122862}
