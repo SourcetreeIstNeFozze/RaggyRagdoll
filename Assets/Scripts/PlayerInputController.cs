@@ -738,15 +738,15 @@ public class PlayerInputController : MonoBehaviour
         {
             // break angular drive
             SetAngularXDrive(0);
-            if (this.tag == "player_right")
-                print("BREAK! indexTipDistance: " + indexTipDistance + ", middleTipDistance: " + middleTipDistance);
+            //if (this.tag == "player_right")
+            //    print("BREAK! indexTipDistance: " + indexTipDistance + ", middleTipDistance: " + middleTipDistance);
         }
         else
         {
             // set angular drive
             SetAngularXDrive(angularXDrive_startValue);
-            if (this.tag == "player_right")
-                print("active! indexTipDistance: " + indexTipDistance + ", middleTipDistance: " + middleTipDistance);
+            //if (this.tag == "player_right")
+            //    print("active! indexTipDistance: " + indexTipDistance + ", middleTipDistance: " + middleTipDistance);
         }
     }
 }
