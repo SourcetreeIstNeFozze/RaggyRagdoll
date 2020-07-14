@@ -52,6 +52,8 @@ public class PlayerInputController : MonoBehaviour
     // angular drive stabilization
     Vector3 COM;
     List<Rigidbody> rigids;
+    float angularXDrive_startValue;
+    float angularXDrive_startDamper;
 
     public enum GroundedState
     {
@@ -141,6 +143,8 @@ public class PlayerInputController : MonoBehaviour
 
         // get rigids for COM
         GetRigids();
+        angularXDrive_startValue = configJoint.angularXDrive.positionSpring;
+        angularXDrive_startDamper = configJoint.angularXDrive.positionDamper;
 
         initialized = true;
         //if (settings.fallMode = Settings.FallMode.angleAndCOM)
@@ -201,10 +205,11 @@ public class PlayerInputController : MonoBehaviour
 
                 }
 
-            else if (settings.fallMode == Settings.FallMode.angleAndCOM)
-            {
-                Calculate_COM();
-            }
+                else if (settings.fallMode == Settings.FallMode.angularDriveAndCOM)
+                {
+                    Calculate_COM();
+                    COM_balance();
+                }
             }
 
 
@@ -623,7 +628,8 @@ public class PlayerInputController : MonoBehaviour
 
     private Vector3 HandPlusFingertipDirection(Vector3 fingerTipPos)
     {
-        // too weird zu explain; just a bit math
+        // too weird zu explain; just a bit math 
+        // (berechne die x-distance von fingerTip zu Avatar, funktionierend der ständigen bewegung auf einer anderen achse)
         Plane plane = new Plane(lookDirection, activeAvatar.transform.position);
         Vector3 fingerTipToHand_xDistance = fingerTipPos - plane.ClosestPointOnPlane(fingerTipPos);
         Vector3 newAchorPosition = activeAvatar.transform.position + fingerTipToHand_xDistance;
@@ -633,6 +639,16 @@ public class PlayerInputController : MonoBehaviour
         Debug.DrawLine(fingerTipPos, Vector3.zero, Color.black);
 
         return newAchorPosition;
+    }
+
+    private float FingertipToHandDistance(Vector3 fingerTip, Vector3 handPoint)
+    {
+        // das gleiche wie HandPlusFingertipDirection(), aber nur distance berechnen
+        Plane plane = new Plane(lookDirection, handPoint);
+        float distance = (fingerTip - plane.ClosestPointOnPlane(fingerTip)).magnitude;
+        Debug.DrawLine(fingerTip, plane.ClosestPointOnPlane(fingerTip), Color.green);
+
+        return distance;
     }
 
     private void SetXYZDrive(float value)
@@ -654,6 +670,20 @@ public class PlayerInputController : MonoBehaviour
         //drive.maximumForce = jointDrive_startMaxForce;
         configJoint.angularXDrive = drive;
         configJoint.angularYZDrive = drive;
+    }
+
+    private void SetAngularXDrive(float value)
+    {
+
+        JointDrive drive = configJoint.angularXDrive;
+        drive.positionSpring = value;
+
+        if (value == 0)
+            drive.positionDamper = 0;
+        else
+            drive.positionDamper = angularXDrive_startDamper;
+
+        configJoint.angularXDrive = drive;
     }
 
 
@@ -678,22 +708,6 @@ public class PlayerInputController : MonoBehaviour
 
     void Calculate_COM()
     {
-        //COM = (JointParts[0].GetComponent<Rigidbody>().mass * JointParts[0].transform.position +
-        //    JointParts[1].GetComponent<Rigidbody>().mass * JointParts[1].transform.position +
-        //    JointParts[2].GetComponent<Rigidbody>().mass * JointParts[2].transform.position +
-        //    JointParts[3].GetComponent<Rigidbody>().mass * JointParts[3].transform.position +
-        //    JointParts[4].GetComponent<Rigidbody>().mass * JointParts[4].transform.position +
-        //    JointParts[5].GetComponent<Rigidbody>().mass * JointParts[5].transform.position +
-        //    JointParts[6].GetComponent<Rigidbody>().mass * JointParts[6].transform.position +
-        //    JointParts[7].GetComponent<Rigidbody>().mass * JointParts[7].transform.position +
-        //    JointParts[8].GetComponent<Rigidbody>().mass * JointParts[8].transform.position +
-        //    JointParts[9].GetComponent<Rigidbody>().mass * JointParts[9].transform.position) /
-        //    (JointParts[0].GetComponent<Rigidbody>().mass + JointParts[1].GetComponent<Rigidbody>().mass +
-        //    JointParts[2].GetComponent<Rigidbody>().mass + JointParts[3].GetComponent<Rigidbody>().mass +
-        //    JointParts[4].GetComponent<Rigidbody>().mass + JointParts[5].GetComponent<Rigidbody>().mass +
-        //    JointParts[6].GetComponent<Rigidbody>().mass + JointParts[7].GetComponent<Rigidbody>().mass +
-        //    JointParts[8].GetComponent<Rigidbody>().mass + JointParts[9].GetComponent<Rigidbody>().mass);
-
         // declaration
         Vector3 mass_multipliedBy_position = Vector3.zero;
         float masses = 0;
@@ -714,16 +728,26 @@ public class PlayerInputController : MonoBehaviour
 
     private void COM_balance()
     {
-        if (Mathf.Abs((COM - indexTipPos).x) > settings.fallDistance ||
-            Mathf.Abs((COM - middleTipPos).x) > settings.fallDistance)
+        GetFingerTipData();
+        float indexTipDistance = FingertipToHandDistance(indexTipPos, COM);
+        float middleTipDistance = FingertipToHandDistance(middleTipPos, COM);
+
+
+        if (indexTipDistance > settings.fallDistance &&
+        middleTipDistance > settings.fallDistance) // TO DO: nicht mit x-distance rechnen, sondern korrekter x-distanz
         {
             // break angular drive
+            SetAngularXDrive(0);
+            if (this.tag == "player_right")
+                print("BREAK! indexTipDistance: " + indexTipDistance + ", middleTipDistance: " + middleTipDistance);
         }
         else
         {
             // set angular drive
+            SetAngularXDrive(angularXDrive_startValue);
+            if (this.tag == "player_right")
+                print("active! indexTipDistance: " + indexTipDistance + ", middleTipDistance: " + middleTipDistance);
         }
-
     }
 }
 
