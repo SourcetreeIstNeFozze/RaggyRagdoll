@@ -7,7 +7,6 @@ using System;
 public class CollisionHandler : MonoBehaviour
 {
 	Settings settings { get { return Settings.instance; } }
-	CollisionManager collisionManager { get { return CollisionManager.instance; } }
 
 	[Header("Ground Detection")]
 	public bool touchesGround;
@@ -15,6 +14,7 @@ public class CollisionHandler : MonoBehaviour
 	public System.Action OnLeftGound;
 	public System.Action OnLeftBounds;
 	public System.Action OnKickTriggerEntered;
+	public System.Action OnTouchedWristHeight;
 	public System.Action<Collision> OnTouchedOtherPlayer;
 	public System.Action<Collision> OnWasWouchedByOtherPlayer;
 
@@ -297,10 +297,18 @@ public class CollisionHandler : MonoBehaviour
 		}
 
 		//BOUNDARY DETECTION
+		if (collider.tag == "StandPositionTrigger")
+		{
+			OnTouchedWristHeight?.Invoke();
+		}
+
+
+		//BOUNDARY DETECTION
 		if (collider.tag == "Boundary")
 		{
 			OnLeftBounds?.Invoke();
 		}
+
 
 		//BOUNDARY DETECTION
 		if (collider.tag == "Shell")

@@ -1,10 +1,10 @@
 ﻿using Mirror;
-using Mirror.Examples.Basic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Http.Headers;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class FightManager : MonoBehaviour
 {
@@ -17,6 +17,8 @@ public class FightManager : MonoBehaviour
     private int playerIndex = 0;
     public List<PlayerInstance> players = new List<PlayerInstance>();
     public List<GameObject> playerAvatars = new List<GameObject>();
+   
+
     public bool debugs;
 
 	public void Awake()
@@ -76,6 +78,18 @@ public class FightManager : MonoBehaviour
 		newPlayerReference.feedback = newPlayer.GetComponent<PlayerFeedback>();
 		newPlayerReference.activeAvatar = newPlayer.GetComponentInChildren<HandReferences>();
 
+        //score, I know its a stupid way of doint it
+        Debug.Log("searching for scores");
+        PlayerScore[] scores = FindObjectsOfType<PlayerScore>();
+		for (int i = 0; i < scores.Length; i++)
+		{
+            Debug.Log("checking score");
+            if (scores[i].tag == newPlayer.tag) 
+            {
+                newPlayerReference.score = scores[i];
+            }
+
+		}
         newPlayerReference.activeAvatar.GetReferences();
 
 		return newPlayerReference;
@@ -93,8 +107,13 @@ public class FightManager : MonoBehaviour
         SetCrossReferencess(players[0], players[1]);
         SetCrossReferencess(players[1], players[0]);
 
-        players[0].inputController.Initialize();
-        players[1].inputController.Initialize();
+		for (int i = 0; i < players.Count; i++)
+		{
+            players[i].inputController.Initialize();
+            players[i].score.Initialize();
+
+
+		}
 
         //Set up camaera
         PrepCamera();
@@ -117,6 +136,8 @@ public class FightManager : MonoBehaviour
     {
         player1.inputController.otherPlayer = player2;
         player1.activeAvatar.balance.lookAtTarget = player2.activeAvatar.gameObject;
+        player1.score.thisPlayer = player1;
+        player1.score.otherPlayer = player2;
 
     }
 

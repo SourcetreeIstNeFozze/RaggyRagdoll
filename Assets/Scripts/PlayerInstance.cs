@@ -9,7 +9,7 @@ public class PlayerInstance : MonoBehaviour
     public PlayerInputController inputController;
     public HandReferences activeAvatar;
 
-    //public PlayerScore score;
+    public PlayerScore score;
     public PlayerFeedback feedback;
 
     public PlayerCustomization customization;

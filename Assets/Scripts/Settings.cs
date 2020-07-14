@@ -58,6 +58,11 @@ public class Settings : MonoBehaviour
     public bool useAllFingersForCOM = true;
     public float fallDistance = 0.3f;
 
+	[Header("CountDown")]
+	public float otherPlayerInfluenceTime = 5;
+	public float coundDownTime = 5;
+	public enum CountDownMode { resetting, continuous }
+	public CountDownMode countDownMode;
 	private void Awake()
 	{
 		if (Settings.instance == null)

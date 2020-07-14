@@ -158,7 +158,7 @@ public class PlayerInputController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Reset();
+                ResetPosition();
             }
 
             // timers
@@ -447,7 +447,7 @@ public class PlayerInputController : MonoBehaviour
         }
     }
 
-    public void Reset()
+    public void ResetPosition()
     {
         for (int i = 0; i < childTransofrms.Count; i++)
         {

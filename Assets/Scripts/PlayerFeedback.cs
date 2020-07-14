@@ -61,7 +61,6 @@ public class PlayerFeedback : MonoBehaviour
 		//kicking
 		finger.fingerBottom.OnTouchedOtherPlayer += (collision) =>
 		{
-			Debug.Log("Cimbals");
 			// sound 
 			soundManager?.PlayOrRestart(ExtensionMethods.GetRandomElement<string>(new List<string>() { "cimbals1", "cimbals1", "cimbals2", "cimbals3", "cimbals4", "cimbals5" }));
 

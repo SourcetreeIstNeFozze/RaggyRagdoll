@@ -11,6 +11,7 @@ TagManager:
   - Environment
   - Boundary
   - Shell
+  - StandPositionTrigger
   layers:
   - Default
   - TransparentFX
