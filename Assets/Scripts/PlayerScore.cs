@@ -60,7 +60,7 @@ public class PlayerScore : MonoBehaviour
 		{ 
 			handler.OnLeftBounds += () =>
 			{
-				if (!IsOut)
+				if (!IsOut && !otherPlayer.activeAvatar.isOut)
 				{					
 					OnLeftBounds?.Invoke(handler.thisPlayer.timeSinceLastContact);
 				}
