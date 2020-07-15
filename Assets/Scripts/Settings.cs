@@ -47,7 +47,7 @@ public class Settings : MonoBehaviour
 	[Header("Detect fast stick releases")]
 	public float stickReleaseTimeWindow = 0.1f;
 
-    [Header("If spring fall mode")]
+    [Header("If spring_feet fall mode")]
     public float configJoint_Y_Offset = 2f;
     public float anchorInputStrength = 0.1f;
     public bool breakAnchorAtLimit = true;
@@ -57,10 +57,13 @@ public class Settings : MonoBehaviour
     [Header("If AngularDriveAndCOM fall mode")]
     public bool useAllFingersForCOM = true;
     public float fallDistance = 0.3f;
+    public float maxAutoBendAngle = 60f;
+    public float anchorInputStrength2 = 0;
+    public float anchorYOffset = 0;
 	public enum AngularDriveBreaking { SuddenBreak, TargetValueLerp, FromAnimationCurve }
-    public float maxAutoBendAngle = 45f;
 	public AngularDriveBreaking angularDriveBreaking;
 	public float lerpSpeed;
+
 
 	[Header("CountDown")]
 	public float otherPlayerInfluenceTime = 5;

@@ -213,7 +213,8 @@ public class PlayerInputController : MonoBehaviour
                 else if (settings.fallMode == Settings.FallMode.angularDriveAndCOM)
                 {
                     GetFingerTipData();
-                    COM_inputAmplification();
+                    COM_inputAmplification_angle();
+                    COM_inputAmplification_anchor();
                     Calculate_COM();
                     COM_balance();
                 }
@@ -587,6 +588,8 @@ public class PlayerInputController : MonoBehaviour
         playerMidPoint = (otherPlayerRef.transform.position - activeAvatar.transform.position) / 2f + activeAvatar.transform.position;
         lookDirection = (otherPlayerRef.transform.position - activeAvatar.transform.position);
         lookDirection = new Vector3(lookDirection.x, 0, lookDirection.z);
+
+        inputDirection = Mathf.Clamp(activeAvatar.indexFinger.stickInput.value.x + activeAvatar.middleFinger.stickInput.value.x, -2f, 2f);
     }
 
     private void Anchor_AutomaticFeetBalance()
@@ -627,6 +630,19 @@ public class PlayerInputController : MonoBehaviour
         inputDirection = Mathf.Clamp(activeAvatar.indexFinger.stickInput.value.x + activeAvatar.middleFinger.stickInput.value.x, -1f, 1f);
         // calc
         newAchorPosition = newAchorPosition + lookDirection.normalized * inputDirection * settings.anchorInputStrength;
+        // convert & set
+        configJoint.connectedAnchor = configJoint.connectedBody.transform.InverseTransformPoint(newAchorPosition);
+    }
+
+    private void COM_inputAmplification_anchor()
+    {
+        // I could write the existing code better instead of just duplicating existing functions but FUCK THIS SCRIPT
+
+        // set anchor up
+        newAchorPosition = activeAvatar.transform.position + Vector3.up * settings.anchorYOffset;
+        // input force; only backwarts
+        newAchorPosition += lookDirection.normalized * Mathf.Clamp(inputDirection, -2f, 0) * settings.anchorInputStrength2;
+
         // convert & set
         configJoint.connectedAnchor = configJoint.connectedBody.transform.InverseTransformPoint(newAchorPosition);
     }
@@ -732,15 +748,17 @@ public class PlayerInputController : MonoBehaviour
             com_obj.transform.position = COM;
     }
 
-    private void COM_inputAmplification()
+    private void COM_inputAmplification_angle()
     {
         // bend the hand in the direction both sticks are pressed into (left or right) to support walking
-        inputDirection = Mathf.Clamp(activeAvatar.indexFinger.stickInput.value.x + activeAvatar.middleFinger.stickInput.value.x, -2f, 2f);
+        inputDirection = Mathf.Clamp(activeAvatar.indexFinger.stickInput.value.x + activeAvatar.middleFinger.stickInput.value.x, -2f, 0f);
         float targetXAngle_euler = inputDirection.Remap(-2f, 2f, -settings.maxAutoBendAngle, settings.maxAutoBendAngle);
+
         Quaternion targetAngle = Quaternion.Euler(targetXAngle_euler, 0, 0);
         configJoint.targetRotation = targetAngle;
-        if (this.tag == "player_right")
-            print("targetAngle: " + targetXAngle_euler);
+
+        //if (this.tag == "player_right")
+        //    print("targetAngle: " + targetXAngle_euler);
     }
 
     private void COM_balance()
