@@ -147,8 +147,8 @@ public class FightManager : MonoBehaviour
     {
         player1.inputController.otherPlayer = player2;
         player1.activeAvatar.balance.lookAtTarget = player2.activeAvatar.gameObject;
-        player1.activeAvatar.balance.thisplayer = player1;
-        player1.activeAvatar.balance.otherplayer = player2;
+        player1.activeAvatar.balance.thisPlayer = player1;
+        player1.activeAvatar.balance.otherPlayer = player2;
         player1.score.thisPlayer = player1;
         player1.score.otherPlayer = player2;
 

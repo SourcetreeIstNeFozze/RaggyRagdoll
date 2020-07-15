@@ -10,5 +10,6 @@ public class ActiveFinger
     public CollisionHandler fingerTop;
 	public CollisionHandler fingerMiddle;
 	public CollisionHandler fingerBottom;
+	public GameObject fingerTip;
 
 }

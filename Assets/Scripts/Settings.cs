@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
 
 public class Settings : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class Settings : MonoBehaviour
 	[Header("Falling and Stabilisation")]
 	public FallDirection fallDirection;
 	public enum FallDirection { X, XandZ }
-	public enum FallMode { neverFall, getUpAutomatically, dontGetUp, spring_backFoot, spring_feet, bend, autoBend, angularDriveAndCOM}
+	public enum FallMode { constantAngularDrive, getUpAutomatically, noAngularDrives, spring_backFoot, spring_feet, bend, autoBend, angularDriveAndCOM, angularDriveAndVisualCOM }
 	public FallMode fallMode;
 	public float springForce;
 
@@ -65,6 +66,8 @@ public class Settings : MonoBehaviour
     public enum AngularDriveBreaking { SuddenBreak, TargetValueLerp, FromAnimationCurve }
 	public AngularDriveBreaking angularDriveBreaking;
 	public float lerpSpeed;
+	public enum ComMode { BasedOnActualMass, BasedOnVisualMass }
+	public ComMode comMode;
 
 
 	[Header("CountDown")]

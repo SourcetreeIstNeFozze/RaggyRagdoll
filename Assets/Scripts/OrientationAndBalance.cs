@@ -6,19 +6,17 @@ public class OrientationAndBalance : MonoBehaviour
 {
 	Settings settings { get { return Settings.instance; } }
 
-	public PlayerInstance thisplayer;
-	public PlayerInstance otherplayer;
+	public PlayerInstance thisPlayer;
+	public PlayerInstance otherPlayer;
+	public ConfigurableJoint configJoint;
 
 	[Header("Orientation")]
 	public GameObject orientationCentre;
-	public GameObject configurableJoint;
 	public GameObject lookAtTarget;
 	public float hightToLookAt;
 	public bool lookAtActive;
 
 	[Header("Balance")]
-
-	public bool fallinAndGettingUp;
 	private float canFallTimer;
 
 	[SerializeField] ConfigurableJoint affectedJoint;
@@ -34,9 +32,17 @@ public class OrientationAndBalance : MonoBehaviour
 	public float minDrive = 100;
 	public float maxdrive = 1000;
 
-    // center of mass & angle-stabilization
-    Vector3 COM;
-    Rigidbody[] rigids;
+	float angularXDrive_targetValue;
+	float angularXDrive_startValue;
+	float angularXDrive_startDamper;
+
+	// center of mass & angle-stabilization
+
+	[Header("COM")]
+	public List<RigidbodyTuple> rigidsForVisuaCOMCalculation = new List<RigidbodyTuple>();
+	private List<Rigidbody> rigidsForMassBasedCOMCalculation = new List<Rigidbody>();
+	public Vector3 COM;
+	public GameObject com_obj;
 
 	FightManager fightManager;
 
@@ -47,23 +53,27 @@ public class OrientationAndBalance : MonoBehaviour
     {
 		lookAtActive = settings.lookAtActive;
 		fightManager = FindObjectOfType<FightManager>();
-        //rigids = active // hier weiter machen
-    }
+
+		angularXDrive_startValue = configJoint.angularXDrive.positionSpring;
+		angularXDrive_startDamper = configJoint.angularXDrive.positionDamper;
+	}
 
 	// Update is called once per frame
 	void Update()
 	{
 
         // ORIENTATION
-        orientationCentre.transform.position = configurableJoint.transform.position;
-        //orientationCentre.transform.position = this.transform.TransformPoint(configJoint_comp.connectedAnchor);
+        orientationCentre.transform.position = configJoint.transform.position;
 
-		bool dontRotateCondition = (thisplayer.activeAvatar.isDown || otherplayer.activeAvatar.isDown) && fightManager.distanceBetweenPlayers <= 3f; // if at least one of the players lying down and the distance between them is small, dont rotate
+		bool dontRotateCondition = (thisPlayer.activeAvatar.isDown || otherPlayer.activeAvatar.isDown) && fightManager.distanceBetweenPlayers <= 3f; // if at least one of the players lying down and the distance between them is small, dont rotate
 
 		if (lookAtActive && lookAtTarget != null && !dontRotateCondition )
 		{
 			orientationCentre.transform.LookAt(new Vector3(lookAtTarget.transform.position.x, orientationCentre.transform.position.y + hightToLookAt, lookAtTarget.transform.position.z));
 		}
+
+
+		// BALANCE
 
         if (settings.fallMode != Settings.FallMode.spring_backFoot && settings.fallMode != Settings.FallMode.spring_feet && settings.fallMode != Settings.FallMode.autoBend && settings.fallMode != Settings.FallMode.angularDriveAndCOM)
         {
@@ -74,8 +84,6 @@ public class OrientationAndBalance : MonoBehaviour
 
 		if (settings.fallMode == Settings.FallMode.getUpAutomatically)
 		{
-
-			// BALANCE
 			// update timers
 			timer += Time.deltaTime;
 			tick += Time.deltaTime;
@@ -84,42 +92,46 @@ public class OrientationAndBalance : MonoBehaviour
 			if (tick >= maxTickValue)
 			{
 				tick = 0f;
-				pastAngles.Enqueue(transform.eulerAngles); // IMPORTANT this needs to be global rotation
+				pastAngles.Enqueue(transform.eulerAngles); // Add current rotation to the queue
 
-				// start dequeing when a delay is reached (eg. after 3 seconds)
+				// start taking out the rotatins from the que when delay is rached
 				if (timer >= reactionDelay)
 				{
-					//deque
 					Vector3 pastAngle = pastAngles.Dequeue();
-
-					////get difference in rotation. IMPORTANt: DOING THIS IN QUATERNION SMARTER????
-					//Vector3 angleDifference = targetAngle - pastAngle; //gets actualdifference
-					//angleDifference = new Vector3(Mathf.Abs(angleDifference.x), Mathf.Abs(angleDifference.y), Mathf.Abs(angleDifference.z)); // gets absolue vlaues for teh differenc
 					SetSprings(pastAngle);
-
 				}
 			}
 		}
 
-		if (settings.fallMode == Settings.FallMode.neverFall)
+		if (settings.fallMode == Settings.FallMode.constantAngularDrive)
 		{
-			//SetAngularXDrive(maxdrive);
-			//SetAngularYZDrive(maxdrive);
+			SetAngularXDrive(maxdrive);
+			SetAngularYZDrive(maxdrive);
 
 		}
-		else if (settings.fallMode == Settings.FallMode.dontGetUp)
+		else if (settings.fallMode == Settings.FallMode.noAngularDrives)
 		{
-			//SetAngularXDrive(settings.springForce);
+			SetAngularXDrive(settings.springForce);
 
-			//if (settings.fallDirection == Settings.FallDirection.XandZ)
-			//{
-			//	SetAngularYZDrive(settings.springForce);
-			//}
-			//else
-			//{
-			//	SetAngularYZDrive(maxdrive);
-			//}	
+			if (settings.fallDirection == Settings.FallDirection.XandZ)
+			{
+				SetAngularYZDrive(settings.springForce);
+			}
+			else
+			{
+				SetAngularYZDrive(maxdrive);
+			}
 		}
+
+
+		//  COM TREATMENT
+
+		if (settings.fallMode == Settings.FallMode.angularDriveAndCOM || settings.fallMode == Settings.FallMode.angularDriveAndCOM) 
+		{
+			GetCOM();
+		}
+
+
 	}
 
 	public void SetLookAt(bool value)
@@ -152,6 +164,13 @@ public class OrientationAndBalance : MonoBehaviour
 		affectedJoint.angularXDrive = XDrive;
 	}
 
+	private void SetAngularXDamper(float value)
+	{
+		JointDrive XDrive = affectedJoint.angularXDrive;
+		XDrive.positionDamper = value;
+		affectedJoint.angularXDrive = XDrive;
+	}
+
 	private void SetAngularYZDrive(float value)
 	{
 		JointDrive YZDrive = affectedJoint.angularYZDrive;
@@ -180,8 +199,39 @@ public class OrientationAndBalance : MonoBehaviour
         affectedJoint.zDrive = zDrive;
     }
 
+	private Vector3 GetCOM()
+	{
+		// declaration
+		Vector3 mass_multipliedBy_position = Vector3.zero;
+		float masses = 0;
 
-    private float FloatTo180Spectrum(float value)
+		if (settings.comMode == Settings.ComMode.BasedOnActualMass)
+		{
+			// calculation
+			for (int i = 0; i < rigidsForMassBasedCOMCalculation.Count; i++)
+			{
+				Rigidbody rigid = rigidsForMassBasedCOMCalculation[i];
+				mass_multipliedBy_position += (rigid.mass * rigid.worldCenterOfMass);
+				masses += rigid.mass;
+			}
+
+		}
+		else if (settings.comMode == Settings.ComMode.BasedOnVisualMass)
+		{ 
+			// calculation
+			for (int i = 0; i < rigidsForVisuaCOMCalculation.Count; i++)
+			{
+				RigidbodyTuple tuple = rigidsForVisuaCOMCalculation[i];
+				mass_multipliedBy_position += (tuple.assumedMass * tuple.rigid.worldCenterOfMass);
+				masses += tuple.assumedMass;
+			}
+		}
+
+		COM = mass_multipliedBy_position / masses;
+		return COM;
+	}
+
+	private float FloatTo180Spectrum(float value)
 	{
 		if (value > 180)
 		{
@@ -195,13 +245,85 @@ public class OrientationAndBalance : MonoBehaviour
 		return value;
 	}
 
-	public void SetFallTimer( float time)
+
+	void GetRigidsForMassBasedCom()
 	{
-		canFallTimer = time;
+		rigidsForMassBasedCOMCalculation = new List<Rigidbody>();
+		rigidsForMassBasedCOMCalculation.Add(thisPlayer.activeAvatar.indexFinger.fingerTop.GetComponent<Rigidbody>());
+		rigidsForMassBasedCOMCalculation.Add(thisPlayer.activeAvatar.indexFinger.fingerMiddle.GetComponent<Rigidbody>());
+		rigidsForMassBasedCOMCalculation.Add(thisPlayer.activeAvatar.indexFinger.fingerBottom.GetComponent<Rigidbody>());
+		rigidsForMassBasedCOMCalculation.Add(thisPlayer.activeAvatar.middleFinger.fingerTop.GetComponent<Rigidbody>());
+		rigidsForMassBasedCOMCalculation.Add(thisPlayer.activeAvatar.middleFinger.fingerMiddle.GetComponent<Rigidbody>());
+		rigidsForMassBasedCOMCalculation.Add(thisPlayer.activeAvatar.middleFinger.fingerBottom.GetComponent<Rigidbody>());
+		rigidsForMassBasedCOMCalculation.Add(thisPlayer.activeAvatar.torsoJoint.GetComponent<Rigidbody>());
+
+		if (settings.useAllFingersForCOM)
+		{
+			Rigidbody[] remainingFingerRigids = thisPlayer.activeAvatar.torsoJoint.GetComponentsInChildren<Rigidbody>();
+			foreach (Rigidbody rigid in remainingFingerRigids)
+				rigidsForMassBasedCOMCalculation.Add(rigid);
+		}
 	}
 
-	public void IncreaseFallTimer(float time)
+	private void COM_balance()
 	{
-		canFallTimer += time;
+		com_obj.transform.eulerAngles = new Vector3(0f, com_obj.transform.eulerAngles.y, 0f);
+		com_obj.transform.localEulerAngles = new Vector3(com_obj.transform.localEulerAngles.x, 0f, com_obj.transform.localEulerAngles.z);
+		Vector3 indexTipToCom = com_obj.transform.InverseTransformPoint(thisPlayer.activeAvatar.indexFinger.fingerTip.transform.position);
+		Vector3 middleTipToCom = com_obj.transform.InverseTransformPoint(thisPlayer.activeAvatar.middleFinger.fingerTip.transform.position);
+
+		if (settings.angularDriveBreaking == Settings.AngularDriveBreaking.FromAnimationCurve)
+		{
+			// get the value of the closer foot
+
+			//set angulardrive based on animation curve
+		}
+
+		else
+		{
+			if (indexTipToCom.z > settings.fallDistance && middleTipToCom.z > settings.fallDistance ||
+				indexTipToCom.z < -settings.fallDistance && middleTipToCom.z < -settings.fallDistance)
+			{
+				// break angular drive
+				if (settings.angularDriveBreaking == Settings.AngularDriveBreaking.SuddenBreak)
+				{
+					SetAngularXDrive(0);
+					SetAngularXDamper(0);
+				}
+				else if (settings.angularDriveBreaking == Settings.AngularDriveBreaking.TargetValueLerp)
+				{
+					angularXDrive_targetValue = 0;
+					LerpAngularDrive();
+				}
+			}
+			else
+			{
+				// set angular drive
+				if (settings.angularDriveBreaking == Settings.AngularDriveBreaking.SuddenBreak)
+				{
+					SetAngularXDrive(angularXDrive_startValue);
+					SetAngularXDamper(angularXDrive_startDamper);
+				}
+
+				else if (settings.angularDriveBreaking == Settings.AngularDriveBreaking.TargetValueLerp)
+				{
+					angularXDrive_targetValue = angularXDrive_startValue;
+					LerpAngularDrive();
+				}
+			}
+		}
 	}
+
+	private void LerpAngularDrive()
+	{
+		float newDriveValue = Mathf.Lerp(configJoint.angularXDrive.positionSpring, angularXDrive_targetValue, settings.lerpSpeed * Time.deltaTime);
+		SetAngularXDrive(newDriveValue);
+	}
+}
+
+[System.Serializable]
+public class RigidbodyTuple
+{
+	public Rigidbody rigid;
+	public float assumedMass;
 }
