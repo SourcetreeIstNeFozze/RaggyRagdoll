@@ -70,7 +70,7 @@ public class FightManager : MonoBehaviour
 		return newPlayer;
 	}
 
-	private static PlayerInstance GeneratePlayerInstancFromGameObject(GameObject newPlayer)
+	private PlayerInstance GeneratePlayerInstancFromGameObject(GameObject newPlayer)
 	{
 		PlayerInstance newPlayerReference = newPlayer.GetComponent<PlayerInstance>();
 
@@ -79,11 +79,11 @@ public class FightManager : MonoBehaviour
 		newPlayerReference.activeAvatar = newPlayer.GetComponentInChildren<HandReferences>();
 
         //score, I know its a stupid way of doint it
-        Debug.Log("searching for scores");
+        if (debugs)  Debug.Log("searching for scores");
         PlayerScore[] scores = FindObjectsOfType<PlayerScore>();
 		for (int i = 0; i < scores.Length; i++)
 		{
-            Debug.Log("checking score");
+            if (debugs)  Debug.Log("checking score");
             if (scores[i].tag == newPlayer.tag) 
             {
                 newPlayerReference.score = scores[i];

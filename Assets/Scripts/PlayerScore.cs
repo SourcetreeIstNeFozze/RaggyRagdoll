@@ -21,7 +21,7 @@ public class PlayerScore : MonoBehaviour
 	public System.Action<float> OnFellDown;
 	public System.Action OnGotUp;
 	public System.Action OnTimerUp;
-	public System.Action OnLeftBounds;
+	public System.Action<float> OnLeftBounds;
 
 	private bool isDown;
 	private bool isOut;
@@ -52,15 +52,16 @@ public class PlayerScore : MonoBehaviour
 					OnGotUp?.Invoke();
 				}
 			};
+		}
 
+		foreach (CollisionHandler handler in thisPlayer.activeAvatar.childHandlers)
+		{ 
 			handler.OnLeftBounds += () =>
 			{
-				if (!isOut) 
-				{
-					OnLeftBounds?.Invoke();
+				if (!isOut)
+				{					
+					OnLeftBounds?.Invoke(handler.thisPlayer.timeSinceLastContact);
 				}
-
-				
 			};
 		}
 
@@ -78,11 +79,14 @@ public class PlayerScore : MonoBehaviour
 			StopCountdown();
 		};
 
-		OnLeftBounds += () =>
+		OnLeftBounds += (timeSinceContact) =>
 		{
 			isOut = true;
-			ResetState();
-			otherPlayer.score.ResetState();
+			SetContactTime(timeSinceContact);
+
+			StartCoroutine(CallDelayed(() => {
+				OnCountersUp();
+			}, 1f));
 		};
 
 
@@ -192,5 +196,11 @@ public class PlayerScore : MonoBehaviour
 		isDown = false;
 		isOut = false;
 	}
+	private IEnumerator CallDelayed(System.Action method, float delay) 
+	{
+		Debug.Log("starting fall routine");
+		yield return new WaitForSeconds(delay);
+		method.Invoke();
 
+	} 
 }

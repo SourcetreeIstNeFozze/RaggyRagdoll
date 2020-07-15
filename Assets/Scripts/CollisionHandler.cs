@@ -159,6 +159,13 @@ public class CollisionHandler : MonoBehaviour
 		//if (!collision.gameObject.tag.Equals("Environment"))
 		//Debug.Log($"collision: from {collision.gameObject.name} on {collision.transform.root} to {this.gameObject.name} on {this.gameObject.transform.root}");
 
+		//BOUNDARY DETECTION
+		if (collision.collider.tag == "Boundary")
+		{
+			OnLeftBounds?.Invoke();
+		}
+
+
 		// GROUND DETECTION
 		if (collision.collider.tag == "Environment")
 		{
