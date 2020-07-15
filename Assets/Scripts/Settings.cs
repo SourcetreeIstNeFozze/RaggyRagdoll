@@ -57,6 +57,9 @@ public class Settings : MonoBehaviour
     [Header("If AngleAndCOM fall mode")]
     public bool useAllFingersForCOM = true;
     public float fallDistance = 0.3f;
+	public enum AngularDriveBreaking { SuddenBreak, TargetValueLerp, FromAnimationCurve }
+	public AngularDriveBreaking angularDriveBreaking;
+	public float lerpSpeed;
 
 	[Header("CountDown")]
 	public float otherPlayerInfluenceTime = 5;
