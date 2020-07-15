@@ -274,7 +274,10 @@ MonoBehaviour:
   breakAnchorAtLimit: 1
   anchorBreakAngleLimit: 37
   useAllFingersForCOM: 1
-  fallDistance: 0.9
+  fallDistance: 0.75
+  maxAutoBendAngle: 40
+  anchorInputStrength2: 3
+  anchorYOffset: 0
   angularDriveBreaking: 1
   lerpSpeed: 40
   otherPlayerInfluenceTime: 5
