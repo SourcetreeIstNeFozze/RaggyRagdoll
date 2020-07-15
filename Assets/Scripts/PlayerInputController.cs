@@ -735,7 +735,7 @@ public class PlayerInputController : MonoBehaviour
         // calculation
         foreach (Rigidbody rigid in rigids)
         {
-            mass_multipliedBy_position += (rigid.mass * rigid.transform.position);
+            mass_multipliedBy_position += (rigid.mass * rigid.worldCenterOfMass);
             masses += rigid.mass;
         }
         COM = mass_multipliedBy_position / masses;
