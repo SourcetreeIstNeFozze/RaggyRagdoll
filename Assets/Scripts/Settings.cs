@@ -57,9 +57,12 @@ public class Settings : MonoBehaviour
     [Header("If AngularDriveAndCOM fall mode")]
     public bool useAllFingersForCOM = true;
     public float fallDistance = 0.3f;
-    public float maxAutoBendAngle = 60;
-    public float anchorInputStrength2 = 0f;
-    public float anchorYOffset = 0f;
+    public float maxAutoBendAngle = 60f;
+    public float anchorInputStrength2 = 0;
+    public float anchorYOffset = 0;
+	public enum AngularDriveBreaking { SuddenBreak, TargetValueLerp, FromAnimationCurve }
+	public AngularDriveBreaking angularDriveBreaking;
+	public float lerpSpeed;
 
 
 	[Header("CountDown")]

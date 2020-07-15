@@ -54,6 +54,10 @@ public class PlayerInputController : MonoBehaviour
     List<Rigidbody> rigids;
     float angularXDrive_startValue;
     float angularXDrive_startDamper;
+    public GameObject com_obj;
+    public Vector3 middleTipToCom;
+    public Vector3 indexTipToCom;
+    float angularXDrive_targetValue;
 
     public enum GroundedState
     {
@@ -579,8 +583,8 @@ public class PlayerInputController : MonoBehaviour
 
     void GetFingerTipData()
     {
-        indexTipPos = activeAvatar.indexFinger.fingerBottom.transform.GetChild(activeAvatar.indexFinger.fingerBottom.transform.childCount - 1).position;
-        middleTipPos = activeAvatar.middleFinger.fingerBottom.transform.GetChild(activeAvatar.middleFinger.fingerBottom.transform.childCount - 1).position;
+        indexTipPos = activeAvatar.indexFinger.fingerBottom.transform.GetChild(activeAvatar.indexFinger.fingerBottom.transform.childCount - 1).GetChild(activeAvatar.indexFinger.fingerBottom.transform.childCount - 1).position;
+        middleTipPos = activeAvatar.middleFinger.fingerBottom.transform.GetChild(activeAvatar.middleFinger.fingerBottom.transform.childCount - 1).GetChild(activeAvatar.indexFinger.fingerBottom.transform.childCount - 1).position;
         playerMidPoint = (otherPlayerRef.transform.position - activeAvatar.transform.position) / 2f + activeAvatar.transform.position;
         lookDirection = (otherPlayerRef.transform.position - activeAvatar.transform.position);
         lookDirection = new Vector3(lookDirection.x, 0, lookDirection.z);
@@ -739,7 +743,7 @@ public class PlayerInputController : MonoBehaviour
         COM = mass_multipliedBy_position / masses;
 
         // visualization
-        GameObject com_obj = GameObject.Find("COM");
+        //GameObject com_obj = GameObject.Find("COM");
         if (com_obj != null)
             com_obj.transform.position = COM;
     }
@@ -759,25 +763,81 @@ public class PlayerInputController : MonoBehaviour
 
     private void COM_balance()
     {
-        float indexTipDistance = FingertipToHandDistance(indexTipPos, COM);
-        float middleTipDistance = FingertipToHandDistance(middleTipPos, COM);
 
+        //float indexTipDistance = FingertipToHandDistance(indexTipPos, COM);
+        //float middleTipDistance = FingertipToHandDistance(middleTipPos, COM);
 
-        if (indexTipDistance > settings.fallDistance &&
-        middleTipDistance > settings.fallDistance) // TO DO: nicht mit x-distance rechnen, sondern korrekter x-distanz
+        //if (indexTipDistance > settings.fallDistance &&
+        //middleTipDistance > settings.fallDistance ) // TO DO: nicht mit x-distance rechnen, sondern korrekter x-distanz
+        //{
+        //    // break angular drive
+        //    SetAngularXDrive(0);
+        //    //if (this.tag == "player_right")
+        //    //    print("BREAK! indexTipDistance: " + indexTipDistance + ", middleTipDistance: " + middleTipDistance);
+        //}
+        //else
+        //{
+        //    // set angular drive
+        //    SetAngularXDrive(angularXDrive_startValue);
+        //    //if (this.tag == "player_right")
+        //    //    print("active! indexTipDistance: " + indexTipDistance + ", middleTipDistance: " + middleTipDistance);
+        //}
+
+        com_obj.transform.eulerAngles = new Vector3(0f, com_obj.transform.eulerAngles.y, 0f);
+        com_obj.transform.localEulerAngles = new Vector3(com_obj.transform.localEulerAngles.x, 0f, com_obj.transform.localEulerAngles.z);
+        indexTipToCom =  com_obj.transform.InverseTransformPoint(indexTipPos);
+        middleTipToCom = com_obj.transform.InverseTransformPoint(middleTipPos);
+
+        if (settings.angularDriveBreaking == Settings.AngularDriveBreaking.FromAnimationCurve)
         {
-            // break angular drive
-            SetAngularXDrive(0);
-            //if (this.tag == "player_right")
-            //    print("BREAK! indexTipDistance: " + indexTipDistance + ", middleTipDistance: " + middleTipDistance);
+            // get the value of the closer foot
+
+            //set angulardrive based on animation curve
         }
-        else
-        {
-            // set angular drive
-            SetAngularXDrive(angularXDrive_startValue);
-            //if (this.tag == "player_right")
-            //    print("active! indexTipDistance: " + indexTipDistance + ", middleTipDistance: " + middleTipDistance);
+        else {
+            if (indexTipToCom.z > settings.fallDistance && middleTipToCom.z > settings.fallDistance ||
+                indexTipToCom.z < -settings.fallDistance && middleTipToCom.z < -settings.fallDistance) // TO DO: nicht mit x-distance rechnen, sondern korrekter x-distanz
+            {
+                // break angular drive
+                if (settings.angularDriveBreaking == Settings.AngularDriveBreaking.SuddenBreak)
+                    SetAngularXDrive(0);
+
+                else if (settings.angularDriveBreaking == Settings.AngularDriveBreaking.TargetValueLerp)
+                {
+                    angularXDrive_targetValue = 0;
+                    LerpAngularDrive();
+                }
+            
+			//if (this.tag == "player_right")
+			//    print("BREAK! indexTipDistance: " + indexTipDistance + ", middleTipDistance: " + middleTipDistance);
+		}
+            else
+            {
+                // set angular drive
+                if (settings.angularDriveBreaking == Settings.AngularDriveBreaking.SuddenBreak)
+                    SetAngularXDrive(angularXDrive_startValue);
+
+                else if (settings.angularDriveBreaking == Settings.AngularDriveBreaking.TargetValueLerp)
+                {
+                    angularXDrive_targetValue = angularXDrive_startValue;
+                    LerpAngularDrive();
+                }
+                //if (this.tag == "player_right")
+                //    print("active! indexTipDistance: " + indexTipDistance + ", middleTipDistance: " + middleTipDistance);
+            }
+
         }
+	}
+
+    private void LerpAngularDrive() 
+    {
+        float newDriveValue = Mathf.Lerp(configJoint.angularXDrive.positionSpring, angularXDrive_targetValue, settings.lerpSpeed *Time.deltaTime);
+        SetAngularXDrive(newDriveValue);
+    }
+	private void OnDrawGizmos()
+	{
+        Gizmos.DrawSphere(indexTipPos, 0.1f);
+        Gizmos.DrawSphere(middleTipPos, 0.1f);
     }
 }
 
