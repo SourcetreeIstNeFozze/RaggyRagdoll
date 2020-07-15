@@ -1,4 +1,5 @@
 ﻿using Mirror;
+using Mirror.Examples.Basic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,8 +19,10 @@ public class FightManager : MonoBehaviour
     public List<PlayerInstance> players = new List<PlayerInstance>();
     public List<GameObject> playerAvatars = new List<GameObject>();
    
+    public float distanceBetweenPlayers;
 
     public bool debugs;
+    public bool initialized = false;
 
 	public void Awake()
 	{
@@ -43,9 +46,15 @@ public class FightManager : MonoBehaviour
             
          }
 	}
+	public void Update()
+	{
+        if (initialized)
+        {
+            distanceBetweenPlayers = (players[0].activeAvatar.playerRoot.transform.position - players[1].activeAvatar.playerRoot.transform.position).magnitude;
+        }
+    }
 
-
-    public GameObject SpawnPlayerAvatar()
+	public GameObject SpawnPlayerAvatar()
 	{
 		if (debugs) Debug.Log("Spawning Avatar...");
 
@@ -117,6 +126,8 @@ public class FightManager : MonoBehaviour
 
         //Set up camaera
         PrepCamera();
+
+        initialized = true;
     }
 
     private void PrepCamera()
@@ -136,6 +147,8 @@ public class FightManager : MonoBehaviour
     {
         player1.inputController.otherPlayer = player2;
         player1.activeAvatar.balance.lookAtTarget = player2.activeAvatar.gameObject;
+        player1.activeAvatar.balance.thisplayer = player1;
+        player1.activeAvatar.balance.otherplayer = player2;
         player1.score.thisPlayer = player1;
         player1.score.otherPlayer = player2;
 

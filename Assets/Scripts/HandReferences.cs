@@ -13,6 +13,8 @@ public class HandReferences : MonoBehaviour
 	public CollisionHandler[] wristTriggers;
 	public CollisionHandler[] shokwavetriggers;
 
+	public bool isDown;
+	public bool isOut;
 
 	[HideInInspector] public CollisionHandler[] childHandlers;
 	[HideInInspector] public OrientationAndBalance balance;

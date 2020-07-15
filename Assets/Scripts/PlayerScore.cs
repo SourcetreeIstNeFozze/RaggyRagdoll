@@ -24,7 +24,9 @@ public class PlayerScore : MonoBehaviour
 	public System.Action<float> OnLeftBounds;
 
 	private bool isDown;
+	private bool IsDown { get { return isDown; } set { thisPlayer.activeAvatar.isDown = value;	isDown = value; } }
 	private bool isOut;
+	private bool IsOut { get { return isOut; } set { thisPlayer.activeAvatar.isOut = value; isOut = value; } }
 
 	private float remainingCountDownTime;
 	private float timeSicneLastContactAtFallTime;
@@ -39,7 +41,7 @@ public class PlayerScore : MonoBehaviour
 		{
 			handler.OnTouchedGround += () =>
 			{
-				if (!isDown)
+				if (!IsDown)
 				{
 					OnFellDown?.Invoke(handler.thisPlayer.timeSinceLastContact);
 				}
@@ -47,7 +49,7 @@ public class PlayerScore : MonoBehaviour
 
 			handler.OnTouchedWristHeight += () =>
 			{
-				if (isDown) 
+				if (IsDown) 
 				{
 					OnGotUp?.Invoke();
 				}
@@ -58,7 +60,7 @@ public class PlayerScore : MonoBehaviour
 		{ 
 			handler.OnLeftBounds += () =>
 			{
-				if (!isOut)
+				if (!IsOut)
 				{					
 					OnLeftBounds?.Invoke(handler.thisPlayer.timeSinceLastContact);
 				}
@@ -68,20 +70,20 @@ public class PlayerScore : MonoBehaviour
 		//wire events
 		OnFellDown += (timeSinceContact) =>
 		{
-			isDown = true;
+			IsDown = true;
 			StartCountdown();
 			SetContactTime(timeSinceContact);
 		};
 
 		OnGotUp += () =>
 		{
-			isDown = false;
+			IsDown = false;
 			StopCountdown();
 		};
 
 		OnLeftBounds += (timeSinceContact) =>
 		{
-			isOut = true;
+			IsOut = true;
 			SetContactTime(timeSinceContact);
 
 			StartCoroutine(CallDelayed(() => {
@@ -193,8 +195,8 @@ public class PlayerScore : MonoBehaviour
 	{
 		StopCountdown();
 		thisPlayer.inputController.ResetPosition();
-		isDown = false;
-		isOut = false;
+		IsDown = false;
+		IsOut = false;
 	}
 	private IEnumerator CallDelayed(System.Action method, float delay) 
 	{

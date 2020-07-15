@@ -107,8 +107,6 @@ public class PlayerInputController : MonoBehaviour
 		activeAvatar.middleFinger.stickInput_original = new StickInput();
 		activeAvatar.indexFinger.stickInput_original = new StickInput();
 
-
-		activeAvatar.balance.lookAtTarget = otherPlayer.activeAvatar.playerRoot;
 		AssignPlayersToHandlers();
 
 

@@ -6,6 +6,8 @@ public class OrientationAndBalance : MonoBehaviour
 {
 	Settings settings { get { return Settings.instance; } }
 
+	public PlayerInstance thisplayer;
+	public PlayerInstance otherplayer;
 
 	[Header("Orientation")]
 	public GameObject orientationCentre;
@@ -36,12 +38,15 @@ public class OrientationAndBalance : MonoBehaviour
     Vector3 COM;
     Rigidbody[] rigids;
 
+	FightManager fightManager;
+
 
 
 	// Start is called before the first frame update
 	void Start()
     {
 		lookAtActive = settings.lookAtActive;
+		fightManager = FindObjectOfType<FightManager>();
         //rigids = active // hier weiter machen
     }
 
@@ -53,8 +58,9 @@ public class OrientationAndBalance : MonoBehaviour
         orientationCentre.transform.position = configurableJoint.transform.position;
         //orientationCentre.transform.position = this.transform.TransformPoint(configJoint_comp.connectedAnchor);
 
+		bool dontRotateCondition = (thisplayer.activeAvatar.isDown || otherplayer.activeAvatar.isDown) && fightManager.distanceBetweenPlayers <= 3f; // if at least one of the players lying down and the distance between them is small, dont rotate
 
-        if (lookAtActive && lookAtTarget != null)
+		if (lookAtActive && lookAtTarget != null && !dontRotateCondition )
 		{
 			orientationCentre.transform.LookAt(new Vector3(lookAtTarget.transform.position.x, orientationCentre.transform.position.y + hightToLookAt, lookAtTarget.transform.position.z));
 		}
