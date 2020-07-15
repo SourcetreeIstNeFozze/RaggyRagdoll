@@ -60,7 +60,9 @@ public class Settings : MonoBehaviour
     public float maxAutoBendAngle = 60f;
     public float anchorInputStrength2 = 0;
     public float anchorYOffset = 0;
-	public enum AngularDriveBreaking { SuddenBreak, TargetValueLerp, FromAnimationCurve }
+    [Range(0, 2f)] public float anchorForwardForce = 0f;
+    [Range(0, 2f)] public float angleForwardForce = 0f;
+    public enum AngularDriveBreaking { SuddenBreak, TargetValueLerp, FromAnimationCurve }
 	public AngularDriveBreaking angularDriveBreaking;
 	public float lerpSpeed;
 

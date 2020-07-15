@@ -641,7 +641,7 @@ public class PlayerInputController : MonoBehaviour
         // set anchor up
         newAchorPosition = activeAvatar.transform.position + Vector3.up * settings.anchorYOffset;
         // input force; only backwarts
-        newAchorPosition += lookDirection.normalized * Mathf.Clamp(inputDirection, -2f, 0) * settings.anchorInputStrength2;
+        newAchorPosition += lookDirection.normalized * Mathf.Clamp(inputDirection, -2f, settings.anchorForwardForce) * settings.anchorInputStrength2;
 
         // convert & set
         configJoint.connectedAnchor = configJoint.connectedBody.transform.InverseTransformPoint(newAchorPosition);
@@ -751,7 +751,7 @@ public class PlayerInputController : MonoBehaviour
     private void COM_inputAmplification_angle()
     {
         // bend the hand in the direction both sticks are pressed into (left or right) to support walking
-        inputDirection = Mathf.Clamp(activeAvatar.indexFinger.stickInput.value.x + activeAvatar.middleFinger.stickInput.value.x, -2f, 0f);
+        inputDirection = Mathf.Clamp(activeAvatar.indexFinger.stickInput.value.x + activeAvatar.middleFinger.stickInput.value.x, -2f, settings.angleForwardForce);
         float targetXAngle_euler = inputDirection.Remap(-2f, 2f, -settings.maxAutoBendAngle, settings.maxAutoBendAngle);
 
         Quaternion targetAngle = Quaternion.Euler(targetXAngle_euler, 0, 0);
@@ -796,7 +796,7 @@ public class PlayerInputController : MonoBehaviour
         }
         else {
             if (indexTipToCom.z > settings.fallDistance && middleTipToCom.z > settings.fallDistance ||
-                indexTipToCom.z < -settings.fallDistance && middleTipToCom.z < -settings.fallDistance) // TO DO: nicht mit x-distance rechnen, sondern korrekter x-distanz
+                indexTipToCom.z < -settings.fallDistance && middleTipToCom.z < -settings.fallDistance)
             {
                 // break angular drive
                 if (settings.angularDriveBreaking == Settings.AngularDriveBreaking.SuddenBreak)
@@ -807,9 +807,6 @@ public class PlayerInputController : MonoBehaviour
                     angularXDrive_targetValue = 0;
                     LerpAngularDrive();
                 }
-            
-			//if (this.tag == "player_right")
-			//    print("BREAK! indexTipDistance: " + indexTipDistance + ", middleTipDistance: " + middleTipDistance);
 		}
             else
             {
@@ -822,8 +819,6 @@ public class PlayerInputController : MonoBehaviour
                     angularXDrive_targetValue = angularXDrive_startValue;
                     LerpAngularDrive();
                 }
-                //if (this.tag == "player_right")
-                //    print("active! indexTipDistance: " + indexTipDistance + ", middleTipDistance: " + middleTipDistance);
             }
 
         }

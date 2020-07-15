@@ -263,8 +263,8 @@ MonoBehaviour:
   springForce: 5
   colisionAmplificationMode: 2
   velocityMode: 2
-  fingerTipsAdditionalForce: 7
-  otherPartsAdditionalForce: 7.4
+  fingerTipsAdditionalForce: 4
+  otherPartsAdditionalForce: 4
   jointSpringForceWhenWeek: 20
   jointsWeakening: 0
   durationOfJointWeakness: 3
@@ -278,10 +278,12 @@ MonoBehaviour:
   maxAutoBendAngle: 40
   anchorInputStrength2: 3
   anchorYOffset: 0
+  anchorForwardForce: 2
+  angleForwardForce: 0
   angularDriveBreaking: 1
   lerpSpeed: 40
-  otherPlayerInfluenceTime: 5
-  coundDownTime: 5
+  otherPlayerInfluenceTime: 3
+  coundDownTime: 3
   countDownMode: 0
 --- !u!1 &71352516
 GameObject:
@@ -1188,6 +1190,21 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.z
       value: -0.00000015194816
       objectReference: {fileID: 0}
+    - target: {fileID: 4208875959088152151, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4208875959088152151, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4208875959088152151, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4582965652356185795, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
         type: 3}
       propertyPath: m_Mass
@@ -1532,6 +1549,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ConnectedAnchor.z
       value: -0.029016942
+      objectReference: {fileID: 0}
+    - target: {fileID: 8746823080801244169, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.134041
+      objectReference: {fileID: 0}
+    - target: {fileID: 8746823080801244169, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.134041
+      objectReference: {fileID: 0}
+    - target: {fileID: 8746823080801244169, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.134041
       objectReference: {fileID: 0}
     - target: {fileID: 8891347199588412149, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
         type: 3}
