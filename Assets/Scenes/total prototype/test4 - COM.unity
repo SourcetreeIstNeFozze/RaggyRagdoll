@@ -274,8 +274,8 @@ MonoBehaviour:
   breakAnchorAtLimit: 1
   anchorBreakAngleLimit: 37
   useAllFingersForCOM: 1
-  fallDistance: 0.75
-  maxAutoBendAngle: 40
+  fallDistance: 0.5
+  maxAutoBendAngle: 20
   anchorInputStrength2: 3
   anchorYOffset: 0
   anchorForwardForce: 2
@@ -1529,6 +1529,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Center.x
       value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 8564538815871589338, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8617081425088867711, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
         type: 3}
@@ -3248,6 +3253,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Center.x
       value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8564538815871589338, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8617081425088867711, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
         type: 3}
