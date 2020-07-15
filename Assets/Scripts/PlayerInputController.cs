@@ -183,30 +183,33 @@ public class PlayerInputController : MonoBehaviour
 
 
                 //MANAGE BENDING AND PUSHING
-                ManageBending();
+                ManageManualBending();
 
 
-                // NEW ANCHOR-STABILISATION
-                if (settings.fallMode == Settings.FallMode.spring_backFoot)
-                {
-                    AnchorStabilization();
-                    AnchorBreakForce();
-                }
+                // NEW ANCHOR-STABILISATION -> full of flaws
+                //if (settings.fallMode == Settings.FallMode.spring_backFoot)
+                //{
+                //    AnchorStabilization();
+                //    AnchorBreakForce();
+                //}
 
                 if (settings.fallMode == Settings.FallMode.spring_feet)
                 {
+                    GetFingerTipData();
                     Anchor_AutomaticFeetBalance();
-                    AnchorInputForce();
+                    AnchorInputAmplification();
                     AnchorBreakForce();
                 }
 
                 if (settings.fallMode == Settings.FallMode.autoBend)
                 {
-
+                    // tbd
                 }
 
                 else if (settings.fallMode == Settings.FallMode.angularDriveAndCOM)
                 {
+                    GetFingerTipData();
+                    COM_inputAmplification();
                     Calculate_COM();
                     COM_balance();
                 }
@@ -281,7 +284,7 @@ public class PlayerInputController : MonoBehaviour
         activeAvatar.playerRigidbody.AddForce(direction * forceValue, ForceMode.Impulse);
     }
 
-    void ManageBending()
+    void ManageManualBending()
     {
 
         float bendDirection;
@@ -472,73 +475,73 @@ public class PlayerInputController : MonoBehaviour
     }
 
 
+    // FULL OF FLAWS
+    //void AnchorStabilization()
+    //{
+    //    // -- Suche Finger, der am weitesten hinten ist in Relation zur Bewegungsrichtung --
 
-    void AnchorStabilization()
-    {
-        // -- Suche Finger, der am weitesten hinten ist in Relation zur Bewegungsrichtung --
-
-        // 1. GET INPUT DIRECTION
-        GetFingerTipData();
-        inputDirection = Mathf.Clamp01(activeAvatar.indexFinger.stickInput.value.x + activeAvatar.middleFinger.stickInput.value.x);
-
-
-        // 2. SETZE FINGER, DER AM WEITESTEN HINTEN IST IN RELATION ZUR BEWEGUNGS-RICHTUNG
-        //Vector3 playerMidPoint = (settings.LEFT.transform.position - settings.RIGHT.transform.position) / 2f + settings.RIGHT.transform.position;
-        if (inputDirection > 0)
-        {
-            // Spieler bewegt sich nach VORNE, ermittle Finger der am weitesten HINTEN ist
-            if ((indexTipPos - playerMidPoint).magnitude > (middleTipPos - playerMidPoint).magnitude)
-                relevantFingerTip = indexTipPos;
-            else
-                relevantFingerTip = middleTipPos;
-            // checke, dass relevantFinger nicht VOR knuckles ist
-            if ((relevantFingerTip - playerMidPoint).magnitude < (activeAvatar.transform.position - playerMidPoint).magnitude)
-            {
-                relevantFingerTip = activeAvatar.transform.position;
-                print("sonder");
-            }
-        }
-        else if (inputDirection < 0)
-        {
-            // Spieler bewegt sich nach HINTEN, ermittle Finger der am weitesten VORNE ist
-            if ((indexTipPos - playerMidPoint).magnitude < (middleTipPos - playerMidPoint).magnitude)
-                relevantFingerTip = indexTipPos;
-            else
-                relevantFingerTip = middleTipPos;
-
-            // checke, dass relevantFinger nicht HINTER knuckles ist
-            if ((relevantFingerTip - playerMidPoint).magnitude > (activeAvatar.transform.position - playerMidPoint).magnitude)
-            {
-                relevantFingerTip = activeAvatar.transform.position;
-                print("sonder");
-            }
-        }
-        else
-            // kein Input
-            relevantFingerTip = (indexTipPos + middleTipPos) / 2f;
-
-        // 3. Vector holen
-
-        Vector3 lookDirection = (otherPlayer.activeAvatar.transform.position - activeAvatar.transform.position);
-        lookDirection = new Vector3(lookDirection.x, 0, lookDirection.z);
-        Plane plane = new Plane(lookDirection, activeAvatar.transform.position);
-        Vector3 direction = plane.ClosestPointOnPlane(relevantFingerTip) - relevantFingerTip;
-        Vector3 newAchorPosition = activeAvatar.transform.InverseTransformPoint(activeAvatar.transform.position + direction);
-        Debug.DrawLine(plane.ClosestPointOnPlane(relevantFingerTip), relevantFingerTip, Color.blue);
-        Debug.DrawLine(activeAvatar.transform.position, activeAvatar.transform.position + new Vector3(0, -3, 0), Color.magenta);
-        Debug.DrawLine(relevantFingerTip, Vector3.zero, Color.black);
+    //    // 1. GET INPUT DIRECTION
+    //    GetFingerTipData();
+    //    inputDirection = Mathf.Clamp01(activeAvatar.indexFinger.stickInput.value.x + activeAvatar.middleFinger.stickInput.value.x);
 
 
-        // 4. CONNECTED ANCHOR SETZEN
-        configJoint.connectedAnchor = new Vector3(
-            newAchorPosition.x,
-            settings.configJoint_Y_Offset, // nur y bleibt
-            newAchorPosition.z) -
-            activeAvatar.transform.InverseTransformVector(lookDirection.normalized * inputDirection * settings.anchorInputStrength); // * strength;
+    //    // 2. SETZE FINGER, DER AM WEITESTEN HINTEN IST IN RELATION ZUR BEWEGUNGS-RICHTUNG
+    //    //Vector3 playerMidPoint = (settings.LEFT.transform.position - settings.RIGHT.transform.position) / 2f + settings.RIGHT.transform.position;
+    //    if (inputDirection > 0)
+    //    {
+    //        // Spieler bewegt sich nach VORNE, ermittle Finger der am weitesten HINTEN ist
+    //        if ((indexTipPos - playerMidPoint).magnitude > (middleTipPos - playerMidPoint).magnitude)
+    //            relevantFingerTip = indexTipPos;
+    //        else
+    //            relevantFingerTip = middleTipPos;
+    //        // checke, dass relevantFinger nicht VOR knuckles ist
+    //        if ((relevantFingerTip - playerMidPoint).magnitude < (activeAvatar.transform.position - playerMidPoint).magnitude)
+    //        {
+    //            relevantFingerTip = activeAvatar.transform.position;
+    //            print("sonder");
+    //        }
+    //    }
+    //    else if (inputDirection < 0)
+    //    {
+    //        // Spieler bewegt sich nach HINTEN, ermittle Finger der am weitesten VORNE ist
+    //        if ((indexTipPos - playerMidPoint).magnitude < (middleTipPos - playerMidPoint).magnitude)
+    //            relevantFingerTip = indexTipPos;
+    //        else
+    //            relevantFingerTip = middleTipPos;
 
-        Debug.DrawLine(activeAvatar.transform.TransformPoint(configJoint.connectedAnchor), Vector3.zero, Color.gray);
-        Debug.DrawLine(activeAvatar.transform.InverseTransformVector(lookDirection.normalized * inputDirection), Vector3.zero, Color.red);
-    }
+    //        // checke, dass relevantFinger nicht HINTER knuckles ist
+    //        if ((relevantFingerTip - playerMidPoint).magnitude > (activeAvatar.transform.position - playerMidPoint).magnitude)
+    //        {
+    //            relevantFingerTip = activeAvatar.transform.position;
+    //            print("sonder");
+    //        }
+    //    }
+    //    else
+    //        // kein Input
+    //        relevantFingerTip = (indexTipPos + middleTipPos) / 2f;
+
+    //    // 3. Vector holen
+
+    //    Vector3 lookDirection = (otherPlayer.activeAvatar.transform.position - activeAvatar.transform.position);
+    //    lookDirection = new Vector3(lookDirection.x, 0, lookDirection.z);
+    //    Plane plane = new Plane(lookDirection, activeAvatar.transform.position);
+    //    Vector3 direction = plane.ClosestPointOnPlane(relevantFingerTip) - relevantFingerTip;
+    //    Vector3 newAchorPosition = activeAvatar.transform.InverseTransformPoint(activeAvatar.transform.position + direction);
+    //    Debug.DrawLine(plane.ClosestPointOnPlane(relevantFingerTip), relevantFingerTip, Color.blue);
+    //    Debug.DrawLine(activeAvatar.transform.position, activeAvatar.transform.position + new Vector3(0, -3, 0), Color.magenta);
+    //    Debug.DrawLine(relevantFingerTip, Vector3.zero, Color.black);
+
+
+    //    // 4. CONNECTED ANCHOR SETZEN
+    //    configJoint.connectedAnchor = new Vector3(
+    //        newAchorPosition.x,
+    //        settings.configJoint_Y_Offset, // nur y bleibt
+    //        newAchorPosition.z) -
+    //        activeAvatar.transform.InverseTransformVector(lookDirection.normalized * inputDirection * settings.anchorInputStrength); // * strength;
+
+    //    Debug.DrawLine(activeAvatar.transform.TransformPoint(configJoint.connectedAnchor), Vector3.zero, Color.gray);
+    //    Debug.DrawLine(activeAvatar.transform.InverseTransformVector(lookDirection.normalized * inputDirection), Vector3.zero, Color.red);
+    //}
 
     void AnchorBreakForce()
     {
@@ -584,7 +587,6 @@ public class PlayerInputController : MonoBehaviour
 
     private void Anchor_AutomaticFeetBalance()
     {
-        GetFingerTipData();
         GroundedState groundedState = GetGroundedState();
         float conAnchorYPos = activeAvatar.transform.position.y + settings.configJoint_Y_Offset;
 
@@ -616,7 +618,7 @@ public class PlayerInputController : MonoBehaviour
         Debug.DrawLine(activeAvatar.transform.TransformPoint(configJoint.connectedAnchor), Vector3.zero, Color.blue);
     }
 
-    private void AnchorInputForce()
+    private void AnchorInputAmplification()
     {
         inputDirection = Mathf.Clamp(activeAvatar.indexFinger.stickInput.value.x + activeAvatar.middleFinger.stickInput.value.x, -1f, 1f);
         // calc
@@ -726,9 +728,19 @@ public class PlayerInputController : MonoBehaviour
             com_obj.transform.position = COM;
     }
 
+    private void COM_inputAmplification()
+    {
+        // bend the hand in the direction both sticks are pressed into (left or right) to support walking
+        inputDirection = Mathf.Clamp(activeAvatar.indexFinger.stickInput.value.x + activeAvatar.middleFinger.stickInput.value.x, -2f, 2f);
+        float targetXAngle_euler = inputDirection.Remap(-2f, 2f, -settings.maxAutoBendAngle, settings.maxAutoBendAngle);
+        Quaternion targetAngle = Quaternion.Euler(targetXAngle_euler, 0, 0);
+        configJoint.targetRotation = targetAngle;
+        if (this.tag == "player_right")
+            print("targetAngle: " + targetXAngle_euler);
+    }
+
     private void COM_balance()
     {
-        GetFingerTipData();
         float indexTipDistance = FingertipToHandDistance(indexTipPos, COM);
         float middleTipDistance = FingertipToHandDistance(middleTipPos, COM);
 

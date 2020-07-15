@@ -54,9 +54,10 @@ public class Settings : MonoBehaviour
     //public float anchorBreakDistanceLimit = 0.8f;
     public float anchorBreakAngleLimit = 45f;
 
-    [Header("If AngleAndCOM fall mode")]
+    [Header("If AngularDriveAndCOM fall mode")]
     public bool useAllFingersForCOM = true;
     public float fallDistance = 0.3f;
+    public float maxAutoBendAngle = 45f;
 
 	[Header("CountDown")]
 	public float otherPlayerInfluenceTime = 5;
