@@ -178,10 +178,10 @@ public class PlayerInputController : MonoBehaviour
             if (settings.useFK)
             {
                 //MANAGE POSES 
-                handAnimator.SetFloat("XInput_R", activeAvatar.middleFinger.stickInput.value.x);
-                handAnimator.SetFloat("YInput_R", activeAvatar.middleFinger.stickInput.value.y);
-                handAnimator.SetFloat("XInput_L", activeAvatar.indexFinger.stickInput.value.x);
-                handAnimator.SetFloat("YInput_L", activeAvatar.indexFinger.stickInput.value.y);
+                handAnimator.SetFloat("XInput_L", activeAvatar.middleFinger.stickInput.value.x);
+                handAnimator.SetFloat("YInput_L", activeAvatar.middleFinger.stickInput.value.y);
+                handAnimator.SetFloat("XInput_R", activeAvatar.indexFinger.stickInput.value.x);
+                handAnimator.SetFloat("YInput_R", activeAvatar.indexFinger.stickInput.value.y);
 
 
                 //MANAGE BENDING AND PUSHING

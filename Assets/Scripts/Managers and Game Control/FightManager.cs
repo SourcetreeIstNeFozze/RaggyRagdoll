@@ -52,6 +52,13 @@ public class FightManager : MonoBehaviour
         {
             distanceBetweenPlayers = (players[0].activeAvatar.playerRoot.transform.position - players[1].activeAvatar.playerRoot.transform.position).magnitude;
         }
+
+        // THIS DOES NOT BELONG HERE!
+
+        if (Input.GetKeyDown(KeyCode.Escape)) 
+        {
+            Application.Quit();
+        }
     }
 
 	public GameObject SpawnPlayerAvatar()
