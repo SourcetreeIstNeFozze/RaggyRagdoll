@@ -558,7 +558,7 @@ public class PlayerInputController : MonoBehaviour
     public void GetFingerTipData() // KAROLINA: I dont know where this function belongs, so I'll let it here till I have another refactoring fever. Probably Christmass 2021
     {
         indexTipPos = activeAvatar.indexFinger.fingerTip.transform.position;
-        middleTipPos = activeAvatar.middleFinger.fingerBottom.transform.position;
+        middleTipPos = activeAvatar.middleFinger.fingerTip.transform.position;
         playerMidPoint = (otherPlayer.activeAvatar.transform.position - activeAvatar.transform.position) / 2f + activeAvatar.transform.position;
         lookDirection = (otherPlayer.activeAvatar.transform.position - activeAvatar.transform.position);
         lookDirection = new Vector3(lookDirection.x, 0, lookDirection.z);
