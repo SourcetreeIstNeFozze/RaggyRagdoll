@@ -2098,12 +2098,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d505e9ccc2c0a2c489de1499de46ab96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thisPlayer: {fileID: 0}
+  otherPlayer: {fileID: 0}
+  configJoint: {fileID: 0}
   orientationCentre: {fileID: 1597849403}
-  configurableJoint: {fileID: 515594622}
   lookAtTarget: {fileID: 0}
   hightToLookAt: 0
   lookAtActive: 0
-  fallinAndGettingUp: 0
   affectedJoint: {fileID: 515594627}
   targetAngle: {x: 0, y: 0, z: 0}
   sprinngRelToAngle:
@@ -2133,6 +2134,9 @@ MonoBehaviour:
   reactionDelay: 3
   minDrive: 0
   maxdrive: 300
+  rigidsForVisuaCOMCalculation: []
+  COM: {x: 0, y: 0, z: 0}
+  com_obj: {fileID: 0}
 --- !u!75 &5822281549155430279
 ConstantForce:
   m_ObjectHideFlags: 0
@@ -2163,13 +2167,17 @@ MonoBehaviour:
     fingerTop: {fileID: 232455740}
     fingerMiddle: {fileID: 397538278}
     fingerBottom: {fileID: 758628624}
+    fingerTip: {fileID: 0}
   middleFinger:
     fingerTop: {fileID: 1937918729}
     fingerMiddle: {fileID: 1568695536}
     fingerBottom: {fileID: 707801891}
+    fingerTip: {fileID: 0}
   wristTriggers:
   - {fileID: 8479993384622103454}
   shokwavetriggers: []
+  isDown: 0
+  isOut: 0
   childHandlers: []
   balance: {fileID: 0}
   playerRigidbody: {fileID: 0}
@@ -2707,12 +2715,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d505e9ccc2c0a2c489de1499de46ab96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thisPlayer: {fileID: 0}
+  otherPlayer: {fileID: 0}
+  configJoint: {fileID: 0}
   orientationCentre: {fileID: 1597849403}
-  configurableJoint: {fileID: 555273435}
   lookAtTarget: {fileID: 0}
   hightToLookAt: 0
   lookAtActive: 0
-  fallinAndGettingUp: 0
   affectedJoint: {fileID: 555273440}
   targetAngle: {x: 0, y: 0, z: 0}
   sprinngRelToAngle:
@@ -2742,6 +2751,9 @@ MonoBehaviour:
   reactionDelay: 3
   minDrive: 0
   maxdrive: 300
+  rigidsForVisuaCOMCalculation: []
+  COM: {x: 0, y: 0, z: 0}
+  com_obj: {fileID: 0}
 --- !u!75 &555273438
 ConstantForce:
   m_ObjectHideFlags: 0
@@ -2772,14 +2784,18 @@ MonoBehaviour:
     fingerTop: {fileID: 1690850616}
     fingerMiddle: {fileID: 1988398123}
     fingerBottom: {fileID: 912015089}
+    fingerTip: {fileID: 0}
   middleFinger:
     fingerTop: {fileID: 422443164}
     fingerMiddle: {fileID: 1258177957}
     fingerBottom: {fileID: 869616676}
+    fingerTip: {fileID: 0}
   wristTriggers:
   - {fileID: 1607904013}
   - {fileID: 3253620178141210624}
   shokwavetriggers: []
+  isDown: 0
+  isOut: 0
   childHandlers: []
   balance: {fileID: 0}
   playerRigidbody: {fileID: 0}
@@ -5282,12 +5298,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d505e9ccc2c0a2c489de1499de46ab96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thisPlayer: {fileID: 0}
+  otherPlayer: {fileID: 0}
+  configJoint: {fileID: 0}
   orientationCentre: {fileID: 1597849403}
-  configurableJoint: {fileID: 1156043727}
   lookAtTarget: {fileID: 0}
   hightToLookAt: 0
   lookAtActive: 0
-  fallinAndGettingUp: 0
   affectedJoint: {fileID: 1156043733}
   targetAngle: {x: 0, y: 0, z: 0}
   sprinngRelToAngle:
@@ -5317,6 +5334,9 @@ MonoBehaviour:
   reactionDelay: 3
   minDrive: 0
   maxdrive: 300
+  rigidsForVisuaCOMCalculation: []
+  COM: {x: 0, y: 0, z: 0}
+  com_obj: {fileID: 0}
 --- !u!75 &1156043731
 ConstantForce:
   m_ObjectHideFlags: 0
@@ -5347,14 +5367,18 @@ MonoBehaviour:
     fingerTop: {fileID: 1394760989}
     fingerMiddle: {fileID: 513651975}
     fingerBottom: {fileID: 725603581}
+    fingerTip: {fileID: 0}
   middleFinger:
     fingerTop: {fileID: 1366135674}
     fingerMiddle: {fileID: 1080761222}
     fingerBottom: {fileID: 1485959838}
+    fingerTip: {fileID: 0}
   wristTriggers:
   - {fileID: 587171466}
   - {fileID: 7492226442728713643}
   shokwavetriggers: []
+  isDown: 0
+  isOut: 0
   childHandlers: []
   balance: {fileID: 0}
   playerRigidbody: {fileID: 0}
@@ -9179,12 +9203,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d505e9ccc2c0a2c489de1499de46ab96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thisPlayer: {fileID: 0}
+  otherPlayer: {fileID: 0}
+  configJoint: {fileID: 0}
   orientationCentre: {fileID: 1597849403}
-  configurableJoint: {fileID: 2105938185}
   lookAtTarget: {fileID: 0}
   hightToLookAt: 0
   lookAtActive: 0
-  fallinAndGettingUp: 0
   affectedJoint: {fileID: 2105938191}
   targetAngle: {x: 0, y: 0, z: 0}
   sprinngRelToAngle:
@@ -9214,6 +9239,9 @@ MonoBehaviour:
   reactionDelay: 1
   minDrive: 0
   maxdrive: 300
+  rigidsForVisuaCOMCalculation: []
+  COM: {x: 0, y: 0, z: 0}
+  com_obj: {fileID: 0}
 --- !u!75 &2105938189
 ConstantForce:
   m_ObjectHideFlags: 0
@@ -9244,12 +9272,16 @@ MonoBehaviour:
     fingerTop: {fileID: 1015610425}
     fingerMiddle: {fileID: 1321384002}
     fingerBottom: {fileID: 535907141}
+    fingerTip: {fileID: 0}
   middleFinger:
     fingerTop: {fileID: 422443164}
     fingerMiddle: {fileID: 248667924}
     fingerBottom: {fileID: 1931987320}
+    fingerTip: {fileID: 0}
   wristTriggers: []
   shokwavetriggers: []
+  isDown: 0
+  isOut: 0
   childHandlers: []
   balance: {fileID: 0}
   playerRigidbody: {fileID: 0}
@@ -10498,12 +10530,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d505e9ccc2c0a2c489de1499de46ab96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thisPlayer: {fileID: 0}
+  otherPlayer: {fileID: 0}
+  configJoint: {fileID: 0}
   orientationCentre: {fileID: 1597849403}
-  configurableJoint: {fileID: 1433791129225982207}
   lookAtTarget: {fileID: 0}
   hightToLookAt: 0
   lookAtActive: 0
-  fallinAndGettingUp: 0
   affectedJoint: {fileID: 1769603779719968903}
   targetAngle: {x: 0, y: 0, z: 0}
   sprinngRelToAngle:
@@ -10533,6 +10566,9 @@ MonoBehaviour:
   reactionDelay: 3
   minDrive: 0
   maxdrive: 300
+  rigidsForVisuaCOMCalculation: []
+  COM: {x: 0, y: 0, z: 0}
+  com_obj: {fileID: 0}
 --- !u!75 &6695576967505005916
 ConstantForce:
   m_ObjectHideFlags: 0
@@ -10563,13 +10599,17 @@ MonoBehaviour:
     fingerTop: {fileID: 6794334509374263034}
     fingerMiddle: {fileID: 7779237700136367435}
     fingerBottom: {fileID: 692539761616292814}
+    fingerTip: {fileID: 0}
   middleFinger:
     fingerTop: {fileID: 5533451286570657324}
     fingerMiddle: {fileID: 6320393361454212828}
     fingerBottom: {fileID: 8776459915304489817}
+    fingerTip: {fileID: 0}
   wristTriggers:
   - {fileID: 1428594160976708222}
   shokwavetriggers: []
+  isDown: 0
+  isOut: 0
   childHandlers: []
   balance: {fileID: 0}
   playerRigidbody: {fileID: 0}
@@ -14056,9 +14096,6 @@ MonoBehaviour:
   handAnimator: {fileID: 640599766}
   timeSinceLastContact: 5
   childTransofrms: []
-  com_obj: {fileID: 6422290032141146166}
-  middleTipToCom: {x: 0, y: 0, z: 0}
-  indexTipToCom: {x: 0, y: 0, z: 0}
 --- !u!114 &8788283816192771441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16022,12 +16059,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d505e9ccc2c0a2c489de1499de46ab96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thisPlayer: {fileID: 0}
+  otherPlayer: {fileID: 0}
+  configJoint: {fileID: 0}
   orientationCentre: {fileID: 1597849403}
-  configurableJoint: {fileID: 7930167493261209281}
   lookAtTarget: {fileID: 0}
   hightToLookAt: 0
   lookAtActive: 0
-  fallinAndGettingUp: 0
   affectedJoint: {fileID: 6387366927025575730}
   targetAngle: {x: 0, y: 0, z: 0}
   sprinngRelToAngle:
@@ -16057,6 +16095,23 @@ MonoBehaviour:
   reactionDelay: 3
   minDrive: 0
   maxdrive: 300
+  rigidsForVisuaCOMCalculation:
+  - rigid: {fileID: 1933240365603956440}
+    assumedMass: 8
+  - rigid: {fileID: 4699621915498324063}
+    assumedMass: 2
+  - rigid: {fileID: 3538487066557686440}
+    assumedMass: 1.5
+  - rigid: {fileID: 8617081425088867711}
+    assumedMass: 1
+  - rigid: {fileID: 8070988553523662972}
+    assumedMass: 2
+  - rigid: {fileID: 4582965652356185795}
+    assumedMass: 1.5
+  - rigid: {fileID: 2005631115170021269}
+    assumedMass: 1
+  COM: {x: 0, y: 0, z: 0}
+  com_obj: {fileID: 6422290032141146166}
 --- !u!75 &4242060896262195718
 ConstantForce:
   m_ObjectHideFlags: 0
@@ -16087,13 +16142,17 @@ MonoBehaviour:
     fingerTop: {fileID: 7900562245303034680}
     fingerMiddle: {fileID: 6983614275726420535}
     fingerBottom: {fileID: 841830797887078471}
+    fingerTip: {fileID: 8819398873921453076}
   middleFinger:
     fingerTop: {fileID: 5992376444006699752}
     fingerMiddle: {fileID: 2614510475162495779}
     fingerBottom: {fileID: 7500492281105305049}
+    fingerTip: {fileID: 3230492262454853105}
   wristTriggers:
   - {fileID: 6433640553573735076}
   shokwavetriggers: []
+  isDown: 0
+  isOut: 0
   childHandlers: []
   balance: {fileID: 0}
   playerRigidbody: {fileID: 0}

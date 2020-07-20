@@ -23,7 +23,7 @@ public class Settings : MonoBehaviour
 	[Header("Falling and Stabilisation")]
 	public FallDirection fallDirection;
 	public enum FallDirection { X, XandZ }
-	public enum FallMode { constantAngularDrive, getUpAutomatically, noAngularDrives, spring_backFoot, spring_feet, bend, autoBend, angularDriveAndCOM, angularDriveAndVisualCOM }
+	public enum FallMode { constantAngularDrive, getUpAutomatically, noAngularDrives, spring_backFoot, spring_feet, bend, autoBend, angularDriveAndCOM }
 	public FallMode fallMode;
 	public float springForce;
 

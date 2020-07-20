@@ -54,8 +54,20 @@ public class OrientationAndBalance : MonoBehaviour
 		lookAtActive = settings.lookAtActive;
 		fightManager = FindObjectOfType<FightManager>();
 
+		if (configJoint == null)
+		{
+			configJoint = this.GetComponent<ConfigurableJoint>();
+			Debug.Log("getting the joint");
+		}
+		if (com_obj == null) 
+		{
+			com_obj = transform.Find("COM").gameObject;		
+		}
+
 		angularXDrive_startValue = configJoint.angularXDrive.positionSpring;
 		angularXDrive_startDamper = configJoint.angularXDrive.positionDamper;
+
+		GetRigidsForMassBasedCOM();
 	}
 
 	// Update is called once per frame
@@ -126,9 +138,10 @@ public class OrientationAndBalance : MonoBehaviour
 
 		//  COM TREATMENT
 
-		if (settings.fallMode == Settings.FallMode.angularDriveAndCOM || settings.fallMode == Settings.FallMode.angularDriveAndCOM) 
+		if (settings.fallMode == Settings.FallMode.angularDriveAndCOM) 
 		{
-			GetCOM();
+			com_obj.transform.position =  GetWorldSpaceCOM();
+			//COMBalance();
 		}
 
 
@@ -199,7 +212,7 @@ public class OrientationAndBalance : MonoBehaviour
         affectedJoint.zDrive = zDrive;
     }
 
-	private Vector3 GetCOM()
+	private Vector3 GetWorldSpaceCOM()
 	{
 		// declaration
 		Vector3 mass_multipliedBy_position = Vector3.zero;
@@ -246,7 +259,7 @@ public class OrientationAndBalance : MonoBehaviour
 	}
 
 
-	void GetRigidsForMassBasedCom()
+	void GetRigidsForMassBasedCOM()
 	{
 		rigidsForMassBasedCOMCalculation = new List<Rigidbody>();
 		rigidsForMassBasedCOMCalculation.Add(thisPlayer.activeAvatar.indexFinger.fingerTop.GetComponent<Rigidbody>());
@@ -265,10 +278,12 @@ public class OrientationAndBalance : MonoBehaviour
 		}
 	}
 
-	private void COM_balance()
+	private void COMBalance()
 	{
+		//adjuct com obj position
 		com_obj.transform.eulerAngles = new Vector3(0f, com_obj.transform.eulerAngles.y, 0f);
 		com_obj.transform.localEulerAngles = new Vector3(com_obj.transform.localEulerAngles.x, 0f, com_obj.transform.localEulerAngles.z);
+		
 		Vector3 indexTipToCom = com_obj.transform.InverseTransformPoint(thisPlayer.activeAvatar.indexFinger.fingerTip.transform.position);
 		Vector3 middleTipToCom = com_obj.transform.InverseTransformPoint(thisPlayer.activeAvatar.middleFinger.fingerTip.transform.position);
 
@@ -284,7 +299,7 @@ public class OrientationAndBalance : MonoBehaviour
 			if (indexTipToCom.z > settings.fallDistance && middleTipToCom.z > settings.fallDistance ||
 				indexTipToCom.z < -settings.fallDistance && middleTipToCom.z < -settings.fallDistance)
 			{
-				// break angular drive
+				// break angular drives
 				if (settings.angularDriveBreaking == Settings.AngularDriveBreaking.SuddenBreak)
 				{
 					SetAngularXDrive(0);
