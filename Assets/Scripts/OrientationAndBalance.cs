@@ -44,8 +44,11 @@ public class OrientationAndBalance : MonoBehaviour
 	public Vector3 COM;
 	public GameObject com_obj;
 
+
 	FightManager fightManager;
 
+	public Vector3 indexTipToCom;
+	public Vector3 middleTipToCom;
 
 
 	// Start is called before the first frame update
@@ -87,7 +90,7 @@ public class OrientationAndBalance : MonoBehaviour
 
 		// BALANCE
 
-        if (settings.fallMode != Settings.FallMode.spring_backFoot && settings.fallMode != Settings.FallMode.spring_feet && settings.fallMode != Settings.FallMode.autoBend && settings.fallMode != Settings.FallMode.angularDriveAndCOM)
+        if (settings.fallMode != Settings.FallMode.spring_backFoot && settings.fallMode != Settings.FallMode.spring_feet && settings.fallMode != Settings.FallMode.autoBend && settings.fallMode != Settings.FallMode.COM)
         {
             SetXDrive(0);
             SetYDrive(0);
@@ -115,33 +118,11 @@ public class OrientationAndBalance : MonoBehaviour
 			}
 		}
 
-		if (settings.fallMode == Settings.FallMode.constantAngularDrive)
-		{
-			SetAngularXDrive(maxdrive);
-			SetAngularYZDrive(maxdrive);
-
-		}
-		else if (settings.fallMode == Settings.FallMode.noAngularDrives)
-		{
-			SetAngularXDrive(settings.springForce);
-
-			if (settings.fallDirection == Settings.FallDirection.XandZ)
-			{
-				SetAngularYZDrive(settings.springForce);
-			}
-			else
-			{
-				SetAngularYZDrive(maxdrive);
-			}
-		}
-
-
 		//  COM TREATMENT
-
-		if (settings.fallMode == Settings.FallMode.angularDriveAndCOM) 
+		if (settings.fallMode == Settings.FallMode.COM) 
 		{
 			com_obj.transform.position =  GetWorldSpaceCOM();
-			//COMBalance();
+			COMBalance();
 		}
 
 
@@ -284,8 +265,8 @@ public class OrientationAndBalance : MonoBehaviour
 		com_obj.transform.eulerAngles = new Vector3(0f, com_obj.transform.eulerAngles.y, 0f);
 		com_obj.transform.localEulerAngles = new Vector3(com_obj.transform.localEulerAngles.x, 0f, com_obj.transform.localEulerAngles.z);
 		
-		Vector3 indexTipToCom = com_obj.transform.InverseTransformPoint(thisPlayer.activeAvatar.indexFinger.fingerTip.transform.position);
-		Vector3 middleTipToCom = com_obj.transform.InverseTransformPoint(thisPlayer.activeAvatar.middleFinger.fingerTip.transform.position);
+		indexTipToCom = com_obj.transform.InverseTransformPoint(thisPlayer.activeAvatar.indexFinger.fingerTip.transform.position);
+		middleTipToCom = com_obj.transform.InverseTransformPoint(thisPlayer.activeAvatar.middleFinger.fingerTip.transform.position);
 
 		if (settings.angularDriveBreaking == Settings.AngularDriveBreaking.FromAnimationCurve)
 		{

@@ -187,12 +187,17 @@ public class PlayerInputController : MonoBehaviour
                     // tbd
                 }
 
-                else if (settings.fallMode == Settings.FallMode.angularDriveAndCOM)
+                else if (settings.fallMode == Settings.FallMode.COM)
                 {
                     GetFingerTipData();
-                    COM_inputAmplification_angle();
-                    COM_inputAmplification_anchor();
-                }
+
+                    if (settings.pushAmplification == Settings.PushAmplificationMode.anchor)
+                    {
+                        COM_inputAmplification_angle();
+                        COM_inputAmplification_anchor();
+                    } 
+                    
+				}
             }
 
 

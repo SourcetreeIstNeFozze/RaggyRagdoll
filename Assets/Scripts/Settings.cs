@@ -23,14 +23,16 @@ public class Settings : MonoBehaviour
 	[Header("Falling and Stabilisation")]
 	public FallDirection fallDirection;
 	public enum FallDirection { X, XandZ }
-	public enum FallMode { constantAngularDrive, getUpAutomatically, noAngularDrives, spring_backFoot, spring_feet, bend, autoBend, angularDriveAndCOM }
+	public enum FallMode { noCode, getUpAutomatically, spring_backFoot, spring_feet, bend, autoBend, COM }
 	public FallMode fallMode;
+	public enum PushAmplificationMode { anchor, constantForce };
+	public PushAmplificationMode pushAmplification;
 	public float springForce;
 
 	[Header("Collision Amplification")]
 	public ColisionAmplificationMode colisionAmplificationMode;
 	public enum ColisionAmplificationMode { none, velocityChange, velocityAddition }
-	public enum VelocityMode { accuratePhysics, actualVelocityWrongDirection,velocityAndDirectionPulledFromYourAss }
+	public enum VelocityMode { accuratePhysics, actualVelocityFakedDirection, FakedVelocityAndDirection }
 	public VelocityMode velocityMode;
 	[Range(0, 100)] public float fingerTipsAdditionalForce = 3;
 	[Range(0, 100)] public float otherPartsAdditionalForce = 1;
@@ -61,6 +63,7 @@ public class Settings : MonoBehaviour
     public float maxAutoBendAngle = 60f;
     public float anchorInputStrength2 = 0;
     public float anchorYOffset = 0;
+
     [Range(0, 2f)] public float anchorForwardForce = 0f;
     [Range(0, 2f)] public float angleForwardForce = 0f;
     public enum AngularDriveBreaking { SuddenBreak, TargetValueLerp, FromAnimationCurve }
