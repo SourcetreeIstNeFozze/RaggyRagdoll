@@ -220,7 +220,7 @@ public class CollisionHandler : MonoBehaviour
 			hitMagnitude = hittingHandler.rigid.velocity.magnitude;
 		}
 
-		else if (settings.velocityMode == Settings.VelocityMode.actualVelocityWrongDirection)
+		else if (settings.velocityMode == Settings.VelocityMode.actualVelocityFakedDirection)
 		{
 			Vector3 vecBetweenPlayers = hitHandler.thisPlayer.activeAvatar.playerRoot.transform.position - hittingHandler.thisPlayer.activeAvatar.playerRoot.transform.position;
 			hitDirection = vecBetweenPlayers.normalized;
@@ -228,7 +228,7 @@ public class CollisionHandler : MonoBehaviour
 			hitMagnitude = hittingHandler.rigid.velocity.magnitude;
 		}
 
-		else if (settings.velocityMode == Settings.VelocityMode.velocityAndDirectionPulledFromYourAss)
+		else if (settings.velocityMode == Settings.VelocityMode.FakedVelocityAndDirection)
 		{
 			Vector3 vecBetweenPlayers = hitHandler.thisPlayer.activeAvatar.playerRoot.transform.position - hittingHandler.thisPlayer.activeAvatar.playerRoot.transform.position;
 			hitDirection = vecBetweenPlayers.normalized;

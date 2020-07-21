@@ -9,14 +9,15 @@ public class PlayerInputController : MonoBehaviour
     public bool initializeOnStart = true;
     private bool initialized = false;
 
-    public PlayerInstance thisPlayer;
-    public PlayerInstance otherPlayer;
+    [HideInInspector] public PlayerInstance thisPlayer;
+    [HideInInspector] public PlayerInstance otherPlayer;
 
     [HideInInspector] public HandReferences activeAvatar;
     private bool invertControls;
 
     [Header("References")]
     public Animator handAnimator;
+    ConfigurableJoint configJoint;
 
     [Space]
     private bool _rightBumperHeld;
@@ -27,10 +28,8 @@ public class PlayerInputController : MonoBehaviour
     public System.Action onSideStep;
     public System.Action oncontactWithOtherPlayer;
 
-
     Vector3 invertX = new Vector3(-1f, 1f);
-    ConfigurableJoint configJoint;
-
+    
     Settings settings { get { return Settings.instance; } }
 
     [Header("Resetting")]
@@ -46,18 +45,7 @@ public class PlayerInputController : MonoBehaviour
     float jointDrive_startMaxForce;
     enum AnchorState { connected, broken};
     AnchorState anchorState = AnchorState.connected;
-    HandReferences otherPlayerRef;
     Vector3 lookDirection, newAchorPosition;
-
-    // angular drive stabilization
-    Vector3 COM;
-    List<Rigidbody> rigids;
-    float angularXDrive_startValue;
-    float angularXDrive_startDamper;
-    public GameObject com_obj;
-    public Vector3 middleTipToCom;
-    public Vector3 indexTipToCom;
-    float angularXDrive_targetValue;
 
     public enum GroundedState
     {
@@ -76,28 +64,25 @@ public class PlayerInputController : MonoBehaviour
       }
 
 	public void Initialize()
-	{ 
-		// get initial state the hand
-		foreach (Transform child in transform)
+	{
+        // invert Controls?
+        if (this.tag.Equals("player_right"))
+            invertControls = true;
+
+        else if (this.tag.Equals("player_left"))
+            invertControls = false;
+
+        // get initial state the hand
+        foreach (Transform child in transform)
 		{
 			childTransofrms.Add(child);
 			originalRotations.Add(child.rotation);
 			originalPositions.Add(child.position);
 		}
 
+        //prep Avatar
 		activeAvatar = GetComponentInChildren<HandReferences>();
-
-		if (this.tag.Equals("player_right"))
-		{
-			invertControls = true;
-			configJoint = activeAvatar.GetComponent<ConfigurableJoint>();
-		}
-		else if (this.tag.Equals("player_left"))
-		{
-
-			invertControls = false;
-			configJoint = activeAvatar.GetComponent<ConfigurableJoint>();
-		}
+        configJoint = activeAvatar.GetComponent<ConfigurableJoint>();
 
 		activeAvatar.playerRoot.SetActive(true);
 
@@ -141,12 +126,6 @@ public class PlayerInputController : MonoBehaviour
 			};
 		}
 		jointDrive_startValue = configJoint.xDrive.positionSpring;
-		otherPlayerRef = otherPlayer.activeAvatar;
-
-        // get rigids for COM
-        GetRigids();
-        angularXDrive_startValue = configJoint.angularXDrive.positionSpring;
-        angularXDrive_startDamper = configJoint.angularXDrive.positionDamper;
 
         initialized = true;
         //if (settings.fallMode = Settings.FallMode.angleAndCOM)
@@ -208,14 +187,17 @@ public class PlayerInputController : MonoBehaviour
                     // tbd
                 }
 
-                else if (settings.fallMode == Settings.FallMode.angularDriveAndCOM)
+                else if (settings.fallMode == Settings.FallMode.COM)
                 {
                     GetFingerTipData();
-                    COM_inputAmplification_angle();
-                    COM_inputAmplification_anchor();
-                    Calculate_COM();
-                    COM_balance();
-                }
+
+                    if (settings.pushAmplification == Settings.PushAmplificationMode.anchor)
+                    {
+                        COM_inputAmplification_angle();
+                        COM_inputAmplification_anchor();
+                    } 
+                    
+				}
             }
 
 
@@ -576,15 +558,14 @@ public class PlayerInputController : MonoBehaviour
             }
         }
 
-            
-    }
+     }
 
-    void GetFingerTipData()
+    public void GetFingerTipData() // KAROLINA: I dont know where this function belongs, so I'll let it here till I have another refactoring fever. Probably Christmass 2021
     {
-        indexTipPos = activeAvatar.indexFinger.fingerBottom.transform.GetChild(activeAvatar.indexFinger.fingerBottom.transform.childCount - 1).GetChild(activeAvatar.indexFinger.fingerBottom.transform.childCount - 1).position;
-        middleTipPos = activeAvatar.middleFinger.fingerBottom.transform.GetChild(activeAvatar.middleFinger.fingerBottom.transform.childCount - 1).GetChild(activeAvatar.indexFinger.fingerBottom.transform.childCount - 1).position;
-        playerMidPoint = (otherPlayerRef.transform.position - activeAvatar.transform.position) / 2f + activeAvatar.transform.position;
-        lookDirection = (otherPlayerRef.transform.position - activeAvatar.transform.position);
+        indexTipPos = activeAvatar.indexFinger.fingerTip.transform.position;
+        middleTipPos = activeAvatar.middleFinger.fingerTip.transform.position;
+        playerMidPoint = (otherPlayer.activeAvatar.transform.position - activeAvatar.transform.position) / 2f + activeAvatar.transform.position;
+        lookDirection = (otherPlayer.activeAvatar.transform.position - activeAvatar.transform.position);
         lookDirection = new Vector3(lookDirection.x, 0, lookDirection.z);
 
         inputDirection = Mathf.Clamp(activeAvatar.indexFinger.stickInput.value.x + activeAvatar.middleFinger.stickInput.value.x, -2f, 2f);
@@ -692,60 +673,6 @@ public class PlayerInputController : MonoBehaviour
         configJoint.angularYZDrive = drive;
     }
 
-    private void SetAngularXDrive(float value)
-    {
-
-        JointDrive drive = configJoint.angularXDrive;
-        drive.positionSpring = value;
-
-        if (value == 0)
-            drive.positionDamper = 0;
-        else
-            drive.positionDamper = angularXDrive_startDamper;
-
-        configJoint.angularXDrive = drive;
-    }
-
-
-    void GetRigids()
-    {
-        rigids = new List<Rigidbody>();
-        rigids.Add(activeAvatar.indexFinger.fingerTop.GetComponent<Rigidbody>());
-        rigids.Add(activeAvatar.indexFinger.fingerMiddle.GetComponent<Rigidbody>());
-        rigids.Add(activeAvatar.indexFinger.fingerBottom.GetComponent<Rigidbody>());
-        rigids.Add(activeAvatar.middleFinger.fingerTop.GetComponent<Rigidbody>());
-        rigids.Add(activeAvatar.middleFinger.fingerMiddle.GetComponent<Rigidbody>());
-        rigids.Add(activeAvatar.middleFinger.fingerBottom.GetComponent<Rigidbody>());
-        rigids.Add(activeAvatar.torsoJoint.GetComponent<Rigidbody>());
-
-        if (settings.useAllFingersForCOM)
-        {
-            Rigidbody[] remainingFingerRigids = activeAvatar.torsoJoint.GetComponentsInChildren<Rigidbody>();
-            foreach (Rigidbody rigid in remainingFingerRigids)
-                rigids.Add(rigid);
-        }
-    }
-
-    void Calculate_COM()
-    {
-        // declaration
-        Vector3 mass_multipliedBy_position = Vector3.zero;
-        float masses = 0;
-
-        // calculation
-        foreach (Rigidbody rigid in rigids)
-        {
-            mass_multipliedBy_position += (rigid.mass * rigid.transform.position);
-            masses += rigid.mass;
-        }
-        COM = mass_multipliedBy_position / masses;
-
-        // visualization
-        //GameObject com_obj = GameObject.Find("COM");
-        if (com_obj != null)
-            com_obj.transform.position = COM;
-    }
-
     private void COM_inputAmplification_angle()
     {
         // bend the hand in the direction both sticks are pressed into (left or right) to support walking
@@ -759,74 +686,6 @@ public class PlayerInputController : MonoBehaviour
         //    print("targetAngle: " + targetXAngle_euler);
     }
 
-    private void COM_balance()
-    {
-
-        //float indexTipDistance = FingertipToHandDistance(indexTipPos, COM);
-        //float middleTipDistance = FingertipToHandDistance(middleTipPos, COM);
-
-        //if (indexTipDistance > settings.fallDistance &&
-        //middleTipDistance > settings.fallDistance ) // TO DO: nicht mit x-distance rechnen, sondern korrekter x-distanz
-        //{
-        //    // break angular drive
-        //    SetAngularXDrive(0);
-        //    //if (this.tag == "player_right")
-        //    //    print("BREAK! indexTipDistance: " + indexTipDistance + ", middleTipDistance: " + middleTipDistance);
-        //}
-        //else
-        //{
-        //    // set angular drive
-        //    SetAngularXDrive(angularXDrive_startValue);
-        //    //if (this.tag == "player_right")
-        //    //    print("active! indexTipDistance: " + indexTipDistance + ", middleTipDistance: " + middleTipDistance);
-        //}
-
-        com_obj.transform.eulerAngles = new Vector3(0f, com_obj.transform.eulerAngles.y, 0f);
-        com_obj.transform.localEulerAngles = new Vector3(com_obj.transform.localEulerAngles.x, 0f, com_obj.transform.localEulerAngles.z);
-        indexTipToCom =  com_obj.transform.InverseTransformPoint(indexTipPos);
-        middleTipToCom = com_obj.transform.InverseTransformPoint(middleTipPos);
-
-        if (settings.angularDriveBreaking == Settings.AngularDriveBreaking.FromAnimationCurve)
-        {
-            // get the value of the closer foot
-
-            //set angulardrive based on animation curve
-        }
-        else {
-            if (indexTipToCom.z > settings.fallDistance && middleTipToCom.z > settings.fallDistance ||
-                indexTipToCom.z < -settings.fallDistance && middleTipToCom.z < -settings.fallDistance)
-            {
-                // break angular drive
-                if (settings.angularDriveBreaking == Settings.AngularDriveBreaking.SuddenBreak)
-                    SetAngularXDrive(0);
-
-                else if (settings.angularDriveBreaking == Settings.AngularDriveBreaking.TargetValueLerp)
-                {
-                    angularXDrive_targetValue = 0;
-                    LerpAngularDrive();
-                }
-		}
-            else
-            {
-                // set angular drive
-                if (settings.angularDriveBreaking == Settings.AngularDriveBreaking.SuddenBreak)
-                    SetAngularXDrive(angularXDrive_startValue);
-
-                else if (settings.angularDriveBreaking == Settings.AngularDriveBreaking.TargetValueLerp)
-                {
-                    angularXDrive_targetValue = angularXDrive_startValue;
-                    LerpAngularDrive();
-                }
-            }
-
-        }
-	}
-
-    private void LerpAngularDrive() 
-    {
-        float newDriveValue = Mathf.Lerp(configJoint.angularXDrive.positionSpring, angularXDrive_targetValue, settings.lerpSpeed *Time.deltaTime);
-        SetAngularXDrive(newDriveValue);
-    }
 	private void OnDrawGizmos()
 	{
         Gizmos.DrawSphere(indexTipPos, 0.1f);
