@@ -8,13 +8,14 @@ public class CollisionHandler : MonoBehaviour
 {
 	Settings settings { get { return Settings.instance; } }
 
-	[Header("Ground Detection")]
+	[Header("Events")]
 	public bool touchesGround;
 	public System.Action OnTouchedGround;
 	public System.Action OnLeftGound;
 	public System.Action OnLeftBounds;
 	public System.Action OnKickTriggerEntered;
 	public System.Action OnTouchedWristHeight;
+	public System.Action OnFalling;
 	public System.Action<Collision> OnTouchedOtherPlayer;
 	public System.Action<Collision> OnWasWouchedByOtherPlayer;
 
@@ -24,6 +25,7 @@ public class CollisionHandler : MonoBehaviour
 	public Transform trackingpoint;
 	private Vector3 _lastPosition;
 	private Vector3 _currentposition;
+
 	[Tooltip("how much strength should be applied when THIS rigidbody hits another")]
 	public float applidedStrenght;
 
@@ -36,6 +38,7 @@ public class CollisionHandler : MonoBehaviour
 	[Header("Joint Softening")]
 	[HideInInspector] public Joint joint;
 	[HideInInspector] public float originalSpringforce;
+	[HideInInspector] public float originalDamper;
 	public float jointWeakeningTimer = 0;
 
 	void Awake()
@@ -47,6 +50,7 @@ public class CollisionHandler : MonoBehaviour
 		{
 			HingeJoint hj = (HingeJoint)joint;
 			originalSpringforce = hj.spring.spring;
+			originalDamper = hj.spring.damper;
 		}
 
 		OnKickTriggerEntered += () => { Debug.Log("Shell Collision"); };
@@ -296,6 +300,11 @@ public class CollisionHandler : MonoBehaviour
 
 	private void OnTriggerEnter(Collider collider)
 	{
+		// FALL DETECTION
+		if(collider.tag == "FallDetector")
+		{
+			OnFalling?.Invoke();
+		}
 		// GROUND DETECTION
 		if (collider.tag == "Environment")
 		{

@@ -1391,6 +1391,11 @@ PrefabInstance:
       propertyPath: m_AngularXDrive.positionDamper
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 6387366927025575730, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
+        type: 3}
+      propertyPath: m_AngularZMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6481981532108773839, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -1554,7 +1559,7 @@ PrefabInstance:
     - target: {fileID: 8564538815871589338, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8617081425088867711, guid: 2bc0b4c0ba944e54eae6f92e3f972fb2,
         type: 3}
@@ -1883,7 +1888,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 211126383}
-  m_LocalRotation: {x: 0.07979452, y: 0.013881132, z: -0.0010165828, w: 0.9967142}
+  m_LocalRotation: {x: 0.07979452, y: 0.013881131, z: -0.001016573, w: 0.9967142}
   m_LocalPosition: {x: -4.9151096, y: 1.6092722, z: -21.959011}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2948,16 +2953,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LevelBoundary
-      objectReference: {fileID: 0}
-    - target: {fileID: 1930342149778188278, guid: 9215117b94ee9b04a9081d2678bc2a0c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1930342149778188278, guid: 9215117b94ee9b04a9081d2678bc2a0c,
-        type: 3}
-      propertyPath: m_TagString
-      value: Boundary
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9215117b94ee9b04a9081d2678bc2a0c, type: 3}
@@ -4931,7 +4926,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746894800}
-  m_LocalRotation: {x: 0.07979452, y: 0.013881132, z: -0.0010165828, w: 0.9967142}
+  m_LocalRotation: {x: 0.07979452, y: 0.013881131, z: -0.001016573, w: 0.9967142}
   m_LocalPosition: {x: -4.6604834, y: 0.13667846, z: -12.82426}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

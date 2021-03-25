@@ -65,6 +65,12 @@ public class PlayerScore : MonoBehaviour
 					OnLeftBounds?.Invoke(handler.thisPlayer.timeSinceLastContact);
 				}
 			};
+
+			handler.OnFalling += () =>
+			{
+				thisPlayer.activeAvatar.SoftenFingers();
+				thisPlayer.inputController.SofterTorso();
+			};
 		}
 
 		//wire events
@@ -83,14 +89,19 @@ public class PlayerScore : MonoBehaviour
 
 		OnLeftBounds += (timeSinceContact) =>
 		{
+			Debug.Log("On Left bounds");
 			IsOut = true;
+
 			SetContactTime(timeSinceContact);
 
 			StartCoroutine(CallDelayed(() => {
 				OnCountersUp();
 			}, 1f));
+
 		};
 
+
+		
 
 
 	}

@@ -41,7 +41,9 @@ public class PlayerInputController : MonoBehaviour
     private Vector3 backFingerTip, frontFingerTip, relevantFingerTip, indexTipPos, middleTipPos;
     float inputDirection;
     Vector3 playerMidPoint;
-    float jointDrive_startValue;
+    float jointDrive_startXValue;
+    float jointAngDrive_startXValue;
+    float jointAngDrive_startYZValue;
     float jointDrive_startMaxForce;
     enum AnchorState { connected, broken};
     AnchorState anchorState = AnchorState.connected;
@@ -125,7 +127,9 @@ public class PlayerInputController : MonoBehaviour
 				Debug.Log("LX released");
 			};
 		}
-		jointDrive_startValue = configJoint.xDrive.positionSpring;
+		jointDrive_startXValue = configJoint.xDrive.positionSpring;
+        jointAngDrive_startXValue = configJoint.angularXDrive.positionSpring;
+        jointAngDrive_startYZValue = configJoint.angularYZDrive.positionSpring;
 
         initialized = true;
         //if (settings.fallMode = Settings.FallMode.angleAndCOM)
@@ -425,6 +429,11 @@ public class PlayerInputController : MonoBehaviour
             activeAvatar.middleFinger.stickInput.value = activeAvatar.middleFinger.stickInput_original.value;
     }
 
+    public void OnJump()
+    {
+        Jump(Vector3.up, settings.jumpForce);
+    }
+
     private void AssignPlayersToHandlers()
     {
         // convert to List
@@ -437,12 +446,17 @@ public class PlayerInputController : MonoBehaviour
 
     public void ResetPosition()
     {
+        activeAvatar.HardenFingers();
+        HardenTorso();
+
+        //reset positions
         for (int i = 0; i < childTransofrms.Count; i++)
         {
             childTransofrms[i].position = originalPositions[i];
             childTransofrms[i].rotation = originalRotations[i];
         }
 
+        // nullify velocity
         for (int i = 0; i < activeAvatar.childHandlers.Length; i++)
         {
             Rigidbody childRigidbody = activeAvatar.childHandlers[i].rigid;
@@ -452,11 +466,14 @@ public class PlayerInputController : MonoBehaviour
             }
         }
 
+        // reset configurable joint
         if (settings.fallMode == Settings.FallMode.spring_backFoot || settings.fallMode == Settings.FallMode.spring_feet)
         {
-            SetXYZDrive(jointDrive_startValue);
+            SetXYZDriveOfConfigjoint(jointDrive_startXValue);
             anchorState = AnchorState.connected;
         }
+
+        // reset positions and drives of child joints
     }
 
 
@@ -652,7 +669,7 @@ public class PlayerInputController : MonoBehaviour
         return distance;
     }
 
-    private void SetXYZDrive(float value)
+    private void SetXYZDriveOfConfigjoint(float value)
     {
 
         JointDrive drive = configJoint.xDrive;
@@ -662,6 +679,8 @@ public class PlayerInputController : MonoBehaviour
         configJoint.yDrive = drive;
         configJoint.zDrive = drive;
     }
+
+
 
     private void SetAngularXYZDrive (float value)
     {
@@ -690,6 +709,26 @@ public class PlayerInputController : MonoBehaviour
 	{
         Gizmos.DrawSphere(indexTipPos, 0.1f);
         Gizmos.DrawSphere(middleTipPos, 0.1f);
+    }
+
+    public void SofterTorso()
+	{
+        Debug.Log("Softening Torso");
+        JointDrive Xdrive = configJoint.angularXDrive;
+        Xdrive.positionSpring = 0;
+
+        JointDrive YZdrive = configJoint.angularYZDrive;
+        YZdrive.positionSpring = 0;
+    }
+
+    public void HardenTorso()
+    {
+        Debug.Log("Hardening Torso");
+        JointDrive Xdrive = configJoint.angularXDrive;
+        Xdrive.positionSpring = jointAngDrive_startXValue;
+
+        JointDrive YZdrive = configJoint.angularYZDrive;
+        YZdrive.positionSpring = jointAngDrive_startYZValue;
     }
 }
 
