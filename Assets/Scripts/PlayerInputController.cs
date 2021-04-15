@@ -139,103 +139,106 @@ public class PlayerInputController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (initialized)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                ResetPosition();
-            }
+		if (initialized)
+		{
+			if (Input.GetKeyDown(KeyCode.Space))
+			{
+				ResetPosition();
+			}
 
-            // timers
-            timeSinceLastContact += Time.deltaTime;
+			// timers
+			timeSinceLastContact += Time.deltaTime;
 
-            // gather data
+			//// gather data
 
-            activeAvatar.middleFinger.stickInput.Update();
-            activeAvatar.indexFinger.stickInput.Update();
+			activeAvatar.middleFinger.stickInput.Update();
+			activeAvatar.indexFinger.stickInput.Update();
 
-            activeAvatar.middleFinger.stickInput.CheckForFastStickReleases(settings.stickReleaseTimeWindow, 1f, 0f, settings.stickReleaseTimeWindow);
-            activeAvatar.indexFinger.stickInput.CheckForFastStickReleases(settings.stickReleaseTimeWindow, 1f, 0f, settings.stickReleaseTimeWindow);
+			activeAvatar.middleFinger.stickInput.CheckForFastStickReleases(settings.stickReleaseTimeWindow, 1f, 0f, settings.stickReleaseTimeWindow);
+			activeAvatar.indexFinger.stickInput.CheckForFastStickReleases(settings.stickReleaseTimeWindow, 1f, 0f, settings.stickReleaseTimeWindow);
 
-            // IF USING POSES
-            if (settings.useFK)
-            {
-                //MANAGE POSES 
-                handAnimator.SetFloat("XInput_L", activeAvatar.middleFinger.stickInput.value.x);
-                handAnimator.SetFloat("YInput_L", activeAvatar.middleFinger.stickInput.value.y);
-                handAnimator.SetFloat("XInput_R", activeAvatar.indexFinger.stickInput.value.x);
-                handAnimator.SetFloat("YInput_R", activeAvatar.indexFinger.stickInput.value.y);
-
-
-                //MANAGE BENDING AND PUSHING
-                ManageManualBending();
+			// IF USING POSES
+			if (settings.useFK)
+			{
+				//MANAGE POSES 
+				handAnimator.SetFloat("XInput_L", activeAvatar.middleFinger.stickInput.value.x);
+				handAnimator.SetFloat("YInput_L", activeAvatar.middleFinger.stickInput.value.y);
+				handAnimator.SetFloat("XInput_R", activeAvatar.indexFinger.stickInput.value.x);
+				handAnimator.SetFloat("YInput_R", activeAvatar.indexFinger.stickInput.value.y);
 
 
-                // NEW ANCHOR-STABILISATION -> full of flaws
-                //if (settings.fallMode == Settings.FallMode.spring_backFoot)
-                //{
-                //    AnchorStabilization();
-                //    AnchorBreakForce();
-                //}
+				////MANAGE BENDING AND PUSHING
+				ManageManualBending();
 
-                if (settings.fallMode == Settings.FallMode.spring_feet)
-                {
-                    GetFingerTipData();
-                    Anchor_AutomaticFeetBalance();
-                    AnchorInputAmplification();
-                    AnchorBreakForce();
-                }
 
-                if (settings.fallMode == Settings.FallMode.autoBend)
-                {
-                    // tbd
-                }
+				// NEW ANCHOR-STABILISATION -> full of flaws
+				//if (settings.fallMode == Settings.FallMode.spring_backFoot)
+				//{
+				//    AnchorStabilization();
+				//    AnchorBreakForce();
+				//}
+
+				if (settings.fallMode == Settings.FallMode.spring_feet)
+				{
+					GetFingerTipData();
+					Anchor_AutomaticFeetBalance();
+					AnchorInputAmplification();
+					AnchorBreakForce();
+				}
+
+				if (settings.fallMode == Settings.FallMode.autoBend)
+				{
+					// tbd
+				}
 
                 else if (settings.fallMode == Settings.FallMode.COM)
                 {
-                    GetFingerTipData();
-
-                    if (settings.pushAmplification == Settings.PushAmplificationMode.anchor)
+                    if (activeAvatar.softened == false)
                     {
-                        COM_inputAmplification_angle();
-                        COM_inputAmplification_anchor();
-                    } 
-                    
+                        GetFingerTipData();
+
+                        if (settings.pushAmplification == Settings.PushAmplificationMode.anchor)
+                        {
+                            COM_inputAmplification_angle();
+                            COM_inputAmplification_anchor();
+                        }
+                    }
+
+                }
+            }
+
+
+			else
+			{
+
+				// MANAGE BENDING AND MOVEMENT
+
+				// Bend the body if getting input and on the floor 
+				if (activeAvatar.indexFinger.stickInput.value.x != 0f && !(GetGroundedState() == GroundedState.inAir))
+				{
+					BendVertically(activeAvatar.indexFinger.stickInput.value.x * settings.hipRotationSpeed * (invertControls ? -1 : 1));
 				}
-            }
+				// When in air push the player
+				else if (activeAvatar.indexFinger.stickInput.value.x != 0f && GetGroundedState() == GroundedState.inAir)
+				{
+					SetPlayerPushForce(new Vector3(activeAvatar.indexFinger.stickInput.value.x, 0, 0), settings.maxHipPushForce * (invertControls ? -1 : 1));
+				}
+				else
+				{
+					SetPlayerPushForce(Vector3.zero, 0);
+				}
+			}
 
+			// GLOBAL & LOCAL SPACE
+			// -> rotate the input-Vector2 in order to fake global space
+			if (settings.poseSpace == Settings.TransformType.global)
+			{
+				FakeGlobalSpace();
+			}
+		}
+	}
 
-            else
-            {
-
-                // MANAGE BENDING AND MOVEMENT
-
-                // Bend the body if getting input and on the floor 
-                if (activeAvatar.indexFinger.stickInput.value.x != 0f && !(GetGroundedState() == GroundedState.inAir))
-                {
-                    BendVertically(activeAvatar.indexFinger.stickInput.value.x * settings.hipRotationSpeed * (invertControls ? -1 : 1));
-                }
-                // When in air push the player
-                else if (activeAvatar.indexFinger.stickInput.value.x != 0f && GetGroundedState() == GroundedState.inAir)
-                {
-                    SetPlayerPushForce(new Vector3(activeAvatar.indexFinger.stickInput.value.x, 0, 0), settings.maxHipPushForce * (invertControls ? -1 : 1));
-                }
-                else
-                {
-                    SetPlayerPushForce(Vector3.zero, 0);
-                }
-            }
-
-            // GLOBAL & LOCAL SPACE
-            // -> rotate the input-Vector2 in order to fake global space
-            if (settings.poseSpace == Settings.TransformType.global)
-            {
-                FakeGlobalSpace();
-            }
-        }
-    }
-
-    void FakeGlobalSpace()
+	void FakeGlobalSpace()
     {
         float bodyRotation = activeAvatar.playerRoot.transform.localEulerAngles.x;
         if (bodyRotation > 180)
@@ -636,6 +639,7 @@ public class PlayerInputController : MonoBehaviour
 
         // set anchor up
         newAchorPosition = activeAvatar.transform.position + Vector3.up * settings.anchorYOffset;
+
         // input force; only backwarts
         newAchorPosition += lookDirection.normalized * Mathf.Clamp(inputDirection, -2f, settings.anchorForwardForce) * settings.anchorInputStrength2;
 
@@ -729,6 +733,11 @@ public class PlayerInputController : MonoBehaviour
 
         JointDrive YZdrive = configJoint.angularYZDrive;
         YZdrive.positionSpring = jointAngDrive_startYZValue;
+    }
+
+    public void Push(Vector3 force) 
+    {
+        
     }
 }
 

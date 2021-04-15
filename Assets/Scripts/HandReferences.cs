@@ -16,7 +16,7 @@ public class HandReferences : MonoBehaviour
 
 	public bool isDown;
 	public bool isOut;
-	public bool softened;
+	public bool softened = false;
 
 	[HideInInspector] public CollisionHandler[] childHandlers;
 	[HideInInspector] public OrientationAndBalance balance;
@@ -38,6 +38,7 @@ public class HandReferences : MonoBehaviour
 	public void SoftenFingers()
 	{
 		Debug.Log("softening");
+
 		softened = true;
 		for (int i = 0; i < childHandlers.Count(); i++)
 		{
@@ -54,7 +55,7 @@ public class HandReferences : MonoBehaviour
 
 	public void HardenFingers() 
 	{
-
+		Debug.Log("Hardening Fingers");
 		softened = false;
 		for (int i = 0; i < childHandlers.Count(); i++)
 		{

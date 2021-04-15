@@ -303,8 +303,10 @@ public class CollisionHandler : MonoBehaviour
 		// FALL DETECTION
 		if(collider.tag == "FallDetector")
 		{
+			Debug.Log($"{this.gameObject.name} hit {collider.gameObject.name}", collider.gameObject);
 			OnFalling?.Invoke();
 		}
+
 		// GROUND DETECTION
 		if (collider.tag == "Environment")
 		{

@@ -30,6 +30,7 @@ public class PlayerScore : MonoBehaviour
 
 	private float remainingCountDownTime;
 	private float timeSicneLastContactAtFallTime;
+	public float fallCountdownTimer = 5;
 
 
 	public void Initialize()
@@ -76,6 +77,8 @@ public class PlayerScore : MonoBehaviour
 		//wire events
 		OnFellDown += (timeSinceContact) =>
 		{
+			Debug.Log("Fell Down");
+
 			IsDown = true;
 			StartCountdown();
 			SetContactTime(timeSinceContact);
@@ -96,7 +99,7 @@ public class PlayerScore : MonoBehaviour
 
 			StartCoroutine(CallDelayed(() => {
 				OnCountersUp();
-			}, 1f));
+			},fallCountdownTimer));
 
 		};
 
